@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAYDA Login — FAN/FCN</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    .scroll-area::-webkit-scrollbar { display: none; }
+    .scroll-area { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body style="margin:0;padding:0;font-family:'Barlow',sans-serif;background:#e8eced;display:flex;justify-content:center;align-items:center;min-height:100vh;box-sizing:border-box;">
+
+<div style="width:100%;max-width:375px;height:812px;background:#1e5f6e;border-radius:44px;box-shadow:0 24px 80px rgba(0,0,0,0.30);overflow:hidden;position:relative;display:flex;flex-direction:column;">
+
+  <!-- Status Bar -->
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 28px 8px;font-size:13px;font-weight:700;color:rgba(255,255,255,0.90);background:#1a5568;flex-shrink:0;">
+    <span id="statusTime">9:41</span>
+    <div style="display:flex;gap:6px;align-items:center;">
+      <svg viewBox="0 0 24 24" style="width:17px;height:17px;fill:currentColor;"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg>
+      <svg viewBox="0 0 24 24" style="width:17px;height:17px;fill:currentColor;"><path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4z"/></svg>
+    </div>
+  </div>
+
+  <!-- Nav -->
+  <div style="background:#fff;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;flex-shrink:0;">
+    <img src="fayda-logo-hq.png" alt="FAYDA" style="width:36px;height:36px;object-fit:contain;" onerror="this.style.display='none'" />
+    <div style="position:relative;">
+      <button id="navLangBtn" onclick="toggleNavLang(event)" style="display:flex;align-items:center;gap:7px;background:#1e6070;border:none;border-radius:22px;padding:7px 16px;cursor:pointer;font-family:'Barlow',sans-serif;font-size:13px;font-weight:600;color:#fff;">
+        English
+        <svg viewBox="0 0 10 6" style="width:11px;height:11px;fill:#fff;"><path d="M0 0l5 6 5-6z"/></svg>
+      </button>
+      <div id="navLangDd" style="display:none;position:absolute;top:calc(100% + 5px);right:0;background:#fff;border:1px solid #e0e0e0;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.12);overflow:hidden;min-width:130px;z-index:20;">
+        <button class="lang-opt active" onclick="selectNavLang('English')" style="display:flex;align-items:center;justify-content:space-between;padding:11px 16px;font-family:'Barlow',sans-serif;font-size:14px;font-weight:600;color:#1e6070;background:none;border:none;width:100%;cursor:pointer;border-bottom:1px solid #f0f0f0;">English <span style="color:#1e6070;">✓</span></button>
+        <button class="lang-opt" onclick="selectNavLang('አማርኛ')" style="display:flex;align-items:center;justify-content:space-between;padding:11px 16px;font-family:'Barlow',sans-serif;font-size:14px;font-weight:600;color:#333;background:none;border:none;width:100%;cursor:pointer;">አማርኛ <span style="color:#1e6070;opacity:0;">✓</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content - scrollable, no visible scrollbar -->
+  <div class="scroll-area" style="flex:1;position:relative;background:radial-gradient(ellipse at 90% 20%, rgba(255,255,255,0.05) 0%, transparent 50%), linear-gradient(145deg, #1a5568 0%, #2a7a8a 40%, #1e6070 70%, #163f50 100%);overflow-y:scroll;">
+    <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.06) 1px,transparent 1px);background-size:24px 24px;pointer-events:none;"></div>
+    <div style="position:relative;z-index:5;padding:20px 16px 24px;display:flex;flex-direction:column;align-items:center;gap:14px;min-height:100%;box-sizing:border-box;">
+
+      <!-- ══════════ STEP 1: FAN/FCN ══════════ -->
+      <div id="step-fan" style="width:100%;">
+
+        <!-- Logo Card -->
+        <div id="logoCardFan" style="padding:20px 24px;display:flex;align-items:center;justify-content:center;gap:24px;width:100%;background:rgba(255,255,255,0.10);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.18);border-radius:16px;box-sizing:border-box;margin-bottom:14px;">
+          <img src="M-Pesa-Logo.png" alt="M-PESA" style="height:32px;object-fit:contain;background:#fff;border-radius:8px;padding:6px 14px;" onerror="this.style.display='none'" />
+          <div style="display:flex;align-items:center;">
+            <svg viewBox="0 0 28 20" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:18px;stroke:rgba(255,255,255,0.70);">
+              <polyline points="16,2 24,10 16,18"></polyline>
+              <line x1="4" y1="10" x2="24" y2="10"></line>
+              <polyline points="12,2 4,10 12,18"></polyline>
+            </svg>
+          </div>
+          <img src="fayda-logo-hq.png" alt="FAYDA" style="height:40px;object-fit:contain;" onerror="this.style.display='none'" />
+        </div>
+
+        <div style="padding:24px 22px 28px;width:100%;background:rgba(255,255,255,0.10);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.18);border-radius:16px;box-sizing:border-box;">
+          <h2 style="font-size:20px;font-weight:700;color:#fff;line-height:1.35;margin:0 0 22px 0;font-family:'Barlow',sans-serif;">Enter your Fayda Number<br>(FAN or FCN)</h2>
+          <input id="fanInput" type="text" placeholder="Enter Your FAN or FCN" oninput="handleFanInput(this)" style="width:100%;padding:14px 16px;border:1.5px solid rgba(255,255,255,0.25);border-radius:10px;background:rgba(255,255,255,0.92);font-family:'Barlow',sans-serif;font-size:14px;font-weight:500;color:#1a1a1a;outline:none;margin-bottom:12px;box-sizing:border-box;" />
+          <div id="fanError" style="font-size:12.5px;font-weight:600;color:#e74c3c;margin-bottom:8px;min-height:18px;"></div>
+          <div onclick="showHelp()" style="display:flex;align-items:center;gap:6px;margin-bottom:22px;cursor:pointer;width:fit-content;">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;stroke:rgba(255,255,255,0.75);">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            <span style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.75);text-decoration:underline;">What is FAN/FCN?</span>
+          </div>
+          <button id="sendBtn" disabled onclick="goToOtp()" style="width:100%;padding:16px;border-radius:10px;border:none;background:#1e4f60;color:rgba(255,255,255,0.45);font-family:'Barlow',sans-serif;font-size:15px;font-weight:700;letter-spacing:0.5px;cursor:not-allowed;box-sizing:border-box;">Send Code</button>
+        </div>
+      </div>
+
+      <!-- ══════════ STEP 2: 6-digit OTP ══════════ -->
+      <div id="step-otp" style="display:none;width:100%;">
+
+        <div id="logoCardOtp" style="padding:16px 24px;display:flex;align-items:center;justify-content:center;gap:20px;width:100%;background:rgba(255,255,255,0.10);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.18);border-radius:16px;box-sizing:border-box;margin-bottom:14px;">
+          <img src="M-Pesa-Logo.png" alt="M-PESA" style="height:28px;object-fit:contain;background:#fff;border-radius:8px;padding:6px 12px;" onerror="this.style.display='none'" />
+          <div style="display:flex;align-items:center;">
+            <svg viewBox="0 0 28 20" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:16px;stroke:rgba(255,255,255,0.70);">
+              <polyline points="16,2 24,10 16,18"></polyline>
+              <line x1="4" y1="10" x2="24" y2="10"></line>
+              <polyline points="12,2 4,10 12,18"></polyline>
+            </svg>
+          </div>
+          <img src="fayda-logo-hq.png" alt="FAYDA" style="height:36px;object-fit:contain;" onerror="this.style.display='none'" />
+        </div>
+
+        <div style="padding:24px 22px 28px;width:100%;background:rgba(255,255,255,0.10);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.18);border-radius:16px;box-sizing:border-box;">
+          <div id="fanDisplay" style="width:100%;padding:12px 14px;border:1.5px solid rgba(255,255,255,0.25);border-radius:10px;background:rgba(255,255,255,0.08);font-family:'Barlow',sans-serif;font-size:15px;font-weight:600;color:#fff;margin-bottom:20px;letter-spacing:1px;box-sizing:border-box;"></div>
+          <div id="otpLineBoxes" style="display:flex;gap:8px;justify-content:center;margin-bottom:16px;">
+            <input class="otp-line-box" type="text" inputmode="numeric" maxlength="1" style="width:36px;height:44px;border:none;border-bottom:2px solid rgba(255,255,255,0.45);background:transparent;font-family:'Barlow',sans-serif;font-size:22px;font-weight:700;color:#fff;text-align:center;outline:none;caret-color:#2FC56D;box-sizing:border-box;" />
+            <input class="otp-line-box" type="text" inputmode="numeric" maxlength="1" style="width:36px;height:44px;border:none;border-bottom:2px solid rgba(255,255,255,0.45);background:transparent;font-family:'Barlow',sans-serif;font-size:22px;font-weight:700;color:#fff;text-align:center;outline:none;caret-color:#2FC56D;box-sizing:border-box;" />
+            <input class="otp-line-box" type="text" inputmode="numeric" maxlength="1" style="width:36px;height:44px;border:none;border-bottom:2px solid rgba(255,255,255,0.45);background:transparent;font-family:'Barlow',sans-serif;font-size:22px;font-weight:700;color:#fff;text-align:center;outline:none;caret-color:#2FC56D;box-sizing:border-box;" />
+            <input class="otp-line-box" type="text" inputmode="numeric" maxlength="1" style="width:36px;height:44px;border:none;border-bottom:2px solid rgba(255,255,255,0.45);background:transparent;font-family:'Barlow',sans-serif;font-size:22px;font-weight:700;color:#fff;text-align:center;outline:none;caret-color:#2FC56D;box-sizing:border-box;" />
+            <input class="otp-line-box" type="text" inputmode="numeric" maxlength="1" style="width:36px;height:44px;border:none;border-bottom:2px solid rgba(255,255,255,0.45);background:transparent;font-family:'Barlow',sans-serif;font-size:22px;font-weight:700;color:#fff;text-align:center;outline:none;caret-color:#2FC56D;box-sizing:border-box;" />
+            <input class="otp-line-box" type="text" inputmode="numeric" maxlength="1" style="width:36px;height:44px;border:none;border-bottom:2px solid rgba(255,255,255,0.45);background:transparent;font-family:'Barlow',sans-serif;font-size:22px;font-weight:700;color:#fff;text-align:center;outline:none;caret-color:#2FC56D;box-sizing:border-box;" />
+          </div>
+          <div id="fanOtpError" style="font-size:12px;font-weight:600;color:#e74c3c;text-align:center;min-height:16px;margin-bottom:6px;"></div>
+          <p style="font-size:12px;color:rgba(255,255,255,0.60);text-align:center;margin:0 0 20px 0;line-height:1.5;font-family:'Barlow',sans-serif;">
+            Code sent to: <strong id="maskedPhone" style="color:rgba(255,255,255,0.85);">XXXXXX9403</strong>
+          </p>
+          <button id="verifyBtn" disabled onclick="verifyOtp()" style="width:100%;padding:16px;border-radius:10px;border:none;background:#1e4f60;color:rgba(255,255,255,0.45);font-family:'Barlow',sans-serif;font-size:15px;font-weight:700;letter-spacing:0.5px;cursor:not-allowed;margin-bottom:12px;box-sizing:border-box;">Verify</button>
+          <div style="text-align:center;font-size:12px;font-weight:600;color:rgba(255,255,255,0.55);">
+            <span id="resendText">Resend code in </span>
+            <span id="timerDisplay" style="font-weight:700;">04:51</span>
+            <button id="resendBtn" onclick="resendCode()" style="background:none;border:none;color:rgba(255,255,255,0.85);font-family:'Barlow',sans-serif;font-size:12px;font-weight:700;text-decoration:underline;cursor:pointer;padding:0;display:none;">Resend code</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════ STEP 3: CONSENT (from consent.html) ══════════ -->
+      <div id="step-consent" style="display:none;width:100%;">
+
+        <!-- Timer Banner -->
+        <div style="text-align:center;margin-bottom:14px;">
+          <p style="font-size:14px;font-weight:600;color:rgba(255,255,255,0.90);margin:0 0 4px 0;font-family:'Barlow',sans-serif;">Please take appropriate action in</p>
+          <div id="consentTimer" style="font-size:34px;font-weight:800;color:#e87722;letter-spacing:2px;font-variant-numeric:tabular-nums;">09:51</div>
+        </div>
+
+        <!-- Logo Strip -->
+        <div style="display:flex;align-items:center;justify-content:center;gap:20px;margin-bottom:16px;">
+          <div style="background:#fff;border-radius:50px;padding:8px 18px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,0.15);">
+            <img src="M-Pesa-Logo.png" alt="M-PESA" style="height:26px;object-fit:contain;" onerror="this.style.display='none'" />
+          </div>
+          <div style="flex-shrink:0;">
+            <svg viewBox="0 0 28 22" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:18px;stroke:rgba(255,255,255,0.65);">
+              <polyline points="16,2 24,11 16,20"></polyline>
+              <line x1="2" y1="11" x2="24" y2="11"></line>
+              <polyline points="8,2 2,11 8,20"></polyline>
+            </svg>
+          </div>
+          <div style="width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,0.12);border:2px solid rgba(255,255,255,0.25);display:flex;align-items:center;justify-content:center;">
+            <img src="fayda-logo-hq.png" alt="FAYDA" style="width:44px;height:44px;object-fit:contain;" onerror="this.style.display='none'" />
+          </div>
+        </div>
+
+        <!-- Request text -->
+        <p style="font-size:15px;font-weight:600;color:#fff;text-align:center;line-height:1.55;margin:0 0 18px 0;font-family:'Barlow',sans-serif;">
+          <strong style="color:#fff;font-weight:800;">Fayda-partner-M-PESA</strong> is requesting<br>access to the following:
+        </p>
+
+        <!-- Essential Claims -->
+        <div style="background:rgba(255,255,255,0.08);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.14);border-radius:14px;overflow:hidden;margin-bottom:12px;width:100%;box-sizing:border-box;">
+          <div style="display:flex;align-items:center;gap:6px;padding:12px 16px 10px;border-bottom:1px solid rgba(255,255,255,0.10);">
+            <h3 style="font-size:14px;font-weight:700;color:#fff;margin:0;font-family:'Barlow',sans-serif;">Essential Claims</h3>
+          </div>
+          <div style="padding:0 16px;">
+            <div class="claim-row" style="display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid rgba(255,255,255,0.07);"><span style="font-size:13px;font-weight:500;color:rgba(255,255,255,0.90);font-family:'Barlow',sans-serif;">Birthdate</span><span style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.3px;font-family:'Barlow',sans-serif;">Required</span></div>
+            <div class="claim-row" style="display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid rgba(255,255,255,0.07);"><span style="font-size:13px;font-weight:500;color:rgba(255,255,255,0.90);font-family:'Barlow',sans-serif;">Address</span><span style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.3px;font-family:'Barlow',sans-serif;">Required</span></div>
+            <div class="claim-row" style="display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid rgba(255,255,255,0.07);"><span style="font-size:13px;font-weight:500;color:rgba(255,255,255,0.90);font-family:'Barlow',sans-serif;">Gender</span><span style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.3px;font-family:'Barlow',sans-serif;">Required</span></div>
+            <div class="claim-row" style="display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid rgba(255,255,255,0.07);"><span style="font-size:13px;font-weight:500;color:rgba(255,255,255,0.90);font-family:'Barlow',sans-serif;">Nationality</span><span style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.3px;font-family:'Barlow',sans-serif;">Required</span></div>
+            <div class="claim-row" style="display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid rgba(255,255,255,0.07);"><span style="font-size:13px;font-weight:500;color:rgba(255,255,255,0.90);font-family:'Barlow',sans-serif;">Full Name</span><span style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.3px;font-family:'Barlow',sans-serif;">Required</span></div>
+            <div class="claim-row" style="display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid rgba(255,255,255,0.07);"><span style="font-size:13px;font-weight:500;color:rgba(255,255,255,0.90);font-family:'Barlow',sans-serif;">Phone Number</span><span style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.3px;font-family:'Barlow',sans-serif;">Required</span></div>
+            <div class="claim-row" style="display:flex;align-items:center;justify-content:space-between;padding:11px 0;"><span style="font-size:13px;font-weight:500;color:rgba(255,255,255,0.90);font-family:'Barlow',sans-serif;">Picture</span><span style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.3px;font-family:'Barlow',sans-serif;">Required</span></div>
+          </div>
+        </div>
+
+        <!-- Voluntary Claims -->
+        <div style="background:rgba(255,255,255,0.08);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.14);border-radius:14px;overflow:hidden;margin-bottom:12px;width:100%;box-sizing:border-box;">
+          <div style="display:flex;align-items:center;gap:6px;padding:12px 16px 10px;border-bottom:1px solid rgba(255,255,255,0.10);">
+            <h3 style="font-size:14px;font-weight:700;color:#fff;margin:0;font-family:'Barlow',sans-serif;">Voluntary Claims</h3>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;">
+            <span style="font-size:13px;font-weight:500;color:rgba(255,255,255,0.90);font-family:'Barlow',sans-serif;">Email Address</span>
+            <label style="position:relative;width:40px;height:22px;flex-shrink:0;">
+              <input type="checkbox" id="emailToggle" style="opacity:0;width:0;height:0;" />
+              <span style="position:absolute;inset:0;background:rgba(255,255,255,0.20);border-radius:22px;cursor:pointer;transition:background 0.2s;"></span>
+              <span style="content:'';position:absolute;width:16px;height:16px;left:3px;top:3px;background:#fff;border-radius:50%;transition:transform 0.2s;" id="emailToggleThumb"></span>
+            </label>
+          </div>
+        </div>
+
+        <div id="consentError" style="font-size:12px;font-weight:600;color:#e74c3c;text-align:center;min-height:18px;"></div>
+
+        <!-- Action Buttons -->
+        <div style="display:flex;gap:12px;width:100%;">
+          <button onclick="declineConsent()" style="flex:1;max-width:220px;padding:14px;border-radius:50px;border:2px solid rgba(255,255,255,0.30);background:rgba(255,255,255,0.08);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;font-family:'Barlow',sans-serif;font-size:14px;font-weight:700;cursor:pointer;">Decline</button>
+          <button id="acceptBtn" onclick="acceptConsent()" style="flex:1;max-width:220px;padding:14px;border-radius:50px;border:none;background:#163f50;color:#fff;font-family:'Barlow',sans-serif;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,0.25);">Accept</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="background:#163f50;padding:12px 20px;display:flex;align-items:center;justify-content:center;gap:8px;flex-shrink:0;">
+    <span style="font-size:13px;color:rgba(255,255,255,0.55);font-weight:500;">Powered by</span>
+    <img src="fayda-logo-hq.png" alt="" style="height:20px;object-fit:contain;" onerror="this.style.display='none'" />
+    <span style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.75);">Veri</span>
+    <span style="font-size:13px;font-weight:700;color:#e87722;">Fayda</span>
+    <span style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.55);">2.0</span>
+  </div>
+
+</div>
+
+<!-- Success overlay -->
+<div id="successOverlay" style="display:none;position:fixed;inset:0;background:rgba(35,145,80,0.95);z-index:200;align-items:center;justify-content:center;flex-direction:column;gap:20px;padding:40px;text-align:center;">
+  <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+  <h2 style="color:#fff;font-size:24px;font-weight:800;margin:0;font-family:'Barlow',sans-serif;">Verification Complete</h2>
+  <p style="color:rgba(255,255,255,0.80);font-size:15px;line-height:1.6;margin:0;font-family:'Barlow',sans-serif;">Your M-PESA account has been successfully linked with your FAYDA ID.</p>
+  <button onclick="resetAll()" style="margin-top:10px;padding:14px 32px;border-radius:50px;border:none;background:#fff;color:#239150;font-family:'Barlow',sans-serif;font-size:15px;font-weight:800;cursor:pointer;">Done</button>
+</div>
+
+<!-- Help Modal -->
+<div id="helpModal" onclick="if(event.target===this)closeHelp()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.50);z-index:100;align-items:center;justify-content:center;padding:20px;">
+  <div style="background:#fff;border-radius:16px;padding:32px;max-width:360px;width:100%;position:relative;">
+    <button onclick="closeHelp()" style="position:absolute;top:14px;right:16px;background:none;border:none;font-size:24px;color:#666;cursor:pointer;">&times;</button>
+    <h3 style="font-size:17px;font-weight:700;color:#1e5f6e;margin:0 0 14px 0;font-family:'Barlow',sans-serif;">What is FAN/FCN?</h3>
+    <p style="font-size:14px;color:#555;line-height:1.7;margin:0 0 10px 0;font-family:'Barlow',sans-serif;"><strong style="color:#333;">FAN (Fayda Alias Number)</strong> — A unique alias you set when registering for your FAYDA digital identity.</p>
+    <p style="font-size:14px;color:#555;line-height:1.7;margin:0;font-family:'Barlow',sans-serif;"><strong style="color:#333;">FCN (Fayda Card Number)</strong> — The 16-digit number printed on your FAYDA national ID card.</p>
+  </div>
+</div>
+
+<script>
+  /* ── Email toggle ── */
+  document.addEventListener('change', function(e) {
+    if (e.target.id === 'emailToggle') {
+      const thumb = document.getElementById('emailToggleThumb');
+      const slider = thumb.parentElement.querySelector('span:first-of-type');
+      if (e.target.checked) {
+        thumb.style.transform = 'translateX(18px)';
+        slider.style.background = '#2FC56D';
+      } else {
+        thumb.style.transform = 'translateX(0)';
+        slider.style.background = 'rgba(255,255,255,0.20)';
+      }
+    }
+  });
+
+  /* ── Lang ── */
+  function toggleNavLang(e) { e.stopPropagation(); document.getElementById('navLangBtn').classList.toggle('open'); document.getElementById('navLangDd').style.display = document.getElementById('navLangDd').style.display === 'block' ? 'none' : 'block'; }
+  function selectNavLang(lang) {
+    document.querySelectorAll('.lang-opt').forEach(o => { o.style.color = '#333'; o.querySelector('span:last-child').style.opacity = '0'; });
+    const el = [...document.querySelectorAll('.lang-opt')].find(o => o.textContent.trim().startsWith(lang.trim()));
+    if (el) { el.style.color = '#1e6070'; el.querySelector('span:last-child').style.opacity = '1'; }
+    document.getElementById('navLangBtn').childNodes[0].textContent = lang;
+    document.getElementById('navLangDd').style.display = 'none';
+    document.getElementById('navLangBtn').classList.remove('open');
+  }
+  document.addEventListener('click', () => { const d = document.getElementById('navLangDd'); if(d) d.style.display='none'; });
+
+  /* ── Time ── */
+  function updateTime() { const d=new Date(); document.getElementById('statusTime').textContent = d.getHours() + ':' + String(d.getMinutes()).padStart(2,'0'); }
+  updateTime(); setInterval(updateTime, 10000);
+
+  /* ── FAN ── */
+  function showFanError(msg) {
+    const el=document.getElementById('fanError'), inp=document.getElementById('fanInput');
+    el.textContent = msg;
+    if(msg){ inp.style.borderColor='#e74c3c'; inp.style.boxShadow='0 0 0 3px rgba(231,76,60,0.15)'; inp.style.color='#e74c3c'; }
+    else{ inp.style.borderColor=''; inp.style.boxShadow=''; inp.style.color='#1a1a1a'; }
+  }
+  function handleFanInput(input) {
+    const btn=document.getElementById('sendBtn'), err=document.getElementById('fanError');
+    let d=input.value.replace(/\D/g,''); if(d.length>16) d=d.slice(0,16);
+    const m=d.match(/\d{1,4}/g); input.value=m?m.join(' '):'';
+    err.textContent=''; input.style.borderColor=''; input.style.boxShadow=''; input.style.color='#1a1a1a';
+    const has=d.length>=1; btn.disabled=!has;
+    if(has){ btn.style.background='#1a5f72'; btn.style.color='#fff'; btn.style.cursor='pointer'; btn.style.boxShadow='0 6px 20px rgba(0,0,0,0.20)'; }
+    else{ btn.style.background='#1e4f60'; btn.style.color='rgba(255,255,255,0.45)'; btn.style.cursor='not-allowed'; btn.style.boxShadow='none'; }
+    if(d.length===12){ err.innerHTML='<span style="color:#2FC56D;font-weight:700;">✓ Valid 12-digit FAN</span>'; input.style.borderColor='#2FC56D'; input.style.boxShadow='0 0 0 3px rgba(47,197,109,0.15)'; }
+    else if(d.length===16){ err.innerHTML='<span style="color:#2FC56D;font-weight:700;">✓ Valid 16-digit FCN</span>'; input.style.borderColor='#2FC56D'; input.style.boxShadow='0 0 0 3px rgba(47,197,109,0.15)'; }
+  }
+  function goToOtp() {
+    const inp=document.getElementById('fanInput'), v=inp.value.trim(), d=v.replace(/\D/g,'');
+    if(d.length===0){ showFanError('Fayda number is required.'); inp.focus(); return; }
+    if(d.length<12){ showFanError('FAN must be exactly 12 digits. You entered '+d.length+'.'); inp.focus(); return; }
+    if(d.length>12&&d.length<16){ showFanError('FCN must be exactly 16 digits. You entered '+d.length+'.'); inp.focus(); return; }
+    if(d.length>16){ showFanError('Fayda number cannot exceed 16 digits.'); inp.focus(); return; }
+    document.getElementById('fanDisplay').textContent=v; document.getElementById('maskedPhone').textContent='XXXXXX'+d.slice(-4);
+    document.getElementById('step-fan').style.display='none'; document.getElementById('step-otp').style.display='block';
+    startCountdown(); setTimeout(()=>document.querySelectorAll('.otp-line-box')[0].focus(),100);
+  }
+  function goBackToFan(){ document.getElementById('step-otp').style.display='none'; document.getElementById('step-fan').style.display='block'; clearOtp(); clearInterval(timerInterval); clearInterval(consentTimerInterval); }
+  function showHelp(){ document.getElementById('helpModal').style.display='flex'; }
+  function closeHelp(){ document.getElementById('helpModal').style.display='none'; }
+
+  /* ── OTP ── */
+  const lineBoxes=Array.from(document.querySelectorAll('.otp-line-box')); let fanOtpExpired=false;
+  function showFanOtpError(m){ document.getElementById('fanOtpError').textContent=m; lineBoxes.forEach(b=>{ b.style.borderColor=m?'#e74c3c':''; b.style.color=m?'#e74c3c':'#fff'; }); }
+  lineBoxes.forEach((b,i)=>{
+    b.addEventListener('input',e=>{
+      const v=e.target.value.replace(/\D/g,''); e.target.value=v.slice(0,1);
+      b.style.borderColor=v.length>0?'rgba(255,255,255,0.85)':'';
+      if(v&&i<lineBoxes.length-1)lineBoxes[i+1].focus(); showFanOtpError(''); checkOtp();
+    });
+    b.addEventListener('keydown',e=>{ if(e.key==='Backspace'&&!b.value&&i>0){ lineBoxes[i-1].focus(); lineBoxes[i-1].value=''; lineBoxes[i-1].style.borderColor=''; showFanOtpError(''); checkOtp(); } });
+  });
+  function checkOtp(){ const f=lineBoxes.every(b=>b.value.length===1),btn=document.getElementById('verifyBtn'); btn.disabled=!f;
+    if(f){ btn.style.background='#1a5f72'; btn.style.color='#fff'; btn.style.cursor='pointer'; btn.style.boxShadow='0 6px 20px rgba(0,0,0,0.20)'; }
+    else{ btn.style.background='#1e4f60'; btn.style.color='rgba(255,255,255,0.45)'; btn.style.cursor='not-allowed'; btn.style.boxShadow='none'; }
+  }
+  function clearOtp(){ lineBoxes.forEach(b=>{b.value='';b.style.borderColor='';b.style.color='#fff';}); checkOtp(); }
+
+  function verifyOtp() {
+    showFanOtpError('');
+    if(fanOtpExpired){ showFanOtpError('FAYDA OTP has expired. Please click Resend to get a new code.'); clearOtp(); return; }
+    const all=lineBoxes.every(b=>b.value.length===1); if(!all){ showFanOtpError('Please enter the complete 6-digit verification code.'); return; }
+    const code=lineBoxes.map(b=>b.value).join(''); if(!/^\d{6}$/.test(code)){ showFanOtpError('Invalid code. Verification code must be 6 digits.'); return; }
+    if(code==='000000'||code==='123456'){ showFanOtpError('Incorrect verification code. Please check your SMS and try again.'); lineBoxes.forEach(b=>{b.style.borderColor='#e74c3c';b.style.color='#e74c3c';}); return; }
+    document.getElementById('step-otp').style.display='none'; document.getElementById('step-consent').style.display='block';
+    startConsentTimer(); clearInterval(timerInterval);
+  }
+
+  /* ── OTP Timer ── */
+  let timerInterval, timerSecs=291;
+  function startCountdown(){ timerSecs=291; fanOtpExpired=false; updateTimer6(); clearInterval(timerInterval); document.getElementById('resendBtn').style.display='none'; document.getElementById('resendText').style.display=''; document.getElementById('timerDisplay').style.display=''; timerInterval=setInterval(()=>{timerSecs--; updateTimer6(); if(timerSecs<=0){clearInterval(timerInterval); document.getElementById('resendText').style.display='none'; document.getElementById('timerDisplay').style.display='none'; document.getElementById('resendBtn').style.display='inline'; fanOtpExpired=true;}},1000); }
+  function updateTimer6(){ const m=Math.floor(timerSecs/60),s=timerSecs%60; document.getElementById('timerDisplay').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0'); }
+  function resendCode(){ document.getElementById('resendBtn').style.display='none'; document.getElementById('resendText').style.display=''; document.getElementById('timerDisplay').style.display=''; fanOtpExpired=false; clearOtp(); lineBoxes[0].focus(); startCountdown(); }
+
+  /* ── Consent Timer (9:51) ── */
+  let consentTimerInterval;
+  let consentSecs = 591;
+  function startConsentTimer() {
+    consentSecs = 591;
+    updateConsentTimer();
+    clearInterval(consentTimerInterval);
+    consentTimerInterval = setInterval(() => {
+      consentSecs--;
+      updateConsentTimer();
+      if (consentSecs <= 0) {
+        clearInterval(consentTimerInterval);
+        document.getElementById('consentTimer').textContent = '00:00';
+        document.getElementById('consentTimer').style.color = '#e74c3c';
+        document.getElementById('consentError').textContent = 'Session expired. Please go back and try again.';
+      }
+    }, 1000);
+  }
+  function updateConsentTimer() {
+    const m = Math.floor(consentSecs / 60);
+    const s = consentSecs % 60;
+    document.getElementById('consentTimer').textContent = String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+  }
+
+  /* ── Consent ── */
+  function declineConsent() {
+    if (confirm('Are you sure you want to decline? This will cancel the verification.')) {
+      document.getElementById('step-consent').style.display = 'none';
+      document.getElementById('step-fan').style.display = 'block';
+      document.getElementById('fanInput').value = '';
+      handleFanInput(document.getElementById('fanInput'));
+      clearInterval(consentTimerInterval);
+      document.getElementById('consentError').textContent = '';
+    }
+  }
+  function acceptConsent() {
+    document.getElementById('successOverlay').style.display = 'flex';
+    clearInterval(consentTimerInterval);
+  }
+
+  function resetAll() {
+    document.getElementById('successOverlay').style.display = 'none';
+    document.getElementById('step-consent').style.display = 'none';
+    document.getElementById('step-otp').style.display = 'none';
+    document.getElementById('step-fan').style.display = 'block';
+    document.getElementById('fanInput').value = '';
+    handleFanInput(document.getElementById('fanInput'));
+    clearOtp();
+    clearInterval(timerInterval);
+    clearInterval(consentTimerInterval);
+    document.getElementById('consentError').textContent = '';
+    document.getElementById('consentTimer').style.color = '#e87722';
+    document.getElementById('emailToggle').checked = false;
+    document.getElementById('emailToggleThumb').style.transform = 'translateX(0)';
+    const slider = document.getElementById('emailToggleThumb').parentElement.querySelector('span:first-of-type');
+    if (slider) slider.style.background = 'rgba(255,255,255,0.20)';
+  }
+</script>
+
+</body>
+</html>

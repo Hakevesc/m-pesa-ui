@@ -1,0 +1,3123 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<div class="page-title-wrap">
+  <h2 class="page-title"><span class="title-icon">👥</span> Group Savings</h2>
+  <p class="page-sub">Invite, contribute & withdraw — all from one place</p>
+</div>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css');
+
+/* ── Page Title (visible, modern header) ── */
+.page-title-wrap {
+  background: linear-gradient(135deg, #f8fbf9 0%, #eaf5ee 100%);
+  padding: 20px 24px;
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: var(--font-sans);
+}
+.page-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.3px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+.title-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--color-mpesa-green);
+  color: #fff;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.page-sub {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  margin: 0 0 0 46px;
+  line-height: 1.4;
+}
+
+:root {
+  --color-mpesa-green: #239150;
+  --color-mpesa-green-light: #2FC56D;
+  --color-mpesa-green-dark: #1b7341;
+  --color-mpesa-green-alpha: rgba(35, 145, 80, 0.06);
+  --color-mpesa-green-alpha-hover: rgba(35, 145, 80, 0.12);
+  --color-mpesa-accent-bg: #eaf5ee;
+  --color-mpesa-accent-text: #239150;
+  --font-sans: 'Barlow';
+  --color-background-primary: #ffffff;
+  --color-background-secondary: #f4f6f5;
+  --color-border-secondary: #e2e8e4;
+  --color-border-tertiary: #eef1ef;
+  --color-text-primary: #2a3530;
+  --color-text-secondary: #5b6e62;
+  --color-text-tertiary: #8fa397;
+  --color-background-info: #f0faf4;
+  --color-border-info: #b7ddc5;
+  --color-text-info: #1b7341;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+
+/* ── outer layout ── */
+.fw{
+  display:flex;
+  min-height:100vh;
+  font-family:var(--font-sans);
+  background:#f0f2f1;
+}
+
+/* ── modern left sidebar nav ── */
+.stepnav{
+  width:216px;
+  flex-shrink:0;
+  background:#fff;
+  border-right:0.5px solid var(--color-border-secondary);
+  display:flex;
+  flex-direction:column;
+  gap:1px;
+  padding:14px 12px;
+  position:sticky;
+  top:0;
+  height:100vh;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+}
+
+/* brand header */
+.snav-head{display:flex;align-items:center;gap:10px;padding:4px 6px 14px;margin-bottom:4px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.snav-logo{width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,var(--color-mpesa-green),var(--color-mpesa-green-dark));display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;flex-shrink:0}
+.snav-brand{display:flex;flex-direction:column;min-width:0}
+.snav-brand .snav-title{font-size:13px;font-weight:700;color:var(--color-text-primary);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.snav-brand small{font-size:10px;font-weight:500;color:var(--color-text-tertiary);line-height:1.2;margin-top:2px}
+
+/* ── flow switcher (top-right) ── */
+.flow-switch{position:fixed;top:18px;right:18px;z-index:80;font-family:var(--font-sans)}
+.flow-switch-btn{display:flex;align-items:center;gap:8px;background:#fff;border:0.5px solid var(--color-border-secondary);border-radius:10px;padding:8px 12px;font-size:12px;font-weight:600;color:var(--color-text-primary);cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.07);transition:border-color .14s;font-family:var(--font-sans)}
+.flow-switch-btn:hover{border-color:var(--color-mpesa-green)}
+.flow-switch-btn>i:first-child{font-size:15px;color:var(--color-mpesa-green)}
+.fs-caret{font-size:14px;color:var(--color-text-tertiary);transition:transform .15s}
+.flow-switch.open .fs-caret{transform:rotate(180deg)}
+.flow-switch-menu{position:absolute;top:calc(100% + 6px);right:0;min-width:186px;background:#fff;border:0.5px solid var(--color-border-secondary);border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.14),0 2px 6px rgba(0,0,0,.08);overflow:hidden;opacity:0;transform:scale(.96) translateY(-6px);transform-origin:top right;transition:opacity .15s,transform .15s;pointer-events:none}
+.flow-switch.open .flow-switch-menu{opacity:1;transform:scale(1) translateY(0);pointer-events:all}
+.flow-switch-item{display:flex;align-items:center;gap:10px;padding:11px 14px;font-size:13px;color:var(--color-text-primary);cursor:pointer;text-decoration:none;transition:background .12s}
+.flow-switch-item:hover{background:var(--color-background-secondary)}
+.flow-switch-item+.flow-switch-item{border-top:0.5px solid var(--color-border-tertiary)}
+.flow-switch-item i{font-size:16px;color:var(--color-text-secondary)}
+.flow-switch-item.active{color:var(--color-mpesa-green);font-weight:600;background:var(--color-mpesa-green-alpha)}
+.flow-switch-item.active i{color:var(--color-mpesa-green)}
+
+/* group headings inside the sidebar */
+.snav-group{
+  font-size:9px;
+  font-weight:700;
+  color:var(--color-text-tertiary);
+  text-transform:uppercase;
+  letter-spacing:.7px;
+  padding:13px 8px 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.snav-group:first-of-type{padding-top:6px}
+.snav-group:hover { color: var(--color-text-primary); }
+.snav-arrow { font-size: 10px; transition: transform .2s; }
+.snav-group.collapsed .snav-arrow { transform: rotate(-90deg); }
+.snav-items { max-height: 520px; overflow: visible; transition: max-height .25s ease, opacity .18s ease; opacity: 1; }
+.snav-items.collapsed { max-height: 0; overflow: hidden; opacity: 0; }
+.snav-group .snav-arrow { font-size: 10px; vertical-align: middle; }
+
+.snb{
+  position:relative;
+  width:100%;
+  text-align:left;
+  font-size:11.5px;
+  font-weight:500;
+  padding:8px 10px;
+  border-radius:9px;
+  border:none;
+  background:transparent;
+  color:var(--color-text-secondary);
+  cursor:pointer;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  transition:background .14s, color .14s;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  font-family:var(--font-sans);
+}
+.snb:hover{background:var(--color-background-secondary);color:var(--color-text-primary)}
+.snb.active{background:var(--color-mpesa-green-alpha);color:var(--color-mpesa-green-dark);font-weight:600}
+.snb.active::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:18px;border-radius:0 3px 3px 0;background:var(--color-mpesa-green)}
+.snb.done{color:var(--color-mpesa-green)}
+.snb .dot{width:8px;height:8px;border-radius:50%;background:currentColor;flex-shrink:0;opacity:.45;transition:opacity .14s}
+.snb .ic { width: 24px; height: 24px; border-radius: 7px; background: var(--color-background-secondary); display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--color-text-secondary); flex-shrink: 0; transition: all .14s }
+.snb:hover .ic { color: var(--color-text-primary) }
+.snb.active .ic { background: #fff; color: var(--color-mpesa-green); box-shadow: 0 1px 3px rgba(35,145,80,.18) }
+.snb.done .ic { color: var(--color-mpesa-green); background: var(--color-mpesa-accent-bg) }
+.snb .dot { display: none }
+
+/* ── right content area ── */
+.content-area{
+  flex:1;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  padding:24px 16px;
+}
+
+/* screens */
+.sc{display:none}
+.sc.active{display:block}
+.sc.active .bd>*{animation:screenIn .32s ease both}
+.sc.active .bd>*:nth-child(2){animation-delay:.04s}
+.sc.active .bd>*:nth-child(3){animation-delay:.08s}
+.sc.active .bd>*:nth-child(4){animation-delay:.12s}
+.sc.active .bd>*:nth-child(5){animation-delay:.16s}
+.sc.active .bd>*:nth-child(n+6){animation-delay:.18s}
+@keyframes screenIn{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:translateY(0)}}
+
+/* phone shell */
+.ph{
+  position:relative;
+  background:var(--color-background-primary);
+  border-radius:28px;
+  border:0.5px solid var(--color-border-secondary);
+  box-shadow:0 8px 40px rgba(0,0,0,.12), 0 2px 8px rgba(0,0,0,.06);
+  display:flex;
+  flex-direction:column;
+  width:360px;
+  height:780px;
+  flex-shrink:0;
+  overflow:hidden;
+}
+.sbar{display:flex;justify-content:space-between;padding:8px 14px 4px;font-size:11px;color:var(--color-text-secondary)}
+.sbar-r{display:flex;gap:4px;font-size:13px}
+
+/* header */
+.hd{padding:10px 14px 10px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.hd-top{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.back{background:none;border:none;color:var(--color-mpesa-green);font-size:12px;cursor:pointer;display:flex;align-items:center;gap:3px;padding:0;font-family:var(--font-sans)}
+.back i{font-size:14px}
+.hd-step{font-size:10px;color:var(--color-text-tertiary);margin-left:auto}
+.pbar{height:3px;background:var(--color-border-tertiary);border-radius:2px;overflow:hidden;margin-bottom:8px}
+.pfill{height:100%;background:var(--color-mpesa-green);border-radius:2px;transition:width .3s}
+.hd-title{font-size:17px;font-weight:600;color:var(--color-text-primary);letter-spacing:-.2px}
+.hd-sub{font-size:12px;color:var(--color-text-secondary);margin-top:3px;line-height:1.4}
+
+/* body */
+.bd{
+  padding:14px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  flex:1;
+  overflow-y:auto;
+  scroll-behavior:smooth;
+  scrollbar-width:thin;
+  scrollbar-color:var(--color-border-secondary) transparent;
+}
+.bd::-webkit-scrollbar{width:3px}
+.bd::-webkit-scrollbar-track{background:transparent}
+.bd::-webkit-scrollbar-thumb{background:var(--color-border-secondary);border-radius:2px}
+
+.bd-footer {
+  margin-top: auto;
+  position: sticky;
+  bottom: -14px;
+  background: var(--color-background-primary);
+  padding: 12px 14px 14px;
+  margin-left: -14px;
+  margin-right: -14px;
+  border-top: 0.5px solid var(--color-border-tertiary);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* type cards */
+.type-card{border:1px solid var(--color-border-secondary);border-radius:14px;padding:14px;cursor:pointer;transition:all .18s ease;display:flex;align-items:flex-start;gap:12px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+.type-card:hover{border-color:var(--color-mpesa-green);box-shadow:0 4px 14px rgba(35,145,80,.10);transform:translateY(-1px)}
+.type-card.sel{border-color:var(--color-mpesa-green);background:var(--color-mpesa-green-alpha);box-shadow:0 0 0 3px var(--color-mpesa-green-alpha-hover)}
+.type-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.type-title{font-size:14px;font-weight:600;color:var(--color-text-primary)}
+.type-sub{font-size:11px;color:var(--color-text-secondary);margin-top:2px;line-height:1.5}
+.type-badge{display:inline-block;font-size:10px;padding:2px 7px;border-radius:6px;margin-top:6px;font-weight:600}
+
+/* section label */
+.slbl{font-size:10px;font-weight:600;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.6px}
+
+/* text input */
+.inp-wrap{display:flex;flex-direction:column;gap:5px}
+.inp-lbl{font-size:12px;color:var(--color-text-secondary)}
+.inp{width:100%;padding:11px 13px;border-radius:10px;border:1px solid var(--color-border-secondary);background:var(--color-background-secondary);color:var(--color-text-primary);font-size:13px;font-family:var(--font-sans);outline:none;transition:all .15s}
+.inp:focus{border-color:var(--color-mpesa-green);background:#fff;box-shadow:0 0 0 3px var(--color-mpesa-green-alpha)}
+
+/* amount input with prefix */
+.amt-wrap{display:flex;align-items:center;border:1px solid var(--color-border-secondary);border-radius:10px;overflow:hidden;background:var(--color-background-secondary);transition:all .15s}
+.amt-wrap:focus-within{border-color:var(--color-mpesa-green);background:#fff;box-shadow:0 0 0 3px var(--color-mpesa-green-alpha)}
+.amt-pfx{padding:10px 10px 10px 12px;font-size:13px;color:var(--color-text-tertiary);white-space:nowrap}
+.amt-inp{flex:1;padding:10px 12px 10px 0;border:none;background:transparent;color:var(--color-text-primary);font-size:14px;font-weight:500;font-family:var(--font-sans);outline:none}
+
+/* toggle switch */
+.toggle-row{display:flex;gap:8px}
+.tog-opt{flex:1;border:1px solid var(--color-border-secondary);border-radius:12px;padding:12px 10px;cursor:pointer;transition:all .18s ease;text-align:center;background:#fff}
+.tog-opt:hover{border-color:var(--color-mpesa-green);box-shadow:0 4px 12px rgba(35,145,80,.08);transform:translateY(-1px)}
+.tog-opt.sel{border-color:var(--color-mpesa-green);background:var(--color-mpesa-green-alpha);box-shadow:0 0 0 3px var(--color-mpesa-green-alpha-hover)}
+.tog-opt i{font-size:18px;margin-bottom:4px;display:block}
+.tog-title{font-size:12px;font-weight:600;color:var(--color-text-primary)}
+.tog-sub{font-size:10px;color:var(--color-text-secondary);margin-top:1px}
+
+/* frequency row */
+.freq-row{display:flex;gap:6px}
+.freq-btn{flex:1;padding:9px 4px;border-radius:9px;border:1px solid var(--color-border-secondary);font-size:11px;font-weight:500;color:var(--color-text-secondary);cursor:pointer;text-align:center;transition:all .15s;background:#fff}
+.freq-btn:hover{border-color:var(--color-mpesa-green);color:var(--color-mpesa-green)}
+.freq-btn.sel{background:var(--color-mpesa-green);border-color:var(--color-mpesa-green);color:#fff;box-shadow:0 3px 8px rgba(35,145,80,.22)}
+
+/* review rows */
+.rev-section{background:#fff;border-radius:12px;border:1px solid var(--color-border-tertiary);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.03)}
+.rev-row{display:flex;justify-content:space-between;align-items:center;padding:11px 13px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.rev-row:last-child{border-bottom:none}
+.rev-key{font-size:12px;color:var(--color-text-secondary)}
+.rev-val{font-size:12px;font-weight:600;color:var(--color-text-primary);text-align:right;max-width:55%}
+.rev-val.green{color:var(--color-mpesa-green)}
+
+/* info box */
+.info-box{background:var(--color-background-info);border:1px solid var(--color-border-info);border-radius:10px;padding:10px 12px;display:flex;gap:9px;align-items:flex-start}
+.info-box i{font-size:15px;color:var(--color-text-info);flex-shrink:0;margin-top:1px}
+.info-box p{font-size:11px;color:var(--color-text-info);line-height:1.55}
+
+/* warning box */
+.warn-box{background:#FEF9EC;border:1px solid #FAC775;border-radius:10px;padding:10px 12px;display:flex;gap:9px;align-items:flex-start}
+.warn-box i{font-size:15px;color:#B45309;flex-shrink:0;margin-top:1px}
+.warn-box p{font-size:11px;color:#7C4A00;line-height:1.55}
+
+/* primary CTA */
+.cta{width:100%;padding:13px;border-radius:12px;background:linear-gradient(135deg,#27a35e 0%,#1b7341 100%);border:none;color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font-sans);transition:all .18s ease;box-shadow:0 4px 12px rgba(27,115,65,.25);display:flex;align-items:center;justify-content:center;gap:6px}
+.cta:hover{box-shadow:0 6px 18px rgba(27,115,65,.32);transform:translateY(-1px)}
+.cta:active{transform:translateY(0);box-shadow:0 2px 8px rgba(27,115,65,.25)}
+.cta-sec{width:100%;padding:12px;border-radius:12px;background:#fff;border:1px solid var(--color-border-secondary);color:var(--color-text-secondary);font-size:13px;font-weight:500;cursor:pointer;font-family:var(--font-sans);transition:all .15s}
+.cta-sec:hover{border-color:var(--color-mpesa-green);color:var(--color-mpesa-green);background:var(--color-mpesa-green-alpha)}
+.cta-danger{width:100%;padding:12px;border-radius:12px;background:#fff;border:1px solid #E24B4A;color:#E24B4A;font-size:13px;font-weight:500;cursor:pointer;font-family:var(--font-sans);transition:all .15s}
+.cta-danger:hover{background:#FCEBEB}
+
+/* confirm screen */
+.confirm-icon{width:64px;height:64px;border-radius:50%;background:var(--color-mpesa-accent-bg);display:flex;align-items:center;justify-content:center;margin:0 auto 12px}
+.confirm-icon i{font-size:32px;color:var(--color-mpesa-green)}
+
+/* balance card */
+.bal-card{background:linear-gradient(135deg,#27a35e 0%,#1b7341 100%);border-radius:16px;padding:18px;color:#fff;position:relative;overflow:hidden;box-shadow:0 8px 22px rgba(27,115,65,.22)}
+.bal-card::before{content:'';position:absolute;right:-20px;top:-20px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,.06)}
+.bal-card::after{content:'';position:absolute;right:20px;bottom:-30px;width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.04)}
+.bal-label{font-size:11px;opacity:.75;margin-bottom:4px;letter-spacing:.3px;text-transform:uppercase}
+.bal-amount{font-size:28px;font-weight:700;margin-bottom:10px;position:relative;z-index:1;letter-spacing:-.5px}
+.bal-row{display:flex;gap:16px}
+.bal-sub{font-size:11px;opacity:.75}
+.bal-sub span{display:block;font-size:14px;font-weight:500;opacity:1;margin-top:1px}
+
+/* action grid */
+.action-grid{display:flex;gap:8px}
+.action-btn{flex:1;background:#fff;border-radius:12px;border:1px solid var(--color-border-tertiary);padding:11px 8px;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;transition:all .18s ease;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+.action-btn:hover{border-color:var(--color-mpesa-green);background:var(--color-mpesa-green-alpha);transform:translateY(-2px);box-shadow:0 4px 12px rgba(35,145,80,.10)}
+.action-btn i{font-size:20px;color:var(--color-mpesa-green)}
+.action-btn span{font-size:11px;font-weight:500;color:var(--color-text-secondary);text-align:center}
+
+/* member item */
+.member-item{display:flex;align-items:center;gap:10px;padding:11px 13px;background:#fff;border-radius:12px;border:1px solid var(--color-border-tertiary);box-shadow:0 1px 2px rgba(0,0,0,.03)}
+.member-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;flex-shrink:0}
+.member-name{font-size:13px;font-weight:500;color:var(--color-text-primary)}
+.member-phone{font-size:11px;color:var(--color-text-secondary);margin-top:1px}
+.member-badge{margin-left:auto;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:500;white-space:nowrap}
+
+/* consent status item */
+.consent-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.consent-item:last-child{border-bottom:none}
+.consent-status{margin-left:auto;font-size:11px;font-weight:500;display:flex;align-items:center;gap:3px}
+
+/* transaction item */
+.tx-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
+.tx-item:last-child{border-bottom:none;padding-bottom:0}
+.tx-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.tx-info{flex:1;min-width:0}
+.tx-name{font-size:13px;color:var(--color-text-primary)}
+.tx-date{font-size:11px;color:var(--color-text-secondary)}
+.tx-amount{font-size:13px;font-weight:500;white-space:nowrap}
+
+/* approval step */
+.approval-step{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
+.approval-step:last-child{border-bottom:none}
+.step-circle{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;border:1.5px solid var(--color-border-secondary)}
+.step-circle.done{background:var(--color-mpesa-green);border-color:var(--color-mpesa-green);color:#fff}
+.step-circle.pending{background:var(--color-background-secondary);border-color:#EF9F27;color:#EF9F27}
+.step-circle.waiting{background:var(--color-background-secondary);border-color:var(--color-border-secondary);color:var(--color-text-tertiary)}
+
+/* stat boxes */
+.stats-row{display:flex;gap:8px}
+.stat-box{flex:1;background:#fff;border-radius:12px;border:1px solid var(--color-border-tertiary);padding:10px 11px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+.stat-box-label{font-size:10px;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.4px;font-weight:500}
+.stat-box-val{font-size:16px;font-weight:600;color:var(--color-text-primary);margin-top:3px}
+
+/* share bar */
+.share-bar{height:8px;border-radius:4px;overflow:hidden;display:flex;margin-top:6px}
+
+/* seg tabs */
+.seg-tabs{display:flex;background:var(--color-background-secondary);border-radius:10px;padding:3px;border:1px solid var(--color-border-tertiary)}
+.seg-tab{flex:1;font-size:12px;padding:6px;text-align:center;border-radius:7px;cursor:pointer;color:var(--color-text-secondary);transition:all .15s;font-weight:500}
+.seg-tab.active{background:#fff;color:var(--color-text-primary);font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+
+/* source option */
+.source-opt{border:1px solid var(--color-border-secondary);border-radius:12px;padding:12px 13px;cursor:pointer;transition:all .18s ease;display:flex;align-items:center;gap:10px;background:#fff}
+.source-opt:hover{border-color:var(--color-mpesa-green);box-shadow:0 4px 12px rgba(35,145,80,.08)}
+.source-opt.sel{border-color:var(--color-mpesa-green);background:var(--color-mpesa-green-alpha);box-shadow:0 0 0 3px var(--color-mpesa-green-alpha-hover)}
+.source-radio{width:20px;height:20px;border-radius:50%;border:2px solid var(--color-border-secondary);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .15s;margin-left:auto;background:#fff;position:relative}
+.source-radio::after{content:'';width:10px;height:10px;border-radius:50%;background:#fff;transform:scale(0);transition:transform .15s ease}
+.source-opt.sel .source-radio{border-color:var(--color-mpesa-green)}
+.source-opt.sel .source-radio::after{background:var(--color-mpesa-green);transform:scale(1)}
+.source-radio>i{display:none}
+
+/* invitation full screen */
+.inv-header-band{background:linear-gradient(160deg,#239150 0%,#1b7341 100%);padding:28px 14px 22px;text-align:center;position:relative;overflow:hidden}
+.inv-header-band::before{content:'';position:absolute;right:-30px;top:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.07)}
+.inv-group-badge{width:56px;height:56px;border-radius:14px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;position:relative;z-index:1}
+.inv-notif-dot{position:absolute;top:-3px;right:-3px;width:16px;height:16px;border-radius:50%;background:#E24B4A;border:2.5px solid #239150;display:flex;align-items:center;justify-content:center}
+.inv-notif-dot span{font-size:8px;color:#fff;font-weight:700;line-height:1}
+
+/* select dropdown */
+.sel-inp{width:100%;padding:10px 32px 10px 12px;border-radius:9px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-secondary);color:var(--color-text-primary);font-size:13px;font-family:var(--font-sans);outline:none;appearance:none;cursor:pointer;transition:border-color .15s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238fa397' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center}
+.sel-inp:focus{border-color:var(--color-mpesa-green)}
+
+/* contact suggestion */
+.contact-suggestion{display:none;align-items:center;gap:10px;padding:9px 12px;background:var(--color-background-info);border:0.5px solid var(--color-border-info);border-radius:9px;margin-top:-4px}
+.contact-suggestion.show{display:flex}
+
+/* share/download bar */
+.action-bar{display:flex;gap:8px;padding:12px 14px;border-top:0.5px solid var(--color-border-tertiary);background:#fff}
+.bar-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:10px 8px;border-radius:10px;border:0.5px solid var(--color-border-secondary);font-size:12px;font-weight:500;color:var(--color-text-secondary);cursor:pointer;font-family:var(--font-sans);background:#fff;transition:all .15s}
+.bar-btn:hover{border-color:var(--color-mpesa-green);color:var(--color-mpesa-green)}
+.bar-btn.primary{background:var(--color-mpesa-green);border-color:var(--color-mpesa-green);color:#fff}
+.bar-btn.primary:hover{opacity:.9}
+.bar-btn i{font-size:15px}
+/* ── 3-dot dropdown ── */
+.ctx-backdrop{position:fixed;inset:0;z-index:900}
+.ctx-menu{position:fixed;z-index:901;background:var(--color-background-primary);border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.14),0 2px 6px rgba(0,0,0,.08);border:0.5px solid var(--color-border-secondary);min-width:190px;overflow:hidden;opacity:0;transform:scale(.94) translateY(-6px);transform-origin:top right;transition:opacity .15s,transform .15s;pointer-events:none}
+.ctx-menu.open{opacity:1;transform:scale(1) translateY(0);pointer-events:all}
+.ctx-item{display:flex;align-items:center;gap:10px;padding:11px 14px;font-size:13px;color:var(--color-text-primary);cursor:pointer;transition:background .12s}
+.ctx-item:hover{background:var(--color-background-secondary)}
+.ctx-item+.ctx-item{border-top:0.5px solid var(--color-border-tertiary)}
+.ctx-item i,.ctx-item svg{font-size:16px;flex-shrink:0}
+.ctx-item.danger{color:#E24B4A}
+.ctx-item.danger svg{stroke:#E24B4A}
+.ctx-sep{height:0.5px;background:var(--color-border-secondary)}
+
+/* ── statement date filter ── */
+.date-chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:1px}
+.date-chips::-webkit-scrollbar{height:0}
+.date-chip{flex-shrink:0;display:flex;align-items:center;gap:4px;padding:6px 12px;border-radius:20px;border:1px solid var(--color-border-secondary);background:#fff;font-size:11px;font-weight:500;color:var(--color-text-secondary);cursor:pointer;font-family:var(--font-sans);transition:all .15s;white-space:nowrap}
+.date-chip i{font-size:13px}
+.date-chip:hover{border-color:var(--color-mpesa-green);color:var(--color-mpesa-green)}
+.date-chip.active{background:var(--color-mpesa-green);border-color:var(--color-mpesa-green);color:#fff;box-shadow:0 2px 6px rgba(35,145,80,.20)}
+
+/* ── bottom-sheet modal (date picker) ── */
+.sheet-overlay{position:absolute;inset:0;z-index:50;background:rgba(20,30,25,.4);display:none;align-items:flex-end;border-radius:28px;overflow:hidden}
+.sheet-overlay.open{display:flex;animation:sheetFade .2s ease both}
+.sheet{width:100%;background:#fff;border-radius:20px 20px 0 0;padding:10px 16px 18px;display:flex;flex-direction:column;gap:12px;box-shadow:0 -8px 30px rgba(0,0,0,.18);animation:sheetUp .28s cubic-bezier(.2,.8,.25,1) both}
+@keyframes sheetFade{0%{opacity:0}100%{opacity:1}}
+@keyframes sheetUp{0%{transform:translateY(100%)}100%{transform:translateY(0)}}
+.sheet-handle{width:38px;height:4px;border-radius:3px;background:var(--color-border-secondary);margin:2px auto 4px}
+.sheet-title{display:flex;align-items:center;justify-content:space-between;font-size:15px;font-weight:600;color:var(--color-text-primary)}
+.sheet-close{width:28px;height:28px;border-radius:50%;border:none;background:var(--color-background-secondary);color:var(--color-text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px}
+.sheet-close:hover{background:var(--color-border-tertiary)}
+
+/* ── Withdrawal confirmation (sc16) ── */
+.conf-hero{position:relative;background:linear-gradient(160deg,#23a85c 0%,#1b7341 100%);padding:30px 20px 56px;text-align:center;overflow:hidden}
+.conf-hero::before{content:'';position:absolute;top:-40px;right:-30px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.08)}
+.conf-hero::after{content:'';position:absolute;bottom:-50px;left:-20px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.06)}
+.conf-check{position:relative;z-index:1;width:74px;height:74px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;animation:confPop .45s cubic-bezier(.18,.89,.32,1.28) both}
+.conf-check::before{content:'';position:absolute;inset:-9px;border-radius:50%;border:2px solid rgba(255,255,255,.35);animation:confRing 1.6s ease-out infinite}
+.conf-check i{font-size:42px;color:#fff}
+@keyframes confPop{0%{transform:scale(.4);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes confRing{0%{transform:scale(.85);opacity:.8}100%{transform:scale(1.35);opacity:0}}
+.conf-label{position:relative;z-index:1;font-size:11px;letter-spacing:.5px;text-transform:uppercase;color:rgba(255,255,255,.8);font-weight:500}
+.conf-amount{position:relative;z-index:1;font-size:32px;font-weight:700;color:#fff;margin-top:4px;letter-spacing:-.5px}
+.conf-meta{position:relative;z-index:1;display:inline-flex;align-items:center;gap:5px;margin-top:8px;background:rgba(255,255,255,.18);border-radius:20px;padding:4px 12px;font-size:11px;color:#fff}
+.conf-meta i{font-size:13px}
+/* receipt ticket card overlapping hero */
+.conf-receipt{background:var(--color-background-primary);border-radius:14px;box-shadow:0 6px 20px rgba(27,115,65,.10),0 1px 3px rgba(0,0,0,.05);border:0.5px solid var(--color-border-tertiary);margin:-40px 14px 0;position:relative;z-index:2;overflow:hidden}
+.conf-rcpt-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 16px}
+.conf-rcpt-row+.conf-rcpt-row{border-top:0.5px dashed var(--color-border-secondary)}
+.conf-rcpt-key{font-size:12px;color:var(--color-text-secondary)}
+.conf-rcpt-val{font-size:12.5px;font-weight:500;color:var(--color-text-primary);text-align:right}
+.conf-rcpt-val.mono{font-family:var(--font-sans);letter-spacing:.3px}
+.conf-rcpt-val.green{color:var(--color-mpesa-green);font-weight:600}
+/* notched divider */
+.conf-notch{position:relative;height:18px;background:var(--color-background-primary)}
+.conf-notch::before,.conf-notch::after{content:'';position:absolute;top:50%;width:18px;height:18px;border-radius:50%;background:var(--color-background-secondary);transform:translateY(-50%)}
+.conf-notch::before{left:-9px}
+.conf-notch::after{right:-9px}
+.conf-notch span{position:absolute;left:14px;right:14px;top:50%;border-top:1px dashed var(--color-border-secondary)}
+/* approver avatars */
+.conf-approvers{padding:14px 16px}
+.conf-appr-row{display:flex;align-items:center;gap:10px;padding:7px 0}
+.conf-appr-av{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;position:relative}
+.conf-appr-av .tick{position:absolute;right:-2px;bottom:-2px;width:15px;height:15px;border-radius:50%;background:var(--color-mpesa-green);border:2px solid var(--color-background-primary);display:flex;align-items:center;justify-content:center}
+.conf-appr-av .tick i{font-size:8px;color:#fff}
+.conf-appr-name{font-size:13px;font-weight:500;color:var(--color-text-primary)}
+.conf-appr-time{font-size:11px;color:var(--color-text-tertiary);margin-top:1px}
+.conf-appr-tag{font-size:10px;background:#EAF3DE;color:#3B6D11;padding:2px 8px;border-radius:8px;font-weight:500;white-space:nowrap}
+
+@media (max-width: 820px) {
+  html, body {
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+    background: var(--color-background-primary);
+  }
+
+  body {
+    -webkit-text-size-adjust: 100%;
+    touch-action: manipulation;
+  }
+
+  .page-title-wrap {
+    display: none;
+  }
+
+  .fw {
+    display: block;
+    min-height: 100dvh;
+    background: var(--color-background-primary);
+  }
+
+  .flow-switch {
+    top: max(8px, env(safe-area-inset-top));
+    right: 10px;
+    z-index: 120;
+  }
+
+  .flow-switch-btn {
+    min-height: 40px;
+    padding: 9px 11px;
+    border-radius: 999px;
+    box-shadow: 0 8px 22px rgba(20, 30, 25, .14);
+  }
+
+  .flow-switch-menu {
+    max-width: calc(100vw - 20px);
+    border-radius: 14px;
+  }
+
+  .stepnav {
+    position: sticky;
+    top: 0;
+    z-index: 110;
+    width: 100%;
+    height: auto;
+    min-height: 56px;
+    padding: max(8px, env(safe-area-inset-top)) 146px 8px 12px;
+    border-right: 0;
+    border-bottom: 0.5px solid rgba(226, 232, 228, .9);
+    background: rgba(255, 255, 255, .94);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x proximity;
+    box-shadow: 0 6px 20px rgba(20, 30, 25, .06);
+  }
+
+  .snav-head,
+  .snav-group {
+    display: none;
+  }
+
+  .snav-items,
+  .snav-items.collapsed {
+    display: contents;
+    max-height: none;
+  }
+
+  .snb {
+    width: auto;
+    flex: 0 0 auto;
+    min-height: 40px;
+    padding: 8px 12px;
+    border: 0.5px solid var(--color-border-secondary);
+    border-radius: 999px;
+    background: var(--color-background-primary);
+    box-shadow: 0 1px 2px rgba(20, 30, 25, .04);
+    scroll-snap-align: start;
+    max-width: 190px;
+  }
+
+  .snb.active {
+    background: var(--color-mpesa-green);
+    border-color: var(--color-mpesa-green);
+    color: #fff;
+    box-shadow: 0 6px 16px rgba(35, 145, 80, .22);
+  }
+
+  .snb.active::before {
+    display: none;
+  }
+
+  .snb .ic {
+    width: 24px;
+    height: 24px;
+    background: var(--color-background-secondary);
+  }
+
+  .snb.active .ic {
+    background: rgba(255, 255, 255, .18);
+    color: #fff;
+    box-shadow: none;
+  }
+
+  .content-area {
+    display: block;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .sc {
+    width: 100%;
+  }
+
+  .ph {
+    width: 100%;
+    height: auto;
+    min-height: calc(100dvh - 56px);
+    max-width: none;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: var(--color-background-primary);
+  }
+
+  .sbar {
+    padding: 8px 18px 4px;
+  }
+
+  .hd {
+    padding: 12px 18px 10px;
+    background: var(--color-background-primary);
+  }
+
+  .hd-title {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .bd {
+    padding: 16px;
+    gap: 12px;
+    overflow-y: visible;
+  }
+
+  .bd-footer,
+  .action-bar {
+    position: sticky;
+    bottom: 0;
+    margin-left: -16px;
+    margin-right: -16px;
+    padding: 10px 16px;
+    padding-bottom: calc(10px + env(safe-area-inset-bottom));
+    background: linear-gradient(180deg, rgba(255, 255, 255, .88), #fff 35%);
+    box-shadow: 0 -10px 26px rgba(20, 30, 25, .08);
+  }
+
+  .bal-card {
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 10px 26px rgba(27, 115, 65, .18);
+  }
+
+  .bal-amount,
+  .conf-amount {
+    font-size: 30px;
+    letter-spacing: -.4px;
+  }
+
+  .type-card,
+  .tog-opt,
+  .member-item,
+  .source-opt,
+  .stat-box,
+  .rev-section,
+  .info-box,
+  .warn-box,
+  .card,
+  .conf-receipt {
+    border-radius: 14px;
+  }
+
+  .member-item,
+  .source-opt,
+  .type-card,
+  .approval-step {
+    min-height: 56px;
+  }
+
+  .member-item > div:nth-child(2),
+  .tx-info {
+    min-width: 0;
+  }
+
+  .member-name,
+  .tx-name,
+  .type-title,
+  .conf-appr-name {
+    font-size: 14px;
+    line-height: 1.25;
+  }
+
+  .member-phone,
+  .tx-date,
+  .type-sub,
+  .hd-sub {
+    font-size: 12px;
+    line-height: 1.35;
+  }
+
+  .toggle-row,
+  .freq-row,
+  .stats-row,
+  .action-grid {
+    gap: 10px;
+  }
+
+  .freq-row,
+  .date-chips {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+
+  .freq-row::-webkit-scrollbar,
+  .date-chips::-webkit-scrollbar {
+    display: none;
+  }
+
+  .freq-row .freq-btn {
+    flex: 0 0 auto;
+    min-width: 92px;
+    scroll-snap-align: start;
+  }
+
+  .seg-tabs {
+    position: sticky;
+    top: 56px;
+    z-index: 30;
+    background: var(--color-background-secondary);
+  }
+
+  .sheet-overlay {
+    border-radius: 0;
+  }
+
+  .cta,
+  .cta-sec,
+  .cta-danger,
+  .bar-btn {
+    min-height: 48px;
+    border-radius: 14px;
+    font-size: 15px;
+  }
+
+  .inp,
+  .sel-inp,
+  .amt-wrap {
+    min-height: 48px;
+    border-radius: 12px;
+  }
+}
+</style>
+
+<div class="fw">
+
+  <!-- Flow switcher (top-right) -->
+  <div class="flow-switch">
+    <button class="flow-switch-btn" onclick="this.parentNode.classList.toggle('open')" aria-haspopup="true"><i class="ti ti-arrows-exchange" aria-hidden="true"></i><span>Group saving</span><i class="ti ti-chevron-down fs-caret" aria-hidden="true"></i></button>
+    <div class="flow-switch-menu" role="menu">
+      <a class="flow-switch-item" href="mpesa_savings_user_flow.html" role="menuitem"><i class="ti ti-pig-money" aria-hidden="true"></i> Savings</a>
+      <a class="flow-switch-item active" href="mpesa_group_saving_flow.html" role="menuitem"><i class="ti ti-users-group" aria-hidden="true"></i> Group saving</a>
+      <a class="flow-switch-item" href="mpesa_credit_user_flow.html" role="menuitem"><i class="ti ti-cash" aria-hidden="true"></i> Credit</a>
+    </div>
+  </div>
+  <script>(function(){var fs=document.currentScript.previousElementSibling;document.addEventListener('click',function(e){if(fs&&!fs.contains(e.target))fs.classList.remove('open');});})();</script>
+
+  <!-- Left vertical sidebar nav -->
+  <nav class="stepnav" role="tablist">
+
+    <div class="snav-head">
+      <div class="snav-logo"><i class="ti ti-users-group" aria-hidden="true"></i></div>
+      <div class="snav-brand"><span class="snav-title">M-PESA Group</span><small>Group saving flow</small></div>
+    </div>
+
+    <div class="snav-group" onclick="toggleGroup(this)"><i class="ti ti-chevron-down snav-arrow" aria-hidden="true"></i> Invitations</div>
+    <div class="snav-items">
+    <button class="snb" onclick="go(10)" role="tab"><span class="ic"><i class="ti ti-mail" aria-hidden="true"></i></span>OR Invitation</button>
+    <button class="snb" onclick="go(11)" role="tab"><span class="ic"><i class="ti ti-circle-check" aria-hidden="true"></i></span>↳ OR accepted</button>
+    <button class="snb" onclick="go(19)" role="tab"><span class="ic"><i class="ti ti-circle-x" aria-hidden="true"></i></span>↳ Inv. declined</button>
+    <button class="snb" onclick="go(14)" role="tab"><span class="ic"><i class="ti ti-shield-check" aria-hidden="true"></i></span>AND Invitation</button>
+    <button class="snb" onclick="go(15)" role="tab"><span class="ic"><i class="ti ti-circle-check" aria-hidden="true"></i></span>↳ AND accepted</button>
+    </div>
+
+    <div class="snav-group" onclick="toggleGroup(this)"><i class="ti ti-chevron-down snav-arrow" aria-hidden="true"></i> Setup</div>
+    <div class="snav-items">
+    <button class="snb active" onclick="go(0)" role="tab"><span class="ic"><i class="ti ti-adjustments" aria-hidden="true"></i></span>Group type</button>
+    <button class="snb" onclick="go(1)" role="tab"><span class="ic"><i class="ti ti-user-plus" aria-hidden="true"></i></span>Add members</button>
+    <button class="snb" onclick="go(2)" role="tab"><span class="ic"><i class="ti ti-coin" aria-hidden="true"></i></span>Contribution</button>
+    <button class="snb" onclick="go(3)" role="tab"><span class="ic"><i class="ti ti-checklist" aria-hidden="true"></i></span>Consent</button>
+    </div>
+
+    <div class="snav-group" onclick="toggleGroup(this)"><i class="ti ti-chevron-down snav-arrow" aria-hidden="true"></i> Dashboard</div>
+    <div class="snav-items">
+    <button class="snb" onclick="go(4)" role="tab"><span class="ic"><i class="ti ti-layout-dashboard" aria-hidden="true"></i></span>Dashboard</button>
+    <button class="snb" onclick="go(20)" role="tab"><span class="ic"><i class="ti ti-settings" aria-hidden="true"></i></span>Settings</button>
+    <button class="snb" onclick="go(22)" role="tab"><span class="ic"><i class="ti ti-alert-triangle" aria-hidden="true"></i></span>Deadline alert</button>
+    <button class="snb" onclick="go(23)" role="tab"><span class="ic"><i class="ti ti-calendar-time" aria-hidden="true"></i></span>↳ Extend plan</button>
+    </div>
+
+    <div class="snav-group" onclick="toggleGroup(this)"><i class="ti ti-chevron-down snav-arrow" aria-hidden="true"></i> Deposit</div>
+    <div class="snav-items">
+    <button class="snb" onclick="go(5)" role="tab"><span class="ic"><i class="ti ti-arrow-up" aria-hidden="true"></i></span>Deposit</button>
+    <button class="snb" onclick="go(17)" role="tab"><span class="ic"><i class="ti ti-circle-check" aria-hidden="true"></i></span>↳ Dep. confirmed</button>
+    </div>
+
+    <div class="snav-group" onclick="toggleGroup(this)"><i class="ti ti-chevron-down snav-arrow" aria-hidden="true"></i> Withdrawal</div>
+    <div class="snav-items">
+    <button class="snb" onclick="go(21)" role="tab"><span class="ic"><i class="ti ti-bell-ringing" aria-hidden="true"></i></span>WD notification</button>
+    <button class="snb" onclick="go(6)" role="tab"><span class="ic"><i class="ti ti-arrow-down" aria-hidden="true"></i></span>WD request</button>
+    <button class="snb" onclick="go(7)" role="tab"><span class="ic"><i class="ti ti-shield-check" aria-hidden="true"></i></span>WD approval</button>
+    <button class="snb" onclick="go(16)" role="tab"><span class="ic"><i class="ti ti-circle-check" aria-hidden="true"></i></span>↳ WD confirmed</button>
+    <button class="snb" onclick="go(18)" role="tab"><span class="ic"><i class="ti ti-circle-x" aria-hidden="true"></i></span>↳ WD declined</button>
+    </div>
+
+    <div class="snav-group" onclick="toggleGroup(this)"><i class="ti ti-chevron-down snav-arrow" aria-hidden="true"></i> History & Closure</div>
+    <div class="snav-items">
+    <button class="snb" onclick="go(8)" role="tab"><span class="ic"><i class="ti ti-file-text" aria-hidden="true"></i></span>Mini statement</button>
+    <button class="snb" onclick="go(9)" role="tab"><span class="ic"><i class="ti ti-trash" aria-hidden="true"></i></span>Closure</button>
+    <button class="snb" onclick="go(12)" role="tab"><span class="ic"><i class="ti ti-checklist" aria-hidden="true"></i></span>↳ Consent</button>
+    <button class="snb" onclick="go(13)" role="tab"><span class="ic"><i class="ti ti-lock" aria-hidden="true"></i></span>↳ Closed</button>
+    </div>
+
+  </nav>
+
+  <!-- Right content area -->
+  <div class="content-area">
+
+  <!-- ① Group type -->
+  <div class="sc active" id="sc0">
+    <div class="ph">
+      <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+      <div class="hd">
+        <div class="hd-top">
+          <button class="back" onclick="history.back()"><i class="ti ti-arrow-left" aria-hidden="true"></i> Savings</button>
+          <span class="hd-step">Step 1 of 4</span>
+        </div>
+        <div class="pbar"><div class="pfill" style="width:25%"></div></div>
+        <div class="hd-title">Group saving type</div>
+        <div class="hd-sub">Choose how your group will manage withdrawals</div>
+      </div>
+      <div class="bd">
+        <div class="type-card sel" id="t-or" onclick="selGrpType('or')">
+          <div class="type-icon" style="background:#EAF3DE"><i class="ti ti-users" style="color:#3B6D11;font-size:20px" aria-hidden="true"></i></div>
+          <div>
+            <div class="type-title">OR Group</div>
+            <div class="type-sub">Authorized person can withdraw with approval from at least 3 members. Faster decisions.</div>
+            <span class="type-badge" style="background:#EAF3DE;color:#3B6D11">Min 3 approvals</span>
+          </div>
+        </div>
+        <div class="type-card" id="t-and" onclick="selGrpType('and')">
+          <div class="type-icon" style="background:#EEEDFE"><i class="ti ti-shield-check" style="color:#534AB7;font-size:20px" aria-hidden="true"></i></div>
+          <div>
+            <div class="type-title">AND Group</div>
+            <div class="type-sub">Every member must approve withdrawals. Maximum security and consensus for the group.</div>
+            <span class="type-badge" style="background:#EEEDFE;color:#534AB7">All must approve</span>
+          </div>
+        </div>
+        <div class="info-box">
+          <i class="ti ti-info-circle" aria-hidden="true"></i>
+          <p>Group type cannot be changed after activation. Choose carefully based on your group's trust and decision-making style.</p>
+        </div>
+        <button class="cta" onclick="go(1)">Continue <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ② Add members -->
+  <div class="sc" id="sc1">
+    <div class="ph">
+      <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+      <div class="hd">
+        <div class="hd-top">
+          <button class="back" onclick="go(0)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Back</button>
+          <span class="hd-step">Step 2 of 4</span>
+        </div>
+        <div class="pbar"><div class="pfill" style="width:50%"></div></div>
+        <div class="hd-title">Add members</div>
+        <div class="hd-sub">All members must be M-PESA registered &amp; KYC verified</div>
+      </div>
+      <div class="bd">
+        <div class="inp-wrap">
+          <div class="inp-lbl">Group name</div>
+          <input class="inp" type="text" placeholder="e.g. Family Iqub 2025" value="Addis Business Circle" />
+        </div>
+
+        <div class="slbl">Members (3 of 10 added)</div>
+
+        <!-- Member 1 – creator/admin -->
+        <div class="member-item">
+          <div class="member-avatar" style="background:#E6F1FB;color:#185FA5">EM</div>
+          <div>
+            <div class="member-name">Emnet Tadesse <span style="font-size:10px;color:var(--color-text-tertiary)">(You)</span></div>
+            <div class="member-phone">+251 91 234 5678</div>
+          </div>
+          <span class="member-badge" style="background:var(--color-mpesa-accent-bg);color:var(--color-mpesa-accent-text)">Admin</span>
+        </div>
+
+        <!-- Member 2 -->
+        <div class="member-item">
+          <div class="member-avatar" style="background:#EAF3DE;color:#3B6D11">BK</div>
+          <div>
+            <div class="member-name">Biruk Kebede</div>
+            <div class="member-phone">+251 92 345 6789</div>
+          </div>
+          <span class="member-badge" style="background:#EAF3DE;color:#3B6D11">Authorized</span>
+        </div>
+
+        <!-- Member 3 -->
+        <div class="member-item">
+          <div class="member-avatar" style="background:#FAEEDA;color:#854F0B">SH</div>
+          <div>
+            <div class="member-name">Sara Haile</div>
+            <div class="member-phone">+251 93 456 7890</div>
+          </div>
+          <span class="member-badge" style="background:var(--color-background-secondary);color:var(--color-text-secondary)">Member</span>
+        </div>
+
+        <!-- Add member row -->
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="display:flex;gap:8px">
+            <input class="inp" id="phone-inp" style="flex:1" type="tel" placeholder="+251 9__ ___ ____" oninput="lookupContact(this.value)" />
+            <button onclick="addSuggested()" style="padding:10px 14px;border-radius:9px;background:var(--color-mpesa-green);border:none;color:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--font-sans);white-space:nowrap">Add</button>
+            <button onclick="triggerContacts()" style="padding:10px 12px;border-radius:9px;background:var(--color-background-secondary);border:0.5px solid var(--color-border-secondary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;font-family:var(--font-sans);white-space:nowrap;display:flex;align-items:center;gap:5px" title="Add from contacts"><i class="ti ti-address-book" style="font-size:16px" aria-hidden="true"></i></button>
+          </div>
+
+          <!-- contact suggestion (shown when number matches) -->
+          <div class="contact-suggestion" id="contact-suggestion">
+            <div style="width:34px;height:34px;border-radius:50%;background:#EAF3DE;color:#3B6D11;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0" id="cs-avatar">MT</div>
+            <div style="flex:1;min-width:0">
+              <div style="font-size:13px;font-weight:500;color:var(--color-text-primary)" id="cs-name">Meseret Tadesse</div>
+              <div style="font-size:11px;color:var(--color-text-secondary)" id="cs-phone">+251 94 567 8901 · M-PESA verified</div>
+            </div>
+            <button onclick="addSuggested()" style="padding:6px 12px;border-radius:8px;background:var(--color-mpesa-green);border:none;color:#fff;font-size:12px;font-weight:500;cursor:pointer;font-family:var(--font-sans)"><i class="ti ti-plus" aria-hidden="true"></i> Add</button>
+          </div>
+
+          <!-- contacts picker sheet (shown when contacts icon tapped) -->
+          <div id="contacts-sheet" style="display:none;background:var(--color-background-secondary);border-radius:10px;border:0.5px solid var(--color-border-tertiary);overflow:hidden">
+            <div style="padding:8px 12px;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:11px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.4px">Your contacts on M-PESA</span>
+              <i class="ti ti-x" style="font-size:14px;color:var(--color-text-tertiary);cursor:pointer" onclick="document.getElementById('contacts-sheet').style.display='none'" aria-hidden="true"></i>
+            </div>
+            <div onclick="pickContact('Meseret Tadesse','+251 94 567 8901','MT','#EAF3DE','#3B6D11')" style="display:flex;align-items:center;gap:10px;padding:9px 12px;cursor:pointer;border-bottom:0.5px solid var(--color-border-tertiary)">
+              <div style="width:32px;height:32px;border-radius:50%;background:#EAF3DE;color:#3B6D11;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600">MT</div>
+              <div style="flex:1"><div style="font-size:13px;color:var(--color-text-primary)">Meseret Tadesse</div><div style="font-size:11px;color:var(--color-text-tertiary)">+251 94 567 8901</div></div>
+              <span style="font-size:10px;background:var(--color-mpesa-accent-bg);color:var(--color-mpesa-accent-text);padding:2px 6px;border-radius:6px">Verified</span>
+            </div>
+            <div onclick="pickContact('Dawit Alemu','+251 95 678 9012','DA','#E6F1FB','#185FA5')" style="display:flex;align-items:center;gap:10px;padding:9px 12px;cursor:pointer;border-bottom:0.5px solid var(--color-border-tertiary)">
+              <div style="width:32px;height:32px;border-radius:50%;background:#E6F1FB;color:#185FA5;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600">DA</div>
+              <div style="flex:1"><div style="font-size:13px;color:var(--color-text-primary)">Dawit Alemu</div><div style="font-size:11px;color:var(--color-text-tertiary)">+251 95 678 9012</div></div>
+              <span style="font-size:10px;background:var(--color-mpesa-accent-bg);color:var(--color-mpesa-accent-text);padding:2px 6px;border-radius:6px">Verified</span>
+            </div>
+            <div onclick="pickContact('Hanna Girma','+251 96 789 0123','HG','#FAEEDA','#854F0B')" style="display:flex;align-items:center;gap:10px;padding:9px 12px;cursor:pointer">
+              <div style="width:32px;height:32px;border-radius:50%;background:#FAEEDA;color:#854F0B;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600">HG</div>
+              <div style="flex:1"><div style="font-size:13px;color:var(--color-text-primary)">Hanna Girma</div><div style="font-size:11px;color:var(--color-text-tertiary)">+251 96 789 0123</div></div>
+              <span style="font-size:10px;background:var(--color-mpesa-accent-bg);color:var(--color-mpesa-accent-text);padding:2px 6px;border-radius:6px">Verified</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="slbl">Withdrawal approval rule</div>
+        <div style="background:var(--color-background-secondary);border-radius:10px;border:0.5px solid var(--color-border-tertiary);padding:10px 13px;display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div id="grp-rule-title" style="font-size:13px;font-weight:500;color:var(--color-text-primary)">OR Group — min 3 approvals</div>
+            <div id="grp-rule-sub" style="font-size:11px;color:var(--color-text-secondary);margin-top:1px">Authorized person + any 3 members</div>
+          </div>
+          <i class="ti ti-chevron-right" style="color:var(--color-text-tertiary);font-size:16px" aria-hidden="true"></i>
+        </div>
+
+        <button class="cta" onclick="go(2)">Continue <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ③ Contribution setup -->
+  <div class="sc" id="sc2">
+    <div class="ph">
+      <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+      <div class="hd">
+        <div class="hd-top">
+          <button class="back" onclick="go(1)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Back</button>
+          <span class="hd-step">Step 3 of 4</span>
+        </div>
+        <div class="pbar"><div class="pfill" style="width:75%"></div></div>
+        <div class="hd-title">Contribution setup</div>
+        <div class="hd-sub">Define how members contribute and how funds are split</div>
+      </div>
+      <div class="bd">
+        <div class="slbl">Contribution type</div>
+        <div class="toggle-row">
+          <div class="tog-opt sel" id="tog-equal" onclick="selContrib('equal')">
+            <i class="ti ti-equal" style="color:var(--color-mpesa-green)" aria-hidden="true"></i>
+            <div class="tog-title">Equal</div>
+            <div class="tog-sub">Same for all</div>
+          </div>
+          <div class="tog-opt" id="tog-pct" onclick="selContrib('pct')">
+            <i class="ti ti-percentage" style="color:#534AB7" aria-hidden="true"></i>
+            <div class="tog-title">% Based</div>
+            <div class="tog-sub">Custom per member</div>
+          </div>
+        </div>
+
+        <div class="inp-wrap">
+          <div class="inp-lbl">Contribution amount per member</div>
+          <div class="amt-wrap">
+            <div class="amt-pfx">ETB</div>
+            <input class="amt-inp" type="number" value="500" min="1" />
+          </div>
+        </div>
+
+        <div class="slbl">Closure distribution rule</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="source-opt sel" id="dist-equal" onclick="selDist('equal')">
+            <i class="ti ti-equal" style="font-size:16px;color:var(--color-mpesa-green)" aria-hidden="true"></i>
+            <div>
+              <div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">Equally</div>
+              <div style="font-size:11px;color:var(--color-text-secondary)">Split balance evenly among all members</div>
+            </div>
+            <div class="source-radio"><i class="ti ti-check" style="font-size:10px;color:#fff" aria-hidden="true"></i></div>
+          </div>
+          <div class="source-opt" id="dist-contrib" onclick="selDist('contrib')">
+            <i class="ti ti-chart-pie" style="font-size:16px;color:var(--color-text-secondary)" aria-hidden="true"></i>
+            <div>
+              <div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">By contribution %</div>
+              <div style="font-size:11px;color:var(--color-text-secondary)">Each member gets back their share</div>
+            </div>
+            <div class="source-radio"></div>
+          </div>
+          <div class="source-opt" id="dist-one" onclick="selDist('one')">
+            <i class="ti ti-user-check" style="font-size:16px;color:var(--color-text-secondary)" aria-hidden="true"></i>
+            <div>
+              <div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">To one person</div>
+              <div style="font-size:11px;color:var(--color-text-secondary)">Designated beneficiary receives all funds</div>
+            </div>
+            <div class="source-radio"></div>
+          </div>
+        </div>
+
+        <button class="cta" onclick="go(3)">Send consent requests <i class="ti ti-send" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ④ Consent pending -->
+  <div class="sc" id="sc3">
+    <div class="ph">
+      <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+      <div class="hd">
+        <div class="hd-top">
+          <button class="back" onclick="go(2)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Back</button>
+          <span class="hd-step">Step 4 of 4</span>
+        </div>
+        <div class="pbar"><div class="pfill" style="width:100%"></div></div>
+        <div class="hd-title">Awaiting consent</div>
+        <div class="hd-sub">All members must approve to activate the group account</div>
+      </div>
+      <div class="bd">
+        <!-- summary card -->
+        <div style="background:var(--color-background-secondary);border-radius:10px;border:0.5px solid var(--color-border-tertiary);padding:12px 14px">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div style="width:40px;height:40px;border-radius:10px;background:#EAF3DE;display:flex;align-items:center;justify-content:center"><i class="ti ti-users" style="font-size:20px;color:#3B6D11" aria-hidden="true"></i></div>
+            <div>
+              <div style="font-size:14px;font-weight:500;color:var(--color-text-primary)">Addis Business Circle</div>
+              <div style="font-size:11px;color:var(--color-text-secondary)">OR Group · ETB 500/member · Equal split</div>
+            </div>
+          </div>
+          <!-- consent progress bar -->
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+            <span style="font-size:11px;color:var(--color-text-secondary)">Consent received</span>
+            <span style="font-size:11px;font-weight:500;color:var(--color-mpesa-green)">1 of 3</span>
+          </div>
+          <div style="height:5px;background:var(--color-border-tertiary);border-radius:3px;overflow:hidden">
+            <div style="width:33%;height:100%;background:var(--color-mpesa-green);border-radius:3px"></div>
+          </div>
+        </div>
+
+        <div class="slbl">Member consent status</div>
+        <div style="background:var(--color-background-secondary);border-radius:10px;border:0.5px solid var(--color-border-tertiary);padding:0 12px">
+          <!-- approved -->
+          <div class="consent-item">
+            <div class="member-avatar" style="width:32px;height:32px;background:#E6F1FB;color:#185FA5;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0">EM</div>
+            <div style="flex:1;min-width:0">
+              <div style="font-size:13px;color:var(--color-text-primary)">Emnet Tadesse</div>
+              <div style="font-size:11px;color:var(--color-text-tertiary)">Admin · Just now</div>
+            </div>
+            <div class="consent-status" style="color:var(--color-mpesa-green)"><i class="ti ti-circle-check-filled" aria-hidden="true"></i>Approved</div>
+          </div>
+          <!-- pending -->
+          <div class="consent-item">
+            <div class="member-avatar" style="width:32px;height:32px;background:#EAF3DE;color:#3B6D11;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0">BK</div>
+            <div style="flex:1;min-width:0">
+              <div style="font-size:13px;color:var(--color-text-primary)">Biruk Kebede</div>
+              <div style="font-size:11px;color:var(--color-text-tertiary)">Authorized · SMS sent</div>
+            </div>
+            <div class="consent-status" style="color:#EF9F27"><i class="ti ti-clock" aria-hidden="true"></i>Pending</div>
+          </div>
+          <!-- pending -->
+          <div class="consent-item">
+            <div class="member-avatar" style="width:32px;height:32px;background:#FAEEDA;color:#854F0B;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0">SH</div>
+            <div style="flex:1;min-width:0">
+              <div style="font-size:13px;color:var(--color-text-primary)">Sara Haile</div>
+              <div style="font-size:11px;color:var(--color-text-tertiary)">Member · SMS sent</div>
+            </div>
+            <div class="consent-status" style="color:#EF9F27"><i class="ti ti-clock" aria-hidden="true"></i>Pending</div>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <i class="ti ti-info-circle" aria-hidden="true"></i>
+          <p>Consent requests expire in 48 hours. The account activates automatically once all members approve.</p>
+        </div>
+
+        <button class="cta-sec" style="font-size:12px">Resend SMS reminders <i class="ti ti-refresh" aria-hidden="true"></i></button>
+
+        <!-- simulate activation -->
+        <button class="cta" onclick="go(4)">All consented — View account <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑤ Group Dashboard -->
+  <div class="sc" id="sc4">
+    <div class="ph">
+      <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+      <div class="hd">
+        <div class="hd-top">
+          <button class="back" onclick="history.back()"><i class="ti ti-arrow-left" aria-hidden="true"></i> Savings</button>
+          <div style="display:flex;gap:10px;margin-left:auto">
+            <i class="ti ti-bell" style="font-size:18px;color:var(--color-text-secondary);cursor:pointer" aria-hidden="true"></i>
+            <button onclick="showMenu(this)" style="background:none;border:none;cursor:pointer;padding:4px;display:flex;align-items:center;color:var(--color-text-secondary)" aria-label="More options">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+            </button>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:4px">
+          <div style="width:32px;height:32px;border-radius:8px;background:#EAF3DE;display:flex;align-items:center;justify-content:center"><i class="ti ti-users" style="font-size:15px;color:#3B6D11" aria-hidden="true"></i></div>
+          <div>
+            <div style="font-size:15px;font-weight:500;color:var(--color-text-primary)">Addis Business Circle</div>
+            <div id="grp-type-label" style="font-size:11px;color:var(--color-text-secondary)">OR Group · 3 members · Active</div>
+          </div>
+        </div>
+      </div>
+      <div class="bd">
+        <div class="bal-card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+            <div class="bal-label" style="margin-bottom:0">Group balance</div>
+            <button onclick="toggleGrpBal()" style="background:none;border:none;cursor:pointer;padding:2px;display:flex;align-items:center" aria-label="Toggle balance visibility">
+              <span id="grp-eye" style="display:flex;align-items:center"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span>
+            </button>
+          </div>
+          <div class="bal-amount" id="grp-amount">ETB 16,250.00</div>
+          <div class="bal-row">
+            <div class="bal-sub" style="flex:1">Members<span id="grp-sub0">3</span></div>
+            <div class="bal-sub" style="flex:1;text-align:right">This month<span id="grp-sub1">+ETB 1,500</span></div>
+          </div>
+        </div>
+
+        <div class="action-grid">
+          <div class="action-btn" onclick="go(5)">
+            <i class="ti ti-arrow-up" aria-hidden="true"></i>
+            <span>Deposit</span>
+          </div>
+          <div class="action-btn" onclick="go(8)">
+            <i class="ti ti-file-text" aria-hidden="true"></i>
+            <span>Statement</span>
+          </div>
+          <div class="action-btn" onclick="go(20)">
+            <i class="ti ti-settings" aria-hidden="true"></i>
+            <span>Manage</span>
+          </div>
+          <div class="action-btn" onclick="go(6)" style="background:#E24B4A;border-color:#c93030">
+            <i class="ti ti-arrow-down" style="color:#fff;font-size:20px" aria-hidden="true"></i>
+            <span style="color:#fff">Withdraw</span>
+          </div>
+        </div>
+
+        <div class="slbl">Member contributions</div>
+        <div style="background:var(--color-background-secondary);border-radius:10px;border:0.5px solid var(--color-border-tertiary);padding:0 12px">
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:0.5px solid var(--color-border-tertiary)">
+            <div style="width:32px;height:32px;border-radius:50%;background:#E6F1FB;color:#185FA5;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0">EM</div>
+            <div style="flex:1">
+              <div style="font-size:13px;color:var(--color-text-primary)">Emnet Tadesse</div>
+              <div style="height:5px;background:var(--color-border-tertiary);border-radius:3px;margin-top:5px;overflow:hidden"><div style="width:40%;height:100%;background:#185FA5;border-radius:3px"></div></div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">ETB 6,500</div>
+              <div style="font-size:10px;color:var(--color-text-tertiary)">40%</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:0.5px solid var(--color-border-tertiary)">
+            <div style="width:32px;height:32px;border-radius:50%;background:#EAF3DE;color:#3B6D11;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0">BK</div>
+            <div style="flex:1">
+              <div style="font-size:13px;color:var(--color-text-primary)">Biruk Kebede</div>
+              <div style="height:5px;background:var(--color-border-tertiary);border-radius:3px;margin-top:5px;overflow:hidden"><div style="width:33%;height:100%;background:#3B6D11;border-radius:3px"></div></div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">ETB 5,250</div>
+              <div style="font-size:10px;color:var(--color-text-tertiary)">32%</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 0">
+            <div style="width:32px;height:32px;border-radius:50%;background:#FAEEDA;color:#854F0B;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0">SH</div>
+            <div style="flex:1">
+              <div style="font-size:13px;color:var(--color-text-primary)">Sara Haile</div>
+              <div style="height:5px;background:var(--color-border-tertiary);border-radius:3px;margin-top:5px;overflow:hidden"><div style="width:27%;height:100%;background:#854F0B;border-radius:3px"></div></div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">ETB 4,500</div>
+              <div style="font-size:10px;color:var(--color-text-tertiary)">28%</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slbl">Recent activity</div>
+        <div style="background:var(--color-background-secondary);border-radius:10px;border:0.5px solid var(--color-border-tertiary);padding:4px 12px">
+          <div class="tx-item">
+            <div class="tx-icon" style="background:#EAF3DE"><i class="ti ti-arrow-up" style="color:#3B6D11;font-size:14px" aria-hidden="true"></i></div>
+            <div class="tx-info"><div class="tx-name">Emnet — deposit</div><div class="tx-date">Today, 08:14</div></div>
+            <div class="tx-amount" style="color:#1CBA70">+ETB 500</div>
+          </div>
+          <div class="tx-item">
+            <div class="tx-icon" style="background:#EAF3DE"><i class="ti ti-arrow-up" style="color:#3B6D11;font-size:14px" aria-hidden="true"></i></div>
+            <div class="tx-info"><div class="tx-name">Biruk — deposit</div><div class="tx-date">Yesterday, 11:30</div></div>
+            <div class="tx-amount" style="color:#1CBA70">+ETB 500</div>
+          </div>
+          <div class="tx-item">
+            <div class="tx-icon" style="background:#FCEBEB"><i class="ti ti-arrow-down" style="color:#A32D2D;font-size:14px" aria-hidden="true"></i></div>
+            <div class="tx-info"><div class="tx-name">Group withdrawal — approved</div><div class="tx-date">Mon, 14:00</div></div>
+            <div class="tx-amount" style="color:#E24B4A">-ETB 2,000</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑥ Deposit -->
+  <div class="sc" id="sc5">
+    <div class="ph">
+      <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+      <div class="hd">
+        <div class="hd-top">
+          <button class="back" onclick="go(4)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Group</button>
+        </div>
+        <div class="hd-title">Deposit to group</div>
+        <div class="hd-sub">Addis Business Circle · ETB 16,250 balance</div>
+      </div>
+      <div class="bd">
+        <div class="slbl">Deposit amount</div>
+        <div class="amt-wrap">
+          <div class="amt-pfx">ETB</div>
+          <input class="amt-inp" type="number" value="500" min="1" />
+        </div>
+
+        <div style="background:var(--color-background-secondary);border-radius:8px;border:0.5px solid var(--color-border-tertiary);padding:8px 12px;display:flex;justify-content:space-between">
+          <span style="font-size:11px;color:var(--color-text-secondary)">Suggested (equal share)</span>
+          <span style="font-size:11px;font-weight:500;color:var(--color-mpesa-green)">ETB 500</span>
+        </div>
+
+        <div class="slbl">Deposit source</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="source-opt sel" id="src-mpesa" onclick="selSrc('mpesa')">
+            <div style="width:34px;height:34px;border-radius:8px;background:var(--color-mpesa-accent-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-wallet" style="font-size:16px;color:var(--color-mpesa-green)" aria-hidden="true"></i></div>
+            <div style="flex:1">
+              <div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">M-PESA wallet</div>
+              <div style="font-size:11px;color:var(--color-text-secondary)">Balance: ETB 8,340.00</div>
+            </div>
+            <div class="source-radio"><i class="ti ti-check" style="font-size:10px;color:#fff" aria-hidden="true"></i></div>
+          </div>
+          <div class="source-opt" id="src-cbe" onclick="selSrc('cbe')">
+            <div style="width:34px;height:34px;border-radius:8px;background:#E6F1FB;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#185FA5;font-size:11px;font-weight:600">CB</div>
+            <div style="flex:1">
+              <div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">Commercial Bank of Ethiopia</div>
+              <div style="font-size:11px;color:var(--color-text-secondary)">Savings •••• 4821</div>
+            </div>
+            <div class="source-radio"></div>
+          </div>
+        </div>
+
+        <div class="rev-section">
+          <div class="rev-row"><div class="rev-key">Deposit amount</div><div class="rev-val">ETB 500.00</div></div>
+          <div class="rev-row"><div class="rev-key">From</div><div class="rev-val">M-PESA wallet</div></div>
+          <div class="rev-row"><div class="rev-key">Group balance after</div><div class="rev-val green">ETB 16,750.00</div></div>
+          <div class="rev-row"><div class="rev-key">Your share after</div><div class="rev-val green">40.3% (ETB 6,750)</div></div>
+        </div>
+
+        <div class="info-box">
+          <i class="ti ti-info-circle" aria-hidden="true"></i>
+          <p>All 3 group members will be notified of this deposit immediately.</p>
+        </div>
+
+        <button class="cta" onclick="go(17)">Confirm deposit <i class="ti ti-check" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑦ Withdrawal request -->
+  <div class="sc" id="sc6">
+    <div class="ph">
+      <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+      <div class="hd">
+        <div class="hd-top">
+        </div>
+        <div class="hd-title">Request withdrawal</div>
+        <div id="wd-req-sub" class="hd-sub">Requires approval from at least 3 members</div>
+      </div>
+      <div class="bd">
+        <div class="slbl">Withdrawal amount</div>
+        <div class="amt-wrap">
+          <div class="amt-pfx">ETB</div>
+          <input class="amt-inp" type="number" value="2000" min="1" />
+        </div>
+
+        <div class="inp-wrap">
+          <div class="inp-lbl">Reason for withdrawal</div>
+          <input class="inp" type="text" placeholder="e.g. Business equipment purchase" value="Office supplies" />
+        </div>
+
+        <div class="slbl">Destination</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="source-opt sel" id="dst-mpesa" onclick="selDst('mpesa')">
+            <div style="width:34px;height:34px;border-radius:8px;background:var(--color-mpesa-accent-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-wallet" style="font-size:16px;color:var(--color-mpesa-green)" aria-hidden="true"></i></div>
+            <div style="flex:1">
+              <div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">M-PESA wallet</div>
+              <div id="wd-dst-label" style="font-size:11px;color:var(--color-text-secondary)">Authorized person receives</div>
+            </div>
+            <div class="source-radio"><i class="ti ti-check" style="font-size:10px;color:#fff" aria-hidden="true"></i></div>
+          </div>
+          <div class="source-opt" id="dst-bank" onclick="selDst('bank')">
+            <div style="width:34px;height:34px;border-radius:8px;background:#E6F1FB;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#185FA5;font-size:11px;font-weight:600">CB</div>
+            <div style="flex:1">
+              <div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">Bank account</div>
+              <div style="font-size:11px;color:var(--color-text-secondary)">CBE •••• 4821</div>
+            </div>
+            <div class="source-radio"></div>
+          </div>
+        </div>
+
+        <div class="rev-section">
+          <div class="rev-row"><div class="rev-key">Withdrawal amount</div><div class="rev-val">ETB 2,000.00</div></div>
+          <div class="rev-row"><div class="rev-key">Group balance after</div><div class="rev-val">ETB 14,250.00</div></div>
+          <div class="rev-row"><div class="rev-key">Approvals needed</div><div id="wd-approvals-needed" class="rev-val">Min 3 of 3 members</div></div>
+          <div class="rev-row"><div class="rev-key">Initiated by</div><div class="rev-val">Emnet Tadesse</div></div>
+        </div>
+
+        <div class="warn-box">
+          <i class="ti ti-alert-triangle" aria-hidden="true"></i>
+          <p id="wd-warn-p">All members will receive an approval request via SMS and app notification. Transaction executes only after minimum approvals are met.</p>
+        </div>
+
+        <button class="cta" onclick="go(7)">Send approval request <i class="ti ti-send" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑧ Withdrawal approval (member view) -->
+  <div class="sc" id="sc7">
+    <div class="ph">
+      <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+      <div class="hd">
+        <div class="hd-top">
+          <button class="back" onclick="go(4)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Group</button>
+        </div>
+        <div class="hd-title">Withdrawal approval</div>
+        <div class="hd-sub">Addis Business Circle · Requested by Emnet</div>
+      </div>
+      <div class="bd">
+        <!-- request card -->
+        <div style="background:var(--color-background-secondary);border-radius:10px;border:0.5px solid var(--color-border-tertiary);padding:12px 14px">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div style="width:40px;height:40px;border-radius:10px;background:#FCEBEB;display:flex;align-items:center;justify-content:center"><i class="ti ti-arrow-down" style="font-size:18px;color:#A32D2D" aria-hidden="true"></i></div>
+            <div>
+              <div style="font-size:15px;font-weight:500;color:var(--color-text-primary)">ETB 2,000.00</div>
+              <div style="font-size:11px;color:var(--color-text-secondary)">Office supplies · M-PESA wallet</div>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+            <span style="font-size:11px;color:var(--color-text-secondary)">Approval progress</span>
+            <span style="font-size:11px;font-weight:500;color:#EF9F27">1 of 3</span>
+          </div>
+          <div style="height:5px;background:var(--color-border-tertiary);border-radius:3px;overflow:hidden">
+            <div style="width:33%;height:100%;background:#EF9F27;border-radius:3px"></div>
+          </div>
+        </div>
+
+        <div class="slbl">Approval status</div>
+        <div style="background:var(--color-background-secondary);border-radius:10px;border:0.5px solid var(--color-border-tertiary);padding:4px 12px">
+          <div class="approval-step">
+            <div class="step-circle done"><i class="ti ti-check" style="font-size:11px" aria-hidden="true"></i></div>
+            <div style="flex:1">
+              <div style="font-size:13px;color:var(--color-text-primary)">Emnet Tadesse</div>
+              <div style="font-size:11px;color:var(--color-text-tertiary)">Initiated · Today 09:00</div>
+            </div>
+            <span style="font-size:10px;background:#EAF3DE;color:#3B6D11;padding:2px 7px;border-radius:8px">Initiator</span>
+          </div>
+          <div class="approval-step">
+            <div class="step-circle done"><i class="ti ti-check" style="font-size:11px" aria-hidden="true"></i></div>
+            <div style="flex:1">
+              <div style="font-size:13px;color:var(--color-text-primary)">Biruk Kebede</div>
+              <div style="font-size:11px;color:var(--color-text-tertiary)">Approved · Today 09:15</div>
+            </div>
+            <span style="font-size:10px;background:#EAF3DE;color:#3B6D11;padding:2px 7px;border-radius:8px">Approved</span>
+          </div>
+          <div class="approval-step">
+            <div class="step-circle pending"><i class="ti ti-clock" style="font-size:11px" aria-hidden="true"></i></div>
+            <div style="flex:1">
+              <div style="font-size:13px;color:var(--color-text-primary)">Sara Haile <span style="font-size:11px;color:var(--color-text-tertiary)">(You)</span></div>
+              <div style="font-size:11px;color:#EF9F27">Pending your approval</div>
+            </div>
+            <span style="font-size:10px;background:#FEF9EC;color:#B45309;padding:2px 7px;border-radius:8px">Pending</span>
+          </div>
+        </div>
+
+        <div class="warn-box">
+          <i class="ti ti-alert-triangle" aria-hidden="true"></i>
+          <p>Once you approve, this withdrawal will execute immediately as the minimum 3 approvals will be met. This cannot be undone.</p>
+        </div>
+
+        <div style="display:flex;gap:8px">
+          <button class="cta-danger" style="flex:1" onclick="go(18)">Decline</button>
+          <button class="cta" style="flex:2" onclick="go(16)">Approve withdrawal <i class="ti ti-check" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- sc16: Withdrawal confirmation -->
+  <div class="sc" id="sc16">
+    <div class="ph">
+      <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+
+      <!-- gradient success hero -->
+      <div class="conf-hero">
+        <div class="conf-check"><i class="ti ti-check" aria-hidden="true"></i></div>
+        <div class="conf-label">Withdrawal successful</div>
+        <div class="conf-amount">ETB 2,000.00</div>
+        <div class="conf-meta"><i class="ti ti-clock" aria-hidden="true"></i> Today · 09:17 AM</div>
+      </div>
+
+      <!-- receipt ticket -->
+      <div class="conf-receipt">
+        <div class="conf-rcpt-row"><span class="conf-rcpt-key">Reference</span><span class="conf-rcpt-val mono">TXN-2024-88421</span></div>
+        <div class="conf-rcpt-row"><span class="conf-rcpt-key">Reason</span><span class="conf-rcpt-val">Office supplies</span></div>
+        <div class="conf-rcpt-row"><span class="conf-rcpt-key">Sent to</span><span class="conf-rcpt-val">Emnet Tadesse · M-PESA</span></div>
+        <div class="conf-rcpt-row"><span class="conf-rcpt-key">Group balance before</span><span class="conf-rcpt-val">ETB 16,250.00</span></div>
+        <div class="conf-rcpt-row"><span class="conf-rcpt-key">Group balance after</span><span class="conf-rcpt-val green">ETB 14,250.00</span></div>
+
+        <!-- notched divider -->
+        <div class="conf-notch"><span></span></div>
+
+        <!-- approvers -->
+        <div class="conf-approvers">
+          <div class="slbl" style="margin-bottom:6px">Approved by all members</div>
+          <div class="conf-appr-row">
+            <div class="conf-appr-av" style="background:#E6F1FB;color:#185FA5">EM<span class="tick"><i class="ti ti-check" aria-hidden="true"></i></span></div>
+            <div style="flex:1"><div class="conf-appr-name">Emnet Tadesse</div><div class="conf-appr-time">Initiated · 09:00</div></div>
+            <span class="conf-appr-tag" style="background:#E6F1FB;color:#185FA5">Initiator</span>
+          </div>
+          <div class="conf-appr-row">
+            <div class="conf-appr-av" style="background:#EAF3DE;color:#3B6D11">BK<span class="tick"><i class="ti ti-check" aria-hidden="true"></i></span></div>
+            <div style="flex:1"><div class="conf-appr-name">Biruk Kebede</div><div class="conf-appr-time">Approved · 09:15</div></div>
+            <span class="conf-appr-tag">Approved</span>
+          </div>
+          <div class="conf-appr-row">
+            <div class="conf-appr-av" style="background:#FAEEDA;color:#854F0B">SH<span class="tick"><i class="ti ti-check" aria-hidden="true"></i></span></div>
+            <div style="flex:1"><div class="conf-appr-name">Sara Haile <span style="color:var(--color-text-tertiary);font-weight:400">(You)</span></div><div class="conf-appr-time">Approved · 09:17</div></div>
+            <span class="conf-appr-tag">Approved</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bd" style="padding-top:14px">
+        <!-- share row -->
+        <div style="display:flex;gap:8px">
+          <button class="cta-sec" style="flex:1;display:flex;align-items:center;justify-content:center;gap:6px" onclick="showShareToast('pdf')"><i class="ti ti-file-type-pdf" aria-hidden="true"></i> Receipt</button>
+          <button class="cta-sec" style="flex:1;display:flex;align-items:center;justify-content:center;gap:6px" onclick="showShareToast('share')"><i class="ti ti-share" aria-hidden="true"></i> Share</button>
+        </div>
+        <button class="cta" onclick="go(8)">View statement <i class="ti ti-file-text" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑨ Mini statement -->
+  <div class="sc" id="sc8">
+    <div class="ph">
+      <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+      <div class="hd">
+        <div class="hd-top">
+          <button class="back" onclick="go(4)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Group</button>
+          <i class="ti ti-download" style="font-size:16px;color:var(--color-text-secondary);cursor:pointer;margin-left:auto" aria-hidden="true"></i>
+        </div>
+        <div class="hd-title">Mini statement</div>
+        <div class="hd-sub">Addis Business Circle · All members visible</div>
+      </div>
+      <div class="bd">
+        <div class="stats-row">
+          <div class="stat-box"><div class="stat-box-label">Balance</div><div class="stat-box-val">ETB 16,250</div></div>
+          <div class="stat-box"><div class="stat-box-label">Deposits</div><div class="stat-box-val" style="color:#1CBA70">+ETB 18,250</div></div>
+          <div class="stat-box"><div class="stat-box-label">Withdrawn</div><div class="stat-box-val" style="color:#E24B4A">-ETB 2,000</div></div>
+        </div>
+
+        <div class="seg-tabs">
+          <div class="seg-tab active" onclick="switchStmt('all',this)">All</div>
+          <div class="seg-tab" onclick="switchStmt('dep',this)">Deposits</div>
+          <div class="seg-tab" onclick="switchStmt('wdraw',this)">Withdrawals</div>
+        </div>
+
+        <!-- date filter -->
+        <div class="date-chips">
+          <button class="date-chip active" onclick="setDateRange('all',this)">All time</button>
+          <button class="date-chip" onclick="setDateRange('today',this)">Today</button>
+          <button class="date-chip" onclick="setDateRange('7d',this)">7 days</button>
+          <button class="date-chip" onclick="setDateRange('30d',this)">30 days</button>
+          <button class="date-chip" onclick="setDateRange('custom',this)"><i class="ti ti-calendar" aria-hidden="true"></i> Custom</button>
+        </div>
+
+        <!-- active filter summary -->
+        <div id="stmt-filter-summary" style="display:none;align-items:center;justify-content:space-between;font-size:11px;color:var(--color-text-secondary);padding:0 2px">
+          <span id="stmt-filter-text">Showing all transactions</span>
+          <button onclick="setDateRange('all')" style="background:none;border:none;color:var(--color-mpesa-green);font-size:11px;font-weight:600;cursor:pointer;font-family:var(--font-sans)">Clear</button>
+        </div>
+
+        <div id="stmt-all" style="background:var(--color-background-secondary);border-radius:10px;border:0.5px solid var(--color-border-tertiary);padding:4px 12px">
+          <!-- deposit with member detail -->
+          <div class="tx-item" data-date="2026-06-10" data-type="dep">
+            <div class="tx-icon" style="background:#EAF3DE"><i class="ti ti-arrow-up" style="color:#3B6D11;font-size:14px" aria-hidden="true"></i></div>
+            <div class="tx-info">
+              <div class="tx-name">Emnet — deposit</div>
+              <div class="tx-date">Today, 08:14 · Share: 40%</div>
+            </div>
+            <div class="tx-amount" style="color:#1CBA70">+ETB 500</div>
+          </div>
+          <div class="tx-item" data-date="2026-06-09" data-type="dep">
+            <div class="tx-icon" style="background:#EAF3DE"><i class="ti ti-arrow-up" style="color:#3B6D11;font-size:14px" aria-hidden="true"></i></div>
+            <div class="tx-info">
+              <div class="tx-name">Biruk — deposit</div>
+              <div class="tx-date">Yesterday, 11:30 · Share: 32%</div>
+            </div>
+            <div class="tx-amount" style="color:#1CBA70">+ETB 500</div>
+          </div>
+          <div class="tx-item" data-date="2026-06-08" data-type="wdraw">
+            <div class="tx-icon" style="background:#FCEBEB"><i class="ti ti-arrow-down" style="color:#A32D2D;font-size:14px" aria-hidden="true"></i></div>
+            <div class="tx-info">
+              <div class="tx-name">Withdrawal — 3/3 approved</div>
+              <div class="tx-date">Mon, 14:00 · Office supplies</div>
+            </div>
+            <div class="tx-amount" style="color:#E24B4A">-ETB 2,000</div>
+          </div>
+          <div class="tx-item" data-date="2026-06-07" data-type="dep">
+            <div class="tx-icon" style="background:#EAF3DE"><i class="ti ti-arrow-up" style="color:#3B6D11;font-size:14px" aria-hidden="true"></i></div>
+            <div class="tx-info">
+              <div class="tx-name">Sara — deposit</div>
+              <div class="tx-date">Sun, 09:45 · Share: 28%</div>
+            </div>
+            <div class="tx-amount" style="color:#1CBA70">+ETB 500</div>
+          </div>
+          <div class="tx-item" data-date="2026-06-06" data-type="dep">
+            <div class="tx-icon" style="background:#EAF3DE"><i class="ti ti-arrow-up" style="color:#3B6D11;font-size:14px" aria-hidden="true"></i></div>
+            <div class="tx-info">
+              <div class="tx-name">Emnet — deposit</div>
+              <div class="tx-date">Sat, 08:00 · Share: 40%</div>
+            </div>
+            <div class="tx-amount" style="color:#1CBA70">+ETB 1,000</div>
+          </div>
+          <!-- empty state -->
+          <div id="stmt-empty" style="display:none;text-align:center;padding:24px 12px;color:var(--color-text-tertiary)">
+            <i class="ti ti-calendar-off" style="font-size:26px;display:block;margin-bottom:6px" aria-hidden="true"></i>
+            <div style="font-size:12px">No transactions in this period</div>
+          </div>
+        </div>
+
+        <!-- Member share summary -->
+        <div class="slbl">Contribution shares</div>
+        <div style="background:var(--color-background-secondary);border-radius:10px;border:0.5px solid var(--color-border-tertiary);padding:10px 14px">
+          <div style="display:flex;gap:0;height:10px;border-radius:6px;overflow:hidden;margin-bottom:10px">
+            <div style="width:40%;background:#185FA5"></div>
+            <div style="width:32%;background:#3B6D11"></div>
+            <div style="width:28%;background:#854F0B"></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div style="display:flex;align-items:center;gap:6px"><div style="width:8px;height:8px;border-radius:50%;background:#185FA5"></div><span style="font-size:12px;color:var(--color-text-primary)">Emnet Tadesse</span></div>
+              <span style="font-size:12px;font-weight:500;color:var(--color-text-primary)">ETB 6,500 (40%)</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div style="display:flex;align-items:center;gap:6px"><div style="width:8px;height:8px;border-radius:50%;background:#3B6D11"></div><span style="font-size:12px;color:var(--color-text-primary)">Biruk Kebede</span></div>
+              <span style="font-size:12px;font-weight:500;color:var(--color-text-primary)">ETB 5,250 (32%)</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div style="display:flex;align-items:center;gap:6px"><div style="width:8px;height:8px;border-radius:50%;background:#854F0B"></div><span style="font-size:12px;color:var(--color-text-primary)">Sara Haile</span></div>
+              <span style="font-size:12px;font-weight:500;color:var(--color-text-primary)">ETB 4,500 (28%)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- PDF / Share action bar -->
+      <div class="action-bar">
+        <button class="bar-btn" onclick="showShareToast('pdf')"><i class="ti ti-file-type-pdf" aria-hidden="true"></i> Download PDF</button>
+        <button class="bar-btn" onclick="showShareToast('email')"><i class="ti ti-mail" aria-hidden="true"></i> Send Email</button>
+        <button class="bar-btn primary" onclick="showShareToast('share')"><i class="ti ti-share" aria-hidden="true"></i> Share</button>
+      </div>
+
+      <!-- custom date range modal -->
+      <div class="sheet-overlay" id="date-modal" onclick="if(event.target===this)closeDateModal()">
+        <div class="sheet">
+          <div class="sheet-handle"></div>
+          <div class="sheet-title">
+            <span>Select date range</span>
+            <button class="sheet-close" onclick="closeDateModal()" aria-label="Close"><i class="ti ti-x" aria-hidden="true"></i></button>
+          </div>
+          <div style="display:flex;gap:10px">
+            <div class="date-box" style="flex:1">
+              <div class="inp-lbl">From</div>
+              <input class="inp" type="date" id="stmt-from" value="2026-06-06" max="2026-06-10" />
+            </div>
+            <div class="date-box" style="flex:1">
+              <div class="inp-lbl">To</div>
+              <input class="inp" type="date" id="stmt-to" value="2026-06-10" max="2026-06-10" />
+            </div>
+          </div>
+          <!-- quick presets inside modal -->
+          <div class="date-chips" style="margin-top:4px">
+            <button class="date-chip" onclick="modalPreset('today')">Today</button>
+            <button class="date-chip" onclick="modalPreset('7d')">Last 7 days</button>
+            <button class="date-chip" onclick="modalPreset('30d')">Last 30 days</button>
+            <button class="date-chip" onclick="modalPreset('month')">This month</button>
+          </div>
+          <button class="cta" style="margin-top:6px" onclick="applyDateModal()">Apply range <i class="ti ti-check" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⓪ sc10: Invitation received — full standalone screen -->
+  <div class="sc" id="sc10">
+    <div class="ph">
+      <!-- green header band -->
+      <div class="inv-header-band">
+        <div style="position:relative;width:fit-content;margin:0 auto 10px">
+          <div class="inv-group-badge">
+            <i class="ti ti-users" style="font-size:26px;color:#fff" aria-hidden="true"></i>
+          </div>
+          <div class="inv-notif-dot"><span>1</span></div>
+        </div>
+        <div style="font-size:17px;font-weight:600;color:#fff;position:relative;z-index:1">Group saving invitation</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.75);margin-top:4px;position:relative;z-index:1">From Emnet Tadesse · Expires in 48 hours</div>
+      </div>
+
+      <div class="bd">
+        <!-- group info card -->
+        <div style="background:var(--color-background-secondary);border-radius:12px;border:0.5px solid var(--color-border-tertiary);overflow:hidden">
+          <div style="padding:12px 14px;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;gap:10px">
+            <div style="width:42px;height:42px;border-radius:10px;background:#EAF3DE;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-users" style="font-size:20px;color:#3B6D11" aria-hidden="true"></i></div>
+            <div>
+              <div style="font-size:15px;font-weight:500;color:var(--color-text-primary)">Addis Business Circle</div>
+              <div style="font-size:11px;color:var(--color-text-secondary)">OR Group · Invited by Emnet Tadesse</div>
+            </div>
+          </div>
+          <!-- stats row -->
+          <div style="display:flex">
+            <div style="flex:1;padding:10px 14px;border-right:0.5px solid var(--color-border-tertiary);text-align:center">
+              <div style="font-size:10px;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.3px">Members</div>
+              <div style="font-size:16px;font-weight:600;color:var(--color-text-primary);margin-top:3px">3</div>
+            </div>
+            <div style="flex:1;padding:10px 14px;border-right:0.5px solid var(--color-border-tertiary);text-align:center">
+              <div style="font-size:10px;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.3px">Contribution</div>
+              <div style="font-size:16px;font-weight:600;color:var(--color-text-primary);margin-top:3px">ETB 500</div>
+            </div>
+            <div style="flex:1;padding:10px 14px;text-align:center">
+              <div style="font-size:10px;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.3px">Split</div>
+              <div style="font-size:16px;font-weight:600;color:var(--color-text-primary);margin-top:3px">Equal</div>
+            </div>
+          </div>
+          <!-- members joining -->
+          <div style="padding:10px 14px;border-top:0.5px solid var(--color-border-tertiary)">
+            <div style="font-size:10px;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.3px;margin-bottom:8px">Who's joining</div>
+            <div style="display:flex;flex-direction:column;gap:7px">
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="width:28px;height:28px;border-radius:50%;background:#E6F1FB;color:#185FA5;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;flex-shrink:0">EM</div>
+                <div style="font-size:12px;color:var(--color-text-primary)">Emnet Tadesse</div>
+                <span style="margin-left:auto;font-size:10px;background:var(--color-mpesa-accent-bg);color:var(--color-mpesa-accent-text);padding:2px 7px;border-radius:8px">Admin</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="width:28px;height:28px;border-radius:50%;background:#EAF3DE;color:#3B6D11;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;flex-shrink:0">BK</div>
+                <div style="font-size:12px;color:var(--color-text-primary)">Biruk Kebede</div>
+                <span style="margin-left:auto;font-size:10px;background:#EAF3DE;color:#3B6D11;padding:2px 7px;border-radius:8px">Authorized</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="width:28px;height:28px;border-radius:50%;background:#FAEEDA;color:#854F0B;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;flex-shrink:0">SH</div>
+                <div style="font-size:12px;color:var(--color-text-primary)">Sara Haile <span style="color:var(--color-text-tertiary)">(You)</span></div>
+                <span style="margin-left:auto;font-size:10px;background:var(--color-background-secondary);color:var(--color-text-secondary);padding:2px 7px;border-radius:8px;border:0.5px solid var(--color-border-secondary)">Invited</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- withdrawal rule -->
+        <div class="info-box">
+          <i class="ti ti-info-circle" aria-hidden="true"></i>
+          <p id="inv-consent-rule">Withdrawal needs approval from at least <strong>3 of 3 members</strong>. Your consent activates the account. Invitation expires in <strong>48 hours</strong>.</p>
+        </div>
+
+        <!-- withdrawal type note -->
+        <div style="background:var(--color-background-secondary);border-radius:10px;border:0.5px solid var(--color-border-tertiary);padding:10px 13px;display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-size:12px;font-weight:500;color:var(--color-text-primary)">Group type: OR Group</div>
+            <div style="font-size:11px;color:var(--color-text-secondary);margin-top:1px">Authorized person + min 3 member approvals to withdraw</div>
+          </div>
+          <span style="font-size:10px;background:#EAF3DE;color:#3B6D11;padding:2px 7px;border-radius:8px;white-space:nowrap;font-weight:500">OR Logic</span>
+        </div>
+
+        <div style="display:flex;gap:8px">
+          <button class="cta-danger" style="flex:1" onclick="go(19)">Decline</button>
+          <button class="cta" style="flex:2" onclick="go(11)"><i class="ti ti-circle-check" aria-hidden="true"></i> Accept &amp; Join</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- sc11: Invitation result (accepted or declined) -->
+  <div class="sc" id="sc11">
+    <div class="ph">
+      <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+      <div class="hd">
+        <div class="hd-top">
+          <button class="back" onclick="go(10)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Invitation</button>
+        </div>
+        <div class="hd-title">Invitation accepted</div>
+        <div class="hd-sub">You have joined Addis Business Circle</div>
+      </div>
+      <div class="bd">
+        <!-- success icon -->
+        <div style="text-align:center;padding:16px 0 8px">
+          <div style="width:72px;height:72px;border-radius:50%;background:var(--color-mpesa-accent-bg);display:flex;align-items:center;justify-content:center;margin:0 auto 14px">
+            <i class="ti ti-circle-check" style="font-size:36px;color:var(--color-mpesa-green)" aria-hidden="true"></i>
+          </div>
+          <div style="font-size:16px;font-weight:600;color:var(--color-text-primary);margin-bottom:5px">Welcome to the group!</div>
+          <div style="font-size:12px;color:var(--color-text-secondary);line-height:1.6;max-width:260px;margin:0 auto">You've joined <strong>Addis Business Circle</strong>. The account will activate once all 3 members consent.</div>
+        </div>
+
+        <!-- what happens next -->
+        <div class="slbl">What happens next</div>
+        <div style="background:var(--color-background-secondary);border-radius:10px;border:0.5px solid var(--color-border-tertiary);overflow:hidden">
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 13px;border-bottom:0.5px solid var(--color-border-tertiary)">
+            <div style="width:28px;height:28px;border-radius:50%;background:var(--color-mpesa-accent-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-circle-check-filled" style="font-size:14px;color:var(--color-mpesa-green)" aria-hidden="true"></i></div>
+            <div><div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">Your consent recorded</div><div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">Sara Haile · Just now</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 13px;border-bottom:0.5px solid var(--color-border-tertiary)">
+            <div style="width:28px;height:28px;border-radius:50%;background:#EAF3DE;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-clock" style="font-size:14px;color:#3B6D11" aria-hidden="true"></i></div>
+            <div><div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">Waiting: 1 more member</div><div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">Biruk Kebede has not yet consented</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 13px">
+            <div style="width:28px;height:28px;border-radius:50%;background:var(--color-background-secondary);border:1.5px solid var(--color-border-secondary);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-users" style="font-size:13px;color:var(--color-text-tertiary)" aria-hidden="true"></i></div>
+            <div><div style="font-size:13px;font-weight:500;color:var(--color-text-tertiary)">Account activates after all consent</div><div style="font-size:11px;color:var(--color-text-tertiary);margin-top:2px">You'll be notified via SMS when it's active</div></div>
+          </div>
+        </div>
+
+        <!-- consent progress -->
+        <div style="background:var(--color-background-secondary);border-radius:10px;border:0.5px solid var(--color-border-tertiary);padding:10px 13px">
+          <div style="display:flex;justify-content:space-between;margin-bottom:5px">
+            <span style="font-size:11px;color:var(--color-text-secondary)">Consent progress</span>
+            <span style="font-size:11px;font-weight:500;color:#EF9F27">2 of 3</span>
+          </div>
+          <div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;overflow:hidden">
+            <div style="width:66%;height:100%;background:var(--color-mpesa-green);border-radius:3px"></div>
+          </div>
+        </div>
+
+        <button class="cta" onclick="go(4)">Go to group account <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+        <button class="cta-sec" onclick="go(4)">Back to savings</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- sc14: AND Group — Invitation received -->
+  <div class="sc" id="sc14">
+    <div class="ph">
+      <!-- purple header band for AND group -->
+      <div class="inv-header-band" style="background:linear-gradient(135deg,#534AB7 0%,#3A339F 100%)">
+        <div style="position:relative;width:fit-content;margin:0 auto 10px">
+          <div class="inv-group-badge" style="background:rgba(255,255,255,.2)">
+            <i class="ti ti-shield-check" style="font-size:26px;color:#fff" aria-hidden="true"></i>
+          </div>
+          <div class="inv-notif-dot"><span>1</span></div>
+        </div>
+        <div style="font-size:17px;font-weight:600;color:#fff;position:relative;z-index:1">Group saving invitation</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.75);margin-top:4px;position:relative;z-index:1">From Emnet Tadesse · Expires in 48 hours</div>
+      </div>
+
+      <div class="bd">
+        <!-- group info card -->
+        <div style="background:var(--color-background-secondary);border-radius:12px;border:0.5px solid var(--color-border-tertiary);overflow:hidden">
+          <div style="padding:12px 14px;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;gap:10px">
+            <div style="width:42px;height:42px;border-radius:10px;background:#EEEDFE;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-shield-check" style="font-size:20px;color:#534AB7" aria-hidden="true"></i></div>
+            <div>
+              <div style="font-size:15px;font-weight:500;color:var(--color-text-primary)">Addis Business Circle</div>
+              <div style="font-size:11px;color:var(--color-text-secondary)">AND Group · Invited by Emnet Tadesse</div>
+            </div>
+          </div>
+          <!-- stats row -->
+          <div style="display:flex">
+            <div style="flex:1;padding:10px 14px;border-right:0.5px solid var(--color-border-tertiary);text-align:center">
+              <div style="font-size:10px;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.3px">Members</div>
+              <div style="font-size:16px;font-weight:600;color:var(--color-text-primary);margin-top:3px">3</div>
+            </div>
+            <div style="flex:1;padding:10px 14px;border-right:0.5px solid var(--color-border-tertiary);text-align:center">
+              <div style="font-size:10px;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.3px">Contribution</div>
+              <div style="font-size:16px;font-weight:600;color:var(--color-text-primary);margin-top:3px">ETB 500</div>
+            </div>
+            <div style="flex:1;padding:10px 14px;text-align:center">
+              <div style="font-size:10px;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.3px">Split</div>
+              <div style="font-size:16px;font-weight:600;color:var(--color-text-primary);margin-top:3px">Equal</div>
+            </div>
+          </div>
+          <!-- members joining — AND group has no "Authorized" role, all equal members -->
+          <div style="padding:10px 14px;border-top:0.5px solid var(--color-border-tertiary)">
+            <div style="font-size:10px;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.3px;margin-bottom:8px">Who's joining</div>
+            <div style="display:flex;flex-direction:column;gap:7px">
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="width:28px;height:28px;border-radius:50%;background:#E6F1FB;color:#185FA5;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;flex-shrink:0">EM</div>
+                <div style="font-size:12px;color:var(--color-text-primary)">Emnet Tadesse</div>
+                <span style="margin-left:auto;font-size:10px;background:var(--color-mpesa-accent-bg);color:var(--color-mpesa-accent-text);padding:2px 7px;border-radius:8px">Admin</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="width:28px;height:28px;border-radius:50%;background:#EEEDFE;color:#534AB7;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;flex-shrink:0">BK</div>
+                <div style="font-size:12px;color:var(--color-text-primary)">Biruk Kebede</div>
+                <span style="margin-left:auto;font-size:10px;background:#EEEDFE;color:#534AB7;padding:2px 7px;border-radius:8px">Member</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="width:28px;height:28px;border-radius:50%;background:#FAEEDA;color:#854F0B;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;flex-shrink:0">SH</div>
+                <div style="font-size:12px;color:var(--color-text-primary)">Sara Haile <span style="color:var(--color-text-tertiary)">(You)</span></div>
+                <span style="margin-left:auto;font-size:10px;background:var(--color-background-secondary);color:var(--color-text-secondary);padding:2px 7px;border-radius:8px;border:0.5px solid var(--color-border-secondary)">Invited</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- withdrawal rule — AND specific -->
+        <div class="info-box" style="background:#F2F1FE;border-color:#C5C2F0">
+          <i class="ti ti-info-circle" style="color:#534AB7" aria-hidden="true"></i>
+          <p style="color:#3A339F">Withdrawal requires approval from <strong>all 3 members</strong>. Every member has equal voting power. Invitation expires in <strong>48 hours</strong>.</p>
+        </div>
+
+        <!-- group type note — AND -->
+        <div style="background:var(--color-background-secondary);border-radius:10px;border:0.5px solid var(--color-border-tertiary);padding:10px 13px;display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-size:12px;font-weight:500;color:var(--color-text-primary)">Group type: AND Group</div>
+            <div style="font-size:11px;color:var(--color-text-secondary);margin-top:1px">All members must approve every withdrawal</div>
+          </div>
+          <span style="font-size:10px;background:#EEEDFE;color:#534AB7;padding:2px 7px;border-radius:8px;white-space:nowrap;font-weight:500">AND Logic</span>
+        </div>
+
+        <div style="display:flex;gap:8px">
+          <button class="cta-danger" style="flex:1" onclick="go(19)">Decline</button>
+          <button class="cta" style="flex:2;background:#534AB7" onclick="go(15)"><i class="ti ti-circle-check" aria-hidden="true"></i> Accept &amp; Join</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- sc15: AND Group — Invitation result -->
+  <div class="sc" id="sc15">
+    <div class="ph">
+      <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+      <div class="hd">
+        <div class="hd-top">
+          <button class="back" onclick="go(14)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Invitation</button>
+        </div>
+        <div class="hd-title">Invitation accepted</div>
+        <div class="hd-sub">You have joined Addis Business Circle</div>
+      </div>
+      <div class="bd">
+        <!-- success icon — purple for AND -->
+        <div style="text-align:center;padding:16px 0 8px">
+          <div style="width:72px;height:72px;border-radius:50%;background:#EEEDFE;display:flex;align-items:center;justify-content:center;margin:0 auto 14px">
+            <i class="ti ti-shield-check" style="font-size:36px;color:#534AB7" aria-hidden="true"></i>
+          </div>
+          <div style="font-size:16px;font-weight:600;color:var(--color-text-primary);margin-bottom:5px">Welcome to the group!</div>
+          <div style="font-size:12px;color:var(--color-text-secondary);line-height:1.6;max-width:260px;margin:0 auto">You've joined <strong>Addis Business Circle</strong> (AND Group). The account activates once all 3 members consent.</div>
+        </div>
+
+        <!-- AND-specific note -->
+        <div class="info-box" style="background:#F2F1FE;border-color:#C5C2F0">
+          <i class="ti ti-shield-check" style="color:#534AB7" aria-hidden="true"></i>
+          <p style="color:#3A339F">In an AND Group every withdrawal needs approval from <strong>all members</strong>. You'll receive an approval request for every transaction.</p>
+        </div>
+
+        <!-- what happens next -->
+        <div class="slbl">What happens next</div>
+        <div style="background:var(--color-background-secondary);border-radius:10px;border:0.5px solid var(--color-border-tertiary);overflow:hidden">
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 13px;border-bottom:0.5px solid var(--color-border-tertiary)">
+            <div style="width:28px;height:28px;border-radius:50%;background:#EEEDFE;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-circle-check-filled" style="font-size:14px;color:#534AB7" aria-hidden="true"></i></div>
+            <div><div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">Your consent recorded</div><div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">Sara Haile · Just now</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 13px;border-bottom:0.5px solid var(--color-border-tertiary)">
+            <div style="width:28px;height:28px;border-radius:50%;background:#EEEDFE;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-clock" style="font-size:14px;color:#534AB7" aria-hidden="true"></i></div>
+            <div><div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">Waiting: 1 more member</div><div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">Biruk Kebede has not yet consented</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 13px">
+            <div style="width:28px;height:28px;border-radius:50%;background:var(--color-background-secondary);border:1.5px solid var(--color-border-secondary);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-shield-check" style="font-size:13px;color:var(--color-text-tertiary)" aria-hidden="true"></i></div>
+            <div><div style="font-size:13px;font-weight:500;color:var(--color-text-tertiary)">Account activates after all 3 consent</div><div style="font-size:11px;color:var(--color-text-tertiary);margin-top:2px">You'll be notified via SMS when it's active</div></div>
+          </div>
+        </div>
+
+        <!-- consent progress -->
+        <div style="background:var(--color-background-secondary);border-radius:10px;border:0.5px solid var(--color-border-tertiary);padding:10px 13px">
+          <div style="display:flex;justify-content:space-between;margin-bottom:5px">
+            <span style="font-size:11px;color:var(--color-text-secondary)">Consent progress</span>
+            <span style="font-size:11px;font-weight:500;color:#EF9F27">2 of 3</span>
+          </div>
+          <div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;overflow:hidden">
+            <div style="width:66%;height:100%;background:#534AB7;border-radius:3px"></div>
+          </div>
+        </div>
+
+        <button class="cta" style="background:#534AB7" onclick="go(4)">Go to group account <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+        <button class="cta-sec" onclick="go(4)">Back to savings</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑩ sc9: Closure — Step 1: Choose distribution method -->
+  <div class="sc" id="sc9">
+    <div class="ph">
+      <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+      <div class="hd">
+        <div class="hd-top">
+          <button class="back" onclick="go(4)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Group</button>
+          <span class="hd-step">Step 1 of 3</span>
+        </div>
+        <div class="pbar"><div class="pfill" style="width:33%"></div></div>
+        <div class="hd-title">Close group account</div>
+        <div class="hd-sub">Choose how the balance will be distributed</div>
+      </div>
+      <div class="bd">
+        <!-- balance -->
+        <div class="bal-card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+            <div class="bal-label" style="margin-bottom:0">Balance to distribute</div>
+            <button onclick="toggleClosureBal()" style="background:none;border:none;cursor:pointer;padding:2px;display:flex;align-items:center" aria-label="Toggle balance visibility">
+              <span id="closure-eye" style="display:flex;align-items:center"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span>
+            </button>
+          </div>
+          <div class="bal-amount" id="closure-amount">ETB 16,250.00</div>
+          <div class="bal-row">
+            <div class="bal-sub" style="flex:1">Members<span id="closure-sub0">3</span></div>
+            <div class="bal-sub" style="flex:1;text-align:right">Equal share<span id="closure-sub1">ETB 5,416.67</span></div>
+          </div>
+        </div>
+
+        <div class="slbl">Distribution method</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="source-opt sel" id="close-equal" onclick="selClose('equal')">
+            <div style="width:36px;height:36px;border-radius:9px;background:var(--color-mpesa-accent-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-equal" style="font-size:18px;color:var(--color-mpesa-green)" aria-hidden="true"></i></div>
+            <div style="flex:1">
+              <div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">Equally — ETB 5,416.67 each</div>
+              <div style="font-size:11px;color:var(--color-text-secondary)">Split evenly regardless of contribution amount</div>
+            </div>
+            <div class="source-radio"><i class="ti ti-check" style="font-size:10px;color:#fff" aria-hidden="true"></i></div>
+          </div>
+          <div class="source-opt" id="close-contrib" onclick="selClose('contrib')">
+            <div style="width:36px;height:36px;border-radius:9px;background:#EEEDFE;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-chart-pie" style="font-size:18px;color:#534AB7" aria-hidden="true"></i></div>
+            <div style="flex:1">
+              <div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">By contribution share</div>
+              <div style="font-size:11px;color:var(--color-text-secondary)">Emnet: 6,500 · Biruk: 5,250 · Sara: 4,500</div>
+            </div>
+            <div class="source-radio"></div>
+          </div>
+          <div class="source-opt" id="close-one" onclick="selClose('one')">
+            <div style="width:36px;height:36px;border-radius:9px;background:#FAEEDA;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-user-check" style="font-size:18px;color:#854F0B" aria-hidden="true"></i></div>
+            <div style="flex:1">
+              <div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">To one person</div>
+              <div style="font-size:11px;color:var(--color-text-secondary)">Full balance sent to one designated member</div>
+            </div>
+            <div class="source-radio"></div>
+          </div>
+        </div>
+
+        <!-- Beneficiary dropdown — shown only when "To one person" is selected -->
+        <div id="one-person-wrap" style="display:none">
+          <div class="inp-wrap">
+            <div class="inp-lbl">Select beneficiary member</div>
+            <select class="sel-inp" id="beneficiary-select">
+              <option value="">— Choose member —</option>
+              <option value="em">Emnet Tadesse (Admin · +251 91 234 5678)</option>
+              <option value="bk">Biruk Kebede (Authorized · +251 92 345 6789)</option>
+              <option value="sh">Sara Haile (Member · +251 93 456 7890)</option>
+            </select>
+          </div>
+          <div id="beneficiary-preview" style="display:none;background:var(--color-background-info);border:0.5px solid var(--color-border-info);border-radius:9px;padding:10px 12px;align-items:center;gap:10px">
+            <div id="ben-avatar" style="width:36px;height:36px;border-radius:50%;background:#EAF3DE;color:#3B6D11;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0">EM</div>
+            <div style="flex:1">
+              <div id="ben-name" style="font-size:13px;font-weight:500;color:var(--color-text-primary)">Emnet Tadesse</div>
+              <div style="font-size:11px;color:var(--color-text-info)">Will receive ETB 16,250.00 in full</div>
+            </div>
+            <i class="ti ti-circle-check-filled" style="color:var(--color-mpesa-green);font-size:18px" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <div class="warn-box">
+          <i class="ti ti-alert-triangle" aria-hidden="true"></i>
+          <p>Closing is permanent. All members must consent before the account is closed.</p>
+        </div>
+
+        <button class="cta" onclick="go(12)">Send closure request <i class="ti ti-send" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- sc12: Closure — Step 2: Awaiting member consent -->
+  <div class="sc" id="sc12">
+    <div class="ph">
+      <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+      <div class="hd">
+        <div class="hd-top">
+          <button class="back" onclick="go(9)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Back</button>
+          <span class="hd-step">Step 2 of 3</span>
+        </div>
+        <div class="pbar"><div class="pfill" style="width:66%"></div></div>
+        <div class="hd-title">Awaiting closure consent</div>
+        <div class="hd-sub">All 3 members must approve to close the account</div>
+      </div>
+      <div class="bd">
+        <!-- consent progress card -->
+        <div style="background:var(--color-background-secondary);border-radius:10px;border:0.5px solid var(--color-border-tertiary);padding:12px 14px">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div style="width:42px;height:42px;border-radius:10px;background:#FCEBEB;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-x" style="font-size:20px;color:#A32D2D" aria-hidden="true"></i></div>
+            <div>
+              <div style="font-size:14px;font-weight:500;color:var(--color-text-primary)">Closure request sent</div>
+              <div style="font-size:11px;color:var(--color-text-secondary)">Equally · ETB 5,416.67 each</div>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:5px">
+            <span style="font-size:11px;color:var(--color-text-secondary)">Consent received</span>
+            <span style="font-size:11px;font-weight:500;color:#EF9F27">1 of 3</span>
+          </div>
+          <div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;overflow:hidden">
+            <div style="width:33%;height:100%;background:#EF9F27;border-radius:3px"></div>
+          </div>
+        </div>
+
+        <div class="slbl">Member consent status</div>
+        <div style="background:var(--color-background-secondary);border-radius:10px;border:0.5px solid var(--color-border-tertiary);padding:0 12px">
+          <div class="consent-item">
+            <div style="width:32px;height:32px;border-radius:50%;background:#E6F1FB;color:#185FA5;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0">EM</div>
+            <div style="flex:1"><div style="font-size:13px;color:var(--color-text-primary)">Emnet Tadesse</div><div style="font-size:11px;color:var(--color-text-tertiary)">Initiated closure · Just now</div></div>
+            <div class="consent-status" style="color:var(--color-mpesa-green)"><i class="ti ti-circle-check-filled" aria-hidden="true"></i>Approved</div>
+          </div>
+          <div class="consent-item">
+            <div style="width:32px;height:32px;border-radius:50%;background:#EAF3DE;color:#3B6D11;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0">BK</div>
+            <div style="flex:1"><div style="font-size:13px;color:var(--color-text-primary)">Biruk Kebede</div><div style="font-size:11px;color:var(--color-text-tertiary)">SMS sent · Awaiting response</div></div>
+            <div class="consent-status" style="color:#EF9F27"><i class="ti ti-clock" aria-hidden="true"></i>Pending</div>
+          </div>
+          <div class="consent-item">
+            <div style="width:32px;height:32px;border-radius:50%;background:#FAEEDA;color:#854F0B;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0">SH</div>
+            <div style="flex:1"><div style="font-size:13px;color:var(--color-text-primary)">Sara Haile</div><div style="font-size:11px;color:var(--color-text-tertiary)">SMS sent · Awaiting response</div></div>
+            <div class="consent-status" style="color:#EF9F27"><i class="ti ti-clock" aria-hidden="true"></i>Pending</div>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <i class="ti ti-info-circle" aria-hidden="true"></i>
+          <p>Consent requests expire in 48 hours. You'll be notified as each member responds. The account closes only after all 3 approve.</p>
+        </div>
+
+        <button class="cta-sec" style="font-size:12px"><i class="ti ti-refresh" aria-hidden="true"></i> Resend SMS reminders</button>
+
+        <!-- simulate: all consented -->
+        <button class="cta" onclick="go(13)">All members consented — Close account <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- sc13: Closure — Step 3: Account closed confirmation -->
+  <div class="sc" id="sc13">
+    <div class="ph">
+      <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+      <div class="hd">
+        <div class="hd-top">
+          <span style="font-size:11px;color:var(--color-text-tertiary)">Step 3 of 3</span>
+        </div>
+        <div class="pbar"><div class="pfill" style="width:100%;background:#E24B4A"></div></div>
+        <div class="hd-title">Account closed</div>
+        <div class="hd-sub">Addis Business Circle · Closed today</div>
+      </div>
+      <div class="bd">
+        <!-- closed icon -->
+        <div style="text-align:center;padding:12px 0 6px">
+          <div style="width:72px;height:72px;border-radius:50%;background:#FCEBEB;display:flex;align-items:center;justify-content:center;margin:0 auto 14px">
+            <i class="ti ti-circle-check" style="font-size:36px;color:#E24B4A" aria-hidden="true"></i>
+          </div>
+          <div style="font-size:16px;font-weight:600;color:var(--color-text-primary);margin-bottom:4px">Group account closed</div>
+          <div style="font-size:12px;color:var(--color-text-secondary)">All funds have been distributed to members</div>
+        </div>
+
+        <!-- distribution summary -->
+        <div class="slbl">Final distribution</div>
+        <div style="background:var(--color-background-secondary);border-radius:10px;border:0.5px solid var(--color-border-tertiary);overflow:hidden">
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 13px;border-bottom:0.5px solid var(--color-border-tertiary)">
+            <div style="width:32px;height:32px;border-radius:50%;background:#E6F1FB;color:#185FA5;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0">EM</div>
+            <div style="flex:1"><div style="font-size:13px;color:var(--color-text-primary)">Emnet Tadesse</div><div style="font-size:11px;color:var(--color-text-tertiary)">Sent to M-PESA wallet</div></div>
+            <div style="font-size:13px;font-weight:500;color:var(--color-mpesa-green)">ETB 5,416.67</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 13px;border-bottom:0.5px solid var(--color-border-tertiary)">
+            <div style="width:32px;height:32px;border-radius:50%;background:#EAF3DE;color:#3B6D11;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0">BK</div>
+            <div style="flex:1"><div style="font-size:13px;color:var(--color-text-primary)">Biruk Kebede</div><div style="font-size:11px;color:var(--color-text-tertiary)">Sent to M-PESA wallet</div></div>
+            <div style="font-size:13px;font-weight:500;color:var(--color-mpesa-green)">ETB 5,416.67</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 13px">
+            <div style="width:32px;height:32px;border-radius:50%;background:#FAEEDA;color:#854F0B;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0">SH</div>
+            <div style="flex:1"><div style="font-size:13px;color:var(--color-text-primary)">Sara Haile</div><div style="font-size:11px;color:var(--color-text-tertiary)">Sent to M-PESA wallet</div></div>
+            <div style="font-size:13px;font-weight:500;color:var(--color-mpesa-green)">ETB 5,416.67</div>
+          </div>
+        </div>
+
+        <!-- closure summary stats -->
+        <div class="stats-row">
+          <div class="stat-box"><div class="stat-box-label">Total distributed</div><div class="stat-box-val">ETB 16,250</div></div>
+          <div class="stat-box"><div class="stat-box-label">Method</div><div class="stat-box-val">Equally</div></div>
+          <div class="stat-box"><div class="stat-box-label">Members</div><div class="stat-box-val">3</div></div>
+        </div>
+
+        <div class="info-box">
+          <i class="ti ti-info-circle" aria-hidden="true"></i>
+          <p>A final statement has been sent to all 3 members via SMS. This account cannot be reopened.</p>
+        </div>
+        <button class="cta-sec" onclick="go(4)">Back to dashboard</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- sc17: Deposit confirmed (success receipt) -->
+  <div class="sc" id="sc17">
+    <div class="ph">
+      <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+      <div class="hd">
+        <div class="hd-top">
+          <button class="back" onclick="go(4)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Group</button>
+        </div>
+        <div class="hd-title">Deposit confirmed</div>
+        <div class="hd-sub">Addis Business Circle</div>
+      </div>
+      <div class="bd">
+        <!-- success badge -->
+        <div style="text-align:center;padding:12px 0 4px">
+          <div style="width:72px;height:72px;border-radius:50%;background:var(--color-mpesa-accent-bg);display:flex;align-items:center;justify-content:center;margin:0 auto 12px">
+            <i class="ti ti-circle-check" style="font-size:38px;color:var(--color-mpesa-green)" aria-hidden="true"></i>
+          </div>
+          <div style="font-size:28px;font-weight:600;color:var(--color-text-primary)">ETB 500.00</div>
+          <div style="font-size:12px;color:var(--color-text-secondary);margin-top:4px">Deposited to group · Today 09:21</div>
+        </div>
+
+        <!-- transaction details -->
+        <div class="rev-section">
+          <div class="rev-row">
+            <div class="rev-key">Reference</div>
+            <div class="rev-val" style="font-family:monospace;letter-spacing:.5px">DEP-2024-33105</div>
+          </div>
+          <div class="rev-row">
+            <div class="rev-key">From</div>
+            <div class="rev-val">M-PESA wallet</div>
+          </div>
+          <div class="rev-row">
+            <div class="rev-key">Group balance after</div>
+            <div class="rev-val green">ETB 16,750.00</div>
+          </div>
+          <div class="rev-row">
+            <div class="rev-key">Your share</div>
+            <div class="rev-val green">40.3% (ETB 6,750)</div>
+          </div>
+          <div class="rev-row">
+            <div class="rev-key">Date &amp; time</div>
+            <div class="rev-val">Today · 09:21 AM</div>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <i class="ti ti-info-circle" aria-hidden="true"></i>
+          <p>All 3 group members have been notified of this deposit.</p>
+        </div>
+
+        <button class="cta-sec" onclick="showShareToast('pdf')" style="display:flex;align-items:center;justify-content:center;gap:6px"><i class="ti ti-file-type-pdf" aria-hidden="true"></i> Download receipt</button>
+        <button class="cta" onclick="go(4)">Back to group <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- sc18: Withdrawal declined (member chose to decline) -->
+  <div class="sc" id="sc18">
+    <div class="ph">
+      <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+      <div class="hd">
+        <div class="hd-top">
+          <button class="back" onclick="go(4)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Group</button>
+        </div>
+        <div class="hd-title">Withdrawal declined</div>
+        <div class="hd-sub">Addis Business Circle · Your vote recorded</div>
+      </div>
+      <div class="bd">
+        <!-- declined icon -->
+        <div style="text-align:center;padding:12px 0 4px">
+          <div style="width:72px;height:72px;border-radius:50%;background:#FCEBEB;display:flex;align-items:center;justify-content:center;margin:0 auto 12px">
+            <i class="ti ti-circle-x" style="font-size:38px;color:#E24B4A" aria-hidden="true"></i>
+          </div>
+          <div style="font-size:18px;font-weight:600;color:var(--color-text-primary)">You declined this withdrawal</div>
+          <div style="font-size:12px;color:var(--color-text-secondary);margin-top:4px">ETB 2,000.00 · Office supplies</div>
+        </div>
+
+        <!-- request details -->
+        <div class="rev-section">
+          <div class="rev-row">
+            <div class="rev-key">Amount</div>
+            <div class="rev-val">ETB 2,000.00</div>
+          </div>
+          <div class="rev-row">
+            <div class="rev-key">Reason</div>
+            <div class="rev-val">Office supplies</div>
+          </div>
+          <div class="rev-row">
+            <div class="rev-key">Requested by</div>
+            <div class="rev-val">Emnet Tadesse</div>
+          </div>
+          <div class="rev-row">
+            <div class="rev-key">Your vote</div>
+            <div class="rev-val" style="color:#E24B4A">Declined</div>
+          </div>
+          <div class="rev-row">
+            <div class="rev-key">Approval status</div>
+            <div class="rev-val">1 of 3 approved · Pending</div>
+          </div>
+        </div>
+
+        <!-- what happens next -->
+        <div class="warn-box">
+          <i class="ti ti-alert-triangle" aria-hidden="true"></i>
+          <p>The withdrawal request remains pending until the deadline. Emnet Tadesse has been notified of your decision. The request will fail if minimum approvals are not reached in time.</p>
+        </div>
+
+        <div class="info-box">
+          <i class="ti ti-info-circle" aria-hidden="true"></i>
+          <p>Approval requests expire in 24 hours. If the group still needs this withdrawal, Emnet can submit a new request.</p>
+        </div>
+
+        <button class="cta" onclick="go(4)">Back to group <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- sc19: Invitation declined result (shared for OR and AND groups) -->
+  <div class="sc" id="sc19">
+    <div class="ph">
+      <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+      <div class="hd">
+        <div class="hd-top">
+          <button class="back" onclick="history.back()"><i class="ti ti-arrow-left" aria-hidden="true"></i> Savings</button>
+        </div>
+        <div class="hd-title">Invitation declined</div>
+        <div class="hd-sub">Addis Business Circle</div>
+      </div>
+      <div class="bd">
+        <!-- declined icon -->
+        <div style="text-align:center;padding:16px 0 8px">
+          <div style="width:72px;height:72px;border-radius:50%;background:#FCEBEB;display:flex;align-items:center;justify-content:center;margin:0 auto 14px">
+            <i class="ti ti-circle-x" style="font-size:36px;color:#E24B4A" aria-hidden="true"></i>
+          </div>
+          <div style="font-size:16px;font-weight:600;color:var(--color-text-primary);margin-bottom:5px">Invitation declined</div>
+          <div style="font-size:12px;color:var(--color-text-secondary);line-height:1.6;max-width:260px;margin:0 auto">You declined the invitation to join <strong>Addis Business Circle</strong>. Emnet Tadesse will be notified.</div>
+        </div>
+
+        <!-- effect info -->
+        <div class="slbl">What happens next</div>
+        <div style="background:var(--color-background-secondary);border-radius:10px;border:0.5px solid var(--color-border-tertiary);overflow:hidden">
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 13px;border-bottom:0.5px solid var(--color-border-tertiary)">
+            <div style="width:28px;height:28px;border-radius:50%;background:#FCEBEB;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-circle-x-filled" style="font-size:14px;color:#E24B4A" aria-hidden="true"></i></div>
+            <div><div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">Your decline is recorded</div><div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">Sara Haile · Just now</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 13px;border-bottom:0.5px solid var(--color-border-tertiary)">
+            <div style="width:28px;height:28px;border-radius:50%;background:#FEF9EC;border:1.5px solid #FAC775;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-bell" style="font-size:13px;color:#B45309" aria-hidden="true"></i></div>
+            <div><div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">Admin notified</div><div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">Emnet Tadesse will receive your decline via SMS</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 13px">
+            <div style="width:28px;height:28px;border-radius:50%;background:var(--color-background-secondary);border:1.5px solid var(--color-border-secondary);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-ban" style="font-size:13px;color:var(--color-text-tertiary)" aria-hidden="true"></i></div>
+            <div><div style="font-size:13px;font-weight:500;color:var(--color-text-tertiary)">Group account will not activate</div><div style="font-size:11px;color:var(--color-text-tertiary);margin-top:2px">All members must consent for the group to open</div></div>
+          </div>
+        </div>
+
+        <div class="warn-box">
+          <i class="ti ti-alert-triangle" aria-hidden="true"></i>
+          <p>If you change your mind, ask the group admin to send a new invitation.</p>
+        </div>
+
+        <button class="cta" onclick="history.back()">Back to savings <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- sc20: Group Settings / Manage screen -->
+  <div class="sc" id="sc20">
+    <div class="ph">
+      <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+      <div class="hd">
+        <div class="hd-top">
+          <button class="back" onclick="go(4)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Group</button>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:4px">
+          <div style="width:32px;height:32px;border-radius:8px;background:#EAF3DE;display:flex;align-items:center;justify-content:center"><i class="ti ti-users" style="font-size:15px;color:#3B6D11" aria-hidden="true"></i></div>
+          <div>
+            <div style="font-size:15px;font-weight:500;color:var(--color-text-primary)">Addis Business Circle</div>
+            <div style="font-size:11px;color:var(--color-text-secondary)">OR Group · 3 members · Active</div>
+          </div>
+        </div>
+      </div>
+      <div class="bd">
+
+        <div class="slbl">Group details</div>
+        <div class="rev-section">
+          <div class="rev-row"><div class="rev-key">Group name</div><div class="rev-val">Addis Business Circle</div></div>
+          <div class="rev-row"><div class="rev-key">Group type</div><div class="rev-val"><span style="font-size:10px;background:#EAF3DE;color:#3B6D11;padding:2px 7px;border-radius:8px;font-weight:500">OR Group</span></div></div>
+          <div class="rev-row"><div class="rev-key">Approval rule</div><div class="rev-val">Min 3 of 3</div></div>
+          <div class="rev-row"><div class="rev-key">Contribution</div><div class="rev-val">ETB 500 / member</div></div>
+          <div class="rev-row"><div class="rev-key">Distribution</div><div class="rev-val">Equally</div></div>
+          <div class="rev-row"><div class="rev-key">Created</div><div class="rev-val">Jun 1, 2024</div></div>
+        </div>
+
+        <div class="slbl">Members</div>
+        <div style="background:var(--color-background-secondary);border-radius:10px;border:0.5px solid var(--color-border-tertiary);padding:0 12px">
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:0.5px solid var(--color-border-tertiary)">
+            <div style="width:34px;height:34px;border-radius:50%;background:#E6F1FB;color:#185FA5;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0">EM</div>
+            <div style="flex:1">
+              <div style="font-size:13px;color:var(--color-text-primary)">Emnet Tadesse <span style="font-size:10px;color:var(--color-text-tertiary)">(You)</span></div>
+              <div style="font-size:11px;color:var(--color-text-secondary)">+251 91 234 5678</div>
+            </div>
+            <span style="font-size:10px;background:var(--color-mpesa-accent-bg);color:var(--color-mpesa-accent-text);padding:2px 7px;border-radius:8px;font-weight:500">Admin</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:0.5px solid var(--color-border-tertiary)">
+            <div style="width:34px;height:34px;border-radius:50%;background:#EAF3DE;color:#3B6D11;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0">BK</div>
+            <div style="flex:1">
+              <div style="font-size:13px;color:var(--color-text-primary)">Biruk Kebede</div>
+              <div style="font-size:11px;color:var(--color-text-secondary)">+251 92 345 6789</div>
+            </div>
+            <span style="font-size:10px;background:#EAF3DE;color:#3B6D11;padding:2px 7px;border-radius:8px;font-weight:500">Authorized</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 0">
+            <div style="width:34px;height:34px;border-radius:50%;background:#FAEEDA;color:#854F0B;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0">SH</div>
+            <div style="flex:1">
+              <div style="font-size:13px;color:var(--color-text-primary)">Sara Haile</div>
+              <div style="font-size:11px;color:var(--color-text-secondary)">+251 93 456 7890</div>
+            </div>
+            <span style="font-size:10px;background:var(--color-background-secondary);color:var(--color-text-secondary);padding:2px 7px;border-radius:8px;border:0.5px solid var(--color-border-secondary)">Member</span>
+          </div>
+        </div>
+
+        <div class="slbl">Notifications</div>
+        <div style="background:var(--color-background-secondary);border-radius:10px;border:0.5px solid var(--color-border-tertiary);overflow:hidden">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 13px;border-bottom:0.5px solid var(--color-border-tertiary)">
+            <div>
+              <div style="font-size:13px;color:var(--color-text-primary)">Deposit alerts</div>
+              <div style="font-size:11px;color:var(--color-text-secondary);margin-top:1px">Notify me when any member deposits</div>
+            </div>
+            <div style="width:36px;height:20px;border-radius:10px;background:var(--color-mpesa-green);cursor:pointer;position:relative;transition:background .2s">
+              <div style="position:absolute;right:2px;top:2px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2)"></div>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 13px">
+            <div>
+              <div style="font-size:13px;color:var(--color-text-primary)">Withdrawal alerts</div>
+              <div style="font-size:11px;color:var(--color-text-secondary);margin-top:1px">Notify me of approval requests</div>
+            </div>
+            <div style="width:36px;height:20px;border-radius:10px;background:var(--color-mpesa-green);cursor:pointer;position:relative;transition:background .2s">
+              <div style="position:absolute;right:2px;top:2px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2)"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slbl">Danger zone</div>
+        <button class="cta-danger" onclick="go(9)">
+          <i class="ti ti-trash" aria-hidden="true"></i> Close group account
+        </button>
+        <div style="font-size:11px;color:var(--color-text-tertiary);text-align:center;margin-top:-4px">Closing requires consent from all 3 members</div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- sc21: Withdrawal approval notification (member view — before acting) -->
+  <div class="sc" id="sc21">
+    <div class="ph">
+      <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+      <!-- notification-style header band -->
+      <div style="background:linear-gradient(160deg,#854F0B 0%,#B45309 100%);padding:22px 14px 18px;text-align:center;position:relative;overflow:hidden">
+        <div style="position:absolute;right:-20px;top:-20px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,.07)"></div>
+        <div style="width:52px;height:52px;border-radius:13px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;position:relative;z-index:1">
+          <i class="ti ti-bell-ringing" style="font-size:24px;color:#fff" aria-hidden="true"></i>
+        </div>
+        <div style="font-size:16px;font-weight:600;color:#fff;position:relative;z-index:1">Withdrawal approval request</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.75);margin-top:4px;position:relative;z-index:1">Addis Business Circle · Action required</div>
+      </div>
+
+      <div class="bd">
+        <!-- request summary card -->
+        <div style="background:var(--color-background-secondary);border-radius:12px;border:0.5px solid var(--color-border-tertiary);overflow:hidden">
+          <div style="padding:12px 14px;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;gap:10px">
+            <div style="width:42px;height:42px;border-radius:10px;background:#FCEBEB;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-arrow-down" style="font-size:20px;color:#A32D2D" aria-hidden="true"></i></div>
+            <div>
+              <div style="font-size:15px;font-weight:600;color:var(--color-text-primary)">ETB 2,000.00</div>
+              <div style="font-size:11px;color:var(--color-text-secondary)">Withdrawal request · Office supplies</div>
+            </div>
+          </div>
+          <div style="display:flex">
+            <div style="flex:1;padding:10px 14px;border-right:0.5px solid var(--color-border-tertiary);text-align:center">
+              <div style="font-size:10px;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.3px">Requested by</div>
+              <div style="font-size:13px;font-weight:600;color:var(--color-text-primary);margin-top:3px">Emnet T.</div>
+            </div>
+            <div style="flex:1;padding:10px 14px;border-right:0.5px solid var(--color-border-tertiary);text-align:center">
+              <div style="font-size:10px;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.3px">Approvals</div>
+              <div style="font-size:13px;font-weight:600;color:#EF9F27;margin-top:3px">1 of 3</div>
+            </div>
+            <div style="flex:1;padding:10px 14px;text-align:center">
+              <div style="font-size:10px;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.3px">Expires</div>
+              <div style="font-size:13px;font-weight:600;color:#E24B4A;margin-top:3px">23h 42m</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- group balance impact -->
+        <div class="rev-section">
+          <div class="rev-row"><div class="rev-key">Current balance</div><div class="rev-val">ETB 16,250.00</div></div>
+          <div class="rev-row"><div class="rev-key">Balance after withdrawal</div><div class="rev-val">ETB 14,250.00</div></div>
+          <div class="rev-row"><div class="rev-key">Your share impact</div><div class="rev-val" style="color:var(--color-text-secondary)">28% → 28%</div></div>
+          <div class="rev-row"><div class="rev-key">Destination</div><div class="rev-val">Emnet · M-PESA wallet</div></div>
+        </div>
+
+        <!-- urgency note -->
+        <div class="warn-box">
+          <i class="ti ti-alert-triangle" aria-hidden="true"></i>
+          <p>Your approval is needed. If minimum approvals aren't met in 24 hours, this request will automatically expire.</p>
+        </div>
+
+        <div class="info-box">
+          <i class="ti ti-info-circle" aria-hidden="true"></i>
+          <p>Once the minimum 3 approvals are met, the withdrawal executes immediately and cannot be undone.</p>
+        </div>
+
+        <!-- action buttons -->
+        <div style="display:flex;gap:8px">
+          <button class="cta-danger" style="flex:1" onclick="go(18)">Decline</button>
+          <button class="cta" style="flex:2" onclick="go(7)">Review &amp; approve <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- sc22: Saving plan deadline approaching alert -->
+  <div class="sc" id="sc22">
+    <div class="ph">
+      <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+
+      <!-- amber urgency band -->
+      <div style="background:linear-gradient(160deg,#92400E 0%,#B45309 100%);padding:24px 14px 20px;text-align:center;position:relative;overflow:hidden">
+        <div style="position:absolute;right:-24px;top:-24px;width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.07)"></div>
+        <div style="position:absolute;left:-16px;bottom:-20px;width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.05)"></div>
+
+        <!-- countdown badge -->
+        <div style="width:56px;height:56px;border-radius:14px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;position:relative;z-index:1">
+          <i class="ti ti-clock-hour-4" style="font-size:26px;color:#fff" aria-hidden="true"></i>
+        </div>
+        <div style="font-size:17px;font-weight:700;color:#fff;position:relative;z-index:1">Saving plan ending soon</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.8);margin-top:5px;position:relative;z-index:1">Addis Business Circle &middot; Expires in <strong style="color:#FCD34D">7 days</strong></div>
+      </div>
+
+      <div class="bd">
+
+        <!-- current plan summary -->
+        <div class="slbl">Current plan summary</div>
+        <div class="rev-section">
+          <div class="rev-row"><div class="rev-key">Group</div><div class="rev-val">Addis Business Circle</div></div>
+          <div class="rev-row"><div class="rev-key">Group balance</div><div class="rev-val green">ETB 16,250.00</div></div>
+          <div class="rev-row"><div class="rev-key">Saving goal</div><div class="rev-val">ETB 30,000.00</div></div>
+          <div class="rev-row">
+            <div class="rev-key">Goal progress</div>
+            <div class="rev-val">
+              <div style="display:flex;align-items:center;gap:6px">
+                <div style="width:70px;height:6px;border-radius:3px;background:var(--color-border-tertiary);overflow:hidden">
+                  <div style="width:54%;height:100%;background:var(--color-mpesa-green);border-radius:3px"></div>
+                </div>
+                <span style="font-size:11px;font-weight:500;color:var(--color-mpesa-green)">54%</span>
+              </div>
+            </div>
+          </div>
+          <div class="rev-row"><div class="rev-key">Plan end date</div><div class="rev-val" style="color:#B45309;font-weight:600">Jun 17, 2024</div></div>
+          <div class="rev-row"><div class="rev-key">Contribution / member</div><div class="rev-val">ETB 500 / month</div></div>
+          <div class="rev-row"><div class="rev-key">Members</div><div class="rev-val">3 members</div></div>
+        </div>
+
+        <!-- urgency notice -->
+        <div class="warn-box">
+          <i class="ti ti-alert-triangle" aria-hidden="true"></i>
+          <p>Your group is at <strong>54%</strong> of the saving goal. The plan expires in <strong>7 days</strong>. If no action is taken, the account will begin the closure process automatically.</p>
+        </div>
+
+        <button class="cta" onclick="go(23)">Extend &amp; continue saving <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+        <button class="cta-sec" onclick="go(4)">Remind me later</button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- sc23: Extend saving plan (editor) -->
+  <div class="sc" id="sc23">
+    <div class="ph">
+      <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+      <div class="hd">
+        <div class="hd-top">
+          <button class="back" onclick="go(22)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Back</button>
+          <span class="hd-step">Extend plan</span>
+        </div>
+        <div class="pbar"><div class="pfill" style="width:50%"></div></div>
+        <div class="hd-title">Extend saving plan</div>
+        <div class="hd-sub">Addis Business Circle &middot; Edit your new plan settings</div>
+      </div>
+      <div class="bd">
+
+        <!-- new end date -->
+        <div class="slbl">New plan end date</div>
+        <div style="display:flex;gap:6px">
+          <div class="freq-btn sel" id="ext-3m" onclick="selExtDur('3m')">+3 months</div>
+          <div class="freq-btn" id="ext-6m" onclick="selExtDur('6m')">+6 months</div>
+          <div class="freq-btn" id="ext-1y" onclick="selExtDur('1y')">+1 year</div>
+          <div class="freq-btn" id="ext-custom" onclick="selExtDur('custom')">Custom</div>
+        </div>
+        <!-- custom date picker (shown when custom selected) -->
+        <div id="ext-custom-date" style="display:none">
+          <div class="inp-wrap">
+            <div class="inp-lbl">Select end date</div>
+            <input class="inp" type="date" id="ext-date-input" min="2024-06-18" value="2024-12-31" />
+          </div>
+        </div>
+        <!-- computed new deadline chip -->
+        <div id="ext-new-date-preview" style="background:var(--color-background-info);border:0.5px solid var(--color-border-info);border-radius:9px;padding:9px 13px;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:12px;color:var(--color-text-info)">New plan end date</span>
+          <span id="ext-date-label" style="font-size:13px;font-weight:600;color:var(--color-mpesa-green)">Sep 17, 2024</span>
+        </div>
+
+        <!-- saving goal (editable) -->
+        <div class="slbl">Saving goal amount</div>
+        <div class="inp-wrap">
+          <div class="inp-lbl">Revised group goal (optional)</div>
+          <div class="amt-wrap">
+            <div class="amt-pfx">ETB</div>
+            <input class="amt-inp" id="ext-goal" type="number" value="30000" min="1" oninput="updateExtPreview()" />
+          </div>
+        </div>
+        <!-- progress toward new goal -->
+        <div style="background:var(--color-background-secondary);border-radius:9px;border:0.5px solid var(--color-border-tertiary);padding:9px 13px">
+          <div style="display:flex;justify-content:space-between;margin-bottom:5px">
+            <span style="font-size:11px;color:var(--color-text-secondary)">Progress toward new goal</span>
+            <span id="ext-progress-pct" style="font-size:11px;font-weight:600;color:var(--color-mpesa-green)">54%</span>
+          </div>
+          <div style="height:6px;background:var(--color-border-tertiary);border-radius:3px;overflow:hidden">
+            <div id="ext-progress-bar" style="width:54%;height:100%;background:var(--color-mpesa-green);border-radius:3px;transition:width .3s"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-top:5px">
+            <span style="font-size:10px;color:var(--color-text-tertiary)">Current: ETB 16,250</span>
+            <span id="ext-goal-label" style="font-size:10px;color:var(--color-text-tertiary)">Goal: ETB 30,000</span>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <i class="ti ti-info-circle" aria-hidden="true"></i>
+          <p>Changes take effect after all 3 members consent. Each member will receive an SMS with the updated plan details.</p>
+        </div>
+
+        <!-- review summary card -->
+        <div class="slbl">Review changes</div>
+        <div style="background:var(--color-background-secondary);border-radius:10px;border:0.5px solid var(--color-border-tertiary);overflow:hidden">
+          <div style="padding:10px 13px;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;gap:8px">
+            <div style="width:34px;height:34px;border-radius:9px;background:var(--color-mpesa-accent-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <i class="ti ti-calendar-check" style="font-size:16px;color:var(--color-mpesa-green)" aria-hidden="true"></i>
+            </div>
+            <div>
+              <div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">Plan will continue</div>
+              <div style="font-size:11px;color:var(--color-text-secondary);margin-top:1px">Addis Business Circle &middot; OR Group</div>
+            </div>
+          </div>
+          <div class="rev-row"><div class="rev-key">Old end date</div><div class="rev-val" style="text-decoration:line-through;color:var(--color-text-tertiary)">Jun 17, 2024</div></div>
+          <div class="rev-row"><div class="rev-key">New end date</div><div id="ext-summary-date" class="rev-val green">Sep 17, 2024</div></div>
+          <div class="rev-row"><div class="rev-key">Old contribution</div><div class="rev-val" style="text-decoration:line-through;color:var(--color-text-tertiary)">ETB 500 / month</div></div>
+          <div class="rev-row"><div class="rev-key">New contribution</div><div id="ext-summary-contrib" class="rev-val green">ETB 500 / month</div></div>
+          <div class="rev-row"><div class="rev-key">New goal</div><div id="ext-summary-goal" class="rev-val green">ETB 30,000</div></div>
+          <div class="rev-row"><div class="rev-key">Approvals required</div><div class="rev-val">All 3 members</div></div>
+        </div>
+
+        <button class="cta" onclick="go(3)">
+          <i class="ti ti-send" aria-hidden="true"></i> Send extension request to members
+        </button>
+        <button class="cta-sec" onclick="go(22)">Back</button>
+
+      </div>
+    </div>
+  </div>
+
+  </div><!-- /content-area -->
+
+<!-- Shared 3-dot dropdown -->
+<div class="ctx-backdrop" id="ctx-backdrop" style="display:none" onclick="closeMenu()"></div>
+<div class="ctx-menu" id="ctx-menu">
+  <div class="ctx-item" onclick="closeMenu()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 8 12 12 14 14"/></svg>
+    Terms &amp; Conditions
+  </div>
+  <div class="ctx-item" onclick="closeMenu()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    FAQ
+  </div>
+  <div class="ctx-sep"></div>
+  <div class="ctx-item danger" onclick="closeMenu()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+    Close account
+  </div>
+</div>
+
+<script>
+/* ── 3-dot dropdown ── */
+function showMenu(triggerEl) {
+  var menu = document.getElementById('ctx-menu');
+  var backdrop = document.getElementById('ctx-backdrop');
+  var r = triggerEl.getBoundingClientRect();
+  menu.style.top   = (r.bottom + 6) + 'px';
+  menu.style.right = (window.innerWidth - r.right + 4) + 'px';
+  backdrop.style.display = 'block';
+  menu.offsetHeight;
+  menu.classList.add('open');
+}
+function closeMenu() {
+  document.getElementById('ctx-menu').classList.remove('open');
+  setTimeout(function(){ document.getElementById('ctx-backdrop').style.display='none'; }, 150);
+}
+
+/* ── sidebar group toggle ── */
+function toggleGroup(el) {
+  el.classList.toggle('collapsed');
+  var items = el.nextElementSibling;
+  if (items && items.classList.contains('snav-items')) {
+    items.classList.toggle('collapsed');
+  }
+}
+
+/* ── nav ── */
+// btn order matches nav tabs
+var BTN_MAP = [10,11,19,14,15,0,1,2,3,4,20,5,17,21,6,7,16,18,8,9,12,13,22,23];
+
+/* ── Group dashboard balance toggle ── */
+var GRP_EYE_OPEN = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
+var GRP_EYE_OFF  = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="3" y1="3" x2="21" y2="21" stroke="rgba(255,120,120,1)" stroke-width="2.5"/></svg>';
+var grpBalHidden = false;
+var closureBalHidden = false;
+
+function toggleClosureBal() {
+  closureBalHidden = !closureBalHidden;
+  var MASK = '••••••';
+  document.getElementById('closure-amount').textContent = closureBalHidden ? MASK : 'ETB 16,250.00';
+  document.getElementById('closure-sub0').textContent   = closureBalHidden ? '•••' : '3';
+  document.getElementById('closure-sub1').textContent   = closureBalHidden ? MASK  : 'ETB 5,416.67';
+  document.getElementById('closure-eye').innerHTML      = closureBalHidden ? GRP_EYE_OFF : GRP_EYE_OPEN;
+}
+
+function toggleGrpBal() {
+  grpBalHidden = !grpBalHidden;
+  var MASK = '••••••';
+  document.getElementById('grp-amount').textContent = grpBalHidden ? MASK : 'ETB 16,250.00';
+  document.getElementById('grp-sub0').textContent   = grpBalHidden ? '•••' : '3';
+  document.getElementById('grp-sub1').textContent   = grpBalHidden ? MASK  : '+ETB 1,500';
+  document.getElementById('grp-eye').innerHTML      = grpBalHidden ? GRP_EYE_OFF : GRP_EYE_OPEN;
+}
+
+function go(n) {
+  document.querySelectorAll('.sc').forEach(s => s.classList.toggle('active', s.id === 'sc'+n));
+  document.querySelectorAll('.snb').forEach((b,i) => {
+    b.classList.remove('active','done');
+    var target = BTN_MAP[i];
+    if(target === n) b.classList.add('active');
+    else if(i > 0 && target < n && n !== 10) b.classList.add('done');
+  });
+}
+
+/* ── group type ── */
+var grpType = 'or';
+function selGrpType(t) {
+  grpType = t;
+  document.getElementById('t-or').classList.toggle('sel', t==='or');
+  document.getElementById('t-and').classList.toggle('sel', t==='and');
+
+  var isAnd = t === 'and';
+
+  // sc1 — withdrawal approval rule summary
+  var rt = document.getElementById('grp-rule-title');
+  var rs = document.getElementById('grp-rule-sub');
+  if(rt) rt.textContent = isAnd ? 'AND Group — all must approve' : 'OR Group — min 3 approvals';
+  if(rs) rs.textContent = isAnd ? 'Every member must approve withdrawals' : 'Authorized person + any 3 members';
+
+  // sc4 dashboard — group type label
+  var tl = document.getElementById('grp-type-label');
+  if(tl) tl.textContent = (isAnd ? 'AND' : 'OR') + ' Group · 3 members · Active';
+
+  // sc6 withdrawal request — subtitle, destination label, approvals row, warning
+  var ws = document.getElementById('wd-req-sub');
+  if(ws) ws.textContent = isAnd ? 'Requires approval from ALL members' : 'Requires approval from at least 3 members';
+
+  var wd = document.getElementById('wd-dst-label');
+  if(wd) wd.textContent = isAnd ? 'Initiating member receives' : 'Authorized person receives';
+
+  var wa = document.getElementById('wd-approvals-needed');
+  if(wa) wa.textContent = isAnd ? 'All 3 of 3 members' : 'Min 3 of 3 members';
+
+  var wp = document.getElementById('wd-warn-p');
+  if(wp) wp.textContent = isAnd
+    ? 'All members will be notified via SMS and app. Transaction executes only after all members have approved.'
+    : 'All members will receive an approval request via SMS and app notification. Transaction executes only after minimum approvals are met.';
+
+  // sc10 invitation — withdrawal rule note
+  var ic = document.getElementById('inv-consent-rule');
+  if(ic) ic.innerHTML = isAnd
+    ? 'Withdrawal requires approval from <strong>all 3 members</strong>. Your consent activates the account. Invitation expires in <strong>48 hours</strong>.'
+    : 'Withdrawal needs approval from at least <strong>3 of 3 members</strong>. Your consent activates the account. Invitation expires in <strong>48 hours</strong>.';
+}
+
+/* ── contribution type ── */
+function selContrib(t) {
+  document.getElementById('tog-equal').classList.toggle('sel', t==='equal');
+  document.getElementById('tog-pct').classList.toggle('sel', t==='pct');
+}
+
+/* ── dist (contribution screen) ── */
+function selDist(t) {
+  ['dist-equal','dist-contrib','dist-one'].forEach(id => {
+    document.getElementById(id).classList.toggle('sel', id === 'dist-'+t);
+  });
+}
+
+/* ── deposit source ── */
+function selSrc(t) {
+  ['src-mpesa','src-cbe'].forEach(id => {
+    document.getElementById(id).classList.toggle('sel', id === 'src-'+t);
+  });
+}
+
+/* ── withdrawal destination ── */
+function selDst(t) {
+  ['dst-mpesa','dst-bank'].forEach(id => {
+    document.getElementById(id).classList.toggle('sel', id === 'dst-'+t);
+  });
+}
+
+/* ── closure distribution ── */
+function selClose(t) {
+  ['close-equal','close-contrib','close-one'].forEach(id => {
+    document.getElementById(id).classList.toggle('sel', id === 'close-'+t);
+  });
+  var wrap = document.getElementById('one-person-wrap');
+  wrap.style.display = t === 'one' ? 'block' : 'none';
+}
+
+/* ── beneficiary dropdown ── */
+document.addEventListener('DOMContentLoaded', function() {
+  var sel = document.getElementById('beneficiary-select');
+  if(sel) sel.addEventListener('change', function() {
+    var preview = document.getElementById('beneficiary-preview');
+    var map = {
+      em: {name:'Emnet Tadesse', init:'EM', bg:'#E6F1FB', col:'#185FA5'},
+      bk: {name:'Biruk Kebede',  init:'BK', bg:'#EAF3DE', col:'#3B6D11'},
+      sh: {name:'Sara Haile',    init:'SH', bg:'#FAEEDA', col:'#854F0B'}
+    };
+    if(this.value && map[this.value]) {
+      var m = map[this.value];
+      document.getElementById('ben-name').textContent = m.name;
+      var av = document.getElementById('ben-avatar');
+      av.textContent = m.init; av.style.background = m.bg; av.style.color = m.col;
+      preview.style.display = 'flex';
+    } else {
+      preview.style.display = 'none';
+    }
+  });
+});
+
+/* ── phone lookup ── */
+var contactsDB = [
+  {phone:'09', name:'Meseret Tadesse', init:'MT', bg:'#EAF3DE', col:'#3B6D11', num:'+251 94 567 8901'},
+  {phone:'094', name:'Meseret Tadesse', init:'MT', bg:'#EAF3DE', col:'#3B6D11', num:'+251 94 567 8901'},
+  {phone:'+251 94', name:'Meseret Tadesse', init:'MT', bg:'#EAF3DE', col:'#3B6D11', num:'+251 94 567 8901'},
+  {phone:'095', name:'Dawit Alemu', init:'DA', bg:'#E6F1FB', col:'#185FA5', num:'+251 95 678 9012'},
+  {phone:'+251 95', name:'Dawit Alemu', init:'DA', bg:'#E6F1FB', col:'#185FA5', num:'+251 95 678 9012'},
+];
+function lookupContact(val) {
+  var sug = document.getElementById('contact-suggestion');
+  if(val.length < 3) { sug.classList.remove('show'); return; }
+  var match = contactsDB.find(c => val.startsWith(c.phone) || c.phone.startsWith(val));
+  if(match) {
+    document.getElementById('cs-name').textContent = match.name;
+    document.getElementById('cs-phone').textContent = match.num + ' · M-PESA verified';
+    var av = document.getElementById('cs-avatar');
+    av.textContent = match.init; av.style.background = match.bg; av.style.color = match.col;
+    sug.classList.add('show');
+    sug._match = match;
+  } else {
+    sug.classList.remove('show');
+  }
+}
+function addSuggested() {
+  var sug = document.getElementById('contact-suggestion');
+  sug.classList.remove('show');
+  document.getElementById('phone-inp').value = '';
+  document.getElementById('contacts-sheet').style.display = 'none';
+}
+function triggerContacts() {
+  var sheet = document.getElementById('contacts-sheet');
+  sheet.style.display = sheet.style.display === 'none' ? 'block' : 'none';
+  document.getElementById('contact-suggestion').classList.remove('show');
+}
+function pickContact(name, num, init, bg, col) {
+  document.getElementById('phone-inp').value = num;
+  document.getElementById('cs-name').textContent = name;
+  document.getElementById('cs-phone').textContent = num + ' · M-PESA verified';
+  var av = document.getElementById('cs-avatar');
+  av.textContent = init; av.style.background = bg; av.style.color = col;
+  document.getElementById('contact-suggestion').classList.add('show');
+  document.getElementById('contacts-sheet').style.display = 'none';
+}
+
+/* ── statement tabs ── */
+var stmtType = 'all';
+var stmtRange = 'all';
+var STMT_TODAY = '2026-06-10';
+
+function switchStmt(tab, el) {
+  document.querySelectorAll('#sc8 .seg-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  stmtType = tab;
+  applyStmtFilter();
+}
+
+function setDateRange(range, el) {
+  // "Custom" opens the modal rather than applying immediately
+  if (range === 'custom') {
+    openDateModal();
+    return;
+  }
+  stmtRange = range;
+  // highlight the right chip (only the top-row filter chips)
+  var chips = document.querySelectorAll('#sc8 .bd > .date-chips .date-chip');
+  chips.forEach(function(c){ c.classList.remove('active'); });
+  if (el) {
+    el.classList.add('active');
+  } else {
+    // "Clear" pressed — re-activate the "All time" chip (first one)
+    if (chips[0]) chips[0].classList.add('active');
+  }
+  applyStmtFilter();
+}
+
+/* ── date range modal ── */
+function openDateModal() {
+  document.getElementById('date-modal').classList.add('open');
+}
+function closeDateModal() {
+  document.getElementById('date-modal').classList.remove('open');
+}
+function modalPreset(p) {
+  var to = STMT_TODAY, from;
+  if (p === 'today')      from = STMT_TODAY;
+  else if (p === '7d')    from = addDays(STMT_TODAY, -6);
+  else if (p === '30d')   from = addDays(STMT_TODAY, -29);
+  else if (p === 'month') from = STMT_TODAY.slice(0,8) + '01';
+  document.getElementById('stmt-from').value = from;
+  document.getElementById('stmt-to').value = to;
+  // highlight chosen preset inside modal
+  document.querySelectorAll('#date-modal .date-chip').forEach(function(c){ c.classList.remove('active'); });
+  if (event && event.target) event.target.classList.add('active');
+}
+function applyDateModal() {
+  stmtRange = 'custom';
+  // highlight the Custom chip in the top filter row
+  var chips = document.querySelectorAll('#sc8 .bd > .date-chips .date-chip');
+  chips.forEach(function(c){ c.classList.remove('active'); });
+  if (chips[chips.length - 1]) chips[chips.length - 1].classList.add('active');
+  closeDateModal();
+  applyStmtFilter();
+}
+
+function addDays(iso, n) {
+  var d = new Date(iso + 'T00:00:00');
+  d.setDate(d.getDate() + n);
+  return d.toISOString().slice(0, 10);
+}
+
+function applyStmtFilter() {
+  var from = null, to = null;
+  if (stmtRange === 'today')      { from = STMT_TODAY; to = STMT_TODAY; }
+  else if (stmtRange === '7d')    { from = addDays(STMT_TODAY, -6); to = STMT_TODAY; }
+  else if (stmtRange === '30d')   { from = addDays(STMT_TODAY, -29); to = STMT_TODAY; }
+  else if (stmtRange === 'custom'){
+    from = document.getElementById('stmt-from').value || null;
+    to   = document.getElementById('stmt-to').value || null;
+  }
+
+  var rows = document.querySelectorAll('#stmt-all .tx-item');
+  var visible = 0;
+  rows.forEach(function(row){
+    var d = row.getAttribute('data-date');
+    var t = row.getAttribute('data-type');
+    var okType = (stmtType === 'all') || (t === stmtType);
+    var okDate = (!from || d >= from) && (!to || d <= to);
+    var show = okType && okDate;
+    row.style.display = show ? 'flex' : 'none';
+    if (show) visible++;
+  });
+
+  // empty state
+  document.getElementById('stmt-empty').style.display = visible ? 'none' : 'block';
+
+  // filter summary
+  var summary = document.getElementById('stmt-filter-summary');
+  var text = document.getElementById('stmt-filter-text');
+  if (stmtRange === 'all') {
+    summary.style.display = 'none';
+  } else {
+    summary.style.display = 'flex';
+    var labels = { today:'Today', '7d':'Last 7 days', '30d':'Last 30 days', custom:(from||'…')+' → '+(to||'…') };
+    text.textContent = visible + ' transaction' + (visible===1?'':'s') + ' · ' + labels[stmtRange];
+  }
+}
+
+/* ── closure confirm ── */
+function showClosureConfirm() {
+  document.getElementById('closure-confirm').style.display = 'block';
+}
+
+/* ── share / download toast ── */
+function showShareToast(type) {
+  var msgs = {
+    pdf: 'Generating PDF statement…',
+    email: 'Opening email client…',
+    share: 'Opening share sheet…'
+  };
+  var existing = document.getElementById('share-toast');
+  if(existing) existing.remove();
+  var toast = document.createElement('div');
+  toast.id = 'share-toast';
+  toast.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#2a3530;color:#fff;font-size:12px;font-family:Barlow,sans-serif;padding:9px 16px;border-radius:20px;z-index:9999;white-space:nowrap;box-shadow:0 4px 16px rgba(0,0,0,.2)';
+  toast.textContent = msgs[type] || 'Processing…';
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 2200);
+}
+
+/* ── invitation accept / decline ── */
+function showInviteResult(action) {
+  var wrap = document.getElementById('invite-result');
+  var icon = document.getElementById('invite-result-icon');
+  var title = document.getElementById('invite-result-title');
+  var sub = document.getElementById('invite-result-sub');
+  var btn = document.getElementById('invite-result-btn');
+  wrap.style.display = 'block';
+  if(action === 'accepted') {
+    icon.innerHTML = '<i class="ti ti-circle-check" style="font-size:32px;color:#239150"></i>';
+    icon.style.background = '#eaf5ee';
+    title.textContent = 'Invitation accepted!';
+    sub.textContent = 'You have joined Addis Business Circle. The account activates once all members consent.';
+    btn.textContent = 'Go to group account →';
+  } else {
+    icon.innerHTML = '<i class="ti ti-circle-x" style="font-size:32px;color:#E24B4A"></i>';
+    icon.style.background = '#FCEBEB';
+    title.textContent = 'Invitation declined';
+    sub.textContent = 'You have declined the invitation to Addis Business Circle.';
+    btn.textContent = 'Back to savings';
+    btn.className = 'cta-sec';
+  }
+}
+
+/* ── sc22: deadline choice toggle ── */
+function selDeadlineChoice(choice) {
+  var extEl   = document.getElementById('deadline-extend');
+  var closeEl = document.getElementById('deadline-close');
+  var extRadio   = extEl.querySelector('.source-radio');
+  var closeRadio = closeEl.querySelector('.source-radio');
+  var ctaExtend = document.getElementById('deadline-cta-extend');
+  var ctaClose  = document.getElementById('deadline-cta-close');
+  var CHECK = '<i class="ti ti-check" style="font-size:10px;color:#fff"></i>';
+
+  if (choice === 'extend') {
+    extEl.classList.add('sel');   closeEl.classList.remove('sel');
+    extRadio.innerHTML = CHECK;   closeRadio.innerHTML = '';
+    ctaExtend.style.display = 'block'; ctaClose.style.display = 'none';
+  } else {
+    closeEl.classList.add('sel'); extEl.classList.remove('sel');
+    closeRadio.innerHTML = CHECK; extRadio.innerHTML = '';
+    ctaClose.style.display = 'block'; ctaExtend.style.display = 'none';
+  }
+}
+
+/* ── sc23: duration preset toggle ── */
+var EXT_DUR_MONTHS = { '3m': 3, '6m': 6, '1y': 12, 'custom': null };
+var extCurDur = '3m';
+function selExtDur(key) {
+  extCurDur = key;
+  ['3m','6m','1y','custom'].forEach(function(k) {
+    document.getElementById('ext-' + k).classList.toggle('sel', k === key);
+  });
+  var customWrap = document.getElementById('ext-custom-date');
+  customWrap.style.display = key === 'custom' ? 'block' : 'none';
+
+  // Compute label
+  var labels = { '3m': 'Sep 17, 2024', '6m': 'Dec 17, 2024', '1y': 'Jun 17, 2025', 'custom': 'Dec 31, 2024' };
+  var periods = { '3m': '3 months', '6m': '6 months', '1y': '1 year', 'custom': 'Custom' };
+  var dl = document.getElementById('ext-date-label');
+  var pl = document.getElementById('ext-period-label');
+  var sd = document.getElementById('ext-summary-date');
+  if (dl) dl.textContent = labels[key];
+  if (pl) pl.textContent = periods[key];
+  if (sd) sd.textContent = labels[key];
+
+  // If custom, listen to date picker
+  if (key === 'custom') {
+    var inp = document.getElementById('ext-date-input');
+    if (inp) inp.oninput = function() {
+      var d = new Date(this.value);
+      var str = d.toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'});
+      if (dl) dl.textContent = str;
+      if (sd) sd.textContent = str;
+    };
+  }
+  updateExtPreview();
+}
+
+/* ── sc23: frequency toggle ── */
+function selExtFreq(f) {
+  ['daily','weekly','monthly'].forEach(function(k) {
+    document.getElementById('ef-' + k).classList.toggle('sel', k === f);
+  });
+  updateExtPreview();
+}
+
+/* ── sc23: live preview recalculation ── */
+function updateExtPreview() {
+  var goalEl   = document.getElementById('ext-goal');
+  var contribEl= document.getElementById('ext-contrib');
+  if (!goalEl || !contribEl) return;
+
+  var goal    = parseFloat(goalEl.value) || 30000;
+  var contrib = parseFloat(contribEl.value) || 500;
+  var balance = 16250;
+  var members = 3;
+
+  var needed = Math.max(0, goal - balance);
+  var months = EXT_DUR_MONTHS[extCurDur] || 3;
+  var perMember = months > 0 ? Math.ceil(needed / members / months) : 0;
+  var pct = Math.min(100, Math.round((balance / goal) * 100));
+
+  var fmtETB = function(n) { return 'ETB ' + n.toLocaleString('en-US', {minimumFractionDigits:0}); };
+
+  var rem = document.getElementById('ext-remaining');
+  var pm  = document.getElementById('ext-per-member');
+  var pb  = document.getElementById('ext-progress-bar');
+  var pp  = document.getElementById('ext-progress-pct');
+  var gl  = document.getElementById('ext-goal-label');
+  var sg  = document.getElementById('ext-summary-goal');
+  var sc  = document.getElementById('ext-summary-contrib');
+
+  if (rem) rem.textContent = fmtETB(needed);
+  if (pm)  pm.textContent  = fmtETB(perMember) + ' / month';
+  if (pb)  pb.style.width  = pct + '%';
+  if (pp)  pp.textContent  = pct + '%';
+  if (gl)  gl.textContent  = 'Goal: ' + fmtETB(goal);
+  if (sg)  sg.textContent  = fmtETB(goal);
+  if (sc)  sc.textContent  = fmtETB(contrib) + ' / month';
+}
+
+/* ── Dynamic Footer Adjustment ── */
+(function() {
+  document.querySelectorAll('.bd').forEach(function(bd) {
+    var footerElements = [];
+    var children = Array.from(bd.children);
+    for (var i = children.length - 1; i >= 0; i--) {
+      var child = children[i];
+      var isButton = child.tagName === 'BUTTON' && (
+        child.classList.contains('cta') || 
+        child.classList.contains('cta-sec') || 
+        child.classList.contains('cta-danger')
+      );
+      
+      var isButtonContainer = child.tagName === 'DIV' && (
+        child.querySelector('button.cta') || 
+        child.querySelector('button.cta-sec') || 
+        child.querySelector('button.cta-danger')
+      );
+      
+      var isSubtext = child.tagName === 'DIV' && (
+        child.style.fontSize === '11px' || 
+        child.style.color === 'var(--color-text-tertiary)'
+      );
+
+      if (isButton || isButtonContainer || (isSubtext && footerElements.length > 0)) {
+        footerElements.unshift(child);
+      } else if (child.tagName === 'DIV' && child.style.fontSize === '11px' && i === children.length - 1) {
+        footerElements.unshift(child);
+      } else {
+        break;
+      }
+    }
+    
+    if (footerElements.length > 0) {
+      var footer = bd.ownerDocument.createElement('div');
+      footer.className = 'bd-footer';
+      bd.insertBefore(footer, footerElements[0]);
+      footerElements.forEach(function(el) {
+        footer.appendChild(el);
+      });
+    }
+  });
+})();
+</script>

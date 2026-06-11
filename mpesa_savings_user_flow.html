@@ -1,0 +1,1008 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<div class="page-title-wrap">
+  <h2 class="page-title"><span class="title-icon">💰</span> Savings</h2>
+  <p class="page-sub">Grow your money with M-PESA savings accounts</p>
+</div>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap');
+  @import url('https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css');
+
+  /* ── Page Title ── */
+  .page-title-wrap {
+    background: linear-gradient(135deg, #f8fbf9 0%, #eaf5ee 100%);
+    padding: 20px 24px;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-family: var(--font-sans);
+  }
+  .page-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.3px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+  }
+  .title-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--color-mpesa-green);
+    color: #fff;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .page-sub {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--color-text-secondary);
+    margin: 0 0 0 46px;
+    line-height: 1.4;
+  }
+
+  :root {
+    --color-mpesa-green: #00A650;
+    --color-mpesa-green-light: #2FC56D;
+    --color-mpesa-green-dark: #008A42;
+    --color-mpesa-green-alpha: rgba(0, 166, 80, 0.06);
+    --color-mpesa-green-alpha-hover: rgba(0, 166, 80, 0.12);
+    --color-mpesa-green-tint: #E6F4EA;
+    --color-mpesa-green-tint-2: #F0FAF4;
+    --color-mpesa-accent-bg: #E6F4EA;
+    --color-mpesa-accent-text: #00A650;
+    --font-sans: 'Barlow';
+    --color-background-primary: #ffffff;
+    --color-background-secondary: #f4f6f5;
+    --color-border-secondary: #e2e8e4;
+    --color-border-tertiary: #eef1ef;
+    --color-text-primary: #2a3530;
+    --color-text-secondary: #5b6e62;
+    --color-text-tertiary: #8fa397;
+    --color-background-info: #F0FAF4;
+    --color-border-info: #B3DFC9;
+    --color-text-info: #008A42;
+    --bottom-action-height: 72px;
+    --card-radius: 12px;
+    --grid-base: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; margin: 0; padding: 0; }
+
+  .fw { display: flex; min-height: 100vh; font-family: var(--font-sans); background: linear-gradient(135deg, #00A650 0%, #008A42 100%); }
+  .content-area { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 24px 16px; overflow-y: auto; background: transparent; }
+
+  /* ── sidebar nav ── */
+  .stepnav {
+    width: 216px; flex-shrink: 0; background: #fff;
+    border-right: 0.5px solid var(--color-border-secondary);
+    display: flex; flex-direction: column; gap: 1px;
+    padding: 14px 12px; position: sticky; top: 0; height: 100vh;
+    overflow-y: auto; -webkit-overflow-scrolling: touch;
+  }
+  .stepnav::-webkit-scrollbar { width: 0; }
+  .snav-head { display: flex; align-items: center; gap: 10px; padding: 4px 6px 14px; margin-bottom: 4px; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .snav-logo { width: 32px; height: 32px; border-radius: 9px; background: linear-gradient(135deg, var(--color-mpesa-green), var(--color-mpesa-green-dark)); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 16px; flex-shrink: 0; }
+  .snav-brand { display: flex; flex-direction: column; min-width: 0; }
+  .snav-brand .snav-title { font-size: 13px; font-weight: 700; color: var(--color-text-primary); line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .snav-brand small { font-size: 10px; font-weight: 500; color: var(--color-text-tertiary); line-height: 1.2; margin-top: 2px; }
+
+  /* ── flow switcher ── */
+  .flow-switch { position: fixed; top: 18px; right: 18px; z-index: 80; font-family: var(--font-sans); }
+  .flow-switch-btn { display: flex; align-items: center; gap: 8px; background: #fff; border: 0.5px solid var(--color-border-secondary); border-radius: 10px; padding: 8px 12px; font-size: 12px; font-weight: 600; color: var(--color-text-primary); cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,.07); transition: border-color .14s; font-family: var(--font-sans); }
+  .flow-switch-btn:hover { border-color: var(--color-mpesa-green); }
+  .flow-switch-btn > i:first-child { font-size: 15px; color: var(--color-mpesa-green); }
+  .fs-caret { font-size: 14px; color: var(--color-text-tertiary); transition: transform .15s; }
+  .flow-switch.open .fs-caret { transform: rotate(180deg); }
+  .flow-switch-menu { position: absolute; top: calc(100% + 6px); right: 0; min-width: 186px; background: #fff; border: 0.5px solid var(--color-border-secondary); border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,.14), 0 2px 6px rgba(0,0,0,.08); overflow: hidden; opacity: 0; transform: scale(.96) translateY(-6px); transform-origin: top right; transition: opacity .15s, transform .15s; pointer-events: none; }
+  .flow-switch.open .flow-switch-menu { opacity: 1; transform: scale(1) translateY(0); pointer-events: all; }
+  .flow-switch-item { display: flex; align-items: center; gap: 10px; padding: 11px 14px; font-size: 13px; color: var(--color-text-primary); cursor: pointer; text-decoration: none; transition: background .12s; }
+  .flow-switch-item:hover { background: var(--color-background-secondary); }
+  .flow-switch-item + .flow-switch-item { border-top: 0.5px solid var(--color-border-tertiary); }
+  .flow-switch-item i { font-size: 16px; color: var(--color-text-secondary); }
+  .flow-switch-item.active { color: var(--color-mpesa-green); font-weight: 600; background: var(--color-mpesa-green-alpha); }
+  .flow-switch-item.active i { color: var(--color-mpesa-green); }
+
+  .snav-group { font-size: 9px; font-weight: 700; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: .7px; padding: 13px 8px 5px; cursor: pointer; display: flex; align-items: center; gap: 6px; -webkit-user-select: none; user-select: none; }
+  .snav-group:first-of-type { padding-top: 6px; }
+  .snav-group:hover { color: var(--color-text-primary); }
+  .snav-arrow { font-size: 10px; transition: transform .2s; }
+  .snav-group.collapsed .snav-arrow { transform: rotate(-90deg); }
+  .snav-items { max-height: 520px; overflow: visible; transition: max-height .25s ease, opacity .18s ease; opacity: 1; }
+  .snav-items.collapsed { max-height: 0; overflow: hidden; opacity: 0; }
+
+  .snb {
+    position: relative; width: 100%; text-align: left; font-size: 11.5px; font-weight: 500;
+    padding: 8px 10px; border-radius: 9px; border: none; background: transparent;
+    color: var(--color-text-secondary); cursor: pointer; white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis; transition: background .14s, color .14s;
+    display: flex; align-items: center; gap: 9px; font-family: var(--font-sans);
+  }
+  .snb:hover { background: var(--color-background-secondary); color: var(--color-text-primary); }
+  .snb.active { background: var(--color-mpesa-green-alpha); color: var(--color-mpesa-green-dark); font-weight: 600; }
+  .snb.active::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 3px; height: 18px; border-radius: 0 3px 3px 0; background: var(--color-mpesa-green); }
+  .snb.done { color: var(--color-mpesa-green); }
+  .snb .ic { width: 24px; height: 24px; border-radius: 7px; background: var(--color-background-secondary); display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--color-text-secondary); flex-shrink: 0; transition: all .14s; }
+  .snb:hover .ic { color: var(--color-text-primary); }
+  .snb.active .ic { background: #fff; color: var(--color-mpesa-green); box-shadow: 0 1px 3px rgba(35,145,80,.18); }
+  .snb.done .ic { color: var(--color-mpesa-green); background: var(--color-mpesa-accent-bg); }
+  .snb .dot { display: none; }
+
+  /* screens */
+  .screen { display: none; }
+  .screen.active { display: block; }
+  .screen.active .pbody > *, .screen.active .bd > * { animation: screenIn .32s ease both; }
+  .screen.active .pbody > *:nth-child(2), .screen.active .bd > *:nth-child(2) { animation-delay: .04s; }
+  .screen.active .pbody > *:nth-child(3), .screen.active .bd > *:nth-child(3) { animation-delay: .08s; }
+  .screen.active .pbody > *:nth-child(4), .screen.active .bd > *:nth-child(4) { animation-delay: .12s; }
+  .screen.active .pbody > *:nth-child(5), .screen.active .bd > *:nth-child(5) { animation-delay: .16s; }
+  .screen.active .pbody > *:nth-child(n+6), .screen.active .bd > *:nth-child(n+6) { animation-delay: .18s; }
+  @keyframes screenIn { 0% { opacity: 0; transform: translateY(8px); } 100% { opacity: 1; transform: translateY(0); } }
+
+  /* ── phone ── */
+  .phone {
+    position: relative; background: #f4f6f9; border-radius: 40px; border: 0;
+    box-shadow: 0 25px 80px rgba(15, 23, 42, .28); display: flex; flex-direction: column;
+    width: 375px; height: 812px; flex-shrink: 0; overflow: hidden; margin: 0 auto;
+  }
+  .phone ::-webkit-scrollbar { display: none; }
+
+  .sbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 28px 6px; background: #fff; color: #1e293b;
+    font-size: 15px; font-weight: 700; flex-shrink: 0;
+  }
+  .sbar-icons, .sbar-r { display: flex; gap: 6px; align-items: center; color: #1e293b; }
+
+  .apphead, .hd {
+    padding: 10px 24px 16px; background: #fff;
+    border-bottom: 1px solid #f1f5f9; flex-shrink: 0;
+  }
+  .apphead-top, .hd-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+  .apphead-title, .hd-title { color: #1e293b; font-size: 16px; font-weight: 800; letter-spacing: .2px; }
+  .apphead-sub, .hd-sub { color: #64748b; font-size: 12px; font-weight: 500; }
+  .back, .back-btn { min-height: 36px; border-radius: 10px; color: #1e293b; font-weight: 700; padding: 0 8px 0 0; display: flex; align-items: center; gap: 4px; font-size: 12px; cursor: pointer; background: none; border: none; font-family: var(--font-sans); }
+  .back:hover, .back-btn:hover { background: #f1f5f9; }
+  .back i, .back-btn i { font-size: 14px; }
+
+  .pbody, .bd {
+    padding: 20px 24px; display: flex; flex-direction: column; gap: 16px;
+    flex: 1; overflow-y: auto; background: #f4f6f9;
+    scrollbar-width: none; -ms-overflow-style: none;
+  }
+  .pbody > *, .bd > * { flex-shrink: 0; }
+  .pbody::-webkit-scrollbar, .bd::-webkit-scrollbar { display: none; }
+
+  .bal-card {
+    margin: 0; border-radius: 20px; padding: 24px;
+    background: linear-gradient(135deg, #2FC56D 0%, #1ea35a 50%, #16a050 100%);
+    color: #fff; position: relative; overflow: hidden;
+    box-shadow: 0 8px 24px rgba(47, 197, 109, .30);
+  }
+  .bal-card::before, .bal-card::after { content: ''; position: absolute; border-radius: 50%; }
+  .bal-card::before { top: -30px; right: -30px; width: 160px; height: 160px; background: radial-gradient(circle, rgba(255,255,255,.12) 0%, transparent 70%); }
+  .bal-card::after { right: -20px; bottom: -40px; width: 140px; height: 140px; background: radial-gradient(circle, rgba(255,255,255,.10) 0 30%, transparent 31% 48%, rgba(255,255,255,.06) 49% 62%, transparent 63%); opacity: .7; }
+  .bal-label { font-size: 11px; font-weight: 800; letter-spacing: 1.2px; opacity: .9; margin-bottom: 6px; }
+  .bal-amount { font-size: 32px; font-weight: 800; letter-spacing: -1px; margin-bottom: 18px; position: relative; z-index: 1; }
+  .bal-row { display: flex; gap: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.22); }
+  .bal-sub { font-size: 12px; font-weight: 500; opacity: .88; }
+  .bal-sub span { display: block; font-size: 17px; font-weight: 700; opacity: 1; margin-top: 4px; }
+  .bal-banks { margin-top: 16px; display: flex; flex-direction: column; gap: 8px; position: relative; z-index: 1; }
+  .bal-bank-row { display: flex; align-items: center; gap: 10px; padding: 8px 10px; background: rgba(255,255,255,.12); border-radius: 10px; cursor: pointer; transition: background .15s; }
+  .bal-bank-row:hover { background: rgba(255,255,255,.2); }
+  .bal-bank-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; background: rgba(255,255,255,.2); color: #fff; }
+  .bal-bank-info { flex: 1; min-width: 0; }
+  .bal-bank-name { font-size: 13px; font-weight: 600; }
+  .bal-bank-bal { font-size: 11px; opacity: .7; margin-top: 1px; }
+
+  .sec-label, .slbl { color: #64748b; font-size: 11px; font-weight: 800; letter-spacing: .8px; text-transform: uppercase; margin-bottom: 2px; }
+
+  .bank-row, .pocket-card, .bank-card, .type-card, .card, .rev-section, .info-box, .dur-badge, .earn-pill, .stat-box {
+    background: #fff; border: 1px solid #f1f5f9; border-radius: 18px; box-shadow: 0 2px 8px rgba(15, 23, 42, .04);
+  }
+  .bank-row, .pocket-card { padding: 14px 16px; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: border-color .15s; }
+  .bank-row:hover, .pocket-card:hover { border-color: #2FC56D; }
+  .bank-logo { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; flex-shrink: 0; }
+  .bank-info { flex: 1; min-width: 0; }
+  .bank-name { font-size: 14px; font-weight: 600; color: #0f172a; }
+  .bank-balance { font-size: 12px; color: #64748b; margin-top: 1px; }
+  .bank-chevron { font-size: 16px; color: #94a3b8; }
+
+  .tx-item { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #f1f5f9; }
+  .tx-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .tx-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+  .tx-info { flex: 1; min-width: 0; }
+  .tx-name { font-size: 14px; font-weight: 600; color: #0f172a; }
+  .tx-date { font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 1px; }
+  .tx-amount { font-size: 14px; font-weight: 700; white-space: nowrap; }
+  .tx-amount.positive { color: #2FC56D; }
+  .tx-amount.negative { color: #ef4444; }
+
+  .pocket-card { flex-direction: column; align-items: stretch; padding: 16px; }
+  .pocket-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+  .pocket-name { font-size: 14px; font-weight: 600; color: #0f172a; }
+  .pocket-amounts { margin-bottom: 8px; }
+  .pocket-saved { font-size: 12px; color: #64748b; }
+  .pocket-saved span { font-size: 16px; font-weight: 700; color: #0f172a; }
+  .pocket-target { font-size: 12px; color: #94a3b8; margin-top: 1px; }
+  .progress-track { height: 6px; background: #f1f5f9; border-radius: 3px; overflow: hidden; margin-bottom: 6px; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, #2FC56D 0%, #1ea35a 100%); border-radius: 3px; transition: width .3s; }
+  .pocket-footer { display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; }
+  .pocket-pct { color: #2FC56D; font-weight: 600; }
+
+  .action-grid { display: flex; gap: 8px; }
+  .action-btn {
+    flex: 1; background: #fff; border: 1.5px solid #e2e8f0; border-radius: 14px;
+    padding: 14px 16px; display: flex; flex-direction: column; align-items: center;
+    gap: 6px; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,.04);
+    transition: all .3s cubic-bezier(.4,0,.2,1);
+  }
+  .action-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.1); border-color: #cbd5e1; }
+  .action-btn i { font-size: 20px; color: #2FC56D; }
+  .action-btn span { font-size: 11px; font-weight: 700; color: #475569; text-align: center; letter-spacing: .5px; }
+
+  .seg-tabs { display: flex; background: #fff; border: 1px solid #f1f5f9; border-radius: 14px; padding: 5px; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
+  .seg-tab { flex: 1; font-size: 14px; font-weight: 600; color: #64748b; padding: 8px 16px; text-align: center; border-radius: 11px; cursor: pointer; transition: all .3s; }
+  .seg-tab.active { background: linear-gradient(135deg, #2FC56D 0%, #1ea35a 100%); color: #fff; box-shadow: 0 4px 12px rgba(47, 197, 109, .3); }
+
+  .stats-row { display: flex; gap: 8px; }
+  .stat-box { padding: 14px; flex: 1; }
+  .stat-box-label { color: #64748b; font-size: 11px; font-weight: 800; letter-spacing: .8px; margin-bottom: 4px; }
+  .stat-box-val { font-size: 18px; font-weight: 700; color: #0f172a; margin-top: 2px; }
+
+  .grp-badge { display: inline-flex; align-items: center; gap: 3px; background: var(--color-background-info); color: var(--color-text-info); border-radius: 4px; font-size: 10px; padding: 1px 5px; font-weight: 500; }
+
+  /* bank cards */
+  .bank-card { border: 1px solid #f1f5f9; border-radius: 18px; padding: 14px; cursor: pointer; transition: all .15s; display: flex; align-items: center; gap: 12px; background: #fff; box-shadow: 0 2px 8px rgba(15,23,42,.04); }
+  .bank-card:hover { border-color: #2FC56D; }
+  .bank-card.sel { border-color: #2FC56D; background: rgba(47,197,109,.06); }
+  .bk-logo { width: 38px; height: 38px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; flex-shrink: 0; }
+  .bk-name { font-size: 14px; font-weight: 600; color: #0f172a; }
+  .bk-rate { font-size: 12px; color: #64748b; margin-top: 1px; }
+  .bk-interest { margin-left: auto; text-align: right; }
+  .bk-pct { font-size: 18px; font-weight: 700; color: #2FC56D; }
+  .bk-yr { font-size: 10px; color: #94a3b8; }
+  .bk-sel { width: 22px; height: 22px; border-radius: 50%; border: 2px solid #e2e8f0; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all .15s; background: #fff; }
+  .bank-card.sel .bk-sel { border-color: #2FC56D; background: #2FC56D; }
+  .bank-card.sel .bk-sel::after { content: ''; width: 6px; height: 10px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); margin-top: -2px; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+  .chip { padding: 6px 12px; border-radius: 20px; border: 1px solid #e2e8f0; font-size: 12px; color: #64748b; cursor: pointer; transition: all .15s; display: flex; align-items: center; gap: 5px; background: #fff; }
+  .chip:hover { border-color: #2FC56D; color: #2FC56D; }
+  .chip.sel { background: #2FC56D; border-color: #2FC56D; color: #fff; }
+  .chip i { font-size: 13px; }
+
+  .inp-wrap { display: flex; flex-direction: column; gap: 5px; }
+  .inp-lbl { font-size: 12px; color: #64748b; }
+  .inp { width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid #e2e8f0; background: #fff; color: #0f172a; font-size: 14px; font-family: var(--font-sans); outline: none; transition: all .15s; }
+  .inp:focus { border-color: #2FC56D; box-shadow: 0 0 0 3px rgba(47,197,109,.15); }
+  .amt-wrap { display: flex; align-items: center; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background: #fff; transition: all .15s; }
+  .amt-wrap:focus-within { border-color: #2FC56D; box-shadow: 0 0 0 3px rgba(47,197,109,.15); }
+  .amt-pfx { padding: 12px 10px 12px 14px; font-size: 14px; color: #94a3b8; white-space: nowrap; background: #f8fafc; }
+  .amt-inp { flex: 1; padding: 12px 14px 12px 0; border: none; background: transparent; color: #0f172a; font-size: 18px; font-weight: 700; font-family: var(--font-sans); outline: none; }
+  .amt-inp::-webkit-outer-spin-button, .amt-inp::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+  .toggle-row { display: flex; gap: 8px; }
+  .freq-btn { flex: 1; padding: 10px 8px; border-radius: 10px; border: 1px solid #e2e8f0; font-size: 12px; font-weight: 500; color: #64748b; cursor: pointer; text-align: center; transition: all .15s; background: #fff; font-family: var(--font-sans); }
+  .freq-btn:hover { border-color: #2FC56D; color: #2FC56D; }
+  .freq-btn.sel { background: linear-gradient(135deg, #2FC56D 0%, #1ea35a 100%); border-color: #2FC56D; color: #fff; box-shadow: 0 4px 12px rgba(47,197,109,.3); }
+
+  .date-row { display: flex; gap: 8px; }
+  .date-box { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+  .date-val { font-size: 13px; color: #0f172a; flex: 1; }
+  .date-val.placeholder { color: #94a3b8; }
+  .dur-badge { padding: 12px; display: flex; justify-content: space-between; align-items: center; }
+  .term-pills { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding: 2px 0; }
+  .term-pills::-webkit-scrollbar { display: none; }
+
+  .rev-section { padding: 14px; }
+  .rev-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #f1f5f9; }
+  .rev-row:last-child { border-bottom: none; }
+  .rev-key { font-size: 12px; color: #64748b; }
+  .rev-val { font-size: 13px; font-weight: 600; color: #0f172a; text-align: right; }
+  .rev-val.green { color: #2FC56D; }
+
+  .earn-pill { background: #E6F4EA; border-radius: 14px; padding: 14px; display: flex; justify-content: space-between; align-items: center; }
+  .earn-label { font-size: 12px; color: #008A42; }
+  .earn-val { font-size: 18px; font-weight: 700; color: #008A42; }
+
+  .confirm-icon { width: 72px; height: 72px; border-radius: 50%; background: #E6F4EA; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; }
+  .confirm-icon i { font-size: 36px; color: #2FC56D; }
+
+  .info-box { background: #F0FAF4; border: 1px solid #B3DFC9; border-radius: 14px; padding: 12px; display: flex; gap: 10px; align-items: flex-start; }
+  .info-box i { font-size: 16px; color: #008A42; flex-shrink: 0; margin-top: 1px; }
+  .info-box p { font-size: 12px; color: #008A42; line-height: 1.5; }
+
+  .card { background: #fff; border: 1px solid #f1f5f9; border-radius: 18px; padding: 14px; box-shadow: 0 2px 8px rgba(15,23,42,.04); }
+
+  .hd-step { font-size: 10px; color: #94a3b8; margin-left: auto; }
+  .pbar { height: 3px; background: #f1f5f9; border-radius: 2px; overflow: hidden; margin-bottom: 8px; }
+  .pfill { height: 100%; background: linear-gradient(90deg, #2FC56D 0%, #1ea35a 100%); border-radius: 2px; transition: width .3s; }
+
+  .type-card { border: 1px solid #f1f5f9; border-radius: 18px; padding: 16px; cursor: pointer; transition: all .15s; display: flex; align-items: flex-start; gap: 12px; background: #fff; box-shadow: 0 2px 8px rgba(15,23,42,.04); }
+  .type-card:hover { border-color: #2FC56D; }
+  .type-card.sel { border-color: #2FC56D; background: rgba(47,197,109,.06); }
+  .type-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+  .type-title { font-size: 15px; font-weight: 600; color: #0f172a; }
+  .type-sub { font-size: 12px; color: #64748b; margin-top: 2px; line-height: 1.5; }
+  .type-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 6px; margin-top: 6px; font-weight: 600; }
+
+  /* ── Bottom action (STATIC - OUTSIDE scroll area) ── */
+  .bottom-action {
+    flex-shrink: 0;
+    padding: 16px 24px 24px;
+    background: #f4f6f9;
+    position: relative;
+    z-index: 10;
+    margin-top: auto;
+  }
+  #s6 .bottom-action { background: transparent; }
+
+  /* ── Qwen-style CTA ── */
+  .cta {
+    width: 100%; min-height: 50px;
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px; padding: 14px 20px; border-radius: 14px;
+    border: 1.5px solid #2FC56D;
+    background: linear-gradient(135deg, #2FC56D 0%, #1ea35a 100%);
+    color: #ffffff; font-family: 'Barlow', sans-serif;
+    font-size: 12px; font-weight: 700; cursor: pointer;
+    transition: all .3s cubic-bezier(.4,0,.2,1);
+    box-shadow: 0 4px 12px rgba(47, 197, 109, .3);
+    letter-spacing: .5px; text-transform: uppercase;
+  }
+  .cta:hover { box-shadow: 0 8px 24px rgba(47, 197, 109, .4); transform: translateY(-1px); }
+  .cta:active { transform: translateY(0); }
+  .cta i { font-size: 16px; }
+
+  .cta-sec {
+    width: 100%; min-height: 48px;
+    display: flex; align-items: center; justify-content: center;
+    gap: 6px; padding: 13px 18px; border-radius: 14px;
+    border: 1.5px solid #e2e8f0;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    color: #475569; font-family: 'Barlow', sans-serif;
+    font-size: 11px; font-weight: 700; cursor: pointer;
+    transition: all .3s cubic-bezier(.4,0,.2,1);
+    box-shadow: 0 2px 8px rgba(0,0,0,.04); letter-spacing: .5px;
+  }
+  .cta-sec:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.1); border-color: #cbd5e1; }
+
+  /* ── Bottom nav bar (Qwen style) ── */
+  .nav-bar {
+    flex-shrink: 0; display: flex; justify-content: space-around;
+    align-items: center; padding: 10px 24px 14px;
+    background-color: #ffffff; border-top: 1px solid #f1f5f9;
+  }
+  .nav-icon { color: #94a3b8; }
+
+  /* ── 3-dot dropdown ── */
+  .ctx-backdrop { position: fixed; inset: 0; z-index: 900; }
+  .ctx-menu { position: fixed; z-index: 901; background: #fff; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,.14); border: 0.5px solid #e2e8e4; min-width: 190px; overflow: hidden; opacity: 0; transform: scale(.94) translateY(-6px); transform-origin: top right; transition: opacity .15s, transform .15s; pointer-events: none; }
+  .ctx-menu.open { opacity: 1; transform: scale(1) translateY(0); pointer-events: all; }
+  .ctx-item { display: flex; align-items: center; gap: 10px; padding: 11px 14px; font-size: 13px; color: #2a3530; cursor: pointer; transition: background .12s; }
+  .ctx-item:hover { background: #f4f6f5; }
+  .ctx-item + .ctx-item { border-top: 0.5px solid #eef1ef; }
+  .ctx-item i { font-size: 16px; flex-shrink: 0; }
+  .ctx-item.danger { color: #E24B4A; }
+  .ctx-sep { height: 0.5px; background: #e2e8e4; }
+
+  .tc-meta { font-size: 11px; color: #8fa397; line-height: 1.5; }
+  .tc-sec { display: flex; flex-direction: column; gap: 4px; }
+  .tc-h { font-size: 13px; font-weight: 600; color: #2a3530; }
+  .tc-p { font-size: 12px; color: #5b6e62; line-height: 1.6; }
+
+  .switch { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+  .switch-bar { width: 40px; height: 22px; border-radius: 999px; background: #e2e8e4; position: relative; transition: background .15s; flex-shrink: 0; }
+  .switch-bar.active { background: #2FC56D; }
+  .switch-knob { width: 18px; height: 18px; border-radius: 50%; background: #fff; position: absolute; top: 2px; left: 2px; transition: transform .2s; box-shadow: 0 1px 3px rgba(0,0,0,.2); }
+  .switch-bar.active .switch-knob { transform: translateX(18px); }
+
+  /* ── Responsive ── */
+  @media (max-width: 820px) {
+    html, body { width: 100%; min-height: 100%; overflow-x: hidden; background: #fff; }
+    body { -webkit-text-size-adjust: 100%; touch-action: manipulation; }
+    .page-title-wrap { display: none; }
+    .fw { display: block; min-height: 100dvh; background: #fff; }
+    .flow-switch { top: max(8px, env(safe-area-inset-top)); right: 10px; z-index: 120; }
+    .flow-switch-btn { min-height: 40px; padding: 9px 11px; border-radius: 999px; }
+    .stepnav { position: sticky; top: 0; z-index: 110; width: 100%; height: auto; min-height: 56px; padding: max(8px, env(safe-area-inset-top)) 124px 8px 12px; border-right: 0; border-bottom: 0.5px solid rgba(226,232,228,.9); background: rgba(255,255,255,.94); backdrop-filter: blur(18px); flex-direction: row; align-items: center; gap: 8px; overflow-x: auto; box-shadow: 0 6px 20px rgba(20,30,25,.06); }
+    .snav-head, .snav-group { display: none; }
+    .snav-items, .snav-items.collapsed { display: contents; max-height: none; }
+    .snb { width: auto; flex: 0 0 auto; min-height: 40px; padding: 8px 12px; border: 0.5px solid #e2e8e4; border-radius: 999px; background: #fff; box-shadow: 0 1px 2px rgba(20,30,25,.04); scroll-snap-align: start; max-width: 190px; }
+    .snb.active { background: #00A650; border-color: #00A650; color: #fff; box-shadow: 0 6px 16px rgba(0,166,80,.22); }
+    .snb.active::before { display: none; }
+    .snb .ic { width: 24px; height: 24px; background: #f4f6f5; }
+    .snb.active .ic { background: rgba(255,255,255,.18); color: #fff; box-shadow: none; }
+    .content-area { display: block; padding: 0; overflow: visible; }
+    .screen { width: 100%; }
+    .phone { width: 100%; height: auto; min-height: calc(100dvh - 56px); max-width: none; margin: 0; border: 0; border-radius: 0; box-shadow: none; background: #f4f6f9; }
+    .sbar { padding: 8px 18px 4px; }
+    .apphead, .hd { padding: 12px 18px 10px; background: #fff; }
+    .pbody, .bd { padding: 16px; gap: 12px; overflow-y: visible; }
+    .bottom-action { position: fixed; bottom: 0; left: 0; right: 0; padding: 10px 16px; padding-bottom: calc(10px + env(safe-area-inset-bottom)); background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.96) 28%, #fff 100%); box-shadow: 0 -10px 26px rgba(20,30,25,.10); }
+    #s6 .bottom-action { background: transparent; box-shadow: none; padding-top: 0; }
+    .pbody.has-bottom-action, .bd.has-bottom-action, .phone.has-bottom-action .pbody, .phone.has-bottom-action .bd, .phone:has(.bottom-action) .pbody, .phone:has(.bottom-action) .bd { padding-bottom: calc(var(--bottom-action-height) + 28px + env(safe-area-inset-bottom)); }
+    .cta { min-height: 48px; border-radius: 14px; font-size: 15px; }
+    .inp, .amt-wrap { min-height: 48px; border-radius: 12px; }
+  }
+
+  @media (min-width: 821px) {
+    .pbody, .bd { padding: 20px 24px; gap: 16px; background: #f4f6f9; }
+    .bottom-action { padding: 12px 24px; padding-bottom: calc(18px + env(safe-area-inset-bottom)); background: #f4f6f9; box-shadow: 0 -6px 18px rgba(15,23,42,.06); }
+    #s6 .bottom-action { background: transparent; box-shadow: none; padding-top: 0; }
+  }
+
+  .bank-card, .type-card, .back, .back-btn, .action-btn, .chip, .freq-btn, .snb, .bank-row, .pocket-card, .seg-tab, .ctx-item { -webkit-tap-highlight-color: transparent; }
+</style>
+
+<div class="fw">
+
+  <!-- Flow switcher -->
+  <div class="flow-switch">
+    <button class="flow-switch-btn" onclick="this.parentNode.classList.toggle('open')" aria-haspopup="true"><i class="ti ti-arrows-exchange" aria-hidden="true"></i><span>Savings</span><i class="ti ti-chevron-down fs-caret" aria-hidden="true"></i></button>
+    <div class="flow-switch-menu" role="menu">
+      <a class="flow-switch-item active" href="mpesa_savings_user_flow.html" role="menuitem"><i class="ti ti-pig-money" aria-hidden="true"></i> Savings</a>
+      <a class="flow-switch-item" href="mpesa_group_saving_flow.html" role="menuitem"><i class="ti ti-users-group" aria-hidden="true"></i> Group saving</a>
+      <a class="flow-switch-item" href="mpesa_credit_user_flow.html" role="menuitem"><i class="ti ti-cash" aria-hidden="true"></i> Credit</a>
+      <div class="ctx-sep"></div>
+      <a class="flow-switch-item" href="#" onclick="sendPrompt('Walk me through Fayda ID registration steps')" role="menuitem"><i class="ti ti-id" aria-hidden="true"></i> Fayda steps</a>
+    </div>
+  </div>
+  <script>(function(){var fs=document.currentScript.previousElementSibling;document.addEventListener('click',function(e){if(fs&&!fs.contains(e.target))fs.classList.remove('open');});})();</script>
+
+  <!-- Sidebar -->
+  <nav class="stepnav" role="tablist">
+    <div class="snav-head">
+      <div class="snav-logo"><i class="ti ti-pig-money" aria-hidden="true"></i></div>
+      <div class="snav-brand"><span class="snav-title">M-PESA Savings</span><small>Personal saving flow</small></div>
+    </div>
+    <div class="snav-group" onclick="toggleGroup(this)"><i class="ti ti-chevron-down snav-arrow" aria-hidden="true"></i> Dashboards</div>
+    <div class="snav-items">
+      <button class="snb active" data-screen="0" onclick="showScreen(0)" role="tab"><span class="ic"><i class="ti ti-home" aria-hidden="true"></i></span>Savings home</button>
+      <button class="snb" data-screen="3" onclick="showScreen(3)" role="tab"><span class="ic"><i class="ti ti-wallet" aria-hidden="true"></i></span>Savings home 2</button>
+      <button class="snb" data-screen="11" onclick="showScreen(11)" role="tab"><span class="ic"><i class="ti ti-stack" aria-hidden="true"></i></span>Savings home 3</button>
+    </div>
+    <div class="snav-group" onclick="toggleGroup(this)"><i class="ti ti-chevron-down snav-arrow" aria-hidden="true"></i> Detail Views</div>
+    <div class="snav-items">
+      <button class="snb" data-screen="1" onclick="showScreen(1)" role="tab"><span class="ic"><i class="ti ti-building-bank" aria-hidden="true"></i></span>Bank detail</button>
+      <button class="snb" data-screen="2" onclick="showScreen(2)" role="tab"><span class="ic"><i class="ti ti-piggy-bank" aria-hidden="true"></i></span>Pocket detail</button>
+    </div>
+    <div class="snav-group" onclick="toggleGroup(this)"><i class="ti ti-chevron-down snav-arrow" aria-hidden="true"></i> New Goal Setup</div>
+    <div class="snav-items">
+      <button class="snb" data-screen="4" onclick="showScreen(4)" role="tab"><span class="ic"><i class="ti ti-user-plus" aria-hidden="true"></i></span>Saving type</button>
+      <button class="snb" data-screen="5" onclick="showScreen(5)" role="tab"><span class="ic"><i class="ti ti-percentage" aria-hidden="true"></i></span>Bank & rate</button>
+      <button class="snb" data-screen="6" onclick="showScreen(6)" role="tab"><span class="ic"><i class="ti ti-target" aria-hidden="true"></i></span>Goal setup</button>
+      <button class="snb" data-screen="7" onclick="showScreen(7)" role="tab"><span class="ic"><i class="ti ti-calendar-time" aria-hidden="true"></i></span>Set timeline</button>
+      <button class="snb" data-screen="8" onclick="showScreen(8)" role="tab"><span class="ic"><i class="ti ti-clipboard-check" aria-hidden="true"></i></span>Review plan</button>
+      <button class="snb" data-screen="9" onclick="showScreen(9)" role="tab"><span class="ic"><i class="ti ti-circle-check" aria-hidden="true"></i></span>Confirm</button>
+    </div>
+    <div class="snav-group" onclick="toggleGroup(this)"><i class="ti ti-chevron-down snav-arrow" aria-hidden="true"></i> Legal</div>
+    <div class="snav-items">
+      <button class="snb" data-screen="12" onclick="showScreen(12)" role="tab"><span class="ic"><i class="ti ti-file-text" aria-hidden="true"></i></span>Terms & conditions</button>
+    </div>
+  </nav>
+
+  <!-- Content area -->
+  <div class="content-area">
+
+    <!-- ═══ s0 – Savings Home ═══ -->
+    <div class="screen active" id="s0">
+      <div class="phone">
+        <div class="sbar"><span>9:41</span><div class="sbar-icons"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+        <div class="apphead">
+          <div class="apphead-top"><span class="apphead-title">Savings</span><i class="ti ti-bell" style="font-size:18px;color:#64748b" aria-hidden="true"></i></div>
+          <span class="apphead-sub">Good morning, Emnet</span>
+        </div>
+        <div class="pbody">
+          <div class="bal-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+              <div class="bal-label" style="margin-bottom:0">Total savings balance</div>
+              <button onclick="toggleBal('bal0')" style="background:none;border:none;cursor:pointer;padding:2px;color:rgba(255,255,255,.7);display:flex;align-items:center" aria-label="Toggle balance"><span id="bal0-eye"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span></button>
+            </div>
+            <div class="bal-amount" id="bal0-amount">ETB 47,250.00</div>
+            <div class="bal-row">
+              <div class="bal-sub" style="flex:1">Goal savings<span id="bal0-sub0">ETB 31,000</span></div>
+              <div class="bal-sub" style="flex:1;text-align:right">Group savings<span id="bal0-sub1">ETB 16,250</span></div>
+            </div>
+          </div>
+
+          <div class="action-grid">
+            <div class="action-btn" onclick="showScreen(4)"><i class="ti ti-plus" aria-hidden="true"></i><span>New goal</span></div>
+            <div class="action-btn" onclick="showScreen(3)"><i class="ti ti-wallet" aria-hidden="true"></i><span>Pockets</span></div>
+            <div class="action-btn" onclick="sendPrompt('Deposit to a saving pocket')"><i class="ti ti-arrow-up-circle" aria-hidden="true"></i><span>Deposit</span></div>
+            <div class="action-btn" onclick="showScreen(12)"><i class="ti ti-file-text" aria-hidden="true"></i><span>Terms</span></div>
+          </div>
+
+
+          <div class="sec-label">Recent transactions</div>
+          <div style="background:#fff;border-radius:18px;border:1px solid #f1f5f9;padding:4px 16px;box-shadow:0 2px 8px rgba(15,23,42,.04)">
+            <div class="tx-item"><div class="tx-icon" style="background:#E6F4EA"><i class="ti ti-arrow-up" style="color:#008A42;font-size:14px" aria-hidden="true"></i></div><div class="tx-info"><div class="tx-name">Education goal — deposit</div><div class="tx-date">Today, 08:14</div></div><div class="tx-amount" style="color:#2FC56D">+ETB 500</div></div>
+            <div class="tx-item"><div class="tx-icon" style="background:#FCEBEB"><i class="ti ti-arrow-down" style="color:#E24B4A;font-size:14px" aria-hidden="true"></i></div><div class="tx-info"><div class="tx-name">Emergency fund — withdraw</div><div class="tx-date">Yesterday, 15:02</div></div><div class="tx-amount" style="color:#ef4444">-ETB 1,200</div></div>
+            <div class="tx-item"><div class="tx-icon" style="background:#E6F4EA"><i class="ti ti-arrow-up" style="color:#008A42;font-size:14px" aria-hidden="true"></i></div><div class="tx-info"><div class="tx-name">Group Iqub — contribution</div><div class="tx-date">Mon, 10:30</div></div><div class="tx-amount" style="color:#2FC56D">+ETB 750</div></div>
+          </div>
+
+          <button onclick="sendPrompt('Add a new saving goal')" style="width:100%;padding:12px;border-radius:14px;border:1.5px solid #2FC56D;background:rgba(47,197,109,.08);color:#2FC56D;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font-sans);letter-spacing:.3px"><i class="ti ti-plus" aria-hidden="true"></i> New saving goal</button>
+        </div>
+        <!-- s0 has NO bottom-action -->
+      </div>
+    </div>
+
+    <!-- ═══ s1 – Bank Detail ═══ -->
+    <div class="screen" id="s1">
+      <div class="phone">
+        <div class="sbar"><span>9:41</span><div class="sbar-icons"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+        <div class="apphead">
+          <div class="apphead-top">
+            <button class="back-btn" onclick="showScreen(0)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Savings</button>
+            <button onclick="showMenu(this)" style="background:none;border:none;cursor:pointer;padding:4px;color:#64748b"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg></button>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;margin-top:6px"><div style="width:36px;height:36px;border-radius:10px;background:#E6F1FB;color:#185FA5;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600">CB</div><div><div class="apphead-title">Commercial Bank of Ethiopia</div><div class="apphead-sub">Account •••• 4821</div></div></div>
+        </div>
+        <div class="pbody">
+          <div class="bal-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+              <div class="bal-label" style="margin-bottom:0">CBE savings balance</div>
+              <button onclick="toggleBal('bal1')" style="background:none;border:none;cursor:pointer;padding:2px;color:rgba(255,255,255,.7);display:flex;align-items:center"><span id="bal1-eye"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span></button>
+            </div>
+            <div class="bal-amount" id="bal1-amount">ETB 28,500.00</div>
+            <div class="bal-row"><div class="bal-sub" style="flex:1">Available<span id="bal1-sub0">ETB 19,700</span></div><div class="bal-sub" style="flex:1;text-align:right">Locked<span id="bal1-sub1">ETB 8,800</span></div></div>
+          </div>
+
+          <div class="seg-tabs">
+            <div class="seg-tab" onclick="switchTab1('overview',this)">Overview</div>
+            <div class="seg-tab active" onclick="switchTab1('pockets',this)">Pockets</div>
+            <div class="seg-tab" onclick="switchTab1('transactions',this)">Transactions</div>
+          </div>
+          <div id="s1-overview" style="display:none">
+            <div class="stats-row"><div class="stat-box"><div class="stat-box-label">Streak</div><div class="stat-box-val" style="color:#2FC56D">38 days</div></div><div class="stat-box"><div class="stat-box-label">Milestone</div><div class="stat-box-val" style="color:#BA7517">75% hit</div></div><div class="stat-box"><div class="stat-box-label">Completed</div><div class="stat-box-val">2 goals</div></div></div>
+          </div>
+          <div id="s1-pockets" style="display:flex;flex-direction:column;gap:8px">
+            <div class="pocket-card" onclick="showScreen(2)">
+              <div class="pocket-top"><div class="pocket-name">University tuition</div><span style="background:#E6F4EA;color:#008A42;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600">On track</span></div>
+              <div class="pocket-amounts"><div class="pocket-saved">Saved <span>ETB 12,500</span></div><div class="pocket-target">of ETB 20,000</div></div>
+              <div class="progress-track"><div class="progress-fill" style="width:62.5%"></div></div>
+              <div class="pocket-footer"><div class="pocket-days">89 days left</div><div class="pocket-pct">62.5%</div></div>
+            </div>
+            <div class="pocket-card" onclick="showScreen(2)">
+              <div class="pocket-top"><div class="pocket-name">Emergency fund</div><span style="background:#FAEEDA;color:#854F0B;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600">Behind</span></div>
+              <div class="pocket-amounts"><div class="pocket-saved">Saved <span>ETB 7,200</span></div><div class="pocket-target">of ETB 15,000</div></div>
+              <div class="progress-track"><div class="progress-fill" style="width:48%;background:#EF9F27"></div></div>
+              <div class="pocket-footer"><div class="pocket-days">45 days left</div><div class="pocket-pct" style="color:#EF9F27">48%</div></div>
+            </div>
+            <div class="pocket-card" onclick="showScreen(2)">
+              <div class="pocket-top"><div class="pocket-name">Business startup</div><span style="background:#E6F1FB;color:#185FA5;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600">Locked</span></div>
+              <div class="pocket-amounts"><div class="pocket-saved">Saved <span>ETB 8,800</span></div><div class="pocket-target">of ETB 50,000</div></div>
+              <div class="progress-track"><div class="progress-fill" style="width:17.6%;background:#378ADD"></div></div>
+              <div class="pocket-footer"><div class="pocket-days">210 days left</div><div class="pocket-pct" style="color:#378ADD">17.6%</div></div>
+            </div>
+          </div>
+          <div id="s1-transactions" style="display:none">
+            <div style="background:#fff;border-radius:18px;border:1px solid #f1f5f9;padding:4px 16px">
+              <div class="tx-item"><div class="tx-icon" style="background:#E6F4EA"><i class="ti ti-arrow-up" style="color:#008A42" aria-hidden="true"></i></div><div class="tx-info"><div class="tx-name">University tuition — deposit</div><div class="tx-date">Today, 08:14</div></div><div class="tx-amount" style="color:#2FC56D">+ETB 500</div></div>
+              <div class="tx-item"><div class="tx-icon" style="background:#FCEBEB"><i class="ti ti-arrow-down" style="color:#E24B4A" aria-hidden="true"></i></div><div class="tx-info"><div class="tx-name">Emergency fund — withdraw</div><div class="tx-date">Sat, 15:02</div></div><div class="tx-amount" style="color:#ef4444">-ETB 1,200</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ s2 – Pocket Detail ═══ -->
+    <div class="screen" id="s2">
+      <div class="phone">
+        <div class="sbar"><span>9:41</span><div class="sbar-icons"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+        <div class="apphead">
+          <div class="apphead-top">
+            <button class="back-btn" onclick="showScreen(1)"><i class="ti ti-arrow-left" aria-hidden="true"></i> CBE pockets</button>
+            <div style="display:flex;gap:6px">
+              <button style="background:none;border:none;cursor:pointer;padding:4px;color:#64748b"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+              <button onclick="showMenu(this)" style="background:none;border:none;cursor:pointer;padding:4px;color:#64748b"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg></button>
+            </div>
+          </div>
+          <div style="margin-top:6px"><div class="apphead-title">University tuition</div><div style="display:flex;align-items:center;gap:6px;margin-top:2px"><span style="font-size:12px;color:#64748b">CBE •••• 4821</span><span style="background:#E6F4EA;color:#008A42;font-size:10px;padding:1px 6px;border-radius:8px;font-weight:600">On track</span></div></div>
+        </div>
+        <div class="pbody">
+          <div class="bal-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+              <div class="bal-label" style="margin-bottom:0">Saved amount</div>
+              <button onclick="toggleBal('bal2')" style="background:none;border:none;cursor:pointer;padding:2px;color:rgba(255,255,255,.7)"><span id="bal2-eye"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span></button>
+            </div>
+            <div class="bal-amount" id="bal2-amount">ETB 12,500.00</div>
+            <div class="bal-row"><div class="bal-sub" style="flex:1">Target<span id="bal2-sub0">ETB 20,000</span></div><div class="bal-sub" style="flex:1;text-align:right">Remaining<span id="bal2-sub1">ETB 7,500</span></div></div>
+          </div>
+          <div class="card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><span style="font-size:12px;color:#64748b">Progress</span><span style="font-size:16px;font-weight:700;color:#2FC56D">62.5%</span></div>
+            <div class="progress-track" style="height:8px"><div class="progress-fill" style="width:62.5%"></div></div>
+            <div style="display:flex;justify-content:space-between;margin-top:8px"><span style="font-size:11px;color:#94a3b8">Started: 12 Jan 2026</span><span style="font-size:11px;color:#94a3b8">End: 7 Sep 2026</span></div>
+            <div style="text-align:center;margin-top:8px"><span style="font-size:11px;background:#E6F4EA;color:#008A42;padding:3px 10px;border-radius:10px;font-weight:600">89 days remaining</span></div>
+          </div>
+          <div class="action-grid">
+            <div class="action-btn" style="padding:10px"><i class="ti ti-arrow-down-circle" style="font-size:18px" aria-hidden="true"></i><span>Deposit</span></div>
+            <div class="action-btn" style="padding:10px"><i class="ti ti-arrows-exchange" style="color:#BA7517;font-size:18px" aria-hidden="true"></i><span>Reallocate</span></div>
+            <div class="action-btn" style="padding:10px"><i class="ti ti-settings" style="color:#64748b;font-size:18px" aria-hidden="true"></i><span>Edit</span></div>
+            <div style="flex:1;aspect-ratio:1/1;max-height:57px;background:#E24B4A;border-radius:14px;display:flex;align-items:center;justify-content:center;cursor:pointer" onclick="sendPrompt('Withdraw from this pocket')"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#E24B4A"/><line x1="12" y1="16" x2="12" y2="8" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/><polyline points="8 12 12 8 16 12" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="sec-label">Pocket transactions</div>
+          <div style="background:#fff;border-radius:18px;border:1px solid #f1f5f9;padding:4px 16px">
+            <div class="tx-item"><div class="tx-icon" style="background:#E6F4EA"><i class="ti ti-arrow-up" style="color:#008A42" aria-hidden="true"></i></div><div class="tx-info"><div class="tx-name">Manual deposit</div><div class="tx-date">Today, 08:14</div></div><div class="tx-amount" style="color:#2FC56D">+ETB 500</div></div>
+            <div class="tx-item"><div class="tx-icon" style="background:#E6F4EA"><i class="ti ti-arrow-up" style="color:#008A42" aria-hidden="true"></i></div><div class="tx-info"><div class="tx-name">Scheduled contribution</div><div class="tx-date">Sun, 09:00</div></div><div class="tx-amount" style="color:#2FC56D">+ETB 1,000</div></div>
+            <div class="tx-item"><div class="tx-icon" style="background:#FAEEDA"><i class="ti ti-arrows-exchange" style="color:#854F0B" aria-hidden="true"></i></div><div class="tx-info"><div class="tx-name">Reallocated from Emergency</div><div class="tx-date">Fri, 14:30</div></div><div class="tx-amount" style="color:#2FC56D">+ETB 2,000</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ s3 – All Pockets ═══ -->
+    <div class="screen" id="s3">
+      <div class="phone">
+        <div class="sbar"><span>9:41</span><div class="sbar-icons"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+        <div class="apphead"><div class="apphead-top"><span class="apphead-title">My pockets</span><i class="ti ti-bell" style="font-size:18px;color:#64748b" aria-hidden="true"></i></div><span class="apphead-sub">All your saving pockets in one place</span></div>
+        <div class="pbody">
+          <div class="bal-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+              <div class="bal-label" style="margin-bottom:0">Total savings</div>
+              <button onclick="toggleBal('bal3')" style="background:none;border:none;cursor:pointer;padding:2px;color:rgba(255,255,255,.7)"><span id="bal3-eye"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span></button>
+            </div>
+            <div class="bal-amount" id="bal3-amount">ETB 47,250.00</div>
+            <div class="bal-row"><div class="bal-sub" style="flex:1">Active pockets<span id="bal3-sub0">6</span></div><div class="bal-sub" style="flex:1;text-align:right">This month<span id="bal3-sub1">+ETB 4,250</span></div></div>
+          </div>
+          <div class="sec-label">Active pockets</div>
+          <div class="pocket-card" onclick="showScreen(2)">
+            <div class="pocket-top"><div class="pocket-name">University tuition</div><span style="background:#E6F4EA;color:#008A42;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600">On track</span></div>
+            <div class="pocket-amounts"><div class="pocket-saved">Saved <span>ETB 12,500</span></div><div class="pocket-target">of ETB 20,000</div></div>
+            <div class="progress-track"><div class="progress-fill" style="width:62.5%"></div></div>
+            <div class="pocket-footer"><div class="pocket-days">89 days left</div><div class="pocket-pct">62.5%</div></div>
+          </div>
+          <div class="pocket-card" onclick="showScreen(2)">
+            <div class="pocket-top"><div class="pocket-name">Emergency fund</div><span style="background:#FAEEDA;color:#854F0B;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600">Behind</span></div>
+            <div class="pocket-amounts"><div class="pocket-saved">Saved <span>ETB 7,200</span></div><div class="pocket-target">of ETB 15,000</div></div>
+            <div class="progress-track"><div class="progress-fill" style="width:48%;background:#EF9F27"></div></div>
+            <div class="pocket-footer"><div class="pocket-days">45 days left</div><div class="pocket-pct" style="color:#EF9F27">48%</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ s4 – New Saving Type (Step 1) ═══ -->
+    <div class="screen" id="s4">
+      <div class="phone">
+        <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+        <div class="hd">
+          <div class="hd-top"><button class="back" onclick="showScreen(0)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Savings</button><span class="hd-step">Step 1 of 7</span></div>
+          <div class="pbar"><div class="pfill" style="width:14%"></div></div>
+          <div class="hd-title">Choose saving type</div>
+          <div class="hd-sub">What kind of saving account do you want?</div>
+        </div>
+        <div class="bd">
+          <div class="type-card sel" id="t-ind" onclick="selType('ind')">
+            <div class="type-icon" style="background:#E6F1FB"><i class="ti ti-user" style="color:#185FA5" aria-hidden="true"></i></div>
+            <div><div class="type-title">Individual saving</div><div class="type-sub">Personal goal-based pocket. Set a target, track progress.</div><span class="type-badge" style="background:#E6F4EA;color:#008A42">Most common</span></div>
+          </div>
+          <div class="type-card" id="t-grp" onclick="selType('grp')">
+            <div class="type-icon" style="background:#FAEEDA"><i class="ti ti-users" style="color:#854F0B" aria-hidden="true"></i></div>
+            <div><div class="type-title">Group saving</div><div class="type-sub">Shared account for up to 10 members.</div><span class="type-badge" style="background:#FAEEDA;color:#854F0B">Requires KYC</span></div>
+          </div>
+          <div class="type-card" id="t-fix" onclick="selType('fix')">
+            <div class="type-icon" style="background:#EEEDFE"><i class="ti ti-lock" style="color:#534AB7" aria-hidden="true"></i></div>
+            <div><div class="type-title">Fixed deposit</div><div class="type-sub">Lock funds for a fixed term. Higher interest rates.</div><span class="type-badge" style="background:#EEEDFE;color:#534AB7">Best rates</span></div>
+          </div>
+        </div>
+        <div class="bottom-action">
+          <button class="cta" onclick="goN(1)"><i class="ti ti-arrow-right" aria-hidden="true"></i> Continue</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ s5 – Bank & Rate (Step 2) ═══ -->
+    <div class="screen" id="s5">
+      <div class="phone">
+        <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+        <div class="hd">
+          <div class="hd-top"><button class="back" onclick="goN(0)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Back</button><span class="hd-step">Step 2 of 7</span></div>
+          <div class="pbar"><div class="pfill" style="width:28%"></div></div>
+          <div class="hd-title">Choose bank</div>
+          <div class="hd-sub">Pick a bank offer for your saving pocket</div>
+        </div>
+        <div class="bd">
+          <div class="slbl">Available offers</div>
+          <div class="bank-card sel" id="bk-cbe" onclick="selBank('cbe')">
+            <div class="bk-logo" style="background:#E6F1FB;color:#185FA5">CB</div>
+            <div style="flex:1;min-width:0"><div class="bk-name">Commercial Bank of Ethiopia</div><div class="bk-rate">Flexible savings · Min ETB 500</div></div>
+            <div class="bk-interest"><div class="bk-pct">7%</div><div class="bk-yr">per year</div></div>
+            <div class="bk-sel"></div>
+          </div>
+          <div class="bank-card" id="bk-aw" onclick="selBank('aw')">
+            <div class="bk-logo" style="background:#EAF3DE;color:#3B6D11">AB</div>
+            <div style="flex:1;min-width:0"><div class="bk-name">Awash Bank</div><div class="bk-rate">Goal savings · Min ETB 200</div></div>
+            <div class="bk-interest"><div class="bk-pct">5%</div><div class="bk-yr">per year</div></div>
+            <div class="bk-sel"></div>
+          </div>
+          <div class="bank-card" id="bk-da" onclick="selBank('da')">
+            <div class="bk-logo" style="background:#FAEEDA;color:#854F0B">DB</div>
+            <div style="flex:1;min-width:0"><div class="bk-name">Dashen Bank</div><div class="bk-rate">Fixed term · Min ETB 1,000</div></div>
+            <div class="bk-interest"><div class="bk-pct">9%</div><div class="bk-yr">per year</div></div>
+            <div class="bk-sel"></div>
+          </div>
+          <div class="bank-card" id="bk-hi" onclick="selBank('hi')">
+            <div class="bk-logo" style="background:#EEEDFE;color:#534AB7">HB</div>
+            <div style="flex:1;min-width:0"><div class="bk-name">Hibir Bank</div><div class="bk-rate">Flexible savings · Min ETB 100</div></div>
+            <div class="bk-interest"><div class="bk-pct">3%</div><div class="bk-yr">per year</div></div>
+            <div class="bk-sel"></div>
+          </div>
+          <div class="earn-pill"><div><div class="earn-label">Projected interest (1 yr)</div><div style="font-size:12px;color:#008A42;margin-top:2px">Based on ETB 10,000 deposit</div></div><div class="earn-val">ETB 700</div></div>
+        </div>
+        <div class="bottom-action">
+          <button class="cta" onclick="goN(2)">Continue <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ s6 – Goal Setup (Step 3) ═══ -->
+    <div class="screen" id="s6">
+      <div class="phone">
+        <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+        <div class="hd">
+          <div class="hd-top"><button class="back" onclick="goN(1)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Back</button><span class="hd-step">Step 3 of 7</span></div>
+          <div class="pbar"><div class="pfill" style="width:42%"></div></div>
+          <div class="hd-title">Set your goal</div>
+          <div class="hd-sub">Name your pocket and pick a target amount</div>
+        </div>
+        <div class="bd">
+          <div class="inp-wrap"><label class="inp-lbl">Pocket name</label><input class="inp" type="text" placeholder="e.g. University tuition" value="University tuition"></div>
+          <div class="inp-wrap"><label class="inp-lbl">Category</label><div class="chips"><span class="chip sel">Education</span><span class="chip">Emergency</span><span class="chip">Business</span><span class="chip">Travel</span><span class="chip">General</span></div></div>
+          <div class="inp-wrap"><label class="inp-lbl">Target amount</label><div class="amt-wrap"><span class="amt-pfx">ETB</span><input class="amt-inp" type="number" value="10000" step="100"></div></div>
+          <div class="inp-wrap"><label class="inp-lbl">Contribution frequency</label><div class="toggle-row"><button class="freq-btn sel">Weekly</button><button class="freq-btn">Bi-weekly</button><button class="freq-btn">Monthly</button><button class="freq-btn">Custom</button></div></div>
+        </div>
+        <div class="bottom-action">
+          <button class="cta" onclick="goN(3)">Continue <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ s7 – Timeline (Step 4) ═══ -->
+    <div class="screen" id="s7">
+      <div class="phone">
+        <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+        <div class="hd">
+          <div class="hd-top"><button class="back" onclick="goN(2)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Back</button><span class="hd-step">Step 4 of 7</span></div>
+          <div class="pbar"><div class="pfill" style="width:57%"></div></div>
+          <div class="hd-title">Set timeline</div>
+          <div class="hd-sub">When should this pocket start & end?</div>
+        </div>
+        <div class="bd">
+          <div class="slbl">Duration</div>
+          <div class="term-pills"><button class="freq-btn">3 months</button><button class="freq-btn sel">6 months</button><button class="freq-btn">9 months</button><button class="freq-btn">12 months</button><button class="freq-btn">18 months</button><button class="freq-btn">24 months</button></div>
+          <div class="date-row">
+            <div class="date-box"><label class="inp-lbl">Start date</label><div class="date-inp-wrap" style="display:flex;align-items:center;border:1px solid #e2e8f0;border-radius:12px;padding:12px;background:#fff;cursor:pointer"><i class="ti ti-calendar" style="font-size:16px;color:#94a3b8" aria-hidden="true"></i><span class="date-val" id="start-date">12 Jun 2026</span></div></div>
+            <div class="date-box"><label class="inp-lbl">End date</label><div class="date-inp-wrap" style="display:flex;align-items:center;border:1px solid #e2e8f0;border-radius:12px;padding:12px;background:#fff;cursor:pointer"><i class="ti ti-calendar" style="font-size:16px;color:#94a3b8" aria-hidden="true"></i><span class="date-val" id="end-date">12 Dec 2026</span></div></div>
+          </div>
+          <div class="dur-badge"><span style="font-size:13px;color:#64748b">Total duration</span><span style="font-size:16px;font-weight:700;color:#2FC56D">6 months</span></div>
+        </div>
+        <div class="bottom-action">
+          <button class="cta" onclick="goN(4)">Continue <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ s8 – Review Plan (Step 5) ═══ -->
+    <div class="screen" id="s8">
+      <div class="phone">
+        <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+        <div class="hd">
+          <div class="hd-top"><button class="back" onclick="goN(3)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Back</button><span class="hd-step">Step 5 of 7</span></div>
+          <div class="pbar"><div class="pfill" style="width:71%"></div></div>
+          <div class="hd-title">Review your plan</div>
+          <div class="hd-sub">Check everything before we start</div>
+        </div>
+        <div class="bd">
+          <div class="rev-section">
+            <div class="rev-row"><span class="rev-key">Type</span><span class="rev-val">Individual saving</span></div>
+            <div class="rev-row"><span class="rev-key">Bank</span><span class="rev-val">Commercial Bank of Ethiopia</span></div>
+            <div class="rev-row"><span class="rev-key">Interest rate</span><span class="rev-val green">7% per year</span></div>
+            <div class="rev-row"><span class="rev-key">Pocket name</span><span class="rev-val">University tuition</span></div>
+            <div class="rev-row"><span class="rev-key">Target amount</span><span class="rev-val">ETB 10,000</span></div>
+            <div class="rev-row"><span class="rev-key">Duration</span><span class="rev-val">6 months</span></div>
+            <div class="rev-row"><span class="rev-key">Start date</span><span class="rev-val">12 Jun 2026</span></div>
+            <div class="rev-row"><span class="rev-key">End date</span><span class="rev-val">12 Dec 2026</span></div>
+          </div>
+          <div class="info-box"><i class="ti ti-info-circle" aria-hidden="true"></i><p>You can adjust your contribution amount and frequency anytime from the pocket detail page.</p></div>
+        </div>
+        <div class="bottom-action">
+          <button class="cta" onclick="goN(5)">Activate saving account</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ s9 – Confirmation (Step 6/7) ═══ -->
+    <div class="screen" id="s9">
+      <div class="phone">
+        <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+        <div class="hd" style="border-bottom:none">
+          <div class="hd-top"><button class="back" onclick="goN(4)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Back</button></div>
+        </div>
+        <div class="bd" style="justify-content:center;align-items:center;text-align:center">
+          <div class="confirm-icon"><i class="ti ti-circle-check" aria-hidden="true"></i></div>
+          <div style="font-size:22px;font-weight:800;color:#0f172a;margin-bottom:4px">Pocket created!</div>
+          <div style="font-size:14px;color:#64748b;margin-bottom:20px">Your University tuition pocket is now active</div>
+          <div class="card" style="width:100%;text-align:left">
+            <div class="rev-row"><span class="rev-key">Pocket</span><span class="rev-val">University tuition</span></div>
+            <div class="rev-row"><span class="rev-key">Bank</span><span class="rev-val">CBE •••• 4821</span></div>
+            <div class="rev-row"><span class="rev-key">Target</span><span class="rev-val green">ETB 10,000</span></div>
+            <div class="rev-row"><span class="rev-key">Interest</span><span class="rev-val green">7% p.a.</span></div>
+          </div>
+        </div>
+        <div class="bottom-action">
+          <button class="cta" onclick="sendPrompt('Take me to my new University tuition saving pocket')">View my saving pocket <i class="ti ti-external-link" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ s10 – Step 6 (was timeline in original) ═══ -->
+    <div class="screen" id="s10"></div>
+
+    <!-- ═══ s11 – Savings home 3 (simplified) ═══ -->
+    <div class="screen" id="s11">
+      <div class="phone">
+        <div class="sbar"><span>9:41</span><div class="sbar-icons"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+        <div class="apphead"><div class="apphead-top"><span class="apphead-title">My pockets</span><i class="ti ti-bell" style="font-size:18px;color:#64748b" aria-hidden="true"></i></div></div>
+        <div class="pbody">
+          <div class="bal-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+              <div class="bal-label" style="margin-bottom:0">Total savings</div>
+              <button onclick="toggleBal('bal11')" style="background:none;border:none;cursor:pointer;padding:2px;color:rgba(255,255,255,.7)"><span id="bal11-eye"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span></button>
+            </div>
+            <div class="bal-amount" id="bal11-amount">ETB 47,250.00</div>
+            <div class="bal-row"><div class="bal-sub" style="flex:1">Pockets<span id="bal11-sub0">6 active</span></div><div class="bal-sub" style="flex:1;text-align:right">This month<span id="bal11-sub1">+ETB 4,250</span></div></div>
+          </div>
+          <div class="pocket-card" onclick="showScreen(2)">
+            <div class="pocket-top"><div class="pocket-name">University tuition</div><span style="background:#E6F4EA;color:#008A42;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600">On track</span></div>
+            <div class="pocket-amounts"><div class="pocket-saved">Saved <span>ETB 12,500</span></div><div class="pocket-target">of ETB 20,000</div></div>
+            <div class="progress-track"><div class="progress-fill" style="width:62.5%"></div></div>
+            <div class="pocket-footer"><div class="pocket-days">89 days left</div><div class="pocket-pct">62.5%</div></div>
+          </div>
+          <div class="pocket-card" onclick="showScreen(2)">
+            <div class="pocket-top"><div class="pocket-name">Emergency fund</div><span style="background:#FAEEDA;color:#854F0B;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600">Behind</span></div>
+            <div class="pocket-amounts"><div class="pocket-saved">Saved <span>ETB 7,200</span></div><div class="pocket-target">of ETB 15,000</div></div>
+            <div class="progress-track"><div class="progress-fill" style="width:48%;background:#EF9F27"></div></div>
+            <div class="pocket-footer"><div class="pocket-days">45 days left</div><div class="pocket-pct" style="color:#EF9F27">48%</div></div>
+          </div>
+          <div class="pocket-card" onclick="showScreen(2)">
+            <div class="pocket-top"><div class="pocket-name">Business startup</div><span style="background:#E6F1FB;color:#185FA5;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600">Locked</span></div>
+            <div class="pocket-amounts"><div class="pocket-saved">Saved <span>ETB 8,800</span></div><div class="pocket-target">of ETB 50,000</div></div>
+            <div class="progress-track"><div class="progress-fill" style="width:17.6%;background:#378ADD"></div></div>
+            <div class="pocket-footer"><div class="pocket-days">210 days left</div><div class="pocket-pct" style="color:#378ADD">17.6%</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ s12 – Terms & Conditions ═══ -->
+    <div class="screen" id="s12">
+      <div class="phone">
+        <div class="sbar"><span>9:41</span><div class="sbar-icons"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+        <div class="hd">
+          <div class="hd-top"><button class="back-btn" onclick="showScreen(0)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Savings</button></div>
+          <div class="hd-title">Terms & Conditions</div>
+          <div class="hd-sub">Version 2.4 — please read these carefully</div>
+        </div>
+        <div class="bd">
+          <div style="font-size:11px;color:#94a3b8;line-height:1.5;margin-bottom:4px">Version 2.4 — please read these terms carefully before activating a savings account.</div>
+          <div class="tc-sec"><div class="tc-h">1. Account Eligibility</div><div class="tc-p">You must be a registered M-PESA user with a valid national ID or passport. Group accounts require a minimum of 2 and a maximum of 10 members.</div></div>
+          <div class="tc-sec"><div class="tc-h">2. Interest & Fees</div><div class="tc-p">Interest rates are set by the partner bank and may vary. Early withdrawal from fixed deposit accounts may incur a penalty.</div></div>
+          <div class="tc-sec"><div class="tc-h">3. Security</div><div class="tc-p">Your savings are protected by M-PESA's encryption and security protocols. You are responsible for keeping your PIN and device secure.</div></div>
+        </div>
+        <div class="bottom-action">
+          <button class="cta" onclick="closeTerms()">I understand</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content-area -->
+</div><!-- /fw -->
+
+<script>
+// ── Utility ──
+function sendPrompt(msg) {
+  var el = document.getElementById('prompt');
+  if (el) { el.value = msg; el.dispatchEvent(new Event('input', { bubbles: true })); }
+}
+
+// ── Screen navigation ──
+var screenIndex = 0;
+var screens = document.querySelectorAll('.screen');
+function showScreen(idx) {
+  screenIndex = idx;
+  screens.forEach(function(s,i){ s.classList.toggle('active', i===idx); });
+  document.querySelectorAll('.snb').forEach(function(b){ b.classList.toggle('active', parseInt(b.getAttribute('data-screen'))===idx); });
+}
+
+// ── Setup flow navigation ──
+var stepMap = [4,5,6,7,8,9];
+function goN(step) {
+  if (step >= stepMap.length) { showScreen(9); return; }
+  showScreen(stepMap[step]);
+}
+
+// ── Terms ──
+function closeTerms() { showScreen(0); }
+
+// ── Balance toggle ──
+function toggleBal(id) {
+  var amt = document.getElementById(id+'-amount');
+  if (!amt) return;
+  var eye = document.getElementById(id+'-eye');
+  if (amt.style.filter === 'blur(6px)') {
+    amt.style.filter = 'none';
+    if (eye) eye.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
+  } else {
+    amt.style.filter = 'blur(6px)';
+    if (eye) eye.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23" stroke="rgba(255,255,255,.75)"/></svg>';
+  }
+}
+
+// ── Tab switching (s1) ──
+function switchTab1(tab, el) {
+  ['overview','pockets','transactions'].forEach(function(t){
+    var p = document.getElementById('s1-'+t);
+    if (p) p.style.display = t===tab ? 'flex' : 'none';
+    if (t===tab) p.style.flexDirection = 'column';
+  });
+  el.parentElement.querySelectorAll('.seg-tab').forEach(function(t){ t.classList.remove('active'); });
+  el.classList.add('active');
+}
+
+// ── Type selection ──
+function selType(type) {
+  ['ind','grp','fix'].forEach(function(t){
+    var el = document.getElementById('t-'+t);
+    if (el) el.classList.toggle('sel', t===type);
+  });
+}
+
+// ── Bank selection ──
+function selBank(bank) {
+  ['cbe','aw','da','hi'].forEach(function(b){
+    var el = document.getElementById('bk-'+b);
+    if (el) el.classList.toggle('sel', b===bank);
+  });
+}
+
+// ── Group toggle ──
+function toggleGroup(el) {
+  el.classList.toggle('collapsed');
+  var items = el.nextElementSibling;
+  if (items) items.classList.toggle('collapsed');
+}
+
+// ── Context menu ──
+function showMenu(btn) {
+  var m = document.getElementById('ctx');
+  if (!m) {
+    m = document.createElement('div');
+    m.id = 'ctx';
+    m.innerHTML = '<div class="ctx-backdrop" onclick="hideMenu()"></div><div class="ctx-menu open" style="top:'+btn.getBoundingClientRect().bottom+'px;right:'+(window.innerWidth-btn.getBoundingClientRect().right)+'px"><div class="ctx-item"><i class="ti ti-edit"></i> Edit</div><div class="ctx-item"><i class="ti ti-trash"></i> Delete</div></div>';
+    document.body.appendChild(m);
+  }
+  var menu = m.querySelector('.ctx-menu');
+  menu.style.top = (btn.getBoundingClientRect().bottom + window.scrollY)+'px';
+  menu.style.right = (window.innerWidth - btn.getBoundingClientRect().right)+'px';
+  m.style.display = 'block';
+  setTimeout(function(){ menu.classList.add('open'); }, 10);
+}
+
+function hideMenu() {
+  var m = document.getElementById('ctx');
+  if (m) { m.style.display = 'none'; m.querySelector('.ctx-menu').classList.remove('open'); }
+}
+
+// ── Banner scroll dots ──
+function onBannerScroll() { /* dummy */ }
+</script>
