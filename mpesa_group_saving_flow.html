@@ -989,16 +989,20 @@ html,body{height:100%}
           </div>
         </div>
 
-        <div class="slbl">Withdrawal approval rule</div>
-        <div style="background:var(--color-background-secondary);border-radius:10px;border:0.5px solid var(--color-border-tertiary);padding:10px 13px;display:flex;justify-content:space-between;align-items:center">
+        <div class="slbl" style="cursor:pointer;user-select:none" onclick="toggleApproverSection()">Withdrawal approval rule</div>
+        <div style="background:var(--color-background-secondary);border-radius:10px;border:0.5px solid var(--color-border-tertiary);padding:10px 13px;display:flex;justify-content:space-between;align-items:center;cursor:pointer" onclick="toggleApproverSection()">
           <div>
             <div id="grp-rule-title" style="font-size:13px;font-weight:500;color:var(--color-text-primary)">OR Group — min 3 approvals</div>
             <div id="grp-rule-sub" style="font-size:11px;color:var(--color-text-secondary);margin-top:1px">Authorized person + any 3 members</div>
           </div>
-          <i class="ti ti-chevron-right" style="color:var(--color-text-tertiary);font-size:16px" aria-hidden="true"></i>
+          <i id="appr-arrow" class="ti ti-chevron-down" style="color:var(--color-text-tertiary);font-size:16px;transition:transform .2s" aria-hidden="true"></i>
         </div>
-        <div class="slbl">Select who can approve withdrawals</div>
-        <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:6px;cursor:pointer;-webkit-user-select:none;user-select:none" onclick="toggleApproverSection()">
+          <i id="approver-arrow" class="ti ti-chevron-down" style="font-size:10px;color:var(--color-text-tertiary);transition:transform .2s" aria-hidden="true"></i>
+          <span class="slbl" style="margin-bottom:0;cursor:pointer">Select who can approve withdrawals</span>
+          <span id="approver-badge" style="font-size:9px;background:var(--color-mpesa-green);color:#fff;padding:1px 6px;border-radius:10px;margin-left:4px">2</span>
+        </div>
+        <div id="approver-list" style="display:flex;flex-direction:column;gap:6px">
           <div class="member-item" onclick="toggleApprover(this,'EM')" style="cursor:pointer;background:#fff;border:2px solid var(--color-mpesa-green)">
             <div style="width:20px;height:20px;border-radius:4px;background:var(--color-mpesa-green);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-check" style="font-size:12px;color:#fff" aria-hidden="true"></i></div>
             <div class="member-avatar" style="background:#E6F1FB;color:#185FA5">EM</div>
@@ -1048,9 +1052,27 @@ html,body{height:100%}
             }
             var count = window.approvers.length;
             var label = document.getElementById('approver-count');
+            var badge = document.getElementById('approver-badge');
             if (label) label.textContent = count + ' of 3 members selected as approvers';
+            if (badge) badge.textContent = count;
           };
+          window.approverSectionVisible = true;
         })();
+        window.toggleApproverSection = function() {
+          var list = document.getElementById('approver-list');
+          var arrow = document.getElementById('approver-arrow');
+          var count = document.getElementById('approver-count');
+          if (window.approverSectionVisible) {
+            list.style.display = 'none';
+            count.style.display = 'none';
+            arrow.style.transform = 'rotate(-90deg)';
+          } else {
+            list.style.display = 'flex';
+            count.style.display = 'block';
+            arrow.style.transform = 'rotate(0deg)';
+          }
+          window.approverSectionVisible = !window.approverSectionVisible;
+        };
         </script>
 
         <button class="cta" onclick="go(2)">Continue <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
@@ -1072,6 +1094,31 @@ html,body{height:100%}
         <div class="hd-sub">Define how members contribute and how funds are split</div>
       </div>
       <div class="bd">
+        <div class="slbl">Group saving goal</div>
+        <div class="inp-wrap">
+          <div class="inp-lbl">Total group goal amount</div>
+          <div class="amt-wrap">
+            <div class="amt-pfx">ETB</div>
+            <input class="amt-inp" id="grp-goal" type="number" value="30000" min="1" oninput="updateGrpContrib()" />
+          </div>
+        </div>
+        <div style="background:var(--color-background-secondary);border-radius:8px;border:0.5px solid var(--color-border-tertiary);padding:8px 12px;display:flex;justify-content:space-between">
+          <span style="font-size:11px;color:var(--color-text-secondary)">Each member pays</span>
+          <span id="grp-each-amount" style="font-size:11px;font-weight:500;color:var(--color-mpesa-green)">ETB 10,000</span>
+        </div>
+
+        <div class="slbl">Duration</div>
+        <div class="freq-row">
+          <div class="freq-btn sel" id="dur-3m" onclick="selGrpDur('3m')">3 months</div>
+          <div class="freq-btn" id="dur-6m" onclick="selGrpDur('6m')">6 months</div>
+          <div class="freq-btn" id="dur-9m" onclick="selGrpDur('9m')">9 months</div>
+          <div class="freq-btn" id="dur-12m" onclick="selGrpDur('12m')">12 months</div>
+        </div>
+        <div id="grp-dur-summary" style="background:var(--color-background-info);border:0.5px solid var(--color-border-info);border-radius:9px;padding:9px 13px;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:12px;color:var(--color-text-info)">Total duration</span>
+          <span id="grp-dur-label" style="font-size:13px;font-weight:600;color:var(--color-mpesa-green)">3 months</span>
+        </div>
+
         <div class="slbl">Contribution type</div>
         <div class="toggle-row">
           <div class="tog-opt sel" id="tog-equal" onclick="selContrib('equal')">
@@ -1086,15 +1133,23 @@ html,body{height:100%}
           </div>
         </div>
 
-        <div class="inp-wrap">
-          <div class="inp-lbl">Contribution amount per member</div>
-          <div class="amt-wrap">
-            <div class="amt-pfx">ETB</div>
-            <input class="amt-inp" type="number" value="500" min="1" />
-          </div>
-        </div>
-
         <div class="slbl">Closure distribution rule</div>
+        <script>
+        function updateGrpContrib() {
+          var goal = parseInt(document.getElementById('grp-goal').value) || 0;
+          var each = Math.round(goal / 3);
+          document.getElementById('grp-each-amount').textContent = 'ETB ' + each.toLocaleString();
+        }
+        var GRP_DUR = '3m';
+        function selGrpDur(d) {
+          GRP_DUR = d;
+          ['3m','6m','9m','12m'].forEach(function(k) {
+            document.getElementById('dur-' + k).classList.toggle('sel', k === d);
+          });
+          var labels = {'3m':'3 months','6m':'6 months','9m':'9 months','12m':'12 months'};
+          document.getElementById('grp-dur-label').textContent = labels[d] || d;
+        }
+        </script>
         <div style="display:flex;flex-direction:column;gap:6px">
           <div class="source-opt sel" id="dist-equal" onclick="selDist('equal')">
             <i class="ti ti-equal" style="font-size:16px;color:var(--color-mpesa-green)" aria-hidden="true"></i>
