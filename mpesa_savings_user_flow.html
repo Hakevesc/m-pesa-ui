@@ -515,6 +515,10 @@
     <div class="snav-items">
       <button class="snb" data-screen="12" onclick="showScreen(12)" role="tab"><span class="ic"><i class="ti ti-file-text" aria-hidden="true"></i></span>Terms & conditions</button>
     </div>
+    <div class="snav-group" onclick="toggleGroup(this)"><i class="ti ti-chevron-down snav-arrow" aria-hidden="true"></i> Withdraw</div>
+    <div class="snav-items">
+      <button class="snb" data-screen="13" onclick="showScreen(13)" role="tab"><span class="ic"><i class="ti ti-arrow-down" aria-hidden="true"></i></span>Withdraw warning</button>
+    </div>
   </nav>
 
   <!-- Content area -->
@@ -654,7 +658,7 @@
             <div class="action-btn" style="padding:10px"><i class="ti ti-arrow-down-circle" style="font-size:18px" aria-hidden="true"></i><span>Deposit</span></div>
             <div class="action-btn" style="padding:10px"><i class="ti ti-arrows-exchange" style="color:#BA7517;font-size:18px" aria-hidden="true"></i><span>Reallocate</span></div>
             <div class="action-btn" style="padding:10px"><i class="ti ti-settings" style="color:#64748b;font-size:18px" aria-hidden="true"></i><span>Edit</span></div>
-            <div style="flex:1;aspect-ratio:1/1;max-height:57px;background:#E24B4A;border-radius:14px;display:flex;align-items:center;justify-content:center;cursor:pointer" onclick="sendPrompt('Withdraw from this pocket')"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#E24B4A"/><line x1="12" y1="16" x2="12" y2="8" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/><polyline points="8 12 12 8 16 12" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div style="flex:1;aspect-ratio:1/1;max-height:57px;background:#E24B4A;border-radius:14px;display:flex;align-items:center;justify-content:center;cursor:pointer" onclick="showScreen(13)"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#E24B4A"/><line x1="12" y1="16" x2="12" y2="8" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/><polyline points="8 12 12 8 16 12" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           </div>
           <div class="sec-label">Pocket transactions</div>
           <div style="background:#fff;border-radius:18px;border:1px solid #f1f5f9;padding:4px 16px">
@@ -930,6 +934,67 @@
         </div>
         <div class="bottom-action">
           <button class="cta" onclick="closeTerms()">I understand</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ s13 – Individual Withdraw Warning ═══ -->
+    <div class="screen" id="s13">
+      <div class="phone">
+        <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+        <div class="hd">
+          <div class="hd-top"><button class="back-btn" onclick="showScreen(2)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Pocket</button></div>
+          <div class="hd-title">Withdraw from pocket</div>
+          <div class="hd-sub">University tuition — understand before you withdraw</div>
+        </div>
+        <div class="bd">
+          <!-- Warning banner -->
+          <div style="background:#FCEBEB;border:1px solid #F5A3A3;border-radius:14px;padding:16px;display:flex;gap:12px;align-items:flex-start">
+            <div style="width:44px;height:44px;border-radius:12px;background:#E24B4A;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-alert-triangle" style="font-size:22px;color:#fff" aria-hidden="true"></i></div>
+            <div>
+              <div style="font-size:15px;font-weight:700;color:#A32D2D;margin-bottom:4px">You're about to withdraw early</div>
+              <div style="font-size:12px;color:#A32D2D;line-height:1.5">Withdrawing before your target date means you will lose the interest you've earned and your progress toward this goal.</div>
+            </div>
+          </div>
+          <div class="slbl">What you'll lose</div>
+          <div style="background:#fff;border:1px solid #f1f5f9;border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(15,23,42,.04)">
+            <div class="rev-row" style="padding:12px 16px"><span style="font-size:12px;color:#64748b">Current saved</span><span style="font-size:13px;font-weight:600;color:#0f172a">ETB 12,500</span></div>
+            <div class="rev-row" style="padding:12px 16px"><span style="font-size:12px;color:#64748b">Interest earned to date</span><span style="font-size:13px;font-weight:600;color:#E24B4A">ETB 437 — forfeited</span></div>
+            <div class="rev-row" style="padding:12px 16px;background:#FFFBEB"><span style="font-size:12px;color:#854F0B;font-weight:500">Projected interest at maturity</span><span style="font-size:13px;font-weight:600;color:#E24B4A">ETB 1,050 — lost</span></div>
+            <div class="rev-row" style="padding:12px 16px"><span style="font-size:12px;color:#64748b">Goal progress</span><span style="font-size:13px;font-weight:600;color:#E24B4A">62.5% — resets</span></div>
+          </div>
+          <div style="background:#FFF7EC;border:1px solid #FAC775;border-radius:14px;padding:14px;display:flex;gap:10px;align-items:flex-start">
+            <i class="ti ti-info-circle" style="font-size:16px;color:#B45309;flex-shrink:0;margin-top:2px" aria-hidden="true"></i>
+            <div>
+              <div style="font-size:13px;font-weight:600;color:#7C4A00;margin-bottom:2px">Impact on your saving goal</div>
+              <div style="font-size:12px;color:#7C4A00;line-height:1.5">If you withdraw ETB 12,500 now, your University tuition pocket will be closed. You will need to start a new goal from scratch to continue saving.</div>
+            </div>
+          </div>
+          <div class="slbl">Comparison</div>
+          <div style="display:flex;gap:8px">
+            <div style="flex:1;background:#F0FAF4;border:1px solid #B3DFC9;border-radius:12px;padding:12px;text-align:center">
+              <div style="font-size:10px;color:#008A42;font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">If you wait</div>
+              <div style="font-size:18px;font-weight:700;color:#008A42">ETB 13,550</div>
+              <div style="font-size:10px;color:#008A42;margin-top:2px">At maturity (7 Sep 2026)</div>
+            </div>
+            <div style="flex:1;background:#FCEBEB;border:1px solid #F5A3A3;border-radius:12px;padding:12px;text-align:center">
+              <div style="font-size:10px;color:#A32D2D;font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">If you withdraw</div>
+              <div style="font-size:18px;font-weight:700;color:#A32D2D">ETB 12,500</div>
+              <div style="font-size:10px;color:#A32D2D;margin-top:2px">Today — forfeit ETB 1,050</div>
+            </div>
+          </div>
+          <div class="slbl">Withdrawal amount</div>
+          <div class="amt-wrap"><span class="amt-pfx">ETB</span><input class="amt-inp" type="number" value="12500" max="12500" min="1"></div>
+          <div style="background:#f4f6f5;border-radius:8px;padding:8px 12px;display:flex;justify-content:space-between"><span style="font-size:11px;color:#64748b">Available to withdraw</span><span style="font-size:11px;font-weight:500;color:#0f172a">ETB 12,500</span></div>
+          <div class="slbl">Destination</div>
+          <div style="border:1px solid #e2e8f0;border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:10px;background:#fff">
+            <div style="width:36px;height:36px;border-radius:9px;background:#E6F4EA;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-wallet" style="font-size:16px;color:#00A650" aria-hidden="true"></i></div>
+            <div style="flex:1"><div style="font-size:13px;font-weight:500;color:#0f172a">M-PESA wallet</div><div style="font-size:11px;color:#64748b">Balance: ETB 8,340</div></div>
+          </div>
+          <div style="display:flex;gap:8px">
+            <button class="cta-sec" onclick="showScreen(2)" style="flex:1;min-height:48px;font-size:13px">Cancel</button>
+            <button class="cta" style="flex:2;min-height:48px;font-size:13px;background:#E24B4A;border-color:#c93030;box-shadow:0 4px 12px rgba(226,75,74,.3)" onclick="sendPrompt('Confirm withdrawal of ETB 12,500 from University tuition pocket')">Confirm withdrawal <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+          </div>
         </div>
       </div>
     </div>
