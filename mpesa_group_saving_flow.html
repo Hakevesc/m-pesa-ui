@@ -997,6 +997,61 @@ html,body{height:100%}
           </div>
           <i class="ti ti-chevron-right" style="color:var(--color-text-tertiary);font-size:16px" aria-hidden="true"></i>
         </div>
+        <div class="slbl">Select who can approve withdrawals</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="member-item" onclick="toggleApprover(this,'EM')" style="cursor:pointer;background:#fff;border:2px solid var(--color-mpesa-green)">
+            <div style="width:20px;height:20px;border-radius:4px;background:var(--color-mpesa-green);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-check" style="font-size:12px;color:#fff" aria-hidden="true"></i></div>
+            <div class="member-avatar" style="background:#E6F1FB;color:#185FA5">EM</div>
+            <div style="flex:1;min-width:0">
+              <div class="member-name">Emnet Tadesse <span style="font-size:10px;color:var(--color-text-tertiary)">(You)</span></div>
+              <div class="member-phone">+251 91 234 5678</div>
+            </div>
+            <span class="member-badge" style="background:var(--color-mpesa-accent-bg);color:var(--color-mpesa-accent-text)">Admin</span>
+          </div>
+          <div class="member-item" onclick="toggleApprover(this,'BK')" style="cursor:pointer;background:#fff;border:2px solid var(--color-mpesa-green)">
+            <div style="width:20px;height:20px;border-radius:4px;background:var(--color-mpesa-green);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-check" style="font-size:12px;color:#fff" aria-hidden="true"></i></div>
+            <div class="member-avatar" style="background:#EAF3DE;color:#3B6D11">BK</div>
+            <div style="flex:1;min-width:0">
+              <div class="member-name">Biruk Kebede</div>
+              <div class="member-phone">+251 92 345 6789</div>
+            </div>
+            <span class="member-badge" style="background:#EAF3DE;color:#3B6D11">Authorized</span>
+          </div>
+          <div class="member-item" onclick="toggleApprover(this,'SH')" style="cursor:pointer;background:#fff;border:2px solid var(--color-border-secondary)">
+            <div style="width:20px;height:20px;border-radius:4px;background:#fff;border:1.5px solid var(--color-border-secondary);display:flex;align-items:center;justify-content:center;flex-shrink:0"></div>
+            <div class="member-avatar" style="background:#FAEEDA;color:#854F0B">SH</div>
+            <div style="flex:1;min-width:0">
+              <div class="member-name">Sara Haile</div>
+              <div class="member-phone">+251 93 456 7890</div>
+            </div>
+            <span class="member-badge" style="background:var(--color-background-secondary);color:var(--color-text-secondary)">Member</span>
+          </div>
+        </div>
+        <div id="approver-count" style="font-size:11px;color:var(--color-text-secondary);padding:2px 0;text-align:right">2 of 3 members selected as approvers</div>
+        <script>
+        (function() {
+          window.approvers = ['EM','BK'];
+          window.toggleApprover = function(el, id) {
+            var idx = window.approvers.indexOf(id);
+            if (idx > -1) {
+              window.approvers.splice(idx, 1);
+              el.style.borderColor = 'var(--color-border-secondary)';
+              el.querySelector('div:first-child').style.background = '#fff';
+              el.querySelector('div:first-child').style.border = '1.5px solid var(--color-border-secondary)';
+              el.querySelector('div:first-child').innerHTML = '';
+            } else {
+              window.approvers.push(id);
+              el.style.borderColor = 'var(--color-mpesa-green)';
+              el.querySelector('div:first-child').style.background = 'var(--color-mpesa-green)';
+              el.querySelector('div:first-child').style.border = 'none';
+              el.querySelector('div:first-child').innerHTML = '<i class="ti ti-check" style="font-size:12px;color:#fff"></i>';
+            }
+            var count = window.approvers.length;
+            var label = document.getElementById('approver-count');
+            if (label) label.textContent = count + ' of 3 members selected as approvers';
+          };
+        })();
+        </script>
 
         <button class="cta" onclick="go(2)">Continue <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
       </div>
