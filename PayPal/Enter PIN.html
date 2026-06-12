@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=360, initial-scale=1.0">
+    <title>M-PESA PIN Entry</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .mobile-container {
+            width: 360px;
+            height: 760px;
+            background-color: #ffffff;
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .keypad-area {
+            padding: 10px 20px 20px 20px;
+            background-color: #ffffff;
+        }
+
+        /* PIN Dot Animations */
+        .pin-dot {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid #E0E0E0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .pin-dot.filled {
+            border-color: #2FC56D;
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .pin-dot.filled::after {
+            content: '';
+            width: 16px;
+            height: 16px;
+            background-color: #2FC56D;
+            border-radius: 50%;
+            animation: fillDot 0.2s ease-out forwards;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fillDot {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Key button hover/active effect */
+        .key-btn:active {
+            background-color: #F5F5F5;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-container">
+        <!-- Status Bar -->
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 20px 4px 20px; font-size: 13px; font-weight: 600; color: #333333;">
+            <span>9:00</span>
+            <div style="display: flex; align-items: center; gap: 6px;">
+                <i data-lucide="bluetooth" style="width: 14px; height: 14px; color: #666666;"></i>
+                <i data-lucide="wifi" style="width: 14px; height: 14px; color: #666666;"></i>
+                <i data-lucide="signal" style="width: 14px; height: 14px; color: #666666;"></i>
+                <i data-lucide="battery" style="width: 18px; height: 14px; color: #666666;"></i>
+            </div>
+        </div>
+
+        <!-- Header with Close Button -->
+        <div style="padding: 12px 20px;">
+            <button style="background: none; border: none; cursor: pointer; padding: 4px;" onclick="resetPin()">
+                <i data-lucide="x" style="width: 24px; height: 24px; color: #666666;"></i>
+            </button>
+        </div>
+
+        <div class="content-area">
+            <!-- PayPal Icon -->
+            <div style="width: 72px; height: 72px; background-color: #F0F0F0; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 10px; margin-bottom: 16px;">
+                <img src="/assets/paypal-icon.png" alt="PayPal" style="width: 40px; height: 40px; object-fit: contain;">
+            </div>
+
+            <!-- Title and Details -->
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h1 style="font-size: 16px; font-weight: 700; color: #333333; letter-spacing: 0.5px; margin-bottom: 8px;">MONEY WITHDRAWAL</h1>
+                <p style="font-size: 13px; font-weight: 600; color: #333333; margin-bottom: 4px;">PHONE NUMBER <span style="font-weight: 500;">711492682</span></p>
+                <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <p style="font-size: 15px; font-weight: 700; color: #333333;">17,450.57 Birr</p>
+                    <p style="font-size: 13px; font-weight: 500; color: #999999;">120.00 USD</p>
+                </div>
+            </div>
+
+            <!-- PIN Entry Section -->
+            <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 20px;">
+                <p style="font-size: 12px; font-weight: 600; color: #666666; letter-spacing: 1px; margin-bottom: 16px;">ENTER M-PESA PIN:</p>
+                
+                <div style="display: flex; gap: 16px;">
+                    <div class="pin-dot" id="dot-1"></div>
+                    <div class="pin-dot" id="dot-2"></div>
+                    <div class="pin-dot" id="dot-3"></div>
+                    <div class="pin-dot" id="dot-4"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Keypad -->
+        <div class="keypad-area">
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; max-width: 260px; margin: 0 auto;">
+                <button class="key-btn" onclick="pressKey('1')" style="background: none; border: none; font-family: 'Barlow', sans-serif; font-size: 28px; font-weight: 500; color: #555555; padding: 16px 0; cursor: pointer; border-radius: 50%; transition: background 0.2s;">1</button>
+                <button class="key-btn" onclick="pressKey('2')" style="background: none; border: none; font-family: 'Barlow', sans-serif; font-size: 28px; font-weight: 500; color: #555555; padding: 16px 0; cursor: pointer; border-radius: 50%; transition: background 0.2s;">2</button>
+                <button class="key-btn" onclick="pressKey('3')" style="background: none; border: none; font-family: 'Barlow', sans-serif; font-size: 28px; font-weight: 500; color: #555555; padding: 16px 0; cursor: pointer; border-radius: 50%; transition: background 0.2s;">3</button>
+                <button class="key-btn" onclick="pressKey('4')" style="background: none; border: none; font-family: 'Barlow', sans-serif; font-size: 28px; font-weight: 500; color: #555555; padding: 16px 0; cursor: pointer; border-radius: 50%; transition: background 0.2s;">4</button>
+                <button class="key-btn" onclick="pressKey('5')" style="background: none; border: none; font-family: 'Barlow', sans-serif; font-size: 28px; font-weight: 500; color: #555555; padding: 16px 0; cursor: pointer; border-radius: 50%; transition: background 0.2s;">5</button>
+                <button class="key-btn" onclick="pressKey('6')" style="background: none; border: none; font-family: 'Barlow', sans-serif; font-size: 28px; font-weight: 500; color: #555555; padding: 16px 0; cursor: pointer; border-radius: 50%; transition: background 0.2s;">6</button>
+                <button class="key-btn" onclick="pressKey('7')" style="background: none; border: none; font-family: 'Barlow', sans-serif; font-size: 28px; font-weight: 500; color: #555555; padding: 16px 0; cursor: pointer; border-radius: 50%; transition: background 0.2s;">7</button>
+                <button class="key-btn" onclick="pressKey('8')" style="background: none; border: none; font-family: 'Barlow', sans-serif; font-size: 28px; font-weight: 500; color: #555555; padding: 16px 0; cursor: pointer; border-radius: 50%; transition: background 0.2s;">8</button>
+                <button class="key-btn" onclick="pressKey('9')" style="background: none; border: none; font-family: 'Barlow', sans-serif; font-size: 28px; font-weight: 500; color: #555555; padding: 16px 0; cursor: pointer; border-radius: 50%; transition: background 0.2s;">9</button>
+                <div></div>
+                <button class="key-btn" onclick="pressKey('0')" style="background: none; border: none; font-family: 'Barlow', sans-serif; font-size: 28px; font-weight: 500; color: #555555; padding: 16px 0; cursor: pointer; border-radius: 50%; transition: background 0.2s;">0</button>
+                <button class="key-btn" onclick="resetPin()" style="background: none; border: none; font-size: 28px; padding: 16px 0; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #555555;">
+                    <i data-lucide="fingerprint" style="width: 32px; height: 32px; color: #666666;"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Android Navigation Bar -->
+        <div style="display: flex; justify-content: space-around; align-items: center; padding: 8px 0 12px 0; background: white;">
+            <i data-lucide="triangle" style="width: 20px; height: 20px; color: #666666; transform: rotate(-90deg);"></i>
+            <div style="width: 20px; height: 20px; border: 2px solid #666666; border-radius: 50%;"></div>
+            <div style="width: 20px; height: 20px; border: 2px solid #666666; border-radius: 3px;"></div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        let pinLength = 0;
+        const maxPinLength = 4;
+
+        function pressKey(key) {
+            if (pinLength < maxPinLength) {
+                pinLength++;
+                updateDots();
+            }
+        }
+
+        function resetPin() {
+            pinLength = 0;
+            updateDots();
+        }
+
+        function updateDots() {
+            for (let i = 1; i <= maxPinLength; i++) {
+                const dot = document.getElementById(`dot-${i}`);
+                if (i <= pinLength) {
+                    dot.classList.add('filled');
+                } else {
+                    dot.classList.remove('filled');
+                }
+            }
+        }
+    </script>
+</body>
+</html>

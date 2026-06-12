@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=360, initial-scale=1.0">
+    <title>PayPal M-PESA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Barlow', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .mobile-container {
+            width: 360px;
+            height: 760px;
+            background-color: #ffffff;
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .mobile-container::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-container">
+        <!-- Header -->
+        <header style="display: flex; justify-content: space-between; align-items: center; padding: 16px 20px;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <img src="/Assets/PayPal-Logo-Black.png" alt="PayPal" style="height: 24px; width: auto;">
+                <span style="color: #cccccc; font-size: 18px;">|</span>
+                <img src="/Assets/M-PESA-Logo-Green.svg" alt="M-PESA" style="height: 28px; width: auto;">
+            </div>
+            <button style="background: none; border: none; cursor: pointer; padding: 8px;">
+                <i data-lucide="more-vertical" style="color: #979797; width: 22px; height: 22px;"></i>
+            </button>
+        </header>
+
+        <!-- Main Card -->
+        <div style="background: #ffffff; border: 1px solid #e8e8e8; border-radius: 16px; padding: 24px 20px; margin: 0 16px 20px 16px; position: relative; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.06);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <div style="display: flex; align-items: center; gap: 6px;">
+                    <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.5px; color: #097E46;">M-PESA SAVINGS</span>
+                    <i data-lucide="eye-off" style="width: 18px; height: 18px; color: #097E46;"></i>
+                </div>
+                <div style="background: #2FC56D; padding: 6px 16px; border-radius: 20px;">
+                    <span style="color: white; font-size: 11px; font-weight: 700; letter-spacing: 0.5px;">HEAD OFFICE</span>
+                </div>
+            </div>
+
+            <div>
+                <h1 style="color: #333333; font-size: 36px; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.5px;">25,410.00 Birr</h1>
+                <p style="color: #2FC56D; font-size: 13px; font-weight: 600;">EQUIVALENT:34,900.00 BIRR</p>
+            </div>
+        </div>
+
+        <!-- Withdraw Button -->
+        <button style="width: calc(100% - 32px); margin: 0 16px 24px 16px; background-color: #2FC56D; color: white; border: none; padding: 16px 20px; border-radius: 12px; font-family: 'Barlow', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 10px; letter-spacing: 0.5px;">
+            <span>WITHDRAW FROM PAYPAL</span>
+            <div style="background: rgba(255, 255, 255, 0.25); border-radius: 50%; padding: 8px; margin-left: auto;">
+                <i data-lucide="arrow-down-left" style="width: 18px; height: 18px;"></i>
+            </div>
+        </button>
+
+        <!-- Transactions Section -->
+        <div style="padding: 0 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <h2 style="font-size: 14px; font-weight: 600; color: #666666; letter-spacing: 0.5px;">M-PESA TRANSACTIONS</h2>
+                <button style="background: none; border: none; color: #2FC56D; font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; letter-spacing: 0.5px;">SEE ALL</button>
+            </div>
+
+            <!-- Transaction 1 -->
+            <div style="display: flex; align-items: center; padding: 16px 4px; background-color: #ffffff;">
+                <div style="width: 44px; height: 44px; background-color: #097E46; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 14px; flex-shrink: 0;">
+                    <i data-lucide="arrow-down-left" style="width: 20px; height: 20px; color: white;"></i>
+                </div>
+                <div style="flex-grow: 1; min-width: 0;">
+                    <h3 style="font-size: 16px; font-weight: 600; color: #666666; letter-spacing: 0.5px;">MONEY WITHDRAWAL</h3>
+                </div>
+                <div style="text-align: right; flex-shrink: 0;">
+                    <p style="font-size: 15px; font-weight: 700; color: #666666; margin-bottom: 2px;">+500.00 BIRR</p>
+                    <p style="font-size: 12px; color: #AAAAAA; font-weight: 500;">TODAY 01:23 PM</p>
+                </div>
+            </div>
+
+            <!-- Transaction 2 -->
+            <div style="display: flex; align-items: center; padding: 16px 4px; background-color: #F5F5F5; border-radius: 0;">
+                <div style="width: 44px; height: 44px; background-color: #2FC56D; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 14px; flex-shrink: 0;">
+                    <i data-lucide="arrow-up-right" style="width: 20px; height: 20px; color: white;"></i>
+                </div>
+                <div style="flex-grow: 1; min-width: 0;">
+                    <h3 style="font-size: 16px; font-weight: 600; color: #666666; letter-spacing: 0.5px;">MONEY TOPUP</h3>
+                </div>
+                <div style="text-align: right; flex-shrink: 0;">
+                    <p style="font-size: 15px; font-weight: 700; color: #666666; margin-bottom: 2px;">+1,000.00 BIRR</p>
+                    <p style="font-size: 12px; color: #AAAAAA; font-weight: 500;">YESTERDAY 4:15 PM</p>
+                </div>
+            </div>
+
+            <!-- Transaction 3 -->
+            <div style="display: flex; align-items: center; padding: 16px 4px; background-color: #ffffff;">
+                <div style="width: 44px; height: 44px; background-color: #097E46; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 14px; flex-shrink: 0;">
+                    <i data-lucide="arrow-down-left" style="width: 20px; height: 20px; color: white;"></i>
+                </div>
+                <div style="flex-grow: 1; min-width: 0;">
+                    <h3 style="font-size: 16px; font-weight: 600; color: #666666; letter-spacing: 0.5px;">MONEY WITHDRAWAL</h3>
+                </div>
+                <div style="text-align: right; flex-shrink: 0;">
+                    <p style="font-size: 15px; font-weight: 700; color: #666666; margin-bottom: 2px;">+500.00 BIRR</p>
+                    <p style="font-size: 12px; color: #AAAAAA; font-weight: 500;">YESTERDAY 10:30 AM</p>
+                </div>
+            </div>
+
+            <!-- Transaction 4 -->
+            <div style="display: flex; align-items: center; padding: 16px 4px; background-color: #F5F5F5;">
+                <div style="width: 44px; height: 44px; background-color: #2FC56D; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 14px; flex-shrink: 0;">
+                    <i data-lucide="arrow-up-right" style="width: 20px; height: 20px; color: white;"></i>
+                </div>
+                <div style="flex-grow: 1; min-width: 0;">
+                    <h3 style="font-size: 16px; font-weight: 600; color: #666666; letter-spacing: 0.5px;">MONEY TOPUP</h3>
+                </div>
+                <div style="text-align: right; flex-shrink: 0;">
+                    <p style="font-size: 15px; font-weight: 700; color: #666666; margin-bottom: 2px;">+1,000.00 BIRR</p>
+                    <p style="font-size: 12px; color: #AAAAAA; font-weight: 500;">YESTERDAY 4:15 PM</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

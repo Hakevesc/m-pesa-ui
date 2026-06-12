@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=360, initial-scale=1.0">
+    <title>Un-Link Account</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .mobile-container {
+            width: 360px;
+            height: 760px;
+            background-color: #ffffff;
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .modal-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 0 20px;
+        }
+
+        .info-card {
+            background-color: #F5F7FA;
+            border-radius: 12px;
+            padding: 28px 20px;
+            text-align: center;
+        }
+
+        .info-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid #CCCCCC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px auto;
+        }
+
+        .unlink-text-btn {
+            background: none;
+            border: none;
+            color: #2FC56D;
+            font-family: 'Barlow', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            padding: 16px 0;
+            transition: opacity 0.2s;
+        }
+
+        .unlink-text-btn:hover {
+            opacity: 0.7;
+        }
+
+        .cancel-btn {
+            width: 100%;
+            background-color: #2FC56D;
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 30px;
+            font-family: 'Barlow', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 16px rgba(47, 197, 109, 0.3);
+            transition: background-color 0.2s;
+        }
+
+        .cancel-btn:hover {
+            background-color: #28b362;
+        }
+
+        .cancel-btn:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-container">
+        <!-- Modal Handle -->
+        <div style="display: flex; justify-content: center; padding: 16px 0 8px 0;">
+            <div style="width: 40px; height: 4px; background-color: #E0E0E0; border-radius: 2px;"></div>
+        </div>
+
+        <!-- Header -->
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0 20px 0;">
+            <h2 style="font-size: 18px; font-weight: 700; color: #333333; letter-spacing: 0.5px;">UN-LINK ACCOUNT</h2>
+            <button onclick="closeModal()" style="background: none; border: none; cursor: pointer; padding: 4px;">
+                <i data-lucide="x" style="width: 24px; height: 24px; color: #666666;"></i>
+            </button>
+        </div>
+
+        <div class="modal-content">
+            <!-- Info Card -->
+            <div class="info-card">
+                <!-- Info Icon -->
+                <div class="info-icon">
+                    <i data-lucide="info" style="width: 22px; height: 22px; color: #999999;"></i>
+                </div>
+
+                <!-- Warning Text -->
+                <p style="font-size: 13px; font-weight: 700; color: #333333; line-height: 1.5; margin-bottom: 12px; letter-spacing: 0.3px;">
+                    IF YOU UNLINK, PAYPAL TOP-UP AND WITHDRAWAL FEATURES WILL BE DISABLED
+                </p>
+
+                <!-- Description -->
+                <p style="font-size: 13px; font-weight: 400; color: #666666; line-height: 1.6; margin-bottom: 12px;">
+                    To unlink your PayPal account, please visit the PayPal website and learn how to unlink your account:
+                </p>
+
+                <!-- Link -->
+                <a href="https://www.paypal.com/us/cshelp/article/how-do-i-manage-my-personal-data-and-privacy-settings-on-my-paypal-account-help337" 
+                   target="_blank" 
+                   style="font-size: 13px; font-weight: 500; color: #2FC56D; text-decoration: underline; word-break: break-all; line-height: 1.5;">
+                    https://www.paypal.com/us/cshelp/article/how-do-i-manage-my-personal-data-and-privacy-settings-on-my-paypal-account-help337
+                </a>
+            </div>
+
+            <!-- Unlink Text Button -->
+            <button class="unlink-text-btn" onclick="handleUnlink()">
+                UNLINK ACCOUNT
+            </button>
+
+            <!-- Cancel Button -->
+            <button class="cancel-btn" onclick="closeModal()">
+                CANCEL
+            </button>
+        </div>
+
+        <!-- Android Navigation Bar -->
+        <div style="display: flex; justify-content: space-around; align-items: center; padding: 8px 0 12px 0; border-top: 1px solid #f0f0f0; margin-top: auto;">
+            <i data-lucide="triangle" style="width: 20px; height: 20px; color: #666666; transform: rotate(-90deg);"></i>
+            <div style="width: 20px; height: 20px; border: 2px solid #666666; border-radius: 50%;"></div>
+            <div style="width: 20px; height: 20px; border: 2px solid #666666; border-radius: 3px;"></div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        function closeModal() {
+            console.log('Modal closed');
+        }
+
+        function handleUnlink() {
+            // Add your unlink account logic here
+            if (confirm('Are you sure you want to unlink your PayPal account? This will disable top-up and withdrawal features.')) {
+                console.log('Account unlinked');
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

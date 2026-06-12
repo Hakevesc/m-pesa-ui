@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=360, initial-scale=1.0">
+    <title>Withdrawal Successful</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .mobile-container {
+            width: 360px;
+            height: 760px;
+            background-color: #ffffff;
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 20px;
+            justify-content: center;
+        }
+
+        /* Success Icon Animation */
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid #2FC56D;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .success-icon svg {
+            animation: checkmark 0.4s ease-out 0.3s both;
+        }
+
+        @keyframes scaleIn {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes checkmark {
+            0% { stroke-dashoffset: 100; }
+            100% { stroke-dashoffset: 0; }
+        }
+
+        .done-btn {
+            animation: slideUp 0.5s ease-out 0.6s both;
+        }
+
+        @keyframes slideUp {
+            0% { transform: translateY(30px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        .success-message {
+            animation: fadeIn 0.5s ease-out 0.4s both;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-container">
+        <!-- Status Bar -->
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 20px 4px 20px; font-size: 13px; font-weight: 600; color: #333333;">
+            <span>9:00</span>
+            <div style="display: flex; align-items: center; gap: 6px;">
+                <i data-lucide="bluetooth" style="width: 14px; height: 14px; color: #666666;"></i>
+                <i data-lucide="wifi" style="width: 14px; height: 14px; color: #666666;"></i>
+                <i data-lucide="signal" style="width: 14px; height: 14px; color: #666666;"></i>
+                <i data-lucide="battery" style="width: 18px; height: 14px; color: #666666;"></i>
+            </div>
+        </div>
+
+        <!-- Header with Close Button -->
+        <div style="padding: 12px 20px; width: 100%;">
+            <button style="background: none; border: none; cursor: pointer; padding: 4px;" onclick="closeScreen()">
+                <i data-lucide="x" style="width: 24px; height: 24px; color: #666666;"></i>
+            </button>
+        </div>
+
+        <div class="content-area">
+            <!-- PayPal Icon -->
+            <div style="width: 72px; height: 72px; background-color: #F0F0F0; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+                <img src="/assets/paypal-icon.png" alt="PayPal" style="width: 40px; height: 40px; object-fit: contain;">
+            </div>
+
+            <!-- Title and Details -->
+            <div style="text-align: center; margin-bottom: 40px;">
+                <h1 style="font-size: 16px; font-weight: 700; color: #333333; letter-spacing: 0.5px; margin-bottom: 8px;">MONEY WITHDRAWAL</h1>
+                <p style="font-size: 13px; font-weight: 600; color: #333333; margin-bottom: 4px;">PHONE NUMBER <span style="font-weight: 500;">711492682</span></p>
+                <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <p style="font-size: 15px; font-weight: 700; color: #333333;">17,450.57 Birr</p>
+                    <p style="font-size: 13px; font-weight: 500; color: #999999;">120.00 USD</p>
+                </div>
+            </div>
+
+            <!-- Success Icon -->
+            <div class="success-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2FC56D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+            </div>
+
+            <!-- Success Message -->
+            <p class="success-message" style="font-size: 14px; font-weight: 500; color: #2FC56D; text-align: center; line-height: 1.6; max-width: 280px; margin-bottom: 40px;">
+                Your request is successful we will send a short confirmation SMS on the status
+            </p>
+        </div>
+
+        <!-- Done Button -->
+        <div style="padding: 0 16px 20px 16px;">
+            <button class="done-btn" onclick="closeScreen()" style="width: 100%; background-color: #2FC56D; color: white; border: none; padding: 18px; border-radius: 30px; font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 700; cursor: pointer; letter-spacing: 1px; box-shadow: 0 4px 16px rgba(47, 197, 109, 0.3);">
+                DONE
+            </button>
+        </div>
+
+        <!-- Android Navigation Bar -->
+        <div style="display: flex; justify-content: space-around; align-items: center; padding: 8px 0 12px 0; background: white;">
+            <i data-lucide="triangle" style="width: 20px; height: 20px; color: #666666; transform: rotate(-90deg);"></i>
+            <div style="width: 20px; height: 20px; border: 2px solid #666666; border-radius: 50%;"></div>
+            <div style="width: 20px; height: 20px; border: 2px solid #666666; border-radius: 3px;"></div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        function closeScreen() {
+            // You can add navigation logic here
+            alert('Returning to home screen...');
+        }
+    </script>
+</body>
+</html>

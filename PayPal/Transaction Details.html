@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=360, initial-scale=1.0">
+    <title>Transaction Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .mobile-container {
+            width: 360px;
+            height: 760px;
+            background-color: #ffffff;
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 0 16px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #F5F5F5;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .back-btn {
+            width: 100%;
+            background-color: #2FC56D;
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 30px;
+            font-family: 'Barlow', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 16px rgba(47, 197, 109, 0.3);
+            transition: all 0.2s;
+        }
+
+        .back-btn:hover {
+            background-color: #28b362;
+        }
+
+        .back-btn:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-container">
+        <!-- Status Bar -->
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 20px 4px 20px; font-size: 13px; font-weight: 600; color: #333333;">
+            <span>4:12</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <i data-lucide="signal" style="width: 16px; height: 14px; color: #333333;"></i>
+                <span style="font-size: 11px; font-weight: 600; color: #333333;">LTE</span>
+                <span style="font-size: 11px; font-weight: 600; color: #666666;">24</span>
+                <i data-lucide="battery" style="width: 20px; height: 14px; color: #666666;"></i>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header style="display: flex; justify-content: space-between; align-items: center; padding: 12px 20px 16px 20px;">
+            <button style="background: none; border: none; cursor: pointer; padding: 8px;" onclick="history.back()">
+                <i data-lucide="arrow-left" style="color: #333333; width: 24px; height: 24px;"></i>
+            </button>
+            <h1 style="font-size: 16px; font-weight: 700; color: #333333; letter-spacing: 1px;">TRANSACTION DETAILS</h1>
+            <div style="display: flex; gap: 8px;">
+                <button style="background: none; border: none; cursor: pointer; padding: 4px;">
+                    <i data-lucide="more-horizontal" style="width: 22px; height: 22px; color: #666666;"></i>
+                </button>
+                <button style="background: none; border: none; cursor: pointer; padding: 4px;">
+                    <i data-lucide="x" style="width: 22px; height: 22px; color: #666666;"></i>
+                </button>
+            </div>
+        </header>
+
+        <div class="content-area">
+            <!-- Transaction Card -->
+            <div style="background-color: #ffffff; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); padding: 24px 20px; margin-bottom: 20px; border: 1px solid #f0f0f0;">
+
+                <!-- Withdrawal Badge -->
+                <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+                    <span style="background-color: #F0F0F0; color: #666666; font-size: 11px; font-weight: 700; letter-spacing: 1px; padding: 6px 16px; border-radius: 20px;">WITHDRAWAL</span>
+                </div>
+
+                <!-- PayPal Icon -->
+                <div style="display: flex; justify-content: center; margin-bottom: 24px;">
+                    <div style="width: 64px; height: 64px; background-color: #E8F0FE; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <img src="/assets/paypal-icon.png" alt="PayPal" style="width: 36px; height: 36px; object-fit: contain;">
+                    </div>
+                </div>
+
+                <!-- Amount and Status Row -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #F0F0F0;">
+                    <div>
+                        <p style="font-size: 11px; font-weight: 600; color: #999999; letter-spacing: 1px; margin-bottom: 4px;">AMOUNT</p>
+                        <p style="font-size: 24px; font-weight: 700; color: #333333;">-742.75 ETB</p>
+                    </div>
+                    <div style="background-color: #E8F8EE; padding: 6px 12px; border-radius: 20px;">
+                        <span style="font-size: 11px; font-weight: 700; color: #2FC56D; letter-spacing: 0.5px;">DISBURSED</span>
+                    </div>
+                </div>
+
+                <!-- Transaction Details -->
+                <div>
+                    <div class="detail-row">
+                        <span style="font-size: 13px; font-weight: 500; color: #999999;">Reference</span>
+                        <span style="font-size: 13px; font-weight: 600; color: #333333;">UDT4BYB7SI</span>
+                    </div>
+
+                    <div class="detail-row">
+                        <span style="font-size: 13px; font-weight: 500; color: #999999;">Receipt Time</span>
+                        <span style="font-size: 13px; font-weight: 600; color: #333333;">29/04/2026, 16:12:02</span>
+                    </div>
+
+                    <div class="detail-row">
+                        <span style="font-size: 13px; font-weight: 500; color: #999999;">USD Amount</span>
+                        <span style="font-size: 13px; font-weight: 600; color: #333333;">5.00 USD</span>
+                    </div>
+
+                    <div class="detail-row">
+                        <span style="font-size: 13px; font-weight: 500; color: #999999;">Exchange Rate</span>
+                        <span style="font-size: 13px; font-weight: 600; color: #333333;">1 USD = 153.01 ETB</span>
+                    </div>
+
+                    <div class="detail-row">
+                        <span style="font-size: 13px; font-weight: 500; color: #999999;">Spread Fee (3%)</span>
+                        <span style="font-size: 13px; font-weight: 600; color: #FF4444;">-4.59 ETB</span>
+                    </div>
+
+                    <div class="detail-row">
+                        <span style="font-size: 13px; font-weight: 500; color: #999999;">Effective Rate</span>
+                        <span style="font-size: 13px; font-weight: 600; color: #333333;">1 USD = 148.42 ETB</span>
+                    </div>
+
+                    <div class="detail-row">
+                        <span style="font-size: 13px; font-weight: 500; color: #999999;">You Received</span>
+                        <span style="font-size: 13px; font-weight: 700; color: #333333;">742.75 ETB</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back Button -->
+        <div style="padding: 0 16px 20px 16px;">
+            <button class="back-btn" onclick="history.back()">
+                Back
+            </button>
+        </div>
+
+        <!-- Android Navigation Bar -->
+        <div style="display: flex; justify-content: space-around; align-items: center; padding: 8px 0 12px 0; background: #000000;">
+            <div style="width: 20px; height: 2px; background: #ffffff; border-radius: 1px;"></div>
+            <div style="width: 20px; height: 20px; border: 2px solid #ffffff; border-radius: 50%;"></div>
+            <i data-lucide="triangle" style="width: 20px; height: 20px; color: #ffffff; transform: rotate(-90deg);"></i>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

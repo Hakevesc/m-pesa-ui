@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=360, initial-scale=1.0">
+    <title>Confirm Withdrawal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .mobile-container {
+            width: 360px;
+            height: 760px;
+            background-color: #ffffff;
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 0 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-container">
+        <!-- Status Bar -->
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 20px 4px 20px; font-size: 13px; font-weight: 600; color: #333333;">
+            <span>9:00</span>
+            <div style="display: flex; align-items: center; gap: 6px;">
+                <i data-lucide="bluetooth" style="width: 14px; height: 14px; color: #666666;"></i>
+                <i data-lucide="wifi" style="width: 14px; height: 14px; color: #666666;"></i>
+                <i data-lucide="signal" style="width: 14px; height: 14px; color: #666666;"></i>
+                <i data-lucide="battery" style="width: 18px; height: 14px; color: #666666;"></i>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header style="display: flex; justify-content: space-between; align-items: center; padding: 12px 20px 16px 20px;">
+            <button style="background: none; border: none; cursor: pointer; padding: 8px;" onclick="history.back()">
+                <i data-lucide="arrow-left" style="color: #333333; width: 24px; height: 24px;"></i>
+            </button>
+            <h1 style="font-size: 18px; font-weight: 700; color: #333333; letter-spacing: 1px;">CONFIRM</h1>
+            <div style="width: 40px;"></div>
+        </header>
+
+        <div class="content-area">
+            <!-- Main Card -->
+            <div style="background-color: #ffffff; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); padding: 24px 20px; margin-bottom: 20px; border: 1px solid #f0f0f0;">
+
+                <!-- Withdraw Money Badge -->
+                <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+                    <span style="background-color: #F0F0F0; color: #666666; font-size: 12px; font-weight: 700; letter-spacing: 1px; padding: 8px 20px; border-radius: 20px;">WITHDRAW MONEY</span>
+                </div>
+
+                <!-- PayPal Icon -->
+                <div style="display: flex; justify-content: center; margin-bottom: 28px;">
+                    <div style="width: 72px; height: 72px; background-color: #F0F0F0; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <img src="/assets/paypal-icon.png" alt="PayPal" style="width: 40px; height: 40px; object-fit: contain;">
+                    </div>
+                </div>
+
+                <!-- Phone Number Row -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                    <div>
+                        <p style="font-size: 12px; font-weight: 600; color: #999999; letter-spacing: 1px; margin-bottom: 4px;">PHONE NUMBER</p>
+                        <p style="font-size: 22px; font-weight: 600; color: #333333;">711492682</p>
+                    </div>
+                    <button style="width: 48px; height: 48px; background-color: #F5F5F5; border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;">
+                        <i data-lucide="pencil" style="width: 20px; height: 20px; color: #666666;"></i>
+                    </button>
+                </div>
+
+                <!-- Amount Row -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                    <div>
+                        <p style="font-size: 12px; font-weight: 600; color: #999999; letter-spacing: 1px; margin-bottom: 4px;">AMOUNT</p>
+                        <p style="font-size: 22px; font-weight: 700; color: #333333; margin-bottom: 2px;">15,600.00 Birr</p>
+                        <p style="font-size: 12px; font-weight: 600; color: #666666; letter-spacing: 0.5px;">AMOUNT IN USD: 120.00 USD</p>
+                    </div>
+                    <button style="width: 48px; height: 48px; background-color: #F5F5F5; border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;">
+                        <i data-lucide="pencil" style="width: 20px; height: 20px; color: #666666;"></i>
+                    </button>
+                </div>
+
+                <!-- Divider -->
+                <div style="height: 1px; background-color: #E8E8E8; margin: 4px 0 20px 0;"></div>
+
+                <!-- Add Description Row -->
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <p style="font-size: 14px; font-weight: 500; color: #BBBBBB; letter-spacing: 0.5px;">ADD DESCRIPTION</p>
+                    <button style="background: none; border: 1.5px solid #DDDDDD; color: #666666; font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 700; padding: 8px 20px; border-radius: 20px; cursor: pointer; letter-spacing: 0.5px;">ADD</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Send Button -->
+        <div style="padding: 0 16px 20px 16px;">
+            <button style="width: 100%; background-color: #2FC56D; color: white; border: none; padding: 18px; border-radius: 30px; font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 700; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 10px; letter-spacing: 1px; box-shadow: 0 4px 16px rgba(47, 197, 109, 0.3);">
+                <span>SEND</span>
+                <i data-lucide="arrow-right" style="width: 20px; height: 20px;"></i>
+            </button>
+        </div>
+
+        <!-- Android Navigation Bar -->
+        <div style="display: flex; justify-content: space-around; align-items: center; padding: 12px 0 8px 0; border-top: 1px solid #f0f0f0;">
+            <i data-lucide="triangle" style="width: 20px; height: 20px; color: #666666; transform: rotate(-90deg);"></i>
+            <div style="width: 20px; height: 20px; border: 2px solid #666666; border-radius: 50%;"></div>
+            <div style="width: 20px; height: 20px; border: 2px solid #666666; border-radius: 3px;"></div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

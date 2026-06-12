@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=360, initial-scale=1.0">
+    <title>Menu Options</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .mobile-container {
+            width: 360px;
+            height: 760px;
+            background-color: #ffffff;
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .modal-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 24px 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-container">
+        <!-- Modal Handle -->
+        <div style="display: flex; justify-content: center; padding: 16px 0 8px 0;">
+            <div style="width: 40px; height: 4px; background-color: #E0E0E0; border-radius: 2px;"></div>
+        </div>
+
+        <div class="modal-content">
+            <!-- Header -->
+            <h2 style="font-size: 16px; font-weight: 600; color: #999999; letter-spacing: 1px; margin-bottom: 24px; text-transform: uppercase;">CHOOSE SAVINGS TYPE</h2>
+
+            <!-- Menu Items -->
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                <!-- Un-Link Account -->
+                <button onclick="handleUnlink()" style="display: flex; align-items: center; gap: 16px; background: none; border: none; padding: 16px; border-radius: 12px; cursor: pointer; transition: background 0.2s; text-align: left;">
+                    <div style="width: 48px; height: 48px; background-color: #F5F5F5; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i data-lucide="link-2" style="width: 22px; height: 22px; color: #666666; transform: rotate(45deg);"></i>
+                    </div>
+                    <span style="font-size: 15px; font-weight: 600; color: #666666; letter-spacing: 0.5px;">UN-LINK ACCOUNT</span>
+                </button>
+
+                <!-- FAQ -->
+                <button onclick="handleFAQ()" style="display: flex; align-items: center; gap: 16px; background: none; border: none; padding: 16px; border-radius: 12px; cursor: pointer; transition: background 0.2s; text-align: left;">
+                    <div style="width: 48px; height: 48px; background-color: #F5F5F5; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i data-lucide="help-circle" style="width: 22px; height: 22px; color: #666666;"></i>
+                    </div>
+                    <span style="font-size: 15px; font-weight: 600; color: #666666; letter-spacing: 0.5px;">FAQ</span>
+                </button>
+
+                <!-- Help -->
+                <button onclick="handleHelp()" style="display: flex; align-items: center; gap: 16px; background: none; border: none; padding: 16px; border-radius: 12px; cursor: pointer; transition: background 0.2s; text-align: left;">
+                    <div style="width: 48px; height: 48px; background-color: #F5F5F5; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i data-lucide="headphones" style="width: 22px; height: 22px; color: #666666;"></i>
+                    </div>
+                    <span style="font-size: 15px; font-weight: 600; color: #666666; letter-spacing: 0.5px;">HELP</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Android Navigation Bar -->
+        <div style="display: flex; justify-content: space-around; align-items: center; padding: 8px 0 12px 0; border-top: 1px solid #f0f0f0;">
+            <i data-lucide="triangle" style="width: 20px; height: 20px; color: #666666; transform: rotate(-90deg);"></i>
+            <div style="width: 20px; height: 20px; border: 2px solid #666666; border-radius: 50%;"></div>
+            <div style="width: 20px; height: 20px; border: 2px solid #666666; border-radius: 3px;"></div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        function handleUnlink() {
+            // Add your unlink account logic here
+            console.log('Un-link account clicked');
+        }
+
+        function handleFAQ() {
+            // Add your FAQ logic here
+            console.log('FAQ clicked');
+        }
+
+        function handleHelp() {
+            // Add your help logic here
+            console.log('Help clicked');
+        }
+
+        // Add hover effect
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.backgroundColor = '#F9F9F9';
+            });
+            btn.addEventListener('mouseleave', function() {
+                this.style.backgroundColor = 'transparent';
+            });
+        });
+    </script>
+</body>
+</html>

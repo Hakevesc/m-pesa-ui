@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=360, initial-scale=1.0">
+    <title>PayPal Withdraw</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .mobile-container {
+            width: 360px;
+            height: 760px;
+            background-color: #ffffff;
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .keypad-area {
+            padding: 10px 20px 30px 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-container">
+        <!-- Header -->
+        <header style="display: flex; justify-content: space-between; align-items: center; padding: 16px 20px;">
+            <button style="background: none; border: none; cursor: pointer; padding: 8px;" onclick="history.back()">
+                <i data-lucide="arrow-left" style="color: #666666; width: 24px; height: 24px;"></i>
+            </button>
+            <div style="width: 60px; height: 6px; background-color: #E8E8E8; border-radius: 3px; overflow: hidden;">
+                <div style="width: 30px; height: 100%; background-color: #2FC56D; border-radius: 3px;"></div>
+            </div>
+        </header>
+
+        <div class="content-area">
+            <!-- PayPal Icon -->
+            <div style="width: 80px; height: 80px; background-color: #F0F0F0; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 10px; margin-bottom: 16px;">
+                <img src="/Assets/paypal-icon.svg" alt="PayPal" style="width: 44px; height: 44px; object-fit: contain;">
+            </div>
+
+            <!-- Exchange Rate -->
+            <p style="font-size: 18px; font-weight: 600; color: #333333; margin-bottom: 40px;">
+                1 USD = <span style="color: #2FC56D;">130 ETB</span>
+            </p>
+
+            <!-- Amount Input Display -->
+            <div style="display: flex; align-items: baseline; justify-content: center; margin-bottom: 8px; min-height: 56px;">
+                <span id="amountDisplay" style="font-size: 48px; font-weight: 700; color: #CCCCCC; transition: color 0.3s;">0</span>
+                <span style="font-size: 48px; font-weight: 400; color: #CCCCCC; margin-left: 8px;">USD</span>
+            </div>
+
+            <!-- Balance -->
+            <p style="font-size: 14px; font-weight: 500; color: #999999; margin-bottom: 30px;">PAYPAL BALANCE: 280.00 USD</p>
+
+            <!-- Down Arrow Circle (shown when amount > 0) -->
+            <div id="arrowCircle" style="width: 40px; height: 40px; background-color: #ffffff; border: 2px solid #E8E8E8; border-radius: 50%; display: none; align-items: center; justify-content: center; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+                <i data-lucide="arrow-down" style="width: 18px; height: 18px; color: #999999;"></i>
+            </div>
+
+            <!-- BIRR Converter Row (shown when amount > 0) -->
+            <div id="birrRow" style="width: 100%; background-color: #F5F5F5; border-radius: 12px; padding: 16px 20px; display: none; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 28px;">🇪🇹</span>
+                    <span id="birrAmount" style="font-size: 20px; font-weight: 600; color: #999999;">0.00</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <span style="font-size: 14px; font-weight: 600; color: #999999; letter-spacing: 0.5px;">BIRR</span>
+                    <button style="background: none; border: none; cursor: pointer; padding: 4px;" onclick="swapCurrencies()">
+                        <i data-lucide="refresh-cw" style="width: 22px; height: 22px; color: #2FC56D;"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Continue Button -->
+            <button id="continueBtn" style="width: 100%; background-color: #F0F0F0; color: #CCCCCC; border: none; padding: 18px; border-radius: 30px; font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 700; cursor: not-allowed; display: flex; justify-content: center; align-items: center; gap: 10px; letter-spacing: 1px; transition: all 0.3s; margin-bottom: 10px;">
+                <span>CONTINUE</span>
+                <i data-lucide="arrow-right" style="width: 20px; height: 20px;"></i>
+            </button>
+        </div>
+
+        <!-- Number Keypad -->
+        <div class="keypad-area">
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; max-width: 280px; margin: 0 auto;">
+                <button class="key-btn" onclick="pressKey('1')" style="background: none; border: none; font-family: 'Barlow', sans-serif; font-size: 32px; font-weight: 500; color: #555555; padding: 16px; cursor: pointer; border-radius: 12px; transition: background 0.15s;">1</button>
+                <button class="key-btn" onclick="pressKey('2')" style="background: none; border: none; font-family: 'Barlow', sans-serif; font-size: 32px; font-weight: 500; color: #555555; padding: 16px; cursor: pointer; border-radius: 12px; transition: background 0.15s;">2</button>
+                <button class="key-btn" onclick="pressKey('3')" style="background: none; border: none; font-family: 'Barlow', sans-serif; font-size: 32px; font-weight: 500; color: #555555; padding: 16px; cursor: pointer; border-radius: 12px; transition: background 0.15s;">3</button>
+                <button class="key-btn" onclick="pressKey('4')" style="background: none; border: none; font-family: 'Barlow', sans-serif; font-size: 32px; font-weight: 500; color: #555555; padding: 16px; cursor: pointer; border-radius: 12px; transition: background 0.15s;">4</button>
+                <button class="key-btn" onclick="pressKey('5')" style="background: none; border: none; font-family: 'Barlow', sans-serif; font-size: 32px; font-weight: 500; color: #555555; padding: 16px; cursor: pointer; border-radius: 12px; transition: background 0.15s;">5</button>
+                <button class="key-btn" onclick="pressKey('6')" style="background: none; border: none; font-family: 'Barlow', sans-serif; font-size: 32px; font-weight: 500; color: #555555; padding: 16px; cursor: pointer; border-radius: 12px; transition: background 0.15s;">6</button>
+                <button class="key-btn" onclick="pressKey('7')" style="background: none; border: none; font-family: 'Barlow', sans-serif; font-size: 32px; font-weight: 500; color: #555555; padding: 16px; cursor: pointer; border-radius: 12px; transition: background 0.15s;">7</button>
+                <button class="key-btn" onclick="pressKey('8')" style="background: none; border: none; font-family: 'Barlow', sans-serif; font-size: 32px; font-weight: 500; color: #555555; padding: 16px; cursor: pointer; border-radius: 12px; transition: background 0.15s;">8</button>
+                <button class="key-btn" onclick="pressKey('9')" style="background: none; border: none; font-family: 'Barlow', sans-serif; font-size: 32px; font-weight: 500; color: #555555; padding: 16px; cursor: pointer; border-radius: 12px; transition: background 0.15s;">9</button>
+                <div></div>
+                <button class="key-btn" onclick="pressKey('0')" style="background: none; border: none; font-family: 'Barlow', sans-serif; font-size: 32px; font-weight: 500; color: #555555; padding: 16px; cursor: pointer; border-radius: 12px; transition: background 0.15s;">0</button>
+                <button class="key-btn" onclick="pressBackspace()" style="background: none; border: none; font-family: 'Barlow', sans-serif; font-size: 24px; font-weight: 500; color: #555555; padding: 16px; cursor: pointer; border-radius: 12px; transition: background 0.15s; display: flex; align-items: center; justify-content: center;">
+                    <i data-lucide="delete" style="width: 24px; height: 24px; color: #999999;"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        let currentAmount = '0';
+        const RATE = 130;
+        const MAX_BALANCE = 280;
+
+        function pressKey(key) {
+            if (currentAmount === '0') {
+                currentAmount = key;
+            } else {
+                if (currentAmount.length >= 6) return;
+                currentAmount += key;
+            }
+            updateDisplay();
+        }
+
+        function pressBackspace() {
+            if (currentAmount.length === 1) {
+                currentAmount = '0';
+            } else {
+                currentAmount = currentAmount.slice(0, -1);
+            }
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            const amountDisplay = document.getElementById('amountDisplay');
+            const birrRow = document.getElementById('birrRow');
+            const arrowCircle = document.getElementById('arrowCircle');
+            const continueBtn = document.getElementById('continueBtn');
+            const birrAmount = document.getElementById('birrAmount');
+
+            const numValue = parseInt(currentAmount);
+
+            // Update amount display color
+            if (numValue > 0) {
+                amountDisplay.style.color = '#2FC56D';
+            } else {
+                amountDisplay.style.color = '#CCCCCC';
+            }
+
+            amountDisplay.textContent = currentAmount;
+
+            // Show/hide birr row and arrow
+            if (numValue > 0) {
+                birrRow.style.display = 'flex';
+                arrowCircle.style.display = 'flex';
+                const birrValue = (numValue * RATE).toFixed(2);
+                birrAmount.textContent = birrValue;
+            } else {
+                birrRow.style.display = 'none';
+                arrowCircle.style.display = 'none';
+            }
+
+            // Update continue button
+            if (numValue > 0 && numValue <= MAX_BALANCE) {
+                continueBtn.style.backgroundColor = '#2FC56D';
+                continueBtn.style.color = '#ffffff';
+                continueBtn.style.cursor = 'pointer';
+            } else if (numValue > MAX_BALANCE) {
+                continueBtn.style.backgroundColor = '#FF4444';
+                continueBtn.style.color = '#ffffff';
+                continueBtn.style.cursor = 'not-allowed';
+            } else {
+                continueBtn.style.backgroundColor = '#F0F0F0';
+                continueBtn.style.color = '#CCCCCC';
+                continueBtn.style.cursor = 'not-allowed';
+            }
+        }
+
+        function swapCurrencies() {
+            // Swap display between USD and BIRR
+            const amountDisplay = document.getElementById('amountDisplay');
+            const birrAmount = document.getElementById('birrAmount');
+            const numValue = parseInt(currentAmount);
+
+            if (numValue > 0) {
+                const birrValue = numValue * RATE;
+                // Brief animation
+                amountDisplay.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    amountDisplay.style.transform = 'scale(1)';
+                }, 150);
+            }
+        }
+
+        // Add hover effects to keypad buttons
+        document.querySelectorAll('.key-btn').forEach(btn => {
+            btn.addEventListener('mousedown', function() {
+                this.style.backgroundColor = '#F0F0F0';
+            });
+            btn.addEventListener('mouseup', function() {
+                this.style.backgroundColor = 'transparent';
+            });
+            btn.addEventListener('mouseleave', function() {
+                this.style.backgroundColor = 'transparent';
+            });
+        });
+
+        // Keyboard support
+        document.addEventListener('keydown', function(e) {
+            if (e.key >= '0' && e.key <= '9') {
+                pressKey(e.key);
+            } else if (e.key === 'Backspace') {
+                pressBackspace();
+            }
+        });
+    </script>
+</body>
+</html>

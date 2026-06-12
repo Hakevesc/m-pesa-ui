@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=360, initial-scale=1.0">
+    <title>Welcome to PayPal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Barlow', sans-serif; background: #f0f0f0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .mobile-container { width: 360px; height: 760px; background: #fff; overflow-y: auto; overflow-x: hidden; position: relative; box-shadow: 0 0 20px rgba(0,0,0,.1); display: flex; flex-direction: column; }
+        .mobile-container::-webkit-scrollbar { display: none; }
+        .content-area { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 0 24px; justify-content: center; }
+        .link-btn { width: 100%; background: #2FC56D; color: #fff; border: none; padding: 18px; border-radius: 12px; font-family: 'Barlow', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; letter-spacing: 1px; box-shadow: 0 4px 16px rgba(47,197,109,.3); transition: all .2s; }
+        .link-btn:hover { background: #28b362; }
+        .link-btn:active { transform: scale(.98); }
+        .terms-link { color: #2FC56D; text-decoration: underline; cursor: pointer; font-weight: 500; }
+        .terms-link:hover { color: #097E46; }
+    </style>
+</head>
+<body>
+    <div class="mobile-container">
+        <!-- Status Bar -->
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 28px 6px;font-size:15px;font-weight:700;color:#1e293b;">
+            <span>9:41</span>
+            <div style="display:flex;gap:6px;align-items:center;color:#1e293b;">
+                <i data-lucide="wifi" style="width:14px;height:14px;"></i>
+                <i data-lucide="battery" style="width:18px;height:14px;"></i>
+            </div>
+        </div>
+        <!-- Header with logos -->
+        <header style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;">
+            <div style="display:flex;align-items:center;gap:12px;">
+                <img src="../Assets/PayPal-Logo-Black.png" alt="PayPal" style="height:24px;width:auto;">
+                <span style="color:#ccc;font-size:18px;">|</span>
+                <img src="../Assets/M-PESA-Logo-Green.svg" alt="M-PESA" style="height:28px;width:auto;">
+            </div>
+            <button onclick="closeScreen()" style="background:none;border:none;cursor:pointer;padding:4px;"><i data-lucide="x" style="width:22px;height:22px;color:#666;"></i></button>
+        </header>
+        <div class="content-area">
+            <!-- PayPal & M-PESA vertical branding -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:40px;">
+                <img src="../Assets/PayPal-Logo-Black.png" alt="PayPal" style="height:28px;width:auto;">
+                <span style="color:#ddd;font-size:20px;font-weight:300;">|</span>
+                <img src="../Assets/M-PESA-Logo-Green.svg" alt="M-PESA" style="height:30px;width:auto;">
+            </div>
+            <p style="font-size:12px;font-weight:500;color:#999;margin-bottom:24px;letter-spacing:1px;">IN PARTNERSHIP</p>
+            <h1 style="font-size:22px;font-weight:700;color:#333;margin-bottom:20px;text-align:center;">Welcome to PayPal</h1>
+            <p style="font-size:14px;font-weight:400;color:#666;text-align:center;line-height:1.6;margin-bottom:24px;max-width:300px;">In order to be able to withdraw freely with PayPal, please link your PayPal account to this M-PESA account</p>
+            <p style="font-size:13px;font-weight:400;color:#666;text-align:center;line-height:1.6;margin-bottom:32px;max-width:300px;">By tapping "Link Account" you acknowledge that you have read and agreed to the <span class="terms-link" onclick="window.location.href='terms&condition.html'">Terms and Conditions</span></p>
+        </div>
+        <div style="padding:0 20px 20px;">
+            <button class="link-btn" onclick="window.location.href='Verify Email.html'">LINK PAYPAL ACCOUNT</button>
+        </div>
+        <div style="padding:0 20px 24px;text-align:center;">
+            <p style="font-size:13px;font-weight:400;color:#999;line-height:1.5;">Don't have an account yet? You can create one during account linking</p>
+        </div>
+    </div>
+    <script>
+        lucide.createIcons();
+        function closeScreen() { window.location.href = '../PayPal Hub.html'; }
+    </script>
+</body>
+</html>

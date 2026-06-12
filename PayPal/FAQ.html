@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=360, initial-scale=1.0">
+    <title>FAQ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .mobile-container {
+            width: 360px;
+            height: 760px;
+            background-color: #ffffff;
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .faq-item {
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .faq-item:hover {
+            background-color: #F9F9F9;
+        }
+
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+
+        .faq-content.active {
+            max-height: 200px;
+            padding: 12px 20px 16px 20px;
+        }
+
+        .chevron {
+            transition: transform 0.3s ease;
+        }
+
+        .chevron.rotate {
+            transform: rotate(90deg);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-container">
+        <!-- Status Bar -->
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 20px 4px 20px; font-size: 13px; font-weight: 600; color: #333333;">
+            <span>9:00</span>
+            <div style="display: flex; align-items: center; gap: 6px;">
+                <i data-lucide="bluetooth" style="width: 14px; height: 14px; color: #666666;"></i>
+                <i data-lucide="wifi" style="width: 14px; height: 14px; color: #666666;"></i>
+                <i data-lucide="signal" style="width: 14px; height: 14px; color: #666666;"></i>
+                <i data-lucide="battery" style="width: 18px; height: 14px; color: #666666;"></i>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header style="display: flex; justify-content: space-between; align-items: center; padding: 12px 20px 16px 20px;">
+            <button style="background: none; border: none; cursor: pointer; padding: 8px;" onclick="history.back()">
+                <i data-lucide="arrow-left" style="color: #666666; width: 24px; height: 24px;"></i>
+            </button>
+            <div style="flex: 1; text-align: center;">
+                <h1 style="font-size: 32px; font-weight: 400; color: #333333; letter-spacing: 2px;">FAQ</h1>
+            </div>
+            <div style="width: 40px;"></div>
+        </header>
+
+        <!-- FAQ List -->
+        <div style="flex: 1; overflow-y: auto; padding: 0 0 20px 0;">
+            
+            <!-- FAQ Item 1 -->
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #F0F0F0;">
+                    <h3 style="font-size: 13px; font-weight: 600; color: #666666; line-height: 1.5; letter-spacing: 0.5px; flex: 1; margin-right: 12px;">
+                        WHAT IS TEREK BE M-PESA?
+                    </h3>
+                    <i data-lucide="chevron-right" class="chevron" style="width: 20px; height: 20px; color: #CCCCCC; flex-shrink: 0;"></i>
+                </div>
+                <div class="faq-content">
+                    <p style="font-size: 13px; font-weight: 400; color: #666666; line-height: 1.6;">
+                        Terek Be M-PESA is a loyalty program that rewards you for your M-PESA transactions. Earn draw codes and stand a chance to win exciting prizes.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #F0F0F0;">
+                    <h3 style="font-size: 13px; font-weight: 600; color: #666666; line-height: 1.5; letter-spacing: 0.5px; flex: 1; margin-right: 12px;">
+                        WHAT TYPES OF TRANSACTIONS MAKE ME ELIGIBLE FOR THE DRAW?
+                    </h3>
+                    <i data-lucide="chevron-right" class="chevron" style="width: 20px; height: 20px; color: #CCCCCC; flex-shrink: 0;"></i>
+                </div>
+                <div class="faq-content">
+                    <p style="font-size: 13px; font-weight: 400; color: #666666; line-height: 1.6;">
+                        All M-PESA transactions including send money, buy goods, pay bill, and withdraw cash make you eligible for the draw.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #F0F0F0;">
+                    <h3 style="font-size: 13px; font-weight: 600; color: #666666; line-height: 1.5; letter-spacing: 0.5px; flex: 1; margin-right: 12px;">
+                        WHAT ARE THE PRIZE TYPES?
+                    </h3>
+                    <i data-lucide="chevron-right" class="chevron" style="width: 20px; height: 20px; color: #CCCCCC; flex-shrink: 0;"></i>
+                </div>
+                <div class="faq-content">
+                    <p style="font-size: 13px; font-weight: 400; color: #666666; line-height: 1.6;">
+                        We offer daily prizes, weekly prizes, and grand prizes. Prize amounts vary and are announced during the draw periods.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 4 -->
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #F0F0F0;">
+                    <h3 style="font-size: 13px; font-weight: 600; color: #666666; line-height: 1.5; letter-spacing: 0.5px; flex: 1; margin-right: 12px;">
+                        IF I WON THE DAILY PRIZE, AM I ELIGIBLE TO WIN THE OTHER PRIZES?
+                    </h3>
+                    <i data-lucide="chevron-right" class="chevron" style="width: 20px; height: 20px; color: #CCCCCC; flex-shrink: 0;"></i>
+                </div>
+                <div class="faq-content">
+                    <p style="font-size: 13px; font-weight: 400; color: #666666; line-height: 1.6;">
+                        Yes! Winning a daily prize does not disqualify you from winning weekly or grand prizes. Keep transacting to earn more draw codes.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 5 -->
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #F0F0F0;">
+                    <h3 style="font-size: 13px; font-weight: 600; color: #666666; line-height: 1.5; letter-spacing: 0.5px; flex: 1; margin-right: 12px;">
+                        WHAT IS THE MINIMUM TRANSACTION I SHOULD DO TO EARN A DRAW CODE?
+                    </h3>
+                    <i data-lucide="chevron-right" class="chevron" style="width: 20px; height: 20px; color: #CCCCCC; flex-shrink: 0;"></i>
+                </div>
+                <div class="faq-content">
+                    <p style="font-size: 13px; font-weight: 400; color: #666666; line-height: 1.6;">
+                        The minimum transaction amount to earn a draw code is KES 100. Each qualifying transaction earns you one draw code.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 6 -->
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #F0F0F0;">
+                    <h3 style="font-size: 13px; font-weight: 600; color: #666666; line-height: 1.5; letter-spacing: 0.5px; flex: 1; margin-right: 12px;">
+                        HOW MANY DRAW CODE CAN I EARN IN A DAY?
+                    </h3>
+                    <i data-lucide="chevron-right" class="chevron" style="width: 20px; height: 20px; color: #CCCCCC; flex-shrink: 0;"></i>
+                </div>
+                <div class="faq-content">
+                    <p style="font-size: 13px; font-weight: 400; color: #666666; line-height: 1.6;">
+                        You can earn up to 10 draw codes per day. Each eligible transaction earns you one draw code.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Android Navigation Bar -->
+        <div style="display: flex; justify-content: space-around; align-items: center; padding: 12px 0 8px 0; border-top: 1px solid #f0f0f0;">
+            <i data-lucide="triangle" style="width: 20px; height: 20px; color: #666666; transform: rotate(-90deg);"></i>
+            <div style="width: 20px; height: 20px; border: 2px solid #666666; border-radius: 50%;"></div>
+            <div style="width: 20px; height: 20px; border: 2px solid #666666; border-radius: 3px;"></div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        function toggleFAQ(element) {
+            const content = element.querySelector('.faq-content');
+            const chevron = element.querySelector('.chevron');
+            
+            // Close all other FAQ items
+            document.querySelectorAll('.faq-content').forEach(item => {
+                if (item !== content) {
+                    item.classList.remove('active');
+                }
+            });
+            
+            document.querySelectorAll('.chevron').forEach(icon => {
+                if (icon !== chevron) {
+                    icon.classList.remove('rotate');
+                }
+            });
+
+            // Toggle current item
+            content.classList.toggle('active');
+            chevron.classList.toggle('rotate');
+        }
+    </script>
+</body>
+</html>
