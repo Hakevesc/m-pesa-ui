@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saving Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background: linear-gradient(135deg, #e0e7ff 0%, #d1fae5 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .mobile-container {
+            width: 375px;
+            height: 812px;
+            background-color: #ffffff;
+            border-radius: 40px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+        }
+
+        .mobile-container ::-webkit-scrollbar {
+            display: none;
+        }
+        .mobile-container {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Status Bar */
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 28px 6px;
+            background-color: #ffffff;
+            flex-shrink: 0;
+        }
+
+        .status-bar .time {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .status-bar .icons {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #1e293b;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            padding: 16px 28px 0;
+            background-color: #ffffff;
+            flex-shrink: 0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background-color: #f1f5f9;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 75%;
+            height: 100%;
+            background: linear-gradient(90deg, #2FC56D 0%, #1ea35a 100%);
+            border-radius: 2px;
+        }
+
+        /* Scrollable Content */
+        .scroll-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px 28px 120px;
+            background-color: #ffffff;
+        }
+
+        /* Page Title */
+        .page-title {
+            font-size: 26px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 24px;
+            letter-spacing: -0.5px;
+        }
+
+        /* Section Labels */
+        .section-label {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 12px;
+            letter-spacing: 0.3px;
+        }
+
+        /* Input Field */
+        .input-wrapper {
+            margin-bottom: 24px;
+        }
+
+        .input-field-wrapper {
+            display: flex;
+            align-items: center;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 14px;
+            background-color: #f8fafc;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .input-field-wrapper:focus-within {
+            border-color: #2FC56D;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 4px rgba(47, 197, 109, 0.1);
+        }
+
+        .input-prefix {
+            padding: 16px 14px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #64748b;
+            border-right: 1.5px solid #e2e8f0;
+            background-color: #f1f5f9;
+        }
+
+        .input-field {
+            flex: 1;
+            padding: 16px 18px;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Barlow', sans-serif;
+            color: #1e293b;
+            background: transparent;
+        }
+
+        .input-field:focus {
+            outline: none;
+        }
+
+        .input-field::placeholder {
+            color: #94a3b8;
+        }
+
+        /* Frequency Cards */
+        .frequency-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .frequency-card {
+            padding: 20px 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            background-color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            text-align: center;
+        }
+
+        .frequency-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .frequency-card.selected {
+            border-color: #2FC56D;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+        }
+
+        .frequency-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f1f5f9;
+            color: #64748b;
+        }
+
+        .frequency-card.selected .frequency-icon {
+            background-color: #ffffff;
+            color: #2FC56D;
+        }
+
+        .frequency-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        /* Calendar Card */
+        .calendar-card {
+            border: 1.5px solid #e2e8f0;
+            border-radius: 18px;
+            padding: 18px;
+            margin-bottom: 24px;
+            background-color: #ffffff;
+        }
+
+        .calendar-toggle {
+            display: flex;
+            background-color: #f1f5f9;
+            border-radius: 12px;
+            padding: 4px;
+            margin-bottom: 18px;
+        }
+
+        .calendar-toggle-btn {
+            flex: 1;
+            padding: 10px 16px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 700;
+            color: #64748b;
+            border: none;
+            background: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Barlow', sans-serif;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .calendar-toggle-btn.active {
+            background: linear-gradient(135deg, #2FC56D 0%, #1ea35a 100%);
+            color: #ffffff;
+            box-shadow: 0 2px 8px rgba(47, 197, 109, 0.3);
+        }
+
+        .date-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .date-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 8px;
+        }
+
+        .date-input {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 16px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 12px;
+            background-color: #f8fafc;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .date-input:hover {
+            border-color: #cbd5e1;
+        }
+
+        .date-input i {
+            color: #64748b;
+        }
+
+        .date-input span {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .date-input.placeholder span {
+            color: #94a3b8;
+        }
+
+        .duration-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 8px;
+        }
+
+        .duration-display {
+            padding: 14px 16px;
+            background-color: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 16px;
+        }
+
+        .duration-chips {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .duration-chip {
+            padding: 8px 14px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            background-color: #ffffff;
+            font-size: 12px;
+            font-weight: 700;
+            color: #2FC56D;
+            cursor: pointer;
+            font-family: 'Barlow', sans-serif;
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+        }
+
+        .duration-chip:hover {
+            border-color: #2FC56D;
+            transform: translateY(-1px);
+        }
+
+        .duration-chip.selected {
+            background: linear-gradient(135deg, #2FC56D 0%, #1ea35a 100%);
+            color: #ffffff;
+            border-color: #2FC56D;
+            box-shadow: 0 2px 8px rgba(47, 197, 109, 0.3);
+        }
+
+        /* Estimated Plan Card */
+        .plan-card {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 1.5px solid #bbf7d0;
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 8px;
+        }
+
+        .plan-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 16px;
+        }
+
+        .plan-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(47, 197, 109, 0.15);
+        }
+
+        .plan-row:last-child {
+            border-bottom: none;
+        }
+
+        .plan-row-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: #475569;
+        }
+
+        .plan-row-value {
+            font-size: 15px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .plan-row-value.interest {
+            color: #2FC56D;
+        }
+
+        /* Bottom Button */
+        .bottom-button-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 16px 28px 28px;
+            background: linear-gradient(to top, #ffffff 60%, transparent);
+            z-index: 10;
+        }
+
+        .continue-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #2FC56D 0%, #1ea35a 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 16px;
+            padding: 16px 24px;
+            font-size: 15px;
+            font-weight: 700;
+            font-family: 'Barlow', sans-serif;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 8px 24px rgba(47, 197, 109, 0.35);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .continue-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(47, 197, 109, 0.45);
+        }
+
+        /* Nav Bar */
+        .nav-bar {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 24px 14px;
+            background-color: #ffffff;
+            border-top: 1px solid #f1f5f9;
+            flex-shrink: 0;
+        }
+
+        .nav-icon {
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+    <div class="mobile-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <span class="time">9:41</span>
+            <div class="icons">
+                <i data-lucide="signal" style="width: 16px; height: 16px;"></i>
+                <i data-lucide="wifi" style="width: 16px; height: 16px;"></i>
+                <i data-lucide="battery-full" style="width: 16px; height: 16px;"></i>
+            </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+
+        <!-- Scrollable Content -->
+        <div class="scroll-content">
+            <h1 class="page-title">Saving Details</h1>
+
+            <!-- Total Amount -->
+            <div class="section-label">Total amount</div>
+            <div class="input-wrapper">
+                <div class="input-field-wrapper">
+                    <span class="input-prefix">ETB</span>
+                    <input type="text" class="input-field" value="20,000.00" placeholder="0.00">
+                </div>
+            </div>
+
+            <!-- How Often -->
+            <div class="section-label">How often?</div>
+            <div class="frequency-grid">
+                <div class="frequency-card">
+                    <div class="frequency-icon">
+                        <i data-lucide="clock" style="width: 22px; height: 22px;"></i>
+                    </div>
+                    <span class="frequency-label">Daily</span>
+                </div>
+                <div class="frequency-card">
+                    <div class="frequency-icon">
+                        <i data-lucide="refresh-cw" style="width: 22px; height: 22px;"></i>
+                    </div>
+                    <span class="frequency-label">Weekly</span>
+                </div>
+                <div class="frequency-card selected">
+                    <div class="frequency-icon">
+                        <i data-lucide="calendar" style="width: 22px; height: 22px;"></i>
+                    </div>
+                    <span class="frequency-label">Monthly</span>
+                </div>
+            </div>
+
+            <!-- Calendar Card -->
+            <div class="calendar-card">
+                <div class="calendar-toggle">
+                    <button class="calendar-toggle-btn active">GREGORIAN</button>
+                    <button class="calendar-toggle-btn">ETHIOPIAN</button>
+                </div>
+
+                <div class="date-row">
+                    <div>
+                        <div class="date-label">Start Date</div>
+                        <div class="date-input">
+                            <i data-lucide="calendar" style="width: 18px; height: 18px;"></i>
+                            <span>Apr 12, 2024</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="date-label">Target Date</div>
+                        <div class="date-input placeholder">
+                            <i data-lucide="calendar" style="width: 18px; height: 18px;"></i>
+                            <span>Select date</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="duration-label">Saving Duration</div>
+                <div class="duration-display">134 DAYS ~ 4.5 MONTHS</div>
+
+                <div class="duration-chips">
+                    <button class="duration-chip">3 MONTHS</button>
+                    <button class="duration-chip">6 MONTHS</button>
+                    <button class="duration-chip selected">1 YEAR</button>
+                    <button class="duration-chip">2 YEARS</button>
+                </div>
+            </div>
+
+            <!-- Estimated Plan -->
+            <div class="plan-card">
+                <div class="plan-title">Estimated Plan</div>
+                <div class="plan-row">
+                    <span class="plan-row-label">Amount Per Day</span>
+                    <span class="plan-row-value">150.00 BIRR</span>
+                </div>
+                <div class="plan-row">
+                    <span class="plan-row-label">Total Contributions</span>
+                    <span class="plan-row-value">20,000.00 BIRR</span>
+                </div>
+                <div class="plan-row">
+                    <span class="plan-row-label">Total At Maturity</span>
+                    <span class="plan-row-value">20,520.00 BIRR</span>
+                </div>
+                <div class="plan-row">
+                    <span class="plan-row-label">Projected Interest (7%)</span>
+                    <span class="plan-row-value interest">+520.00 BIRR</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Button -->
+        <div class="bottom-button-container">
+            <button class="continue-btn">
+                CONTINUE
+                <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+            </button>
+        </div>
+
+        <!-- Nav Bar -->
+        <div class="nav-bar">
+            <i data-lucide="triangle" class="nav-icon" style="width: 20px; height: 20px; transform: rotate(180deg);"></i>
+            <i data-lucide="circle" class="nav-icon" style="width: 20px; height: 20px;"></i>
+            <i data-lucide="square" class="nav-icon" style="width: 20px; height: 20px;"></i>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Frequency selection
+        document.querySelectorAll('.frequency-card').forEach(card => {
+            card.addEventListener('click', function() {
+                document.querySelectorAll('.frequency-card').forEach(c => c.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+
+        // Calendar toggle
+        document.querySelectorAll('.calendar-toggle-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.calendar-toggle-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Duration chip selection
+        document.querySelectorAll('.duration-chip').forEach(chip => {
+            chip.addEventListener('click', function() {
+                document.querySelectorAll('.duration-chip').forEach(c => c.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,9 +1,4 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<div class="page-title-wrap">
-  <h2 class="page-title"><span class="title-icon">💰</span> Savings</h2>
-  <p class="page-sub">Grow your money with M-PESA savings accounts</p>
-</div>
-
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap');
   @import url('https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css');
@@ -480,6 +475,7 @@
       <a class="flow-switch-item active" href="mpesa_savings_user_flow.html" role="menuitem"><i class="ti ti-pig-money" aria-hidden="true"></i> Savings</a>
       <a class="flow-switch-item" href="mpesa_group_saving_flow.html" role="menuitem"><i class="ti ti-users-group" aria-hidden="true"></i> Group saving</a>
       <a class="flow-switch-item" href="mpesa_credit_user_flow.html" role="menuitem"><i class="ti ti-cash" aria-hidden="true"></i> Credit</a>
+      <a class="flow-switch-item" href="PayPal Hub.html" role="menuitem"><i class="ti ti-brand-paypal" aria-hidden="true"></i> PayPal</a>
     </div>
   </div>
   <script>(function(){var fs=document.currentScript.previousElementSibling.previousElementSibling;document.addEventListener('click',function(e){if(fs&&!fs.contains(e.target))fs.classList.remove('open');});})();</script>
@@ -774,180 +770,489 @@
 
     <!-- ═══ s4 – New Saving Type (Step 1) ═══ -->
     <div class="screen" id="s4">
-      <div class="phone">
-        <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
-        <div class="hd">
-          <div class="hd-top"><button class="back" onclick="showScreen(0)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Savings</button><span class="hd-step">Step 1 of 7</span></div>
-          <div class="pbar"><div class="pfill" style="width:14%"></div></div>
-          <div class="hd-title">Choose saving type</div>
-          <div class="hd-sub">What kind of saving account do you want?</div>
+      <div class="phone" style="background:#ffffff">
+        <div class="sbar" style="background:#ffffff"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+        <div style="display:flex;align-items:center;padding:10px 28px 14px;background:#ffffff;flex-shrink:0">
+          <div onclick="showScreen(0)" style="min-height:36px;border-radius:10px;color:#1e293b;display:flex;align-items:center;justify-content:center;padding:0 8px 0 0;cursor:pointer;margin-right:12px;gap:4px;background:none;border:none;font-family:'Barlow',sans-serif;font-size:12px;font-weight:700">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          </div>
+          <span style="font-size:15px;font-weight:700;color:#1e293b;letter-spacing:0.5px">SAVING TYPE</span>
+          <span style="margin-left:auto;font-size:10px;color:#94a3b8;font-weight:700">Step 1 of 7</span>
         </div>
-        <div class="bd">
-          <div class="type-card sel" id="t-ind" onclick="selType('ind')">
-            <div class="type-icon" style="background:#E6F1FB"><i class="ti ti-user" style="color:#185FA5" aria-hidden="true"></i></div>
-            <div><div class="type-title">Individual saving</div><div class="type-sub">Personal goal-based pocket. Set a target, track progress.</div><span class="type-badge" style="background:#E6F4EA;color:#008A42">Most common</span></div>
-          </div>
-          <div class="type-card" id="t-grp" onclick="selType('grp')">
-            <div class="type-icon" style="background:#FAEEDA"><i class="ti ti-users" style="color:#854F0B" aria-hidden="true"></i></div>
-            <div><div class="type-title">Group saving</div><div class="type-sub">Shared account for up to 10 members.</div><span class="type-badge" style="background:#FAEEDA;color:#854F0B">Requires KYC</span></div>
-          </div>
-          <div class="type-card" id="t-fix" onclick="selType('fix')">
-            <div class="type-icon" style="background:#EEEDFE"><i class="ti ti-lock" style="color:#534AB7" aria-hidden="true"></i></div>
-            <div><div class="type-title">Fixed deposit</div><div class="type-sub">Lock funds for a fixed term. Higher interest rates.</div><span class="type-badge" style="background:#EEEDFE;color:#534AB7">Best rates</span></div>
+        <div style="padding:0 28px 16px;background:#ffffff;flex-shrink:0">
+          <div style="width:100%;height:4px;background:#f1f5f9;border-radius:2px;overflow:hidden">
+            <div style="width:14%;height:100%;background:linear-gradient(90deg,#2FC56D 0%,#1ea35a 100%);border-radius:2px"></div>
           </div>
         </div>
-        <div class="bottom-action">
-          <button class="cta" onclick="goN(1)"><i class="ti ti-arrow-right" aria-hidden="true"></i> Continue</button>
+        <div class="bd" style="flex:1;overflow-y:auto;padding:20px 28px 120px;background:#ffffff;gap:16px">
+          <h1 style="font-size:26px;font-weight:800;color:#0f172a;margin:0;letter-spacing:-0.5px">Choose saving type</h1>
+          <p style="font-size:14px;color:#64748b;font-weight:500;margin:2px 0 4px">What kind of saving account do you want?</p>
+          <div class="type-card sel" id="t-ind" onclick="selType('ind')" style="background:#fff;border:1.5px solid #2FC56D;border-radius:18px;padding:16px;cursor:pointer;display:flex;align-items:flex-start;gap:12px;box-shadow:0 2px 8px rgba(15,23,42,.04);background:rgba(47,197,109,.06)">
+            <div class="type-icon" style="width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;background:#E6F1FB"><i class="ti ti-user" style="color:#185FA5" aria-hidden="true"></i></div>
+            <div><div class="type-title" style="font-size:15px;font-weight:600;color:#0f172a">Individual saving</div><div class="type-sub" style="font-size:12px;color:#64748b;margin-top:2px;line-height:1.5">Personal goal-based pocket. Set a target, track progress.</div><span class="type-badge" style="display:inline-block;font-size:10px;padding:2px 8px;border-radius:6px;margin-top:6px;font-weight:600;background:#E6F4EA;color:#008A42">Most common</span></div>
+          </div>
+          <div class="type-card" id="t-grp" onclick="selType('grp')" style="background:#fff;border:1.5px solid #e2e8f0;border-radius:18px;padding:16px;cursor:pointer;display:flex;align-items:flex-start;gap:12px;box-shadow:0 2px 8px rgba(15,23,42,.04)">
+            <div class="type-icon" style="width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;background:#FAEEDA"><i class="ti ti-users" style="color:#854F0B" aria-hidden="true"></i></div>
+            <div><div class="type-title" style="font-size:15px;font-weight:600;color:#0f172a">Group saving</div><div class="type-sub" style="font-size:12px;color:#64748b;margin-top:2px;line-height:1.5">Shared account for up to 10 members.</div><span class="type-badge" style="display:inline-block;font-size:10px;padding:2px 8px;border-radius:6px;margin-top:6px;font-weight:600;background:#FAEEDA;color:#854F0B">Requires KYC</span></div>
+          </div>
+          <div class="type-card" id="t-fix" onclick="selType('fix')" style="background:#fff;border:1.5px solid #e2e8f0;border-radius:18px;padding:16px;cursor:pointer;display:flex;align-items:flex-start;gap:12px;box-shadow:0 2px 8px rgba(15,23,42,.04)">
+            <div class="type-icon" style="width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;background:#EEEDFE"><i class="ti ti-lock" style="color:#534AB7" aria-hidden="true"></i></div>
+            <div><div class="type-title" style="font-size:15px;font-weight:600;color:#0f172a">Fixed deposit</div><div class="type-sub" style="font-size:12px;color:#64748b;margin-top:2px;line-height:1.5">Lock funds for a fixed term. Higher interest rates.</div><span class="type-badge" style="display:inline-block;font-size:10px;padding:2px 8px;border-radius:6px;margin-top:6px;font-weight:600;background:#EEEDFE;color:#534AB7">Best rates</span></div>
+          </div>
+        </div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 28px 28px;background:linear-gradient(to top,#ffffff 60%,transparent);z-index:10">
+          <button class="cta" onclick="goN(1)" style="width:100%;min-height:50px;font-size:15px;letter-spacing:0.5px">CONTINUE <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        </div>
+        <div style="display:flex;justify-content:space-around;align-items:center;padding:10px 24px 14px;background:#ffffff;border-top:1px solid #f1f5f9;flex-shrink:0">
+          <i class="ti ti-triangle nav-icon" style="transform:rotate(180deg)" aria-hidden="true"></i>
+          <i class="ti ti-circle nav-icon" aria-hidden="true"></i>
+          <i class="ti ti-square nav-icon" aria-hidden="true"></i>
         </div>
       </div>
     </div>
 
     <!-- ═══ s5 – Bank & Rate (Step 2) ═══ -->
     <div class="screen" id="s5">
-      <div class="phone">
-        <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
-        <div class="hd">
-          <div class="hd-top"><button class="back" onclick="goN(0)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Back</button><span class="hd-step">Step 2 of 7</span></div>
-          <div class="pbar"><div class="pfill" style="width:28%"></div></div>
-          <div class="hd-title">Choose bank</div>
-          <div class="hd-sub">Pick a bank offer for your saving pocket</div>
+      <div class="phone" style="background:#ffffff">
+        <div class="sbar" style="background:#ffffff"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+        <div style="display:flex;align-items:center;padding:10px 28px 14px;background:#ffffff;flex-shrink:0">
+          <div onclick="goN(0)" style="min-height:36px;border-radius:10px;color:#1e293b;display:flex;align-items:center;justify-content:center;padding:0 8px 0 0;cursor:pointer;margin-right:12px;gap:4px;background:none;border:none;font-family:'Barlow',sans-serif;font-size:12px;font-weight:700">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          </div>
+          <span style="font-size:15px;font-weight:700;color:#1e293b;letter-spacing:0.5px">BANK & RATE</span>
+          <span style="margin-left:auto;font-size:10px;color:#94a3b8;font-weight:700">Step 2 of 7</span>
         </div>
-        <div class="bd">
-          <div class="slbl">Available offers</div>
-          <div class="bank-card sel" id="bk-cbe" onclick="selBank('cbe')">
-            <div class="bk-logo" style="background:#E6F1FB;color:#185FA5">CB</div>
-            <div style="flex:1;min-width:0"><div class="bk-name">Commercial Bank of Ethiopia</div><div class="bk-rate">Flexible savings · Min ETB 500</div></div>
-            <div class="bk-interest"><div class="bk-pct">7%</div><div class="bk-yr">per year</div></div>
-            <div class="bk-sel"></div>
+        <div style="padding:0 28px 16px;background:#ffffff;flex-shrink:0">
+          <div style="width:100%;height:4px;background:#f1f5f9;border-radius:2px;overflow:hidden">
+            <div style="width:28%;height:100%;background:linear-gradient(90deg,#2FC56D 0%,#1ea35a 100%);border-radius:2px"></div>
           </div>
-          <div class="bank-card" id="bk-aw" onclick="selBank('aw')">
-            <div class="bk-logo" style="background:#EAF3DE;color:#3B6D11">AB</div>
-            <div style="flex:1;min-width:0"><div class="bk-name">Awash Bank</div><div class="bk-rate">Goal savings · Min ETB 200</div></div>
-            <div class="bk-interest"><div class="bk-pct">5%</div><div class="bk-yr">per year</div></div>
-            <div class="bk-sel"></div>
-          </div>
-          <div class="bank-card" id="bk-da" onclick="selBank('da')">
-            <div class="bk-logo" style="background:#FAEEDA;color:#854F0B">DB</div>
-            <div style="flex:1;min-width:0"><div class="bk-name">Dashen Bank</div><div class="bk-rate">Fixed term · Min ETB 1,000</div></div>
-            <div class="bk-interest"><div class="bk-pct">9%</div><div class="bk-yr">per year</div></div>
-            <div class="bk-sel"></div>
-          </div>
-          <div class="bank-card" id="bk-hi" onclick="selBank('hi')">
-            <div class="bk-logo" style="background:#EEEDFE;color:#534AB7">HB</div>
-            <div style="flex:1;min-width:0"><div class="bk-name">Hibir Bank</div><div class="bk-rate">Flexible savings · Min ETB 100</div></div>
-            <div class="bk-interest"><div class="bk-pct">3%</div><div class="bk-yr">per year</div></div>
-            <div class="bk-sel"></div>
-          </div>
-          <div class="earn-pill"><div><div class="earn-label">Projected interest (1 yr)</div><div style="font-size:12px;color:#008A42;margin-top:2px">Based on ETB 10,000 deposit</div></div><div class="earn-val">ETB 700</div></div>
         </div>
-        <div class="bottom-action">
-          <button class="cta" onclick="goN(2)">Continue <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+        <div class="bd" style="flex:1;overflow-y:auto;padding:20px 28px 120px;background:#ffffff;gap:16px">
+          <h1 style="font-size:26px;font-weight:800;color:#0f172a;margin:0;letter-spacing:-0.5px">Choose bank</h1>
+          <p style="font-size:14px;color:#64748b;font-weight:500;margin:2px 0 4px">Pick a bank offer for your saving pocket</p>
+          <div style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.8px;margin-top:8px">Available offers</div>
+          <div class="bank-card sel" id="bk-cbe" onclick="selBank('cbe')" style="border:1.5px solid #2FC56D;border-radius:18px;padding:14px;cursor:pointer;display:flex;align-items:center;gap:12px;background:rgba(47,197,109,.06);box-shadow:0 2px 8px rgba(15,23,42,.04)">
+            <div class="bk-logo" style="width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0;background:#E6F1FB;color:#185FA5">CB</div>
+            <div style="flex:1;min-width:0"><div class="bk-name" style="font-size:14px;font-weight:600;color:#0f172a">Commercial Bank of Ethiopia</div><div class="bk-rate" style="font-size:12px;color:#64748b;margin-top:1px">Flexible savings · Min ETB 500</div></div>
+            <div style="text-align:right"><div style="font-size:18px;font-weight:700;color:#2FC56D">7%</div><div style="font-size:10px;color:#94a3b8">per year</div></div>
+            <div style="width:22px;height:22px;border-radius:50%;border:2px solid #2FC56D;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:#2FC56D"></div>
+          </div>
+          <div class="bank-card" id="bk-aw" onclick="selBank('aw')" style="border:1.5px solid #e2e8f0;border-radius:18px;padding:14px;cursor:pointer;display:flex;align-items:center;gap:12px;background:#fff;box-shadow:0 2px 8px rgba(15,23,42,.04)">
+            <div class="bk-logo" style="width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0;background:#EAF3DE;color:#3B6D11">AB</div>
+            <div style="flex:1;min-width:0"><div class="bk-name" style="font-size:14px;font-weight:600;color:#0f172a">Awash Bank</div><div class="bk-rate" style="font-size:12px;color:#64748b;margin-top:1px">Goal savings · Min ETB 200</div></div>
+            <div style="text-align:right"><div style="font-size:18px;font-weight:700;color:#2FC56D">5%</div><div style="font-size:10px;color:#94a3b8">per year</div></div>
+            <div class="bk-sel" style="width:22px;height:22px;border-radius:50%;border:2px solid #e2e8f0;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:#fff"></div>
+          </div>
+          <div class="bank-card" id="bk-da" onclick="selBank('da')" style="border:1.5px solid #e2e8f0;border-radius:18px;padding:14px;cursor:pointer;display:flex;align-items:center;gap:12px;background:#fff;box-shadow:0 2px 8px rgba(15,23,42,.04)">
+            <div class="bk-logo" style="width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0;background:#FAEEDA;color:#854F0B">DB</div>
+            <div style="flex:1;min-width:0"><div class="bk-name" style="font-size:14px;font-weight:600;color:#0f172a">Dashen Bank</div><div class="bk-rate" style="font-size:12px;color:#64748b;margin-top:1px">Fixed term · Min ETB 1,000</div></div>
+            <div style="text-align:right"><div style="font-size:18px;font-weight:700;color:#2FC56D">9%</div><div style="font-size:10px;color:#94a3b8">per year</div></div>
+            <div class="bk-sel" style="width:22px;height:22px;border-radius:50%;border:2px solid #e2e8f0;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:#fff"></div>
+          </div>
+          <div class="bank-card" id="bk-hi" onclick="selBank('hi')" style="border:1.5px solid #e2e8f0;border-radius:18px;padding:14px;cursor:pointer;display:flex;align-items:center;gap:12px;background:#fff;box-shadow:0 2px 8px rgba(15,23,42,.04)">
+            <div class="bk-logo" style="width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0;background:#EEEDFE;color:#534AB7">HB</div>
+            <div style="flex:1;min-width:0"><div class="bk-name" style="font-size:14px;font-weight:600;color:#0f172a">Hibir Bank</div><div class="bk-rate" style="font-size:12px;color:#64748b;margin-top:1px">Flexible savings · Min ETB 100</div></div>
+            <div style="text-align:right"><div style="font-size:18px;font-weight:700;color:#2FC56D">3%</div><div style="font-size:10px;color:#94a3b8">per year</div></div>
+            <div class="bk-sel" style="width:22px;height:22px;border-radius:50%;border:2px solid #e2e8f0;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:#fff"></div>
+          </div>
+          <div style="background:#E6F4EA;border-radius:14px;padding:14px;display:flex;justify-content:space-between;align-items:center">
+            <div><div style="font-size:12px;color:#008A42">Projected interest (1 yr)</div><div style="font-size:12px;color:#008A42;margin-top:2px">Based on ETB 10,000 deposit</div></div><div style="font-size:18px;font-weight:700;color:#008A42">ETB 700</div>
+          </div>
+        </div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 28px 28px;background:linear-gradient(to top,#ffffff 60%,transparent);z-index:10">
+          <button class="cta" onclick="goN(2)" style="width:100%;min-height:50px;font-size:15px;letter-spacing:0.5px">CONTINUE <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        </div>
+        <div style="display:flex;justify-content:space-around;align-items:center;padding:10px 24px 14px;background:#ffffff;border-top:1px solid #f1f5f9;flex-shrink:0">
+          <i class="ti ti-triangle nav-icon" style="transform:rotate(180deg)" aria-hidden="true"></i>
+          <i class="ti ti-circle nav-icon" aria-hidden="true"></i>
+          <i class="ti ti-square nav-icon" aria-hidden="true"></i>
         </div>
       </div>
     </div>
 
     <!-- ═══ s6 – Goal Setup (Step 3) ═══ -->
     <div class="screen" id="s6">
-      <div class="phone">
-        <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
-        <div class="hd">
-          <div class="hd-top"><button class="back" onclick="goN(1)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Back</button><span class="hd-step">Step 3 of 7</span></div>
-          <div class="pbar"><div class="pfill" style="width:42%"></div></div>
-          <div class="hd-title">Set your goal</div>
-          <div class="hd-sub">Name your pocket and pick a target amount</div>
+      <div class="phone" style="background:#ffffff">
+        <div class="sbar" style="background:#ffffff"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+        <div style="display:flex;align-items:center;padding:10px 28px 14px;background:#ffffff;flex-shrink:0">
+          <div onclick="goN(1)" style="min-height:36px;border-radius:10px;color:#1e293b;display:flex;align-items:center;justify-content:center;padding:0 8px 0 0;cursor:pointer;margin-right:12px;gap:4px;background:none;border:none;font-family:'Barlow',sans-serif;font-size:12px;font-weight:700">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          </div>
+          <span style="font-size:15px;font-weight:700;color:#1e293b;letter-spacing:0.5px">GOAL & PLAN</span>
+          <span style="margin-left:auto;font-size:10px;color:#94a3b8;font-weight:700">Step 3 of 7</span>
         </div>
-        <div class="bd">
-          <div class="inp-wrap"><label class="inp-lbl">Pocket name</label><input class="inp" type="text" placeholder="e.g. University tuition" value="University tuition"></div>
-          <div class="inp-wrap"><label class="inp-lbl">Category</label><div class="chips"><span class="chip sel">Education</span><span class="chip">Emergency</span><span class="chip">Business</span><span class="chip">Travel</span><span class="chip">General</span></div></div>
-          <div class="inp-wrap"><label class="inp-lbl">Target amount</label><div class="amt-wrap"><span class="amt-pfx">ETB</span><input class="amt-inp" type="number" value="10000" step="100"></div></div>
-          <div class="inp-wrap"><label class="inp-lbl">Contribution frequency</label><div class="toggle-row"><button class="freq-btn sel">Weekly</button><button class="freq-btn">Bi-weekly</button><button class="freq-btn">Monthly</button><button class="freq-btn">Custom</button></div></div>
+        <div style="padding:0 28px 16px;background:#ffffff;flex-shrink:0">
+          <div style="width:100%;height:4px;background:#f1f5f9;border-radius:2px;overflow:hidden">
+            <div style="width:42%;height:100%;background:linear-gradient(90deg,#2FC56D 0%,#1ea35a 100%);border-radius:2px"></div>
+          </div>
         </div>
-        <div class="bottom-action">
-          <button class="cta" onclick="goN(3)">Continue <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+        <div class="bd" style="flex:1;overflow-y:auto;padding:24px 28px 120px;background:#ffffff;gap:20px">
+          <h1 style="font-size:26px;font-weight:800;color:#0f172a;margin:0 0 28px;letter-spacing:-0.5px">What's your goal & plan?</h1>
+
+          <!-- Saving Goal Name -->
+          <div style="font-size:15px;font-weight:700;color:#1e293b;margin-bottom:12px;letter-spacing:0.3px">Saving Goal Name</div>
+          <input type="text" placeholder="e.g., Summer Trip 2024" value="University tuition" style="width:100%;padding:16px 18px;border:1.5px solid #e2e8f0;border-radius:14px;font-size:15px;font-weight:500;font-family:'Barlow',sans-serif;color:#1e293b;background:#f8fafc;outline:none;transition:all 0.3s ease;margin-bottom:24px">
+
+          <!-- Goal Category -->
+          <div style="font-size:15px;font-weight:700;color:#1e293b;margin-bottom:12px;letter-spacing:0.3px">Goal category</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:24px">
+            <div class="goal-chip selected" onclick="selectGoalChip(this,'Travel')" style="padding:12px 10px;border:2px solid #2FC56D;border-radius:12px;background:linear-gradient(135deg,#2FC56D 0%,#1ea35a 100%);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);color:#fff">
+              <i class="ti ti-plane" style="font-size:20px" aria-hidden="true"></i>
+              <span style="font-size:12px;font-weight:600;text-align:center">Travel</span>
+            </div>
+            <div class="goal-chip" onclick="selectGoalChip(this,'Education')" style="padding:12px 10px;border:2px solid #e2e8f0;border-radius:12px;background:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;transition:all 0.3s cubic-bezier(0.4,0,0.2,1)">
+              <i class="ti ti-book" style="font-size:20px;color:#64748b" aria-hidden="true"></i>
+              <span style="font-size:12px;font-weight:600;text-align:center;color:#0f172a">Education</span>
+            </div>
+            <div class="goal-chip" onclick="selectGoalChip(this,'Housing')" style="padding:12px 10px;border:2px solid #e2e8f0;border-radius:12px;background:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;transition:all 0.3s cubic-bezier(0.4,0,0.2,1)">
+              <i class="ti ti-home" style="font-size:20px;color:#64748b" aria-hidden="true"></i>
+              <span style="font-size:12px;font-weight:600;text-align:center;color:#0f172a">Housing</span>
+            </div>
+            <div class="goal-chip" onclick="selectGoalChip(this,'Medical')" style="padding:12px 10px;border:2px solid #e2e8f0;border-radius:12px;background:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;transition:all 0.3s cubic-bezier(0.4,0,0.2,1)">
+              <i class="ti ti-heartbeat" style="font-size:20px;color:#64748b" aria-hidden="true"></i>
+              <span style="font-size:12px;font-weight:600;text-align:center;color:#0f172a">Medical</span>
+            </div>
+            <div class="goal-chip" onclick="selectGoalChip(this,'Business')" style="padding:12px 10px;border:2px solid #e2e8f0;border-radius:12px;background:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;transition:all 0.3s cubic-bezier(0.4,0,0.2,1)">
+              <i class="ti ti-building-store" style="font-size:20px;color:#64748b" aria-hidden="true"></i>
+              <span style="font-size:12px;font-weight:600;text-align:center;color:#0f172a">Business</span>
+            </div>
+            <div class="goal-chip" onclick="selectGoalChip(this,'Emergency')" style="padding:12px 10px;border:2px solid #e2e8f0;border-radius:12px;background:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;transition:all 0.3s cubic-bezier(0.4,0,0.2,1)">
+              <i class="ti ti-alert-triangle" style="font-size:20px;color:#64748b" aria-hidden="true"></i>
+              <span style="font-size:12px;font-weight:600;text-align:center;color:#0f172a">Emergency</span>
+            </div>
+          </div>
+
+          <!-- Withdrawal Type -->
+          <div style="font-size:15px;font-weight:700;color:#1e293b;margin-bottom:12px;letter-spacing:0.3px">Withdrawal type</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px">
+            <div class="wd-card selected" onclick="selectWdCard(this,'locked')" style="padding:18px 14px;border:2px solid #2FC56D;border-radius:16px;background:linear-gradient(135deg,#f0fdf4 0%,#dcfce7 100%);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;transition:all 0.3s cubic-bezier(0.4,0,0.2,1)">
+              <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#fff;color:#2FC56D"><i class="ti ti-lock" style="font-size:20px" aria-hidden="true"></i></div>
+              <div style="font-size:15px;font-weight:700;color:#0f172a">Locked</div>
+              <div style="font-size:11px;font-weight:500;color:#64748b">Until goal date</div>
+            </div>
+            <div class="wd-card" onclick="selectWdCard(this,'flexible')" style="padding:18px 14px;border:2px solid #e2e8f0;border-radius:16px;background:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;transition:all 0.3s cubic-bezier(0.4,0,0.2,1)">
+              <div style="width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#f0fdf4;color:#2FC56D"><i class="ti ti-user" style="font-size:20px" aria-hidden="true"></i></div>
+              <div style="font-size:15px;font-weight:700;color:#0f172a">Flexible</div>
+              <div style="font-size:11px;font-weight:500;color:#94a3b8">Withdraw anytime</div>
+            </div>
+          </div>
+
+          <!-- Payment Method -->
+          <div style="font-size:15px;font-weight:700;color:#1e293b;margin-bottom:12px;letter-spacing:0.3px">How will you pay?</div>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div class="pay-card selected" onclick="selectPayCard(this,'auto')" style="padding:18px;border:2px solid #2FC56D;border-radius:16px;background:linear-gradient(135deg,#f0fdf4 0%,#dcfce7 100%);cursor:pointer;display:flex;align-items:flex-start;gap:14px;transition:all 0.3s cubic-bezier(0.4,0,0.2,1)">
+              <div style="width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:#fff;color:#2FC56D;flex-shrink:0"><i class="ti ti-zap" style="font-size:24px" aria-hidden="true"></i></div>
+              <div style="flex:1">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+                  <div style="font-size:15px;font-weight:700;color:#0f172a">Automatic Deduction</div>
+                  <div class="pay-check-badge" style="width:24px;height:24px;border-radius:50%;background:#2FC56D;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-check" style="font-size:14px" aria-hidden="true"></i></div>
+                </div>
+                <div style="font-size:12px;color:#64748b;line-height:1.5;margin-bottom:6px">Funds are pulled directly from your M-PESA balance on your schedule.</div>
+                <span style="display:inline-block;background:#d1fae5;color:#059669;font-size:10px;font-weight:700;padding:3px 10px;border-radius:10px;letter-spacing:0.3px">Recommended</span>
+              </div>
+            </div>
+            <div class="pay-card" onclick="selectPayCard(this,'manual')" style="padding:18px;border:2px solid #e2e8f0;border-radius:16px;background:#fff;cursor:pointer;display:flex;align-items:flex-start;gap:14px;transition:all 0.3s cubic-bezier(0.4,0,0.2,1)">
+              <div style="width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:#f1f5f9;color:#64748b;flex-shrink:0"><i class="ti ti-hand" style="font-size:24px" aria-hidden="true"></i></div>
+              <div style="flex:1">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+                  <div style="font-size:15px;font-weight:700;color:#0f172a">Manual Push</div>
+                </div>
+                <div style="font-size:12px;color:#64748b;line-height:1.5">We'll send you a reminder, and you initiate the transfer manually.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 28px 28px;background:linear-gradient(to top,#ffffff 60%,transparent);z-index:10">
+          <button class="cta" onclick="goN(3)" style="width:100%;min-height:50px;font-size:15px;letter-spacing:0.5px">CONTINUE <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        </div>
+        <div style="display:flex;justify-content:space-around;align-items:center;padding:10px 24px 14px;background:#ffffff;border-top:1px solid #f1f5f9;flex-shrink:0">
+          <i class="ti ti-triangle nav-icon" style="transform:rotate(180deg)" aria-hidden="true"></i>
+          <i class="ti ti-circle nav-icon" aria-hidden="true"></i>
+          <i class="ti ti-square nav-icon" aria-hidden="true"></i>
         </div>
       </div>
     </div>
 
     <!-- ═══ s7 – Timeline (Step 4) ═══ -->
     <div class="screen" id="s7">
-      <div class="phone">
-        <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
-        <div class="hd">
-          <div class="hd-top"><button class="back" onclick="goN(2)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Back</button><span class="hd-step">Step 4 of 7</span></div>
-          <div class="pbar"><div class="pfill" style="width:57%"></div></div>
-          <div class="hd-title">Set timeline</div>
-          <div class="hd-sub">When should this pocket start & end?</div>
-        </div>
-        <div class="bd">
-          <div class="slbl">Duration</div>
-          <div class="term-pills"><button class="freq-btn">3 months</button><button class="freq-btn sel">6 months</button><button class="freq-btn">9 months</button><button class="freq-btn">12 months</button><button class="freq-btn">18 months</button><button class="freq-btn">24 months</button></div>
-          <div class="date-row">
-            <div class="date-box"><label class="inp-lbl">Start date</label><div class="date-inp-wrap" style="display:flex;align-items:center;border:1px solid #e2e8f0;border-radius:12px;padding:12px;background:#fff;cursor:pointer"><i class="ti ti-calendar" style="font-size:16px;color:#94a3b8" aria-hidden="true"></i><span class="date-val" id="start-date">12 Jun 2026</span></div></div>
-            <div class="date-box"><label class="inp-lbl">End date</label><div class="date-inp-wrap" style="display:flex;align-items:center;border:1px solid #e2e8f0;border-radius:12px;padding:12px;background:#fff;cursor:pointer"><i class="ti ti-calendar" style="font-size:16px;color:#94a3b8" aria-hidden="true"></i><span class="date-val" id="end-date">12 Dec 2026</span></div></div>
+      <div class="phone" style="background:#ffffff">
+        <div class="sbar" style="background:#ffffff"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+        <div style="display:flex;align-items:center;padding:10px 28px 14px;background:#ffffff;flex-shrink:0">
+          <div onclick="goN(2)" style="min-height:36px;border-radius:10px;color:#1e293b;display:flex;align-items:center;justify-content:center;padding:0 8px 0 0;cursor:pointer;margin-right:12px;gap:4px;background:none;border:none;font-family:'Barlow',sans-serif;font-size:12px;font-weight:700">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
           </div>
-          <div class="dur-badge"><span style="font-size:13px;color:#64748b">Total duration</span><span style="font-size:16px;font-weight:700;color:#2FC56D">6 months</span></div>
+          <span style="font-size:15px;font-weight:700;color:#1e293b;letter-spacing:0.5px">SAVING DETAILS</span>
+          <span style="margin-left:auto;font-size:10px;color:#94a3b8;font-weight:700">Step 4 of 7</span>
         </div>
-        <div class="bottom-action">
-          <button class="cta" onclick="goN(4)">Continue <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+        <div style="padding:0 28px 16px;background:#ffffff;flex-shrink:0">
+          <div style="width:100%;height:4px;background:#f1f5f9;border-radius:2px;overflow:hidden">
+            <div style="width:57%;height:100%;background:linear-gradient(90deg,#2FC56D 0%,#1ea35a 100%);border-radius:2px"></div>
+          </div>
+        </div>
+        <div class="bd" style="flex:1;overflow-y:auto;padding:24px 28px 120px;background:#ffffff;gap:20px">
+          <h1 style="font-size:26px;font-weight:800;color:#0f172a;margin:0;letter-spacing:-0.5px">Saving Details</h1>
+
+          <!-- Total Amount -->
+          <div style="font-size:15px;font-weight:700;color:#1e293b;margin-bottom:4px;letter-spacing:0.3px">Total amount</div>
+          <div style="display:flex;align-items:center;border:1.5px solid #e2e8f0;border-radius:14px;background:#f8fafc;overflow:hidden;margin-bottom:24px">
+            <span style="padding:16px 14px;font-size:14px;font-weight:700;color:#64748b;border-right:1.5px solid #e2e8f0;background:#f1f5f9;white-space:nowrap">ETB</span>
+            <input type="text" value="20,000.00" placeholder="0.00" style="flex:1;padding:16px 18px;border:none;font-size:16px;font-weight:600;font-family:'Barlow',sans-serif;color:#1e293b;background:transparent;outline:none">
+          </div>
+
+           <!-- How Often -->
+           <div style="font-size:15px;font-weight:700;color:#1e293b;margin-bottom:10px;letter-spacing:0.3px">How often?</div>
+           <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+             <div class="freq-card" onclick="selectFreqCard(this)" style="padding:14px 8px;border:2px solid #e2e8f0;border-radius:14px;background:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;transition:all 0.3s cubic-bezier(0.4,0,0.2,1)">
+               <div style="width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#f1f5f9;color:#64748b"><i class="ti ti-clock" style="font-size:18px" aria-hidden="true"></i></div>
+               <span style="font-size:13px;font-weight:600;color:#1e293b">Daily</span>
+             </div>
+             <div class="freq-card" onclick="selectFreqCard(this)" style="padding:14px 8px;border:2px solid #e2e8f0;border-radius:14px;background:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;transition:all 0.3s cubic-bezier(0.4,0,0.2,1)">
+               <div style="width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#f1f5f9;color:#64748b"><i class="ti ti-refresh" style="font-size:18px" aria-hidden="true"></i></div>
+               <span style="font-size:13px;font-weight:600;color:#1e293b">Weekly</span>
+             </div>
+             <div class="freq-card selected" onclick="selectFreqCard(this)" style="padding:14px 8px;border:2px solid #2FC56D;border-radius:14px;background:linear-gradient(135deg,#f0fdf4 0%,#dcfce7 100%);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;transition:all 0.3s cubic-bezier(0.4,0,0.2,1)">
+               <div style="width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#fff;color:#2FC56D"><i class="ti ti-calendar" style="font-size:18px" aria-hidden="true"></i></div>
+               <span style="font-size:13px;font-weight:600;color:#1e293b">Monthly</span>
+             </div>
+           </div>
+
+          <!-- Calendar Card -->
+          <div style="border:1.5px solid #e2e8f0;border-radius:18px;padding:18px;background:#fff;margin-bottom:8px">
+            <div style="display:flex;background:#f1f5f9;border-radius:12px;padding:4px;margin-bottom:18px">
+              <button class="cal-toggle-btn active" onclick="selectCalToggle(this)" style="flex:1;padding:10px 16px;text-align:center;font-size:13px;font-weight:700;color:#fff;border:none;background:linear-gradient(135deg,#2FC56D 0%,#1ea35a 100%);border-radius:10px;cursor:pointer;font-family:'Barlow',sans-serif;letter-spacing:0.5px;transition:all 0.3s ease;box-shadow:0 2px 8px rgba(47,197,109,0.3)">GREGORIAN</button>
+              <button class="cal-toggle-btn" onclick="selectCalToggle(this)" style="flex:1;padding:10px 16px;text-align:center;font-size:13px;font-weight:700;color:#64748b;border:none;background:none;border-radius:10px;cursor:pointer;font-family:'Barlow',sans-serif;letter-spacing:0.5px;transition:all 0.3s ease">ETHIOPIAN</button>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px">
+              <div><div style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px">Start Date</div><div style="display:flex;align-items:center;gap:10px;padding:14px 16px;border:1.5px solid #e2e8f0;border-radius:12px;background:#f8fafc;cursor:pointer"><i class="ti ti-calendar" style="font-size:18px;color:#64748b" aria-hidden="true"></i><span style="font-size:14px;font-weight:600;color:#1e293b">Apr 12, 2024</span></div></div>
+              <div><div style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px">Target Date</div><div style="display:flex;align-items:center;gap:10px;padding:14px 16px;border:1.5px solid #e2e8f0;border-radius:12px;background:#f8fafc;cursor:pointer"><i class="ti ti-calendar" style="font-size:18px;color:#64748b" aria-hidden="true"></i><span style="font-size:14px;font-weight:600;color:#94a3b8">Select date</span></div></div>
+            </div>
+            <div style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px">Saving Duration</div>
+            <div style="padding:14px 16px;background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:12px;font-size:15px;font-weight:700;color:#1e293b;margin-bottom:16px">134 DAYS ~ 4.5 MONTHS</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <button class="dur-chip" onclick="selectDurChip(this)" style="padding:8px 14px;border:1.5px solid #e2e8f0;border-radius:10px;background:#fff;font-size:12px;font-weight:700;color:#2FC56D;cursor:pointer;font-family:'Barlow',sans-serif;letter-spacing:0.3px">3 MONTHS</button>
+              <button class="dur-chip" onclick="selectDurChip(this)" style="padding:8px 14px;border:1.5px solid #e2e8f0;border-radius:10px;background:#fff;font-size:12px;font-weight:700;color:#2FC56D;cursor:pointer;font-family:'Barlow',sans-serif;letter-spacing:0.3px">6 MONTHS</button>
+              <button class="dur-chip selected" onclick="selectDurChip(this)" style="padding:8px 14px;border:1.5px solid #2FC56D;border-radius:10px;background:linear-gradient(135deg,#2FC56D 0%,#1ea35a 100%);font-size:12px;font-weight:700;color:#fff;cursor:pointer;font-family:'Barlow',sans-serif;letter-spacing:0.3px">1 YEAR</button>
+              <button class="dur-chip" onclick="selectDurChip(this)" style="padding:8px 14px;border:1.5px solid #e2e8f0;border-radius:10px;background:#fff;font-size:12px;font-weight:700;color:#2FC56D;cursor:pointer;font-family:'Barlow',sans-serif;letter-spacing:0.3px">2 YEARS</button>
+            </div>
+          </div>
+
+          <!-- Estimated Plan -->
+          <div style="background:linear-gradient(135deg,#f0fdf4 0%,#dcfce7 100%);border:1.5px solid #bbf7d0;border-radius:18px;padding:20px">
+            <div style="font-size:18px;font-weight:800;color:#0f172a;margin-bottom:16px">Estimated Plan</div>
+            <div class="plan-row" style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(47,197,109,0.15)"><span style="font-size:13px;font-weight:500;color:#475569">Amount Per Day</span><span style="font-size:15px;font-weight:700;color:#0f172a">150.00 BIRR</span></div>
+            <div class="plan-row" style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(47,197,109,0.15)"><span style="font-size:13px;font-weight:500;color:#475569">Total Contributions</span><span style="font-size:15px;font-weight:700;color:#0f172a">20,000.00 BIRR</span></div>
+            <div class="plan-row" style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(47,197,109,0.15)"><span style="font-size:13px;font-weight:500;color:#475569">Total At Maturity</span><span style="font-size:15px;font-weight:700;color:#0f172a">20,520.00 BIRR</span></div>
+            <div class="plan-row" style="display:flex;justify-content:space-between;align-items:center;padding:10px 0"><span style="font-size:13px;font-weight:500;color:#475569">Projected Interest (7%)</span><span style="font-size:15px;font-weight:700;color:#2FC56D">+520.00 BIRR</span></div>
+          </div>
+        </div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 28px 28px;background:linear-gradient(to top,#ffffff 60%,transparent);z-index:10">
+          <button class="cta" onclick="goN(4)" style="width:100%;min-height:50px;font-size:15px;letter-spacing:0.5px">CONTINUE <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        </div>
+        <div style="display:flex;justify-content:space-around;align-items:center;padding:10px 24px 14px;background:#ffffff;border-top:1px solid #f1f5f9;flex-shrink:0">
+          <i class="ti ti-triangle nav-icon" style="transform:rotate(180deg)" aria-hidden="true"></i>
+          <i class="ti ti-circle nav-icon" aria-hidden="true"></i>
+          <i class="ti ti-square nav-icon" aria-hidden="true"></i>
         </div>
       </div>
     </div>
 
-    <!-- ═══ s8 – Review Plan (Step 5) ═══ -->
+    <!-- ═══ s8 – Review Plan (Step 5) — redesigned ═══ -->
     <div class="screen" id="s8">
-      <div class="phone">
-        <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
-        <div class="hd">
-          <div class="hd-top"><button class="back" onclick="goN(3)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Back</button><span class="hd-step">Step 5 of 7</span></div>
-          <div class="pbar"><div class="pfill" style="width:71%"></div></div>
-          <div class="hd-title">Review your plan</div>
-          <div class="hd-sub">Check everything before we start</div>
-        </div>
-        <div class="bd">
-          <div class="rev-section">
-            <div class="rev-row"><span class="rev-key">Type</span><span class="rev-val">Individual saving</span></div>
-            <div class="rev-row"><span class="rev-key">Bank</span><span class="rev-val">Commercial Bank of Ethiopia</span></div>
-            <div class="rev-row"><span class="rev-key">Interest rate</span><span class="rev-val green">7% per year</span></div>
-            <div class="rev-row"><span class="rev-key">Pocket name</span><span class="rev-val">University tuition</span></div>
-            <div class="rev-row"><span class="rev-key">Target amount</span><span class="rev-val">ETB 10,000</span></div>
-            <div class="rev-row"><span class="rev-key">Duration</span><span class="rev-val">6 months</span></div>
-            <div class="rev-row"><span class="rev-key">Start date</span><span class="rev-val">12 Jun 2026</span></div>
-            <div class="rev-row"><span class="rev-key">End date</span><span class="rev-val">12 Dec 2026</span></div>
-            <div class="rev-row"><span class="rev-key">Periodic payment</span><span class="rev-val">ETB 385 / week</span></div>
-            <div class="rev-row" style="background:#F0FAF4"><span class="rev-key" style="font-weight:600;color:#008A42">Total at maturity</span><span class="rev-val green" style="font-weight:700">ETB 10,700</span></div>
+      <div class="phone" style="background:#ffffff">
+        <div class="sbar" style="background:#ffffff"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+        <div style="display:flex;align-items:center;padding:10px 28px 14px;background:#ffffff;flex-shrink:0">
+          <div onclick="goN(3)" style="min-height:36px;border-radius:10px;color:#1e293b;display:flex;align-items:center;justify-content:center;padding:0 8px 0 0;cursor:pointer;margin-right:12px;gap:4px;background:none;border:none;font-family:'Barlow',sans-serif;font-size:12px;font-weight:700">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
           </div>
-          <div class="info-box"><i class="ti ti-info-circle" aria-hidden="true"></i><p>You can adjust your contribution amount and frequency anytime from the pocket detail page.</p></div>
+          <span style="font-size:15px;font-weight:700;color:#1e293b;letter-spacing:0.5px">REVIEW PLAN</span>
+          <span style="margin-left:auto;font-size:10px;color:#94a3b8;font-weight:700">Step 5 of 7</span>
         </div>
-        <div class="bottom-action">
-          <button class="cta" onclick="goN(5)">Activate saving account</button>
+        <div style="padding:0 28px 16px;background:#ffffff;flex-shrink:0">
+          <div style="width:100%;height:4px;background:#f1f5f9;border-radius:2px;overflow:hidden">
+            <div style="width:71%;height:100%;background:linear-gradient(90deg,#2FC56D 0%,#1ea35a 100%);border-radius:2px"></div>
+          </div>
+        </div>
+        <div class="bd" style="flex:1;overflow-y:auto;padding:24px 28px 120px;background:#ffffff;gap:20px">
+          <div style="margin-bottom:4px">
+            <h1 style="font-size:26px;font-weight:800;color:#0f172a;margin:0;letter-spacing:-0.5px">Review your plan</h1>
+            <p style="font-size:14px;color:#64748b;font-weight:500;margin:6px 0 0">Please confirm your saving details before proceeding</p>
+          </div>
+          <div style="background:linear-gradient(135deg,#2FC56D 0%,#1ea35a 100%);border-radius:18px;padding:14px 18px;color:#ffffff;box-shadow:0 8px 24px rgba(47,197,109,0.3);display:flex;align-items:center;gap:14px">
+            <div style="width:48px;height:48px;background:rgba(255,255,255,0.2);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5Z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </div>
+            <div style="flex:1;min-width:0">
+              <div style="font-size:16px;font-weight:800;margin-bottom:2px;letter-spacing:0.3px">University tuition</div>
+              <div style="font-size:13px;opacity:0.85;font-weight:500">Target: ETB 10,000</div>
+            </div>
+          </div>
+          <div style="background:#f8fafb;border:1.5px solid #e2e8f0;border-radius:14px;padding:4px 16px">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #e2e8f0">
+              <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:#475569">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2FC56D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Saving Type
+              </div>
+              <div style="font-size:15px;font-weight:700;color:#0f172a;text-align:right">Individual</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #e2e8f0">
+              <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:#475569">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2FC56D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M12 2v2"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
+                Bank
+              </div>
+              <div style="font-size:15px;font-weight:700;color:#0f172a;text-align:right">CBE</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #e2e8f0">
+              <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:#475569">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2FC56D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                Interest Rate
+              </div>
+              <div style="font-size:15px;font-weight:700;color:#0f172a;text-align:right">7% per year</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #e2e8f0">
+              <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:#475569">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2FC56D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Target Date
+              </div>
+              <div style="font-size:15px;font-weight:700;color:#0f172a;text-align:right">12 Dec 2026</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #e2e8f0">
+              <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:#475569">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2FC56D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Duration
+              </div>
+              <div style="font-size:15px;font-weight:700;color:#0f172a;text-align:right">6 months</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #e2e8f0">
+              <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:#475569">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2FC56D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                Frequency
+              </div>
+              <div style="font-size:15px;font-weight:700;color:#0f172a;text-align:right">Weekly</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #e2e8f0">
+              <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:#475569">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2FC56D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 12v5a2 2 0 0 0 2 2h14v-4"/></svg>
+                Payment Amount
+              </div>
+              <div style="font-size:15px;font-weight:700;color:#0f172a;text-align:right">ETB 385 / week</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;background:linear-gradient(135deg,#f0fdf4 0%,#dcfce7 100%);margin:0 -16px -4px;padding:14px 16px;border-bottom-left-radius:14px;border-bottom-right-radius:14px">
+              <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:#0f172a">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2FC56D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+                Total at Maturity
+              </div>
+              <div style="font-size:18px;font-weight:700;color:#2FC56D;text-align:right">ETB 10,700</div>
+            </div>
+          </div>
+          <div style="background:#F0FAF4;border:1px solid #B3DFC9;border-radius:14px;padding:12px;display:flex;gap:10px;align-items:flex-start">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#008A42" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            <p style="font-size:12px;color:#008A42;line-height:1.5;margin:0">You can adjust your contribution amount and frequency anytime from the pocket detail page.</p>
+          </div>
+        </div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 28px 28px;background:linear-gradient(to top,#ffffff 60%,transparent);z-index:10">
+          <button class="cta" onclick="goN(5)" style="width:100%;min-height:50px;font-size:15px;letter-spacing:0.5px">
+            CONFIRM & CREATE POCKET
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </button>
+        </div>
+        <div style="display:flex;justify-content:space-around;align-items:center;padding:10px 24px 14px;background:#ffffff;border-top:1px solid #f1f5f9;flex-shrink:0">
+          <i class="ti ti-triangle nav-icon" style="transform:rotate(180deg)" aria-hidden="true"></i>
+          <i class="ti ti-circle nav-icon" aria-hidden="true"></i>
+          <i class="ti ti-square nav-icon" aria-hidden="true"></i>
         </div>
       </div>
     </div>
 
-    <!-- ═══ s9 – Confirmation (Step 6/7) ═══ -->
+    <!-- ═══ s9 – Confirmation (Step 6/7) — redesigned ═══ -->
     <div class="screen" id="s9">
-      <div class="phone">
-        <div class="sbar"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
-        <div class="hd" style="border-bottom:none">
-          <div class="hd-top"><button class="back" onclick="goN(4)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Back</button></div>
+      <div class="phone" style="background:#ffffff">
+        <div class="sbar" style="background:#ffffff"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
+        <div style="display:flex;align-items:center;padding:10px 28px 14px;background:#ffffff;flex-shrink:0">
+          <div onclick="goN(4)" style="min-height:36px;border-radius:10px;color:#1e293b;display:flex;align-items:center;justify-content:center;padding:0 8px 0 0;cursor:pointer;margin-right:12px;gap:4px;background:none;border:none;font-family:'Barlow',sans-serif;font-size:12px;font-weight:700">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          </div>
+          <span style="font-size:15px;font-weight:700;color:#1e293b;letter-spacing:0.5px">SAVING CONFIRMED</span>
+          <span style="margin-left:auto;font-size:10px;color:#94a3b8;font-weight:700">Step 6 of 7</span>
         </div>
-        <div class="bd" style="justify-content:center;align-items:center;text-align:center">
-          <div class="confirm-icon"><i class="ti ti-circle-check" aria-hidden="true"></i></div>
-          <div style="font-size:22px;font-weight:800;color:#0f172a;margin-bottom:4px">Pocket created!</div>
-          <div style="font-size:14px;color:#64748b;margin-bottom:20px">Your University tuition pocket is now active</div>
-          <div class="card" style="width:100%;text-align:left">
-            <div class="rev-row"><span class="rev-key">Pocket</span><span class="rev-val">University tuition</span></div>
-            <div class="rev-row"><span class="rev-key">Bank</span><span class="rev-val">CBE •••• 4821</span></div>
-            <div class="rev-row"><span class="rev-key">Target</span><span class="rev-val green">ETB 10,000</span></div>
-            <div class="rev-row"><span class="rev-key">Target date</span><span class="rev-val">12 Dec 2026</span></div>
-            <div class="rev-row"><span class="rev-key">Duration</span><span class="rev-val">6 months</span></div>
-            <div class="rev-row"><span class="rev-key">Periodic payment</span><span class="rev-val green">ETB 385 / week</span></div>
-            <div class="rev-row"><span class="rev-key">Interest</span><span class="rev-val green">7% p.a.</span></div>
-            <div class="rev-row" style="background:#F0FAF4"><span class="rev-key" style="font-weight:600;color:#008A42">Total at maturity</span><span class="rev-val" style="font-weight:700;color:#008A42">ETB 10,700</span></div>
+        <div style="padding:0 28px 16px;background:#ffffff;flex-shrink:0">
+          <div style="width:100%;height:4px;background:#f1f5f9;border-radius:2px;overflow:hidden">
+            <div style="width:100%;height:100%;background:linear-gradient(90deg,#2FC56D 0%,#1ea35a 100%);border-radius:2px"></div>
           </div>
         </div>
-        <div class="bottom-action">
-          <button class="cta" onclick="sendPrompt('Take me to my new University tuition saving pocket')">View my saving pocket <i class="ti ti-external-link" aria-hidden="true"></i></button>
+        <div class="bd" style="flex:1;overflow-y:auto;padding:24px 28px 120px;background:#ffffff;gap:20px">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:16px;margin-bottom:8px">
+            <div style="position:relative">
+              <div style="width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,#2FC56D 0%,#25b060 100%);display:flex;align-items:center;justify-content:center;color:#ffffff;box-shadow:0 12px 32px rgba(47,197,109,0.35);position:relative;z-index:1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+              <div style="position:absolute;bottom:2px;right:2px;width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#2FC56D 0%,#1ea35a 100%);border:3px solid #ffffff;display:flex;align-items:center;justify-content:center;color:#ffffff;z-index:2;box-shadow:0 2px 8px rgba(47,197,109,0.3)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+            </div>
+            <h1 style="font-size:28px;font-weight:900;color:#0f172a;text-align:center;letter-spacing:1px;margin:0">POCKET CREATED!</h1>
+            <p style="font-size:14px;color:#64748b;text-align:center;line-height:1.6;font-weight:500;max-width:280px;margin:0">Your saving pocket has been created successfully and is ready for growth.</p>
+          </div>
+          <div style="background:linear-gradient(135deg,#2FC56D 0%,#1ea35a 100%);border-radius:18px;padding:14px 18px;color:#ffffff;box-shadow:0 8px 24px rgba(47,197,109,0.3);display:flex;align-items:center;gap:14px">
+            <div style="width:48px;height:48px;background:rgba(255,255,255,0.2);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5Z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </div>
+            <div style="flex:1;min-width:0">
+              <div style="font-size:16px;font-weight:800;margin-bottom:2px;letter-spacing:0.3px">University tuition</div>
+              <div style="font-size:13px;opacity:0.85;font-weight:500">Target: ETB 10,000</div>
+            </div>
+          </div>
+          <div style="background:#f8fafb;border:1.5px solid #e2e8f0;border-radius:14px;padding:4px 16px">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #e2e8f0">
+              <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:#475569">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2FC56D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Target Date
+              </div>
+              <div style="font-size:15px;font-weight:700;color:#0f172a;text-align:right">12 Dec 2026</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #e2e8f0">
+              <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:#475569">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2FC56D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Duration
+              </div>
+              <div style="font-size:15px;font-weight:700;color:#0f172a;text-align:right">6 months</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #e2e8f0">
+              <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:#475569">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2FC56D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                Frequency
+              </div>
+              <div style="font-size:15px;font-weight:700;color:#0f172a;text-align:right">Weekly</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #e2e8f0">
+              <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:#475569">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2FC56D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 12v5a2 2 0 0 0 2 2h14v-4"/></svg>
+                Payment Amount
+              </div>
+              <div style="font-size:15px;font-weight:700;color:#0f172a;text-align:right">ETB 385</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;background:linear-gradient(135deg,#f0fdf4 0%,#dcfce7 100%);margin:0 -16px -4px;padding:14px 16px;border-bottom-left-radius:14px;border-bottom-right-radius:14px">
+              <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:#0f172a">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2FC56D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+                Total at Maturity
+              </div>
+              <div style="font-size:18px;font-weight:700;color:#2FC56D;text-align:right">ETB 10,700</div>
+            </div>
+          </div>
+        </div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 28px 28px;background:linear-gradient(to top,#ffffff 60%,transparent);z-index:10">
+          <button class="cta" onclick="sendPrompt('Take me to my new University tuition saving pocket')" style="width:100%;min-height:50px;font-size:15px;letter-spacing:0.5px;margin-bottom:12px">
+            START SAVING NOW
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+          <button class="cta-sec" onclick="sendPrompt('View my saving pocket details')" style="width:100%;min-height:48px;font-size:14px;letter-spacing:0.5px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+            VIEW SAVING POCKET
+          </button>
+        </div>
+        <div style="display:flex;justify-content:space-around;align-items:center;padding:10px 24px 14px;background:#ffffff;border-top:1px solid #f1f5f9;flex-shrink:0">
+          <i class="ti ti-triangle nav-icon" style="transform:rotate(180deg)" aria-hidden="true"></i>
+          <i class="ti ti-circle nav-icon" aria-hidden="true"></i>
+          <i class="ti ti-square nav-icon" aria-hidden="true"></i>
         </div>
       </div>
     </div>
@@ -1169,6 +1474,145 @@ function hideMenu() {
   var m = document.getElementById('ctx');
   if (m) { m.style.display = 'none'; m.querySelector('.ctx-menu').classList.remove('open'); }
 }
+
+// ── Goal chip selection (s6) ──
+function selectGoalChip(el, label) {
+  document.querySelectorAll('.goal-chip').forEach(function(c){
+    c.classList.remove('selected');
+    c.style.borderColor = '#e2e8f0';
+    c.style.background = '#fff';
+    c.style.color = '#0f172a';
+    var icons = c.querySelectorAll('.ti');
+    icons.forEach(function(ic){ ic.style.color = '#64748b'; });
+    var spans = c.querySelectorAll('span');
+    spans.forEach(function(s){ s.style.color = '#0f172a'; });
+  });
+  el.classList.add('selected');
+  el.style.borderColor = '#2FC56D';
+  el.style.background = 'linear-gradient(135deg, #2FC56D 0%, #1ea35a 100%)';
+  el.style.color = '#ffffff';
+  var icons = el.querySelectorAll('.ti');
+  icons.forEach(function(ic){ ic.style.color = '#fff'; });
+  var spans = el.querySelectorAll('span');
+  spans.forEach(function(s){ s.style.color = '#fff'; });
+}
+
+// ── Withdrawal card selection (s6) ──
+function selectWdCard(el, type) {
+  document.querySelectorAll('.wd-card').forEach(function(c){
+    c.classList.remove('selected');
+    c.style.borderColor = '#e2e8f0';
+    c.style.background = '#fff';
+    var subs = c.querySelectorAll('[style*="font-size:11px"]');
+    subs.forEach(function(s){
+      if(s.textContent === 'Until goal date' || s.textContent === 'Withdraw anytime') s.style.color = '#94a3b8';
+    });
+    var icon = c.querySelector('[style*="border-radius:10px"]');
+    if (icon) icon.style.background = '#f0fdf4';
+  });
+  el.classList.add('selected');
+  el.style.borderColor = '#2FC56D';
+  el.style.background = 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)';
+  var icon = el.querySelector('[style*="border-radius:10px"]');
+  if (icon) icon.style.background = '#ffffff';
+  var subs = el.querySelectorAll('[style*="font-size:11px"]');
+  subs.forEach(function(s){
+    if(s.textContent === 'Until goal date' || s.textContent === 'Withdraw anytime') s.style.color = '#64748b';
+  });
+}
+
+// ── Payment card selection (s6) ──
+function selectPayCard(el, type) {
+  document.querySelectorAll('.pay-card').forEach(function(c){
+    c.classList.remove('selected');
+    c.style.borderColor = '#e2e8f0';
+    c.style.background = '#fff';
+    var badge = c.querySelector('.pay-check-badge');
+    if (badge) badge.remove();
+    var icon = c.querySelector('[style*="border-radius:14px"]');
+    if (icon) icon.style.background = '#f1f5f9';
+  });
+  el.classList.add('selected');
+  el.style.borderColor = '#2FC56D';
+  el.style.background = 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)';
+  var icon = el.querySelector('[style*="border-radius:14px"]');
+  if (icon) icon.style.background = '#ffffff';
+  var header = el.querySelector('[style*="display:flex;align-items:center;justify-content:space-between"]');
+  if (header && !header.querySelector('.pay-check-badge')) {
+    var chk = document.createElement('div');
+    chk.className = 'pay-check-badge';
+    chk.style.cssText = 'width:24px;height:24px;border-radius:50%;background:#2FC56D;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0';
+    chk.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+    header.appendChild(chk);
+  }
+}
+
+// ── Frequency card selection (s7) ──
+function selectFreqCard(el) {
+  document.querySelectorAll('.freq-card').forEach(function(c){
+    c.classList.remove('selected');
+    c.style.borderColor = '#e2e8f0';
+    c.style.background = '#fff';
+    var icon = c.querySelector('[style*="border-radius:50%"]');
+    if (icon) { icon.style.background = '#f1f5f9'; icon.style.color = '#64748b'; }
+  });
+  el.classList.add('selected');
+  el.style.borderColor = '#2FC56D';
+  el.style.background = 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)';
+  var icon = el.querySelector('[style*="border-radius:50%"]');
+  if (icon) { icon.style.background = '#ffffff'; icon.style.color = '#2FC56D'; }
+}
+
+// ── Calendar toggle selection (s7) ──
+function selectCalToggle(el) {
+  document.querySelectorAll('.cal-toggle-btn').forEach(function(b){
+    b.classList.remove('active');
+    b.style.background = 'none';
+    b.style.color = '#64748b';
+    b.style.boxShadow = 'none';
+  });
+  el.classList.add('active');
+  el.style.background = 'linear-gradient(135deg, #2FC56D 0%, #1ea35a 100%)';
+  el.style.color = '#ffffff';
+  el.style.boxShadow = '0 2px 8px rgba(47, 197, 109, 0.3)';
+}
+
+// Init calendar toggle on load
+setTimeout(function(){
+  var activeCal = document.querySelector('.cal-toggle-btn.active');
+  if (activeCal) {
+    activeCal.style.background = 'linear-gradient(135deg, #2FC56D 0%, #1ea35a 100%)';
+    activeCal.style.color = '#ffffff';
+    activeCal.style.boxShadow = '0 2px 8px rgba(47, 197, 109, 0.3)';
+  }
+}, 50);
+
+// ── Duration chip selection (s7) ──
+function selectDurChip(el) {
+  document.querySelectorAll('.dur-chip').forEach(function(c){
+    c.classList.remove('selected');
+    c.style.borderColor = '#e2e8f0';
+    c.style.background = '#fff';
+    c.style.color = '#2FC56D';
+    c.style.boxShadow = 'none';
+  });
+  el.classList.add('selected');
+  el.style.borderColor = '#2FC56D';
+  el.style.background = 'linear-gradient(135deg, #2FC56D 0%, #1ea35a 100%)';
+  el.style.color = '#ffffff';
+  el.style.boxShadow = '0 2px 8px rgba(47, 197, 109, 0.3)';
+}
+
+// Init duration chip on load
+setTimeout(function(){
+  var activeDur = document.querySelector('.dur-chip.selected');
+  if (activeDur) {
+    activeDur.style.borderColor = '#2FC56D';
+    activeDur.style.background = 'linear-gradient(135deg, #2FC56D 0%, #1ea35a 100%)';
+    activeDur.style.color = '#ffffff';
+    activeDur.style.boxShadow = '0 2px 8px rgba(47, 197, 109, 0.3)';
+  }
+}, 50);
 
 // ── Banner scroll dots ──
 function onBannerScroll() { /* dummy */ }

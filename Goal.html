@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goal & Plan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background: linear-gradient(135deg, #e0e7ff 0%, #d1fae5 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .mobile-container {
+            width: 375px;
+            height: 812px;
+            background-color: #ffffff;
+            border-radius: 40px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+        }
+
+        .mobile-container ::-webkit-scrollbar {
+            display: none;
+        }
+        .mobile-container {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Status Bar */
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 28px 6px;
+            background-color: #ffffff;
+            flex-shrink: 0;
+        }
+
+        .status-bar .time {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .status-bar .icons {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #1e293b;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 10px 28px 14px;
+            background-color: #ffffff;
+            flex-shrink: 0;
+        }
+
+        .back-btn {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            cursor: pointer;
+            color: #1e293b;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background-color: #f1f5f9;
+            transform: translateX(-2px);
+        }
+
+        .header-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1e293b;
+            letter-spacing: 0.5px;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            padding: 16px 28px 0;
+            background-color: #ffffff;
+            flex-shrink: 0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background-color: #f1f5f9;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, #2FC56D 0%, #1ea35a 100%);
+            border-radius: 2px;
+        }
+
+        /* Scrollable Content */
+        .scroll-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px 28px 120px;
+            background-color: #ffffff;
+        }
+
+        /* Page Title */
+        .page-title {
+            font-size: 26px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 28px;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        /* Section Labels */
+        .section-label {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 12px;
+            letter-spacing: 0.3px;
+        }
+
+        /* Input Field */
+        .input-wrapper {
+            margin-bottom: 24px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 16px 18px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 500;
+            font-family: 'Barlow', sans-serif;
+            color: #1e293b;
+            background-color: #f8fafc;
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #2FC56D;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 4px rgba(47, 197, 109, 0.1);
+        }
+
+        .input-field::placeholder {
+            color: #94a3b8;
+        }
+
+        /* Category Grid */
+        .category-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .category-chip {
+            padding: 12px 10px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            background-color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .category-chip:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .category-chip.selected {
+            border-color: #2FC56D;
+            background: linear-gradient(135deg, #2FC56D 0%, #1ea35a 100%);
+            color: #ffffff;
+        }
+
+        .category-chip-icon {
+            font-size: 20px;
+        }
+
+        .category-chip-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* Withdrawal Type */
+        .withdrawal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .withdrawal-card {
+            padding: 18px 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            background-color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            text-align: center;
+        }
+
+        .withdrawal-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .withdrawal-card.selected {
+            border-color: #2FC56D;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+        }
+
+        .withdrawal-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0fdf4;
+            color: #2FC56D;
+        }
+
+        .withdrawal-card.selected .withdrawal-icon {
+            background-color: #ffffff;
+        }
+
+        .withdrawal-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .withdrawal-subtitle {
+            font-size: 11px;
+            font-weight: 500;
+            color: #94a3b8;
+        }
+
+        .withdrawal-card.selected .withdrawal-subtitle {
+            color: #64748b;
+        }
+
+        /* Payment Options */
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .payment-card {
+            padding: 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            background-color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            position: relative;
+        }
+
+        .payment-card:hover {
+            transform: translateX(4px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .payment-card.selected {
+            border-color: #2FC56D;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+        }
+
+        .payment-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0fdf4;
+            color: #2FC56D;
+            flex-shrink: 0;
+        }
+
+        .payment-card.selected .payment-icon {
+            background-color: #ffffff;
+        }
+
+        .payment-body {
+            flex: 1;
+        }
+
+        .payment-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+
+        .payment-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .check-badge {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #2FC56D;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .payment-desc {
+            font-size: 13px;
+            color: #64748b;
+            line-height: 1.5;
+            margin-bottom: 6px;
+        }
+
+        .recommended-badge {
+            display: inline-block;
+            background-color: #d1fae5;
+            color: #059669;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 10px;
+            letter-spacing: 0.3px;
+        }
+
+        /* Bottom Button */
+        .bottom-button-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 16px 28px 28px;
+            background: linear-gradient(to top, #ffffff 60%, transparent);
+            z-index: 10;
+        }
+
+        .continue-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #2FC56D 0%, #1ea35a 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 16px;
+            padding: 16px 24px;
+            font-size: 15px;
+            font-weight: 700;
+            font-family: 'Barlow', sans-serif;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 8px 24px rgba(47, 197, 109, 0.35);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .continue-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(47, 197, 109, 0.45);
+        }
+
+        /* Nav Bar */
+        .nav-bar {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 24px 14px;
+            background-color: #ffffff;
+            border-top: 1px solid #f1f5f9;
+            flex-shrink: 0;
+        }
+
+        .nav-icon {
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+    <div class="mobile-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <span class="time">9:41</span>
+            <div class="icons">
+                <i data-lucide="signal" style="width: 16px; height: 16px;"></i>
+                <i data-lucide="wifi" style="width: 16px; height: 16px;"></i>
+                <i data-lucide="battery-full" style="width: 16px; height: 16px;"></i>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <div class="header">
+            <div class="back-btn">
+                <i data-lucide="chevron-left" style="width: 22px; height: 22px;"></i>
+            </div>
+            <span class="header-title">GOAL & PLAN</span>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+
+        <!-- Scrollable Content -->
+        <div class="scroll-content">
+            <h1 class="page-title">What's your goal & plan?</h1>
+
+            <!-- Saving Goal Name -->
+            <div class="section-label">Saving Goal Name</div>
+            <div class="input-wrapper">
+                <input type="text" class="input-field" placeholder="e.g., Summer Trip 2024">
+            </div>
+
+            <!-- Goal Category -->
+            <div class="section-label">Goal category</div>
+            <div class="category-grid">
+                <div class="category-chip selected">
+                    <span class="category-chip-icon">✈️</span>
+                    <span class="category-chip-label">Travel</span>
+                </div>
+                <div class="category-chip">
+                    <span class="category-chip-icon">📚</span>
+                    <span class="category-chip-label">Education</span>
+                </div>
+                <div class="category-chip">
+                    <span class="category-chip-icon">🏠</span>
+                    <span class="category-chip-label">Housing</span>
+                </div>
+                <div class="category-chip">
+                    <span class="category-chip-icon">🏥</span>
+                    <span class="category-chip-label">Medical</span>
+                </div>
+                <div class="category-chip">
+                    <span class="category-chip-icon">🏢</span>
+                    <span class="category-chip-label">Business</span>
+                </div>
+                <div class="category-chip">
+                    <span class="category-chip-icon">🚨</span>
+                    <span class="category-chip-label">Emergency</span>
+                </div>
+            </div>
+
+            <!-- Withdrawal Type -->
+            <div class="section-label">Withdrawal type</div>
+            <div class="withdrawal-grid">
+                <div class="withdrawal-card selected">
+                    <div class="withdrawal-icon">
+                        <i data-lucide="lock" style="width: 20px; height: 20px;"></i>
+                    </div>
+                    <div class="withdrawal-title">Locked</div>
+                    <div class="withdrawal-subtitle">Until goal date</div>
+                </div>
+                <div class="withdrawal-card">
+                    <div class="withdrawal-icon">
+                        <i data-lucide="user" style="width: 20px; height: 20px;"></i>
+                    </div>
+                    <div class="withdrawal-title">Flexible</div>
+                    <div class="withdrawal-subtitle">Withdraw anytime</div>
+                </div>
+            </div>
+
+            <!-- Payment Method -->
+            <div class="section-label">How will you pay?</div>
+            <div class="payment-options">
+                <div class="payment-card selected">
+                    <div class="payment-icon">
+                        <i data-lucide="zap" style="width: 24px; height: 24px;"></i>
+                    </div>
+                    <div class="payment-body">
+                        <div class="payment-header">
+                            <div class="payment-title">Automatic Deduction</div>
+                            <div class="check-badge">
+                                <i data-lucide="check" style="width: 14px; height: 14px;"></i>
+                            </div>
+                        </div>
+                        <div class="payment-desc">Funds are pulled directly from your M-PESA balance on your schedule.</div>
+                        <div class="recommended-badge">Recommended</div>
+                    </div>
+                </div>
+
+                <div class="payment-card">
+                    <div class="payment-icon" style="background-color: #f1f5f9; color: #64748b;">
+                        <i data-lucide="hand" style="width: 24px; height: 24px;"></i>
+                    </div>
+                    <div class="payment-body">
+                        <div class="payment-header">
+                            <div class="payment-title">Manual Push</div>
+                        </div>
+                        <div class="payment-desc">We'll send you a reminder, and you initiate the transfer manually.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Button -->
+        <div class="bottom-button-container">
+            <button class="continue-btn">
+                CONTINUE
+                <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+            </button>
+        </div>
+
+        <!-- Nav Bar -->
+        <div class="nav-bar">
+            <i data-lucide="triangle" class="nav-icon" style="width: 20px; height: 20px; transform: rotate(180deg);"></i>
+            <i data-lucide="circle" class="nav-icon" style="width: 20px; height: 20px;"></i>
+            <i data-lucide="square" class="nav-icon" style="width: 20px; height: 20px;"></i>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Category selection
+        document.querySelectorAll('.category-chip').forEach(chip => {
+            chip.addEventListener('click', function() {
+                document.querySelectorAll('.category-chip').forEach(c => c.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+
+        // Withdrawal type selection
+        document.querySelectorAll('.withdrawal-card').forEach(card => {
+            card.addEventListener('click', function() {
+                document.querySelectorAll('.withdrawal-card').forEach(c => c.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+
+        // Payment method selection
+        document.querySelectorAll('.payment-card').forEach(card => {
+            card.addEventListener('click', function() {
+                document.querySelectorAll('.payment-card').forEach(c => c.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+    </script>
+</body>
+</html>
