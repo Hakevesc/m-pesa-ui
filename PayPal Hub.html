@@ -348,6 +348,7 @@
                 <button class="snb" data-screen="s6" onclick="goToScreen('s6')"><span class="ic"><i class="ti ti-question-mark"></i></span> FAQ</button>
                 <button class="snb" data-screen="s7" onclick="goToScreen('s7')"><span class="ic"><i class="ti ti-headphones"></i></span> Help</button>
                 <button class="snb" data-screen="s12" onclick="goToScreen('s12')"><span class="ic"><i class="ti ti-info-circle"></i></span> Transaction Detail</button>
+                <button class="snb" data-screen="s18" onclick="goToScreen('s18')"><span class="ic"><i class="ti ti-bell"></i></span> Notifications</button>
             </div>
             <div class="snav-group" onclick="toggleGroup(this)">
                 <i class="ti ti-chevron-down snav-arrow"></i><span>MODALS</span>
@@ -368,23 +369,28 @@
                             <span style="color:#ccc;font-size:18px;">|</span>
                             <img src="Assets/M-PESA-Logo-Green.svg" alt="M-PESA" style="height:28px;width:auto;">
                         </div>
-                        <button onclick="openPhoneModal('main')" style="background:none;border:none;cursor:pointer;padding:8px;" aria-label="Menu"><i data-lucide="more-vertical" style="color:#979797;width:22px;height:22px;"></i></button>
+                        <div style="display:flex;align-items:center;gap:4px;">
+                            <button onclick="goToScreen('s18')" style="background:none;border:none;cursor:pointer;padding:8px;position:relative;" aria-label="Notifications">
+                                <i data-lucide="bell" style="color:#979797;width:20px;height:20px;"></i>
+                                <span style="position:absolute;top:4px;right:4px;width:8px;height:8px;background:#FF4444;border-radius:50%;border:2px solid #fff;"></span>
+                            </button>
+                            <button onclick="openPhoneModal('main')" style="background:none;border:none;cursor:pointer;padding:8px;" aria-label="Menu"><i data-lucide="more-vertical" style="color:#979797;width:22px;height:22px;"></i></button>
+                        </div>
                     </header>
                     <div class="pbody">
                         <div class="bal-card">
                             <div class="watermark"><img src="Assets/paypal-icon.svg" alt=""></div>
                             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;position:relative;z-index:1;">
                                 <div style="display:flex;align-items:center;gap:6px;color:#fff;font-family:var(--font-sans);">
-                                    <span style="font-size:12px;font-weight:500;letter-spacing:.5px;">M-PESA SAVINGS</span>
-                                    <i data-lucide="eye" style="width:16px;height:16px;"></i>
+                                    <span style="font-size:14px;font-weight:600;letter-spacing:.5px;">PayPal Balance</span>
                                 </div>
-                                <div style="background:rgba(255,255,255,.2);padding:4px 12px;border-radius:20px;">
-                                    <span style="color:#fff;font-size:11px;font-weight:600;font-family:var(--font-sans);">HEAD OFFICE</span>
-                                </div>
+                                <button id="hubToggleBalanceBtn" onclick="hubToggleBalance()" style="background:none;border:none;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;flex-shrink:0;" aria-label="Toggle balance visibility">
+                                    <i id="hubBalanceEyeIcon" data-lucide="eye" style="width:36px;height:36px;color:#fff;"></i>
+                                </button>
                             </div>
                             <div style="position:relative;z-index:1;">
-                                <h1 style="color:#fff;font-size:36px;font-weight:700;margin-bottom:6px;letter-spacing:-.5px;font-family:var(--font-sans);">25,410.00 Birr</h1>
-                                <p style="color:rgba(255,255,255,.85);font-size:13px;font-weight:500;font-family:var(--font-sans);">EQUIVALENT: 34,900.00 BIRR</p>
+                                <h1 id="hubBalanceAmount" style="color:#fff;font-size:36px;font-weight:700;margin-bottom:6px;letter-spacing:-.5px;font-family:var(--font-sans);">120.00 USD</h1>
+                                <p id="hubBalanceEquivalent" style="color:rgba(255,255,255,.85);font-size:13px;font-weight:500;font-family:var(--font-sans);">EQUIVALENT: 25,410.00 Birr</p>
                             </div>
                         </div>
                         <button onclick="goToScreen('s2')" style="width:100%;background:#2FC56D;color:#fff;border:none;padding:14px 20px;border-radius:12px;font-family:var(--font-sans);font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:center;align-items:center;gap:8px;">
@@ -402,11 +408,13 @@
                                 <div style="flex:1;min-width:0;"><h3 style="font-size:15px;font-weight:600;color:#666;font-family:var(--font-sans);">MONEY WITHDRAWAL</h3></div>
                                 <div style="text-align:right;flex-shrink:0;"><p style="font-size:15px;font-weight:700;color:#666;margin-bottom:2px;font-family:var(--font-sans);">+500.00</p><p style="font-size:11px;color:#AAA;font-weight:500;font-family:var(--font-sans);">TODAY 01:23 PM</p></div>
                             </div>
+                            <!-- MONEY TOPUP commented out - monet topup feature not available
                             <div onclick="goToScreen('s12')" style="display:flex;align-items:center;padding:14px;background:#F9F9F9;border-radius:12px;margin-bottom:10px;cursor:pointer;">
                                 <div style="width:44px;height:44px;background:#2FC56D;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-right:14px;flex-shrink:0;"><i data-lucide="arrow-up-right" style="width:22px;height:22px;color:#fff;"></i></div>
                                 <div style="flex:1;min-width:0;"><h3 style="font-size:15px;font-weight:600;color:#666;font-family:var(--font-sans);">MONEY TOPUP</h3></div>
                                 <div style="text-align:right;flex-shrink:0;"><p style="font-size:15px;font-weight:700;color:#666;margin-bottom:2px;font-family:var(--font-sans);">+1,000.00</p><p style="font-size:11px;color:#AAA;font-weight:500;font-family:var(--font-sans);">YESTERDAY 4:15 PM</p></div>
                             </div>
+                            -->
                             <div onclick="goToScreen('s12')" style="display:flex;align-items:center;padding:14px;background:#fff;border-radius:12px;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,.04);border:1px solid #f0f0f0;cursor:pointer;">
                                 <div style="width:44px;height:44px;background:#097E46;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-right:14px;flex-shrink:0;"><i data-lucide="arrow-down-left" style="width:22px;height:22px;color:#fff;"></i></div>
                                 <div style="flex:1;min-width:0;"><h3 style="font-size:15px;font-weight:600;color:#666;font-family:var(--font-sans);">MONEY WITHDRAWAL</h3></div>
@@ -534,7 +542,6 @@
                             <div style="display:flex;justify-content:center;margin-bottom:28px;"><div style="width:72px;height:72px;background:#F0F0F0;border-radius:50%;display:flex;align-items:center;justify-content:center;"><img src="Assets/paypal-icon.svg" alt="PayPal" style="width:40px;height:40px;"></div></div>
                             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
                                 <div><p style="font-size:12px;font-weight:600;color:#999;letter-spacing:1px;margin-bottom:4px;font-family:var(--font-sans);">PHONE NUMBER</p><p style="font-size:22px;font-weight:600;color:#333;font-family:var(--font-sans);">711492682</p></div>
-                                <button style="width:48px;height:48px;background:#F5F5F5;border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;" aria-label="Edit"><i data-lucide="pencil" style="width:20px;height:20px;color:#666;"></i></button>
                             </div>
                             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
                                 <div><p style="font-size:12px;font-weight:600;color:#999;letter-spacing:1px;margin-bottom:4px;font-family:var(--font-sans);">AMOUNT</p><p style="font-size:22px;font-weight:700;color:#333;margin-bottom:2px;font-family:var(--font-sans);">15,600.00 Birr</p><p style="font-size:12px;font-weight:600;color:#666;letter-spacing:.5px;font-family:var(--font-sans);">AMOUNT IN USD: 120.00 USD</p></div>
@@ -548,7 +555,7 @@
                         </div>
                     </div>
                     <div style="padding:0 16px 20px;">
-                        <button onclick="goToScreen('s3')" style="width:100%;background:#2FC56D;color:#fff;border:none;padding:18px;border-radius:30px;font-family:var(--font-sans);font-size:16px;font-weight:700;cursor:pointer;display:flex;justify-content:center;align-items:center;gap:10px;letter-spacing:1px;box-shadow:0 4px 16px rgba(47,197,109,.3);"><span>SEND</span><i data-lucide="arrow-right" style="width:20px;height:20px;"></i></button>
+                        <button onclick="goToScreen('s3')" style="width:100%;background:#2FC56D;color:#fff;border:none;padding:18px;border-radius:30px;font-family:var(--font-sans);font-size:16px;font-weight:700;cursor:pointer;display:flex;justify-content:center;align-items:center;gap:10px;letter-spacing:1px;box-shadow:0 4px 16px rgba(47,197,109,.3);"><span>WITHDRAW</span><i data-lucide="arrow-right" style="width:20px;height:20px;"></i></button>
                     </div>
                 </div>
             </div>
@@ -1009,6 +1016,89 @@
                     </div>
                 </div>
             </div>
+            <!-- ===== SCREEN 18: Notification Center ===== -->
+            <div class="screen" id="s18">
+                <div class="phone" id="phone18" style="background:#fff;">
+                    <div class="sbar" style="background:#fff;"><span>9:41</span><div class="sbar-icons"><i class="ti ti-wifi"></i><i class="ti ti-battery-filled"></i></div></div>
+                    <header style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:#fff;flex-shrink:0;font-family:var(--font-sans);">
+                        <button onclick="goToScreen('s0')" style="background:none;border:none;cursor:pointer;padding:8px;" aria-label="Back"><i data-lucide="arrow-left" style="color:#333;width:24px;height:24px;"></i></button>
+                        <h1 style="font-size:18px;font-weight:700;color:#333;letter-spacing:1px;font-family:var(--font-sans);">NOTIFICATIONS</h1>
+                        <button onclick="openPhoneModal('main')" style="background:none;border:none;cursor:pointer;padding:8px;" aria-label="Menu"><i data-lucide="more-vertical" style="color:#979797;width:22px;height:22px;"></i></button>
+                    </header>
+                    <div style="flex:1;padding:20px 16px 20px;overflow-y:auto;background:#f4f6f9;">
+                        <!-- Today section -->
+                        <p style="font-size:12px;font-weight:600;color:#999;letter-spacing:1px;margin-bottom:12px;padding:0 4px;font-family:var(--font-sans);">TODAY</p>
+                        <div style="background:#fff;border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,.04);border:1px solid #f0f0f0;margin-bottom:16px;overflow:hidden;">
+                            <div style="display:flex;align-items:center;padding:16px;gap:14px;">
+                                <div style="width:44px;height:44px;background:#E6F4EA;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                    <i data-lucide="check-circle" style="width:22px;height:22px;color:#2FC56D;"></i>
+                                </div>
+                                <div style="flex:1;min-width:0;">
+                                    <p style="font-size:14px;font-weight:600;color:#333;margin-bottom:2px;font-family:var(--font-sans);">Withdrawal Successful</p>
+                                    <p style="font-size:12px;color:#666;line-height:1.4;font-family:var(--font-sans);">Your PayPal withdrawal of 500.00 Birr has been completed successfully.</p>
+                                    <p style="font-size:11px;color:#AAA;margin-top:6px;font-family:var(--font-sans);">Today, 01:23 PM</p>
+                                </div>
+                                <div style="width:10px;height:10px;background:#2FC56D;border-radius:50%;flex-shrink:0;"></div>
+                            </div>
+                        </div>
+                        <div style="background:#fff;border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,.04);border:1px solid #f0f0f0;margin-bottom:16px;overflow:hidden;">
+                            <div style="display:flex;align-items:center;padding:16px;gap:14px;">
+                                <div style="width:44px;height:44px;background:#FFF3E0;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                    <i data-lucide="refresh-cw" style="width:22px;height:22px;color:#FF9800;"></i>
+                                </div>
+                                <div style="flex:1;min-width:0;">
+                                    <p style="font-size:14px;font-weight:600;color:#333;margin-bottom:2px;font-family:var(--font-sans);">Exchange Rate Updated</p>
+                                    <p style="font-size:12px;color:#666;line-height:1.4;font-family:var(--font-sans);">USD to ETB rate has changed to 1 USD = 130 ETB.</p>
+                                    <p style="font-size:11px;color:#AAA;margin-top:6px;font-family:var(--font-sans);">Today, 10:00 AM</p>
+                                </div>
+                                <div style="width:10px;height:10px;background:#FF9800;border-radius:50%;flex-shrink:0;"></div>
+                            </div>
+                        </div>
+                        <!-- Yesterday section -->
+                        <p style="font-size:12px;font-weight:600;color:#999;letter-spacing:1px;margin-bottom:12px;padding:0 4px;margin-top:4px;font-family:var(--font-sans);">YESTERDAY</p>
+                        <div style="background:#fff;border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,.04);border:1px solid #f0f0f0;margin-bottom:16px;overflow:hidden;">
+                            <div style="display:flex;align-items:center;padding:16px;gap:14px;">
+                                <div style="width:44px;height:44px;background:#E6F4EA;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                    <i data-lucide="arrow-up-right" style="width:22px;height:22px;color:#2FC56D;"></i>
+                                </div>
+                                <div style="flex:1;min-width:0;">
+                                    <p style="font-size:14px;font-weight:600;color:#333;margin-bottom:2px;font-family:var(--font-sans);">Top-up Successful</p>
+                                    <p style="font-size:12px;color:#666;line-height:1.4;font-family:var(--font-sans);">Your M-PESA top-up of 1,000.00 Birr has been processed.</p>
+                                    <p style="font-size:11px;color:#AAA;margin-top:6px;font-family:var(--font-sans);">Yesterday, 4:15 PM</p>
+                                </div>
+                                <div style="width:10px;height:10px;background:#2FC56D;border-radius:50%;flex-shrink:0;"></div>
+                            </div>
+                        </div>
+                        <div style="background:#fff;border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,.04);border:1px solid #f0f0f0;margin-bottom:16px;overflow:hidden;">
+                            <div style="display:flex;align-items:center;padding:16px;gap:14px;">
+                                <div style="width:44px;height:44px;background:#FFF0F0;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                    <i data-lucide="alert-circle" style="width:22px;height:22px;color:#E24B4A;"></i>
+                                </div>
+                                <div style="flex:1;min-width:0;">
+                                    <p style="font-size:14px;font-weight:600;color:#333;margin-bottom:2px;font-family:var(--font-sans);">Failed Transaction</p>
+                                    <p style="font-size:12px;color:#666;line-height:1.4;font-family:var(--font-sans);">A withdrawal attempt of 2,500.00 Birr could not be completed. Please try again.</p>
+                                    <p style="font-size:11px;color:#AAA;margin-top:6px;font-family:var(--font-sans);">Yesterday, 2:30 PM</p>
+                                </div>
+                                <div style="width:10px;height:10px;background:#E24B4A;border-radius:50%;flex-shrink:0;"></div>
+                            </div>
+                        </div>
+                        <!-- Older section -->
+                        <p style="font-size:12px;font-weight:600;color:#999;letter-spacing:1px;margin-bottom:12px;padding:0 4px;margin-top:4px;font-family:var(--font-sans);">OLDER</p>
+                        <div style="background:#fff;border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,.04);border:1px solid #f0f0f0;overflow:hidden;">
+                            <div style="display:flex;align-items:center;padding:16px;gap:14px;">
+                                <div style="width:44px;height:44px;background:#E6F4EA;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                    <i data-lucide="link" style="width:22px;height:22px;color:#2FC56D;"></i>
+                                </div>
+                                <div style="flex:1;min-width:0;">
+                                    <p style="font-size:14px;font-weight:600;color:#333;margin-bottom:2px;font-family:var(--font-sans);">Account Linked</p>
+                                    <p style="font-size:12px;color:#666;line-height:1.4;font-family:var(--font-sans);">Your PayPal account has been successfully linked to M-PESA.</p>
+                                    <p style="font-size:11px;color:#AAA;margin-top:6px;font-family:var(--font-sans);">Jun 12, 2026</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Global modals added via JS at runtime on each phone container -->
@@ -1175,6 +1265,23 @@
             if (e.key >= '0' && e.key <= '9') amtPress(e.key);
             else if (e.key === 'Backspace') amtBack();
         });
+        let hubBalanceVisible = true;
+        function hubToggleBalance() {
+            hubBalanceVisible = !hubBalanceVisible;
+            const el = document.getElementById('hubBalanceAmount');
+            const eq = document.getElementById('hubBalanceEquivalent');
+            const icon = document.getElementById('hubBalanceEyeIcon');
+            if (hubBalanceVisible) {
+                el.textContent = '120.00 USD';
+                eq.textContent = 'EQUIVALENT: 25,410.00 Birr';
+                icon.setAttribute('data-lucide', 'eye');
+            } else {
+                el.textContent = '*******';
+                eq.textContent = 'EQUIVALENT: **********';
+                icon.setAttribute('data-lucide', 'eye-off');
+            }
+            lucide.createIcons();
+        }
         lucide.createIcons();
     </script>
 </body>
