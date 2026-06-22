@@ -473,13 +473,13 @@
   <nav class="stepnav" role="tablist">
     <div class="snav-head">
       <div class="snav-logo"><i class="ti ti-pig-money" aria-hidden="true"></i></div>
-      <div class="snav-brand"><span class="snav-title">M-PESA Savings</span><small>Personal saving flow</small></div>
+      <div class="snav-brand"><span class="snav-title">M-PESA PayPal</span><small>Personal PayPal</small></div>
     </div>
     <div class="snav-group" onclick="toggleGroup(this)"><i class="ti ti-chevron-down snav-arrow" aria-hidden="true"></i> Dashboards</div>
     <div class="snav-items">
-      <button class="snb active" data-screen="0" onclick="showScreen(0)" role="tab"><span class="ic"><i class="ti ti-home" aria-hidden="true"></i></span>Savings home</button>
-      <button class="snb" data-screen="3" onclick="showScreen(3)" role="tab"><span class="ic"><i class="ti ti-wallet" aria-hidden="true"></i></span>Savings home 2</button>
-      <button class="snb" data-screen="11" onclick="showScreen(11)" role="tab"><span class="ic"><i class="ti ti-stack" aria-hidden="true"></i></span>Savings home 3</button>
+      <button class="snb active" data-screen="0" onclick="showScreen(0)" role="tab"><span class="ic"><i class="ti ti-home" aria-hidden="true"></i></span>PayPal Home</button>
+      <button class="snb" data-screen="3" onclick="showScreen(3)" role="tab"><span class="ic"><i class="ti ti-wallet" aria-hidden="true"></i></span>PayPal Home 2</button>
+      <button class="snb" data-screen="11" onclick="showScreen(11)" role="tab"><span class="ic"><i class="ti ti-stack" aria-hidden="true"></i></span>PayPal Home 3</button>
     </div>
     <div class="snav-group" onclick="toggleGroup(this)"><i class="ti ti-chevron-down snav-arrow" aria-hidden="true"></i> Detail Views</div>
     <div class="snav-items">
@@ -508,12 +508,12 @@
   <!-- Content area -->
   <div class="content-area">
 
-    <!-- ═══ s0 – Savings Home (redesigned) ═══ -->
+    <!-- ═══ s0 – PayPal Home (redesigned) ═══ -->
     <div class="screen active" id="s0">
       <div class="phone" style="background:#f5f7fa">
         <div class="sbar"><span>9:41</span><div class="sbar-icons"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
         <div class="apphead">
-          <div class="apphead-top"><span class="apphead-title">Savings</span><i class="ti ti-bell" style="font-size:18px;color:#64748b" aria-hidden="true"></i></div>
+          <div class="apphead-top"><span class="apphead-title">PayPal</span><i class="ti ti-bell" style="font-size:18px;color:#64748b" aria-hidden="true"></i></div>
           <span class="apphead-sub">Good morning, Emnet</span>
         </div>
         <div class="pbody" style="padding-bottom:90px;gap:14px">
@@ -521,16 +521,16 @@
           <!-- Balance Card -->
           <div class="bal-card" style="margin-bottom:2px">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
-              <div class="bal-label" style="margin-bottom:0">Total Savings Balance</div>
+              <div class="bal-label" style="margin-bottom:0">PayPal Balance</div>
               <button onclick="toggleBal('bal0')" style="background:none;border:none;cursor:pointer;padding:2px;color:rgba(255,255,255,.7);display:flex;align-items:center" aria-label="Toggle balance"><span id="bal0-eye"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span></button>
             </div>
             <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:14px">
               <span class="bal-amount" id="bal0-amount" style="font-size:32px;margin-bottom:0">ETB 47,250.00</span>
             </div>
             <div class="bal-row">
-              <div class="bal-sub" style="flex:1">Goal savings<span id="bal0-sub0">ETB 31,000</span></div>
+              <div class="bal-sub" style="flex:1">Goal amount<span id="bal0-sub0">ETB 31,000</span></div>
               <div style="width:1px;height:36px;background:rgba(255,255,255,.22)"></div>
-              <div class="bal-sub" style="flex:1;text-align:right;cursor:pointer">Group savings<span id="bal0-sub1">ETB 16,250</span><i class="ti ti-chevron-right" style="font-size:12px;opacity:.8;margin-left:4px" aria-hidden="true"></i></div>
+              <div class="bal-sub" style="flex:1;text-align:right;cursor:pointer">Group amount<span id="bal0-sub1">ETB 16,250</span><i class="ti ti-chevron-right" style="font-size:12px;opacity:.8;margin-left:4px" aria-hidden="true"></i></div>
             </div>
           </div>
 
@@ -552,22 +552,22 @@
             <div onclick="showScreen(4)" style="background:#fff;border-radius:14px;padding:14px;border:1px solid rgba(226,232,240,.5);cursor:pointer;transition:all .3s;box-shadow:0 2px 8px rgba(0,0,0,.04)">
               <div style="width:40px;height:40px;border-radius:10px;background:#F0FAF4;display:flex;align-items:center;justify-content:center;color:#2FC56D;margin-bottom:8px"><i class="ti ti-user" style="font-size:20px" aria-hidden="true"></i></div>
               <div style="font-size:14px;font-weight:700;color:#0f172a">Individual</div>
-              <div style="font-size:11px;color:#94a3b8;font-weight:500;margin-top:1px">Personal rainy day fund</div>
+              <div style="font-size:11px;color:#94a3b8;font-weight:500;margin-top:1px">Personal emergency fund</div>
             </div>
             <div onclick="showScreen(4)" style="background:#fff;border-radius:14px;padding:14px;border:1px solid rgba(226,232,240,.5);cursor:pointer;transition:all .3s;box-shadow:0 2px 8px rgba(0,0,0,.04)">
               <div style="width:40px;height:40px;border-radius:10px;background:#F0FAF4;display:flex;align-items:center;justify-content:center;color:#2FC56D;margin-bottom:8px"><i class="ti ti-target" style="font-size:20px" aria-hidden="true"></i></div>
               <div style="font-size:14px;font-weight:700;color:#0f172a">Target</div>
-              <div style="font-size:11px;color:#94a3b8;font-weight:500;margin-top:1px">Save for specific goals</div>
+              <div style="font-size:11px;color:#94a3b8;font-weight:500;margin-top:1px">Set specific goals</div>
             </div>
-            <div onclick="sendPrompt('Open group saving')" style="background:#fff;border-radius:14px;padding:14px;border:1px solid rgba(226,232,240,.5);cursor:pointer;transition:all .3s;box-shadow:0 2px 8px rgba(0,0,0,.04)">
+            <div onclick="sendPrompt('Open PayPal group')" style="background:#fff;border-radius:14px;padding:14px;border:1px solid rgba(226,232,240,.5);cursor:pointer;transition:all .3s;box-shadow:0 2px 8px rgba(0,0,0,.04)">
               <div style="width:40px;height:40px;border-radius:10px;background:#F0FAF4;display:flex;align-items:center;justify-content:center;color:#2FC56D;margin-bottom:8px"><i class="ti ti-users" style="font-size:20px" aria-hidden="true"></i></div>
               <div style="font-size:14px;font-weight:700;color:#0f172a">Group</div>
-              <div style="font-size:11px;color:#94a3b8;font-weight:500;margin-top:1px">Contribution with friends</div>
+              <div style="font-size:11px;color:#94a3b8;font-weight:500;margin-top:1px">Send & receive money</div>
             </div>
             <div onclick="showScreen(4)" style="background:#fff;border-radius:14px;padding:14px;border:1px solid rgba(226,232,240,.5);cursor:pointer;transition:all .3s;box-shadow:0 2px 8px rgba(0,0,0,.04)">
               <div style="width:40px;height:40px;border-radius:10px;background:#F0FAF4;display:flex;align-items:center;justify-content:center;color:#2FC56D;margin-bottom:8px"><i class="ti ti-lock" style="font-size:20px" aria-hidden="true"></i></div>
               <div style="font-size:14px;font-weight:700;color:#0f172a">Fixed</div>
-              <div style="font-size:11px;color:#94a3b8;font-weight:500;margin-top:1px">Locked for high returns</div>
+              <div style="font-size:11px;color:#94a3b8;font-weight:500;margin-top:1px">Fixed-term PayPal</div>
             </div>
           </div>
 
@@ -579,7 +579,7 @@
               <div style="position:absolute;inset:-3px;border-radius:50%;border:3px solid #2FC56D;border-top-color:transparent;border-right-color:transparent"></div>
               <div style="width:100%;height:100%;border-radius:50%;background:linear-gradient(135deg,#fbbf24,#f59e0b);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.1)"><i class="ti ti-home" style="font-size:20px;color:#fff" aria-hidden="true"></i></div>
             </div>
-            <div style="flex:1"><div style="font-size:14px;font-weight:700;color:#0f172a">New Apartment</div><div style="font-size:10px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:.5px">SAVED 32,000.00 BIRR</div></div>
+            <div style="flex:1"><div style="font-size:14px;font-weight:700;color:#0f172a">PayPal Balance</div><div style="font-size:10px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:.5px">RECEIVED 32,000.00 BIRR</div></div>
             <span style="padding:4px 10px;border-radius:20px;font-size:10px;font-weight:700;background:#d1fae5;color:#059669">On track</span>
           </div>
 
@@ -588,7 +588,7 @@
               <div style="position:absolute;inset:-3px;border-radius:50%;border:3px solid #f59e0b;border-top-color:transparent;border-right-color:transparent;border-bottom-color:transparent"></div>
               <div style="width:100%;height:100%;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#2563eb);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.1)"><i class="ti ti-plane" style="font-size:20px;color:#fff" aria-hidden="true"></i></div>
             </div>
-            <div style="flex:1"><div style="font-size:14px;font-weight:700;color:#0f172a">Vacation Fund</div><div style="font-size:10px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:.5px">SAVED 8,500.00 BIRR</div></div>
+            <div style="flex:1"><div style="font-size:14px;font-weight:700;color:#0f172a">Watchlist</div><div style="font-size:10px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:.5px">RECEIVED 8,500.00 BIRR</div></div>
             <span style="padding:4px 10px;border-radius:20px;font-size:10px;font-weight:700;background:#fef3c7;color:#d97706">Behind</span>
           </div>
 
@@ -597,7 +597,7 @@
               <div style="position:absolute;inset:-3px;border-radius:50%;border:3px solid #94a3b8"></div>
               <div style="width:100%;height:100%;border-radius:50%;background:linear-gradient(135deg,#10b981,#059669);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.1)"><i class="ti ti-ambulance" style="font-size:20px;color:#fff" aria-hidden="true"></i></div>
             </div>
-            <div style="flex:1"><div style="font-size:14px;font-weight:700;color:#0f172a">Emergency</div><div style="font-size:10px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:.5px">SAVED 5,000.00 BIRR</div></div>
+            <div style="flex:1"><div style="font-size:14px;font-weight:700;color:#0f172a">Recent Activity</div><div style="font-size:10px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:.5px">SENT 5,000.00 BIRR</div></div>
             <span style="padding:4px 10px;border-radius:20px;font-size:10px;font-weight:700;background:#f1f5f9;color:#64748b">Locked</span>
           </div>
 
@@ -606,14 +606,14 @@
               <div style="position:absolute;inset:-3px;border-radius:50%;border:3px solid #2FC56D;border-top-color:transparent;border-right-color:transparent"></div>
               <div style="width:100%;height:100%;border-radius:50%;background:linear-gradient(135deg,#f472b6,#ec4899);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.1)"><i class="ti ti-cake" style="font-size:20px;color:#fff" aria-hidden="true"></i></div>
             </div>
-            <div style="flex:1"><div style="font-size:14px;font-weight:700;color:#0f172a">Birthday Bash</div><div style="font-size:10px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:.5px">SAVED 3,200.00 BIRR</div></div>
+            <div style="flex:1"><div style="font-size:14px;font-weight:700;color:#0f172a">Invoices</div><div style="font-size:10px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:.5px">SAVED 3,200.00 BIRR</div></div>
             <span style="padding:4px 10px;border-radius:20px;font-size:10px;font-weight:700;background:#d1fae5;color:#059669">On track</span>
           </div>
 
         </div>
         <!-- Fixed bottom -->
         <div style="position:absolute;bottom:0;left:0;right:0;padding:12px 20px 20px;background:linear-gradient(to top,#f5f7fa 50%,transparent);z-index:10">
-          <button onclick="showScreen(4)" class="cta" style="min-height:48px;font-size:14px;letter-spacing:.5px;margin:0">NEW SAVING POCKET <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+          <button onclick="showScreen(4)" class="cta" style="min-height:48px;font-size:14px;letter-spacing:.5px;margin:0">NEW PAYPAL ACCOUNT <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
         </div>
         <div class="nav-bar">
           <i class="ti ti-triangle nav-icon" style="transform:rotate(180deg)" aria-hidden="true"></i>
@@ -635,7 +635,7 @@
         <div class="pbody">
           <div class="bal-card">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
-              <div class="bal-label" style="margin-bottom:0">CBE savings balance</div>
+              <div class="bal-label" style="margin-bottom:0">CBE PayPal balance</div>
               <button onclick="toggleBal('bal1')" style="background:none;border:none;cursor:pointer;padding:2px;color:rgba(255,255,255,.7);display:flex;align-items:center"><span id="bal1-eye"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span></button>
             </div>
             <div class="bal-amount" id="bal1-amount">ETB 28,500.00</div>
@@ -653,19 +653,19 @@
           <div id="s1-pockets" style="display:flex;flex-direction:column;gap:8px">
             <div class="pocket-card" onclick="showScreen(2)">
               <div class="pocket-top"><div class="pocket-name">University tuition</div><span style="background:#E6F4EA;color:#008A42;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600">On track</span></div>
-              <div class="pocket-amounts"><div class="pocket-saved">Saved <span>ETB 12,500</span></div><div class="pocket-target">of ETB 20,000</div></div>
+              <div class="pocket-amounts"><div class="pocket-saved">Transferred <span>ETB 12,500</span></div><div class="pocket-target">of ETB 20,000</div></div>
               <div class="progress-track"><div class="progress-fill" style="width:62.5%"></div></div>
               <div class="pocket-footer"><div class="pocket-days">89 days left</div><div class="pocket-pct">62.5%</div></div>
             </div>
             <div class="pocket-card" onclick="showScreen(2)">
               <div class="pocket-top"><div class="pocket-name">Emergency fund</div><span style="background:#FAEEDA;color:#854F0B;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600">Behind</span></div>
-              <div class="pocket-amounts"><div class="pocket-saved">Saved <span>ETB 7,200</span></div><div class="pocket-target">of ETB 15,000</div></div>
+              <div class="pocket-amounts"><div class="pocket-saved">Transferred <span>ETB 7,200</span></div><div class="pocket-target">of ETB 15,000</div></div>
               <div class="progress-track"><div class="progress-fill" style="width:48%;background:#EF9F27"></div></div>
               <div class="pocket-footer"><div class="pocket-days">45 days left</div><div class="pocket-pct" style="color:#EF9F27">48%</div></div>
             </div>
             <div class="pocket-card" onclick="showScreen(2)">
               <div class="pocket-top"><div class="pocket-name">Business startup</div><span style="background:#E6F1FB;color:#185FA5;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600">Locked</span></div>
-              <div class="pocket-amounts"><div class="pocket-saved">Saved <span>ETB 8,800</span></div><div class="pocket-target">of ETB 50,000</div></div>
+              <div class="pocket-amounts"><div class="pocket-saved">Transferred <span>ETB 8,800</span></div><div class="pocket-target">of ETB 50,000</div></div>
               <div class="progress-track"><div class="progress-fill" style="width:17.6%;background:#378ADD"></div></div>
               <div class="pocket-footer"><div class="pocket-days">210 days left</div><div class="pocket-pct" style="color:#378ADD">17.6%</div></div>
             </div>
@@ -697,7 +697,7 @@
         <div class="pbody">
           <div class="bal-card">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
-              <div class="bal-label" style="margin-bottom:0">Saved amount</div>
+              <div class="bal-label" style="margin-bottom:0">Transferred amount</div>
               <button onclick="toggleBal('bal2')" style="background:none;border:none;cursor:pointer;padding:2px;color:rgba(255,255,255,.7)"><span id="bal2-eye"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span></button>
             </div>
             <div class="bal-amount" id="bal2-amount">ETB 12,500.00</div>
@@ -729,11 +729,11 @@
     <div class="screen" id="s3">
       <div class="phone">
         <div class="sbar"><span>9:41</span><div class="sbar-icons"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
-        <div class="apphead"><div class="apphead-top"><span class="apphead-title">My pockets</span><i class="ti ti-bell" style="font-size:18px;color:#64748b" aria-hidden="true"></i></div><span class="apphead-sub">All your saving pockets in one place</span></div>
+        <div class="apphead"><div class="apphead-top"><span class="apphead-title">My pockets</span><i class="ti ti-bell" style="font-size:18px;color:#64748b" aria-hidden="true"></i></div><span class="apphead-sub">All your PayPal accounts</span></div>
         <div class="pbody">
           <div class="bal-card">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
-              <div class="bal-label" style="margin-bottom:0">Total savings</div>
+              <div class="bal-label" style="margin-bottom:0">Total PayPal</div>
               <button onclick="toggleBal('bal3')" style="background:none;border:none;cursor:pointer;padding:2px;color:rgba(255,255,255,.7)"><span id="bal3-eye"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span></button>
             </div>
             <div class="bal-amount" id="bal3-amount">ETB 47,250.00</div>
@@ -742,13 +742,13 @@
           <div class="sec-label">Active pockets</div>
           <div class="pocket-card" onclick="showScreen(2)">
             <div class="pocket-top"><div class="pocket-name">University tuition</div><span style="background:#E6F4EA;color:#008A42;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600">On track</span></div>
-            <div class="pocket-amounts"><div class="pocket-saved">Saved <span>ETB 12,500</span></div><div class="pocket-target">of ETB 20,000</div></div>
+            <div class="pocket-amounts"><div class="pocket-saved">Transferred <span>ETB 12,500</span></div><div class="pocket-target">of ETB 20,000</div></div>
             <div class="progress-track"><div class="progress-fill" style="width:62.5%"></div></div>
             <div class="pocket-footer"><div class="pocket-days">89 days left</div><div class="pocket-pct">62.5%</div></div>
           </div>
           <div class="pocket-card" onclick="showScreen(2)">
             <div class="pocket-top"><div class="pocket-name">Emergency fund</div><span style="background:#FAEEDA;color:#854F0B;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600">Behind</span></div>
-            <div class="pocket-amounts"><div class="pocket-saved">Saved <span>ETB 7,200</span></div><div class="pocket-target">of ETB 15,000</div></div>
+            <div class="pocket-amounts"><div class="pocket-saved">Transferred <span>ETB 7,200</span></div><div class="pocket-target">of ETB 15,000</div></div>
             <div class="progress-track"><div class="progress-fill" style="width:48%;background:#EF9F27"></div></div>
             <div class="pocket-footer"><div class="pocket-days">45 days left</div><div class="pocket-pct" style="color:#EF9F27">48%</div></div>
           </div>
@@ -773,15 +773,15 @@
           </div>
         </div>
         <div class="bd" style="flex:1;overflow-y:auto;padding:20px 28px 120px;background:#ffffff;gap:16px">
-          <h1 style="font-size:26px;font-weight:800;color:#0f172a;margin:0;letter-spacing:-0.5px">Choose saving type</h1>
-          <p style="font-size:14px;color:#64748b;font-weight:500;margin:2px 0 4px">What kind of saving account do you want?</p>
+          <h1 style="font-size:26px;font-weight:800;color:#0f172a;margin:0;letter-spacing:-0.5px">Choose PayPal type</h1>
+          <p style="font-size:14px;color:#64748b;font-weight:500;margin:2px 0 4px">What kind of PayPal account do you want?</p>
           <div class="type-card sel" id="t-ind" onclick="selType('ind')" style="background:#fff;border:1.5px solid #2FC56D;border-radius:18px;padding:16px;cursor:pointer;display:flex;align-items:flex-start;gap:12px;box-shadow:0 2px 8px rgba(15,23,42,.04);background:rgba(47,197,109,.06)">
             <div class="type-icon" style="width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;background:#E6F1FB"><i class="ti ti-user" style="color:#185FA5" aria-hidden="true"></i></div>
-            <div><div class="type-title" style="font-size:15px;font-weight:600;color:#0f172a">Individual saving</div><div class="type-sub" style="font-size:12px;color:#64748b;margin-top:2px;line-height:1.5">Personal goal-based pocket. Set a target, track progress.</div><span class="type-badge" style="display:inline-block;font-size:10px;padding:2px 8px;border-radius:6px;margin-top:6px;font-weight:600;background:#E6F4EA;color:#008A42">Most common</span></div>
+            <div><div class="type-title" style="font-size:15px;font-weight:600;color:#0f172a">Individual PayPal</div><div class="type-sub" style="font-size:12px;color:#64748b;margin-top:2px;line-height:1.5">Personal goal-based pocket. Set a target, track progress.</div><span class="type-badge" style="display:inline-block;font-size:10px;padding:2px 8px;border-radius:6px;margin-top:6px;font-weight:600;background:#E6F4EA;color:#008A42">Most common</span></div>
           </div>
           <div class="type-card" id="t-grp" onclick="selType('grp')" style="background:#fff;border:1.5px solid #e2e8f0;border-radius:18px;padding:16px;cursor:pointer;display:flex;align-items:flex-start;gap:12px;box-shadow:0 2px 8px rgba(15,23,42,.04)">
             <div class="type-icon" style="width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;background:#FAEEDA"><i class="ti ti-users" style="color:#854F0B" aria-hidden="true"></i></div>
-            <div><div class="type-title" style="font-size:15px;font-weight:600;color:#0f172a">Group saving</div><div class="type-sub" style="font-size:12px;color:#64748b;margin-top:2px;line-height:1.5">Shared account for up to 10 members.</div><span class="type-badge" style="display:inline-block;font-size:10px;padding:2px 8px;border-radius:6px;margin-top:6px;font-weight:600;background:#FAEEDA;color:#854F0B">Requires KYC</span></div>
+            <div><div class="type-title" style="font-size:15px;font-weight:600;color:#0f172a">Group PayPal</div><div class="type-sub" style="font-size:12px;color:#64748b;margin-top:2px;line-height:1.5">Shared account for up to 10 members.</div><span class="type-badge" style="display:inline-block;font-size:10px;padding:2px 8px;border-radius:6px;margin-top:6px;font-weight:600;background:#FAEEDA;color:#854F0B">Requires KYC</span></div>
           </div>
           <div class="type-card" id="t-fix" onclick="selType('fix')" style="background:#fff;border:1.5px solid #e2e8f0;border-radius:18px;padding:16px;cursor:pointer;display:flex;align-items:flex-start;gap:12px;box-shadow:0 2px 8px rgba(15,23,42,.04)">
             <div class="type-icon" style="width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;background:#EEEDFE"><i class="ti ti-lock" style="color:#534AB7" aria-hidden="true"></i></div>
@@ -817,17 +817,17 @@
         </div>
         <div class="bd" style="flex:1;overflow-y:auto;padding:20px 28px 120px;background:#ffffff;gap:16px">
           <h1 style="font-size:26px;font-weight:800;color:#0f172a;margin:0;letter-spacing:-0.5px">Choose bank</h1>
-          <p style="font-size:14px;color:#64748b;font-weight:500;margin:2px 0 4px">Pick a bank offer for your saving pocket</p>
+          <p style="font-size:14px;color:#64748b;font-weight:500;margin:2px 0 4px">Pick a service for your PayPal account</p>
           <div style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.8px;margin-top:8px">Available offers</div>
           <div class="bank-card sel" id="bk-cbe" onclick="selBank('cbe')" style="border:1.5px solid #2FC56D;border-radius:18px;padding:14px;cursor:pointer;display:flex;align-items:center;gap:12px;background:rgba(47,197,109,.06);box-shadow:0 2px 8px rgba(15,23,42,.04)">
             <div class="bk-logo" style="width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0;background:#E6F1FB;color:#185FA5">CB</div>
-            <div style="flex:1;min-width:0"><div class="bk-name" style="font-size:14px;font-weight:600;color:#0f172a">Commercial Bank of Ethiopia</div><div class="bk-rate" style="font-size:12px;color:#64748b;margin-top:1px">Flexible savings · Min ETB 500</div></div>
+            <div style="flex:1;min-width:0"><div class="bk-name" style="font-size:14px;font-weight:600;color:#0f172a">Commercial Bank of Ethiopia</div><div class="bk-rate" style="font-size:12px;color:#64748b;margin-top:1px">Flexible PayPal · Min ETB 500</div></div>
             <div style="text-align:right"><div style="font-size:18px;font-weight:700;color:#2FC56D">7%</div><div style="font-size:10px;color:#94a3b8">per year</div></div>
             <div style="width:22px;height:22px;border-radius:50%;border:2px solid #2FC56D;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:#2FC56D"></div>
           </div>
           <div class="bank-card" id="bk-aw" onclick="selBank('aw')" style="border:1.5px solid #e2e8f0;border-radius:18px;padding:14px;cursor:pointer;display:flex;align-items:center;gap:12px;background:#fff;box-shadow:0 2px 8px rgba(15,23,42,.04)">
             <div class="bk-logo" style="width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0;background:#EAF3DE;color:#3B6D11">AB</div>
-            <div style="flex:1;min-width:0"><div class="bk-name" style="font-size:14px;font-weight:600;color:#0f172a">Awash Bank</div><div class="bk-rate" style="font-size:12px;color:#64748b;margin-top:1px">Goal savings · Min ETB 200</div></div>
+            <div style="flex:1;min-width:0"><div class="bk-name" style="font-size:14px;font-weight:600;color:#0f172a">Awash Bank</div><div class="bk-rate" style="font-size:12px;color:#64748b;margin-top:1px">Goal PayPal · Min ETB 200</div></div>
             <div style="text-align:right"><div style="font-size:18px;font-weight:700;color:#2FC56D">5%</div><div style="font-size:10px;color:#94a3b8">per year</div></div>
             <div class="bk-sel" style="width:22px;height:22px;border-radius:50%;border:2px solid #e2e8f0;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:#fff"></div>
           </div>
@@ -839,7 +839,7 @@
           </div>
           <div class="bank-card" id="bk-hi" onclick="selBank('hi')" style="border:1.5px solid #e2e8f0;border-radius:18px;padding:14px;cursor:pointer;display:flex;align-items:center;gap:12px;background:#fff;box-shadow:0 2px 8px rgba(15,23,42,.04)">
             <div class="bk-logo" style="width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0;background:#EEEDFE;color:#534AB7">HB</div>
-            <div style="flex:1;min-width:0"><div class="bk-name" style="font-size:14px;font-weight:600;color:#0f172a">Hibir Bank</div><div class="bk-rate" style="font-size:12px;color:#64748b;margin-top:1px">Flexible savings · Min ETB 100</div></div>
+            <div style="flex:1;min-width:0"><div class="bk-name" style="font-size:14px;font-weight:600;color:#0f172a">Hibir Bank</div><div class="bk-rate" style="font-size:12px;color:#64748b;margin-top:1px">Flexible PayPal · Min ETB 100</div></div>
             <div style="text-align:right"><div style="font-size:18px;font-weight:700;color:#2FC56D">3%</div><div style="font-size:10px;color:#94a3b8">per year</div></div>
             <div class="bk-sel" style="width:22px;height:22px;border-radius:50%;border:2px solid #e2e8f0;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:#fff"></div>
           </div>
@@ -1063,7 +1063,7 @@
         <div class="bd" style="flex:1;overflow-y:auto;padding:24px 28px 120px;background:#ffffff;gap:20px">
           <div style="margin-bottom:4px">
             <h1 style="font-size:26px;font-weight:800;color:#0f172a;margin:0;letter-spacing:-0.5px">Review your plan</h1>
-            <p style="font-size:14px;color:#64748b;font-weight:500;margin:6px 0 0">Please confirm your saving details before proceeding</p>
+            <p style="font-size:14px;color:#64748b;font-weight:500;margin:6px 0 0">Please confirm your PayPal details before proceeding</p>
           </div>
           <div style="background:linear-gradient(135deg,#2FC56D 0%,#1ea35a 100%);border-radius:18px;padding:14px 18px;color:#ffffff;box-shadow:0 8px 24px rgba(47,197,109,0.3);display:flex;align-items:center;gap:14px">
             <div style="width:48px;height:48px;background:rgba(255,255,255,0.2);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
@@ -1178,7 +1178,7 @@
               </div>
             </div>
             <h1 style="font-size:28px;font-weight:900;color:#0f172a;text-align:center;letter-spacing:1px;margin:0">POCKET CREATED!</h1>
-            <p style="font-size:14px;color:#64748b;text-align:center;line-height:1.6;font-weight:500;max-width:280px;margin:0">Your saving pocket has been created successfully and is ready for growth.</p>
+            <p style="font-size:14px;color:#64748b;text-align:center;line-height:1.6;font-weight:500;max-width:280px;margin:0">Your PayPal account has been created successfully and is ready for growth.</p>
           </div>
           <div style="background:linear-gradient(135deg,#2FC56D 0%,#1ea35a 100%);border-radius:18px;padding:14px 18px;color:#ffffff;box-shadow:0 8px 24px rgba(47,197,109,0.3);display:flex;align-items:center;gap:14px">
             <div style="width:48px;height:48px;background:rgba(255,255,255,0.2);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
@@ -1228,11 +1228,11 @@
           </div>
         </div>
         <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 28px 28px;background:linear-gradient(to top,#ffffff 60%,transparent);z-index:10">
-          <button class="cta" onclick="sendPrompt('Take me to my new University tuition saving pocket')" style="width:100%;min-height:50px;font-size:15px;letter-spacing:0.5px;margin-bottom:12px">
+          <button class="cta" onclick="sendPrompt('Take me to my PayPal account')" style="width:100%;min-height:50px;font-size:15px;letter-spacing:0.5px;margin-bottom:12px">
             START SAVING NOW
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </button>
-          <button class="cta-sec" onclick="sendPrompt('View my saving pocket details')" style="width:100%;min-height:48px;font-size:14px;letter-spacing:0.5px">
+          <button class="cta-sec" onclick="sendPrompt('View my PayPal details')" style="width:100%;min-height:48px;font-size:14px;letter-spacing:0.5px">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
             VIEW SAVING POCKET
           </button>
@@ -1248,7 +1248,7 @@
     <!-- ═══ s10 – Step 6 (was timeline in original) ═══ -->
     <div class="screen" id="s10"></div>
 
-    <!-- ═══ s11 – Savings home 3 (simplified) ═══ -->
+    <!-- ═══ s11 – PayPal Home 3 ═══ -->
     <div class="screen" id="s11">
       <div class="phone">
         <div class="sbar"><span>9:41</span><div class="sbar-icons"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
@@ -1256,7 +1256,7 @@
         <div class="pbody">
           <div class="bal-card">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
-              <div class="bal-label" style="margin-bottom:0">Total savings</div>
+              <div class="bal-label" style="margin-bottom:0">Total PayPal</div>
               <button onclick="toggleBal('bal11')" style="background:none;border:none;cursor:pointer;padding:2px;color:rgba(255,255,255,.7)"><span id="bal11-eye"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span></button>
             </div>
             <div class="bal-amount" id="bal11-amount">ETB 47,250.00</div>
@@ -1264,19 +1264,19 @@
           </div>
           <div class="pocket-card" onclick="showScreen(2)">
             <div class="pocket-top"><div class="pocket-name">University tuition</div><span style="background:#E6F4EA;color:#008A42;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600">On track</span></div>
-            <div class="pocket-amounts"><div class="pocket-saved">Saved <span>ETB 12,500</span></div><div class="pocket-target">of ETB 20,000</div></div>
+            <div class="pocket-amounts"><div class="pocket-saved">Transferred <span>ETB 12,500</span></div><div class="pocket-target">of ETB 20,000</div></div>
             <div class="progress-track"><div class="progress-fill" style="width:62.5%"></div></div>
             <div class="pocket-footer"><div class="pocket-days">89 days left</div><div class="pocket-pct">62.5%</div></div>
           </div>
           <div class="pocket-card" onclick="showScreen(2)">
             <div class="pocket-top"><div class="pocket-name">Emergency fund</div><span style="background:#FAEEDA;color:#854F0B;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600">Behind</span></div>
-            <div class="pocket-amounts"><div class="pocket-saved">Saved <span>ETB 7,200</span></div><div class="pocket-target">of ETB 15,000</div></div>
+            <div class="pocket-amounts"><div class="pocket-saved">Transferred <span>ETB 7,200</span></div><div class="pocket-target">of ETB 15,000</div></div>
             <div class="progress-track"><div class="progress-fill" style="width:48%;background:#EF9F27"></div></div>
             <div class="pocket-footer"><div class="pocket-days">45 days left</div><div class="pocket-pct" style="color:#EF9F27">48%</div></div>
           </div>
           <div class="pocket-card" onclick="showScreen(2)">
             <div class="pocket-top"><div class="pocket-name">Business startup</div><span style="background:#E6F1FB;color:#185FA5;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600">Locked</span></div>
-            <div class="pocket-amounts"><div class="pocket-saved">Saved <span>ETB 8,800</span></div><div class="pocket-target">of ETB 50,000</div></div>
+            <div class="pocket-amounts"><div class="pocket-saved">Transferred <span>ETB 8,800</span></div><div class="pocket-target">of ETB 50,000</div></div>
             <div class="progress-track"><div class="progress-fill" style="width:17.6%;background:#378ADD"></div></div>
             <div class="pocket-footer"><div class="pocket-days">210 days left</div><div class="pocket-pct" style="color:#378ADD">17.6%</div></div>
           </div>
@@ -1294,10 +1294,10 @@
           <div class="hd-sub">Version 2.4 — please read these carefully</div>
         </div>
         <div class="bd">
-          <div style="font-size:11px;color:#94a3b8;line-height:1.5;margin-bottom:4px">Version 2.4 — please read these terms carefully before activating a savings account.</div>
+          <div style="font-size:11px;color:#94a3b8;line-height:1.5;margin-bottom:4px">Version 2.4 — please read these terms carefully before activating a PayPal account.</div>
           <div class="tc-sec"><div class="tc-h">1. Account Eligibility</div><div class="tc-p">You must be a registered M-PESA user with a valid national ID or passport. Group accounts require a minimum of 2 and a maximum of 10 members.</div></div>
           <div class="tc-sec"><div class="tc-h">2. Interest & Fees</div><div class="tc-p">Interest rates are set by the partner bank and may vary. Early withdrawal from fixed deposit accounts may incur a penalty.</div></div>
-          <div class="tc-sec"><div class="tc-h">3. Security</div><div class="tc-p">Your savings are protected by M-PESA's encryption and security protocols. You are responsible for keeping your PIN and device secure.</div></div>
+          <div class="tc-sec"><div class="tc-h">3. Security</div><div class="tc-p">Your funds are protected by M-PESA's encryption and security protocols. You are responsible for keeping your PIN and device secure.</div></div>
         </div>
         <div class="bottom-action">
           <button class="cta" onclick="closeTerms()">I understand</button>
@@ -1333,8 +1333,8 @@
           <div style="background:#FFF7EC;border:1px solid #FAC775;border-radius:14px;padding:14px;display:flex;gap:10px;align-items:flex-start">
             <i class="ti ti-info-circle" style="font-size:16px;color:#B45309;flex-shrink:0;margin-top:2px" aria-hidden="true"></i>
             <div>
-              <div style="font-size:13px;font-weight:600;color:#7C4A00;margin-bottom:2px">Impact on your saving goal</div>
-              <div style="font-size:12px;color:#7C4A00;line-height:1.5">If you withdraw ETB 12,500 now, your University tuition pocket will be closed. You will need to start a new goal from scratch to continue saving.</div>
+              <div style="font-size:13px;font-weight:600;color:#7C4A00;margin-bottom:2px">Impact on your PayPal goal</div>
+              <div style="font-size:12px;color:#7C4A00;line-height:1.5">If you withdraw ETB 12,500 now, your University tuition pocket will be closed. You will need to start a new goal from scratch to continue with PayPal.</div>
             </div>
           </div>
           <div class="slbl">Comparison</div>
