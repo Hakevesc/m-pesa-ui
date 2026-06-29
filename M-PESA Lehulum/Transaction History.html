@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transaction History</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600&display=swap');
+  @import url('https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&display=swap');
+
+  :root {
+    --Primary: #FE353D;
+    --Primary-Dark: #C41520;
+    --Primary-Darker: #A41016;
+    --On-Surface: #1C1C21;
+    --On-Surface-Low: #7C7C87;
+    --Surface-Container: #FCFCFC;
+    --Gray-0: #FFF;
+    --On-Primary: #FFF1F2;
+    --Success: #1FC83B;
+    --Success-Light: #E8F9EC;
+    --Primary-Light: #FFF1F2;
+    --Border: #E8E8EC;
+    --Background: #F5F5F5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #E0E0E0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  .phone-frame {
+    width: 360px;
+    height: 780px;
+    background: var(--Background);
+    border-radius: 30px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  }
+
+  .app-content {
+    height: 100%;
+    overflow-y: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .app-content::-webkit-scrollbar { width: 0; }
+
+  /* Sticky Header Wrapper */
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--Background);
+  }
+
+  /* Status Bar (matching Lehulum Home) */
+  .status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 14px 24px 8px;
+    background: var(--Background);
+  }
+  .status-bar .time { font-size: 14px; font-weight: 600; color: var(--On-Surface); }
+  .status-icons { display: flex; align-items: center; gap: 6px; }
+  .status-icons svg { width: 18px; height: 18px; }
+
+  /* Header Navigation (like Manage Statement) */
+  .header-nav {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px 12px;
+    background: var(--Background);
+  }
+
+  .back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .back-btn:hover { background: rgba(0,0,0,0.05); }
+  .back-btn svg {
+    width: 22px;
+    height: 22px;
+    stroke: var(--On-Surface);
+    stroke-width: 1.8px;
+  }
+
+  .header-title {
+    color: var(--On-Surface);
+    font-family: 'Switzer', sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    flex: 1;
+    text-align: center;
+  }
+
+  .header-icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .header-icon-btn:hover { background: rgba(0,0,0,0.05); }
+  .header-icon-btn svg {
+    width: 22px;
+    height: 22px;
+    stroke: var(--On-Surface);
+    stroke-width: 1.8px;
+  }
+
+  /* Scrollable Content */
+  .main-content {
+    padding: 16px 16px 80px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+    gap: 16px;
+  }
+
+  /* Search & Filter Bar */
+  .search-filter-bar {
+    display: flex;
+    gap: 12px;
+  }
+
+  .search-box {
+    flex: 1;
+    height: 48px;
+    padding: 0 16px;
+    background: #FFF;
+    border: 1.5px solid var(--Border);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s;
+  }
+  .search-box:focus-within {
+    border-color: var(--Primary);
+    box-shadow: 0 0 0 3px rgba(254, 53, 61, 0.08);
+  }
+  .search-box svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--On-Surface-Low);
+    stroke-width: 2px;
+    flex-shrink: 0;
+  }
+  .search-box input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-family: 'Switzer', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--On-Surface);
+    outline: none;
+  }
+  .search-box input::placeholder { color: var(--On-Surface-Low); }
+
+  .filter-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    border: 1.5px solid var(--Border);
+    background: #FFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  .filter-btn:hover {
+    border-color: var(--Primary);
+    background: var(--Primary-Light);
+  }
+  .filter-btn svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--On-Surface);
+    stroke-width: 2px;
+  }
+
+  /* Transactions List */
+  .transactions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .date-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .date-header {
+    color: var(--On-Surface-Low);
+    font-family: 'Switzer', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    padding-left: 4px;
+  }
+
+  .transaction-card {
+    background: #FFF;
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .transaction-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-1px);
+  }
+  .transaction-card:active { transform: scale(0.98); }
+
+  .tx-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .tx-icon.p2p {
+    background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+  }
+  .tx-icon.merchant {
+    background: linear-gradient(135deg, #1FC83B 0%, #4ADE80 100%);
+  }
+  .tx-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: #FFF;
+    stroke-width: 2px;
+  }
+
+  .tx-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .tx-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .tx-title {
+    color: var(--On-Surface);
+    font-family: 'Switzer', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+  }
+  .tx-time {
+    color: var(--On-Surface-Low);
+    font-family: 'Switzer', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+
+  .tx-details {
+    color: var(--On-Surface-Low);
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.1px;
+  }
+  .tx-details .amount { font-weight: 600; color: var(--On-Surface); }
+  .tx-details .phone { color: var(--On-Surface-Low); }
+
+  .tx-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2px;
+  }
+
+  .copy-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 6px;
+  }
+  .copy-btn:hover { background: var(--Primary-Light); }
+  .copy-btn svg {
+    width: 14px;
+    height: 14px;
+    stroke: var(--Primary);
+    stroke-width: 2px;
+  }
+  .copy-btn .copy-text {
+    color: var(--Primary);
+    font-family: 'Switzer', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .copied-badge {
+    color: var(--Success);
+    font-family: 'Switzer', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  /* ===== FILTERS MODAL OVERLAY ===== */
+  .filter-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    animation: fadeIn 0.25s ease-out;
+  }
+  .filter-overlay.hidden { display: none; }
+
+  .filter-modal {
+    width: 100%;
+    max-height: 85%;
+    background: #FFF;
+    border-radius: 24px 24px 0 0;
+    padding: 12px 20px 28px;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+  }
+  .filter-modal::-webkit-scrollbar { width: 0; }
+
+  .filter-modal .drag-handle {
+    width: 40px;
+    height: 4px;
+    background: #D0D0D5;
+    border-radius: 2px;
+    margin: 0 auto 16px;
+    flex-shrink: 0;
+  }
+
+  .filter-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .filter-modal-title {
+    color: var(--On-Surface);
+    font-family: 'Switzer', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+  .filter-modal-close {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: #F0F0F0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .filter-modal-close:hover { background: #E0E0E0; }
+  .filter-modal-close svg {
+    width: 18px;
+    height: 18px;
+    stroke: var(--On-Surface);
+    stroke-width: 2px;
+  }
+
+  .filters-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .filter-group {
+    background: #FFF;
+    border-radius: 16px;
+    padding: 0;
+  }
+
+  .filter-group-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+    color: var(--On-Surface);
+    font-family: 'Switzer', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+  }
+  .filter-group-title svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--On-Surface);
+    stroke-width: 2px;
+  }
+
+  .radio-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .radio-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    padding: 4px 0;
+  }
+  .radio-item input[type="radio"] {
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--Border);
+    border-radius: 6px;
+    appearance: none;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  .radio-item input[type="radio"]:checked {
+    border-color: var(--Success);
+    background: var(--Success-Light);
+  }
+  .radio-item input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 5px;
+    width: 6px;
+    height: 10px;
+    border: solid var(--Success);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  .radio-item label {
+    flex: 1;
+    color: var(--On-Surface);
+    font-family: 'Switzer', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+  }
+
+  .date-range-inputs {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 14px;
+  }
+  .date-input-wrapper {
+    flex: 1;
+    height: 48px;
+    padding: 0 12px;
+    background: #F8F8FA;
+    border: 1.5px solid var(--Border);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .date-input-wrapper:hover { border-color: #D0D0D5; }
+  .date-input-wrapper input[type="date"] {
+    border: none;
+    background: transparent;
+    font-family: 'Switzer', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--On-Surface);
+    outline: none;
+    cursor: pointer;
+    width: 100%;
+  }
+  .date-input-wrapper svg {
+    width: 18px;
+    height: 18px;
+    stroke: var(--On-Surface-Low);
+    stroke-width: 2px;
+    flex-shrink: 0;
+  }
+  .date-to-label {
+    color: var(--On-Surface-Low);
+    font-family: 'Switzer', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    flex-shrink: 0;
+  }
+
+  .amount-range-inputs {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 14px;
+  }
+  .amount-input {
+    flex: 1;
+    height: 48px;
+    padding: 0 14px;
+    background: #F8F8FA;
+    border: 1.5px solid var(--Border);
+    border-radius: 12px;
+    font-family: 'Switzer', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--On-Surface);
+    outline: none;
+    transition: all 0.2s;
+  }
+  .amount-input:focus { border-color: var(--Primary); background: #FFF; }
+  .amount-to-label {
+    color: var(--On-Surface-Low);
+    font-family: 'Switzer', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    flex-shrink: 0;
+  }
+
+  .range-slider-container {
+    margin-top: 20px;
+    padding: 0 4px;
+  }
+  .range-slider {
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--Border);
+    position: relative;
+    cursor: pointer;
+  }
+  .range-slider-fill {
+    position: absolute;
+    left: 30%;
+    right: 30%;
+    height: 100%;
+    background: var(--Primary);
+    border-radius: 2px;
+  }
+  .range-slider-thumb {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: var(--Primary);
+    border-radius: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 2px 8px rgba(254, 53, 61, 0.3);
+    cursor: grab;
+    transition: transform 0.2s;
+  }
+  .range-slider-thumb:active {
+    cursor: grabbing;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  .range-slider-thumb.left { left: 30%; }
+  .range-slider-thumb.right { left: 70%; }
+
+  /* Apply Filters Button */
+  .apply-filters-btn {
+    width: 100%;
+    height: 48px;
+    border-radius: 14px;
+    background: var(--Primary);
+    color: #FFF;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(254, 53, 61, 0.25);
+    margin-top: 16px;
+    flex-shrink: 0;
+  }
+  .apply-filters-btn:hover {
+    background: #E5303A;
+    box-shadow: 0 6px 16px rgba(254, 53, 61, 0.35);
+    transform: translateY(-1px);
+  }
+
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<div class="phone-frame">
+  <div class="app-content">
+
+    <!-- Sticky Header: Status Bar + Nav -->
+    <div class="sticky-header">
+      <!-- Status Bar (like Lehulum Home) -->
+      <div class="status-bar">
+        <span class="time">10:00</span>
+        <div class="status-icons">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9z" fill="#1C1C21"/><path d="M5 13l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z" fill="#1C1C21"/><path d="M9 17l2 2c1.1-1.1 2.9-1.1 4 0l2-2c-2.21-2.21-5.79-2.21-8 0z" fill="#1C1C21"/></svg>
+          <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="4" height="12" rx="1" fill="#1C1C21"/><rect x="8" y="4" width="4" height="14" rx="1" fill="#1C1C21"/><rect x="14" y="2" width="4" height="16" rx="1" fill="#1C1C21"/><rect x="20" y="0" width="4" height="18" rx="1" fill="#1C1C21" opacity="0.3"/></svg>
+          <svg viewBox="0 0 28 14" fill="none"><rect x="0" y="1" width="22" height="12" rx="2.5" stroke="#1C1C21" stroke-width="1.5"/><rect x="2" y="3" width="16" height="8" rx="1" fill="#1C1C21"/><rect x="24" y="4" width="2" height="6" rx="1" fill="#1C1C21"/></svg>
+        </div>
+      </div>
+
+      <!-- Header Navigation (like Manage Statement) -->
+      <div class="header-nav">
+        <button class="back-btn" onclick="goBack()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+        </button>
+        <span class="header-title">Transaction History</span>
+        <div style="width: 36px;"></div>
+      </div>
+    </div>
+
+    <!-- Scrollable Content -->
+    <div class="main-content">
+
+      <!-- Search & Filter Bar -->
+      <div class="search-filter-bar">
+        <div class="search-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+          <input type="text" placeholder="Search by date, card, vendor">
+        </div>
+        <button class="filter-btn" onclick="openFilters()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Transactions List -->
+      <div class="transactions-list">
+
+        <!-- Today Section -->
+        <div class="date-section">
+          <div class="date-header">Today, Mar 21, 2026</div>
+
+          <!-- P2P Send Money - First card (line break fixed) -->
+          <div class="transaction-card">
+            <div class="tx-icon p2p">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
+            <div class="tx-content">
+              <div class="tx-header">
+                <span class="tx-title">P2P Send Money (Success)</span>
+                <span class="tx-time">2 days ago</span>
+              </div>
+              <div class="tx-details">
+                You sent <span class="amount">500.00 Birr</span> to Mom (<span class="phone">2517****78</span>) on 08/05/2026 at 10:15 AM. Transaction PP-2104XYZ.
+              </div>
+              <div class="tx-footer">
+                <span></span>
+                <button class="copy-btn" onclick="copyId(this)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  <span class="copy-text">Copy ID</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Merchant Payment -->
+          <div class="transaction-card">
+            <div class="tx-icon merchant">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="9" y1="9" x2="15" y2="9"></line>
+                <line x1="9" y1="13" x2="15" y2="13"></line>
+                <line x1="9" y1="17" x2="11" y2="17"></line>
+              </svg>
+            </div>
+            <div class="tx-content">
+              <div class="tx-header">
+                <span class="tx-title">Merchant Payment (Success)</span>
+                <span class="tx-time">2 days ago</span>
+              </div>
+              <div class="tx-details">
+                You paid <span class="amount">1,250.00 Birr</span> to London Cafe at 02:30 PM on 07/05/2026. Transaction MP-9988ABC.
+              </div>
+              <div class="tx-footer">
+                <span class="copied-badge">Copied</span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Yesterday Section -->
+        <div class="date-section">
+          <div class="date-header">Yesterday, Mar 20, 2026</div>
+
+          <!-- P2P Send Money -->
+          <div class="transaction-card">
+            <div class="tx-icon p2p">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
+            <div class="tx-content">
+              <div class="tx-header">
+                <span class="tx-title">P2P Send Money (Success)</span>
+                <span class="tx-time">2 days ago</span>
+              </div>
+              <div class="tx-details">
+                You sent <span class="amount">500.00 Birr</span> to Mom (<span class="phone">2517****78</span>) on 08/05/2026 at 10:15 AM. Transaction PP-2104XYZ.
+              </div>
+              <div class="tx-footer">
+                <span></span>
+                <button class="copy-btn" onclick="copyId(this)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  <span class="copy-text">Copy ID</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Merchant Payment -->
+          <div class="transaction-card">
+            <div class="tx-icon merchant">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="9" y1="9" x2="15" y2="9"></line>
+                <line x1="9" y1="13" x2="15" y2="13"></line>
+                <line x1="9" y1="17" x2="11" y2="17"></line>
+              </svg>
+            </div>
+            <div class="tx-content">
+              <div class="tx-header">
+                <span class="tx-title">Merchant Payment (Success)</span>
+                <span class="tx-time">2 days ago</span>
+              </div>
+              <div class="tx-details">
+                You paid <span class="amount">1,250.00 Birr</span> to London Cafe at 02:30 PM on 07/05/2026. Transaction MP-9988ABC.
+              </div>
+              <div class="tx-footer">
+                <span class="copied-badge">Copied</span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ===== FILTERS MODAL OVERLAY ===== -->
+  <div class="filter-overlay hidden" id="filterOverlay" onclick="closeFiltersOutside(event)">
+    <div class="filter-modal" onclick="event.stopPropagation()">
+      <div class="drag-handle"></div>
+
+      <div class="filter-modal-header">
+        <span class="filter-modal-title">Filters</span>
+        <button class="filter-modal-close" onclick="closeFilters()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="filters-section">
+
+        <!-- Filter by Date -->
+        <div class="filter-group">
+          <div class="filter-group-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            Filter by Date
+          </div>
+          <div class="radio-list">
+            <div class="radio-item">
+              <input type="radio" id="all" name="dateFilter" checked onchange="toggleDateRange(false)">
+              <label for="all">All</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="45days" name="dateFilter" onchange="toggleDateRange(false)">
+              <label for="45days">Past 45 Days (from 3 Jan 22 to now)</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="90days" name="dateFilter" onchange="toggleDateRange(false)">
+              <label for="90days">Past 90 Days (from 3 Oct 21 to now)</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="thisMonth" name="dateFilter" onchange="toggleDateRange(false)">
+              <label for="thisMonth">This Month (Mar 22)</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="thisYear" name="dateFilter" onchange="toggleDateRange(false)">
+              <label for="thisYear">This Year (2022)</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="dateRange" name="dateFilter" onchange="toggleDateRange(true)">
+              <label for="dateRange">Choose a Date Range</label>
+            </div>
+          </div>
+          <div class="date-range-inputs" id="dateRangeInputs" style="display: none;">
+            <div class="date-input-wrapper">
+              <input type="date" value="2021-09-20">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </div>
+            <span class="date-to-label">to</span>
+            <div class="date-input-wrapper">
+              <input type="date" value="2021-09-22">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter by Amount Range -->
+        <div class="filter-group">
+          <div class="filter-group-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23"></line>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+            Filter by Amount Range
+          </div>
+          <div class="amount-range-inputs">
+            <input type="number" class="amount-input" placeholder="Min" value="300">
+            <span class="amount-to-label">to</span>
+            <input type="number" class="amount-input" placeholder="Max" value="700">
+          </div>
+          <div class="range-slider-container">
+            <div class="range-slider">
+              <div class="range-slider-fill"></div>
+              <div class="range-slider-thumb left"></div>
+              <div class="range-slider-thumb right"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <button class="apply-filters-btn" onclick="applyFilters()">Apply Filters</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Toggle date range inputs
+  function toggleDateRange(show) {
+    document.getElementById('dateRangeInputs').style.display = show ? 'flex' : 'none';
+  }
+
+  // Copy ID function
+  function copyId(btn) {
+    const copyText = btn.querySelector('.copy-text');
+    const card = btn.closest('.transaction-card');
+    const copiedBadge = card.querySelector('.copied-badge');
+
+    if (copiedBadge) {
+      copiedBadge.style.display = 'inline';
+      if (copyText) copyText.style.display = 'none';
+      setTimeout(() => {
+        copiedBadge.style.display = 'none';
+        if (copyText) copyText.style.display = 'inline';
+      }, 2000);
+    }
+
+    console.log('Transaction ID copied');
+  }
+
+  // Open Filters Modal
+  function openFilters() {
+    document.getElementById('filterOverlay').classList.remove('hidden');
+  }
+
+  // Close Filters Modal
+  function closeFilters() {
+    document.getElementById('filterOverlay').classList.add('hidden');
+  }
+
+  // Close modal when clicking outside
+  function closeFiltersOutside(event) {
+    if (event.target === event.currentTarget) {
+      closeFilters();
+    }
+  }
+
+  // Apply Filters
+  function applyFilters() {
+    closeFilters();
+    console.log('Filters applied');
+  }
+
+  // Go back
+  function goBack() {
+    console.log('Navigate back');
+  }
+</script>
+
+</body>
+</html>

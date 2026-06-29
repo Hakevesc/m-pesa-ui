@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>M-PESA Components</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css" rel="stylesheet">
+<style>
+:root{
+  --color-mpesa-green:#00A650;
+  --color-mpesa-green-light:#2FC56D;
+  --color-mpesa-green-dark:#008A42;
+  --color-mpesa-green-alpha:rgba(0,166,80,.06);
+  --color-mpesa-green-tint:#E6F4EA;
+  --font-sans:'Barlow',sans-serif;
+  --color-bg:#f4f6f5;
+  --color-card:#ffffff;
+  --color-border:#e2e8e4;
+  --color-border-2:#eef1ef;
+  --color-text:#2a3530;
+  --color-text-2:#5b6e62;
+  --color-text-3:#8fa397;
+  --radius:12px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{font-family:var(--font-sans);background:var(--color-bg);color:var(--color-text)}
+
+/* ── page chrome ── */
+.lib-head{background:linear-gradient(135deg,#00A650 0%,#008A42 100%);padding:34px 40px;color:#fff}
+.lib-head h1{font-size:26px;font-weight:800;letter-spacing:-.4px;display:flex;align-items:center;gap:12px}
+.lib-head h1 i{font-size:24px}
+.lib-head p{font-size:13.5px;opacity:.85;margin-top:6px;font-weight:500}
+.lib-counts{display:flex;gap:8px;margin-top:14px}
+.lib-counts span{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:4px 10px;font-size:11.5px;font-weight:600}
+.lib-wrap{max-width:1260px;margin:0 auto;padding:36px 40px 80px;display:flex;flex-direction:column;gap:44px}
+
+/* ── section canvases (each .screen exports as a Figma frame) ── */
+.screen{}
+.lib-canvas{background:var(--color-card);border:1px solid var(--color-border);border-radius:18px;padding:28px;width:100%;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.pp-title{font-size:17px;font-weight:800;letter-spacing:-.2px;margin-bottom:4px;display:flex;align-items:center;gap:10px}
+.pp-title i{color:var(--color-mpesa-green);font-size:18px}
+.canvas-sub{font-size:12px;color:var(--color-text-3);margin-bottom:22px;font-weight:500}
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:22px}
+.comp{border:1px solid var(--color-border-2);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:12px;background:#fcfdfc}
+.comp.wide{grid-column:span 2}
+.comp-label{font-size:9.5px;font-weight:700;color:var(--color-text-3);text-transform:uppercase;letter-spacing:.8px;display:flex;justify-content:space-between;align-items:center}
+.comp-label code{font-size:9px;background:var(--color-bg);border:1px solid var(--color-border-2);border-radius:5px;padding:2px 6px;color:var(--color-text-2);font-family:Consolas,monospace;text-transform:none;letter-spacing:0}
+.comp-body{display:flex;flex-direction:column;gap:10px;align-items:stretch}
+.comp-body.center{align-items:center}
+.comp-body.row{flex-direction:row;flex-wrap:wrap;align-items:center}
+
+/* ── 1. foundation ── */
+.cta{display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#00A650,#008A42);color:#fff;border:none;border-radius:12px;padding:14px 18px;font-size:14px;font-weight:700;font-family:var(--font-sans);cursor:pointer;width:100%;box-shadow:0 4px 14px rgba(0,166,80,.28)}
+.cta-sec{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--color-mpesa-green-tint);color:var(--color-mpesa-green-dark);border:none;border-radius:12px;padding:14px 18px;font-size:14px;font-weight:700;font-family:var(--font-sans);cursor:pointer;width:100%}
+.cta-ghost{display:flex;align-items:center;justify-content:center;gap:8px;background:transparent;color:var(--color-text-2);border:1px solid var(--color-border);border-radius:12px;padding:13px 18px;font-size:14px;font-weight:600;font-family:var(--font-sans);cursor:pointer;width:100%}
+.cta-danger{display:flex;align-items:center;justify-content:center;gap:8px;background:#FDECEC;color:#C0392B;border:none;border-radius:12px;padding:14px 18px;font-size:14px;font-weight:700;font-family:var(--font-sans);cursor:pointer;width:100%}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:11px;font-weight:700;color:var(--color-text-2);text-transform:uppercase;letter-spacing:.5px}
+.field-box{display:flex;align-items:center;gap:10px;border:1px solid var(--color-border);border-radius:11px;padding:13px 14px;background:#fff;font-size:14px}
+.field-box i{color:var(--color-text-3);font-size:16px}
+.field-box .ph-text{color:var(--color-text-3)}
+.field-box .val{color:var(--color-text);font-weight:500}
+.field-box.focus{border-color:var(--color-mpesa-green);box-shadow:0 0 0 3px var(--color-mpesa-green-alpha)}
+.amount-input{display:flex;align-items:baseline;justify-content:center;gap:8px;padding:18px 0 6px}
+.amount-input .cur{font-size:16px;font-weight:700;color:var(--color-text-3)}
+.amount-input .amt{font-size:44px;font-weight:800;letter-spacing:-1px;color:var(--color-text)}
+.amount-input .caret{width:2px;height:38px;background:var(--color-mpesa-green);border-radius:2px;align-self:center}
+.amount-hint{text-align:center;font-size:11.5px;color:var(--color-text-3);font-weight:500}
+.phone-input{display:flex;align-items:center;border:1px solid var(--color-border);border-radius:11px;background:#fff;overflow:hidden}
+.phone-input .cc{display:flex;align-items:center;gap:6px;padding:13px 12px;border-right:1px solid var(--color-border-2);font-size:14px;font-weight:600;background:#fafbfa}
+.phone-input .num{padding:13px 14px;font-size:14px;font-weight:500;letter-spacing:.3px}
+.searchbar{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--color-border);border-radius:24px;padding:11px 16px;font-size:13.5px}
+.searchbar i{color:var(--color-text-3);font-size:16px}
+.searchbar span{color:var(--color-text-3)}
+.select-box{display:flex;align-items:center;justify-content:space-between;border:1px solid var(--color-border);border-radius:11px;padding:13px 14px;background:#fff;font-size:14px;font-weight:500;cursor:pointer}
+.select-box i{color:var(--color-text-3)}
+.toggle{width:46px;height:26px;border-radius:13px;background:#d4dcd7;position:relative;cursor:pointer;transition:background .18s;flex-shrink:0}
+.toggle::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.2);transition:left .18s}
+.toggle.on{background:var(--color-mpesa-green)}
+.toggle.on::after{left:23px}
+.tog-row{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%}
+.tog-row span{font-size:13.5px;font-weight:500}
+.check{display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:500;cursor:pointer}
+.check .box{width:20px;height:20px;border-radius:6px;border:1.5px solid var(--color-border);background:#fff;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;flex-shrink:0}
+.check.checked .box{background:var(--color-mpesa-green);border-color:var(--color-mpesa-green)}
+.check .radio{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--color-border);background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.check.checked .radio{border-color:var(--color-mpesa-green)}
+.check.checked .radio::after{content:'';width:10px;height:10px;border-radius:50%;background:var(--color-mpesa-green)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1px solid var(--color-border);background:#fff;border-radius:20px;padding:8px 16px;font-size:12.5px;font-weight:600;color:var(--color-text-2);cursor:pointer;font-family:var(--font-sans)}
+.chip.sel{background:linear-gradient(135deg,#2FC56D,#1ea35a);color:#fff;border-color:transparent;box-shadow:0 2px 8px rgba(47,197,109,.3)}
+.slider{position:relative;height:26px;display:flex;align-items:center}
+.slider .track{position:absolute;left:0;right:0;height:6px;border-radius:3px;background:var(--color-border-2)}
+.slider .fill{position:absolute;left:0;width:62%;height:6px;border-radius:3px;background:linear-gradient(90deg,#00A650,#2FC56D)}
+.slider .thumb{position:absolute;left:62%;transform:translateX(-50%);width:22px;height:22px;border-radius:50%;background:#fff;border:2px solid var(--color-mpesa-green);box-shadow:0 2px 6px rgba(0,0,0,.18)}
+.slider-meta{display:flex;justify-content:space-between;font-size:11px;color:var(--color-text-3);font-weight:600}
+
+/* ── 2. navigation ── */
+.sbar{display:flex;justify-content:space-between;align-items:center;padding:12px 22px;background:#fff;border:1px solid var(--color-border-2);border-radius:12px;font-size:14px;font-weight:700;width:340px}
+.sbar .r{display:flex;gap:6px;align-items:center}
+.apph{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--color-border-2);border-radius:12px;padding:13px 16px;width:340px}
+.apph .bk{width:34px;height:34px;border-radius:10px;background:var(--color-bg);display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer}
+.apph .tcol{flex:1}
+.apph .hd-title{font-size:15px;font-weight:800;letter-spacing:.2px}
+.apph .hd-sub{font-size:11px;color:var(--color-text-3);font-weight:500}
+.apph .act{width:34px;height:34px;border-radius:10px;background:var(--color-bg);display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--color-text-2)}
+.tabbar{display:flex;background:#fff;border:1px solid var(--color-border-2);border-radius:16px;padding:8px 6px;width:340px;box-shadow:0 -2px 14px rgba(0,0,0,.05)}
+.tab-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;font-size:10px;font-weight:600;color:var(--color-text-3);cursor:pointer;border-radius:10px}
+.tab-item i{font-size:20px}
+.tab-item.active{color:var(--color-mpesa-green)}
+.seg{display:flex;background:var(--color-bg);border-radius:11px;padding:4px;width:340px}
+.seg-btn{flex:1;text-align:center;padding:9px 0;font-size:12.5px;font-weight:600;color:var(--color-text-2);border-radius:8px;cursor:pointer;border:none;background:transparent;font-family:var(--font-sans)}
+.seg-btn.active{background:#fff;color:var(--color-text);box-shadow:0 1px 4px rgba(0,0,0,.1);font-weight:700}
+.stepper{display:flex;align-items:center;width:340px;padding:6px 10px}
+.step-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:700;flex-shrink:0;background:var(--color-bg);color:var(--color-text-3);border:1.5px solid var(--color-border)}
+.step-dot.done{background:var(--color-mpesa-green);border-color:var(--color-mpesa-green);color:#fff}
+.step-dot.cur{border-color:var(--color-mpesa-green);color:var(--color-mpesa-green);background:var(--color-mpesa-green-tint)}
+.step-line{flex:1;height:2px;background:var(--color-border)}
+.step-line.done{background:var(--color-mpesa-green)}
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;width:340px}
+.svc{display:flex;flex-direction:column;align-items:center;gap:7px;background:#fff;border:1px solid var(--color-border-2);border-radius:14px;padding:14px 6px;cursor:pointer}
+.svc i{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:19px;color:#fff}
+.svc span{font-size:10.5px;font-weight:600;color:var(--color-text-2)}
+.favs{display:flex;gap:14px;align-items:flex-start}
+.fav{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer}
+.fav .ava{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#fff}
+.fav span{font-size:10.5px;font-weight:600;color:var(--color-text-2)}
+.fav.add .ava{background:#fff;border:1.5px dashed var(--color-border);color:var(--color-text-3);font-size:18px}
+.fab{width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#00A650,#008A42);display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;box-shadow:0 8px 22px rgba(0,166,80,.4);cursor:pointer}
+
+/* ── 3. display & data ── */
+.bal-card{border-radius:20px;padding:22px;background:linear-gradient(135deg,#2FC56D 0%,#1ea35a 50%,#16a050 100%);color:#fff;width:340px;box-shadow:0 8px 24px rgba(47,197,109,.30);position:relative;overflow:hidden}
+.bal-card .lbl{display:flex;align-items:center;justify-content:space-between;font-size:11.5px;font-weight:600;opacity:.9}
+.bal-card .lbl i{cursor:pointer;font-size:16px}
+.bal-card .amt{font-size:32px;font-weight:800;letter-spacing:-.5px;margin:6px 0 14px}
+.bal-card .subs{display:flex;gap:18px}
+.bal-card .sub{display:flex;flex-direction:column;gap:2px}
+.bal-card .sub small{font-size:10px;font-weight:600;opacity:.75;text-transform:uppercase;letter-spacing:.5px}
+.bal-card .sub b{font-size:14px;font-weight:700}
+.tx-item{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--color-border-2);border-radius:13px;padding:13px 14px;width:340px}
+.tx-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.tx-icon.in{background:var(--color-mpesa-green-tint);color:var(--color-mpesa-green)}
+.tx-icon.out{background:#FDECEC;color:#C0392B}
+.tx-info{flex:1;display:flex;flex-direction:column;gap:1px}
+.tx-name{font-size:13.5px;font-weight:700}
+.tx-date{font-size:11px;color:var(--color-text-3);font-weight:500}
+.tx-amount{font-size:13.5px;font-weight:800}
+.tx-amount.in{color:var(--color-mpesa-green)}
+.tx-amount.out{color:#C0392B}
+.rev-card{background:#fff;border:1px solid var(--color-border-2);border-radius:13px;padding:6px 16px;width:340px}
+.rev-row{display:flex;justify-content:space-between;padding:11px 0;font-size:13px;border-bottom:1px solid var(--color-border-2)}
+.rev-row:last-child{border-bottom:none}
+.rev-key{color:var(--color-text-2);font-weight:500}
+.rev-val{font-weight:700}
+.rev-row.total .rev-key{font-weight:700;color:var(--color-text)}
+.rev-row.total .rev-val{color:var(--color-mpesa-green);font-size:14.5px}
+.stat-pair{display:flex;gap:10px;width:340px}
+.stat-box{flex:1;background:#fff;border:1px solid var(--color-border-2);border-radius:13px;padding:14px;display:flex;flex-direction:column;gap:3px}
+.stat-box-label{font-size:10px;font-weight:700;color:var(--color-text-3);text-transform:uppercase;letter-spacing:.6px}
+.stat-box-val{font-size:18px;font-weight:800}
+.info-box{display:flex;gap:10px;border-radius:12px;padding:13px 14px;font-size:12.5px;font-weight:500;line-height:1.45;width:340px}
+.info-box i{font-size:16px;flex-shrink:0;margin-top:1px}
+.info-box.info{background:#F0FAF4;border:1px solid #B3DFC9;color:#008A42}
+.info-box.warn{background:#FEF7E8;border:1px solid #F2DEAE;color:#854F0B}
+.info-box.error{background:#FDECEC;border:1px solid #F2B8B5;color:#C0392B}
+.pill{display:inline-flex;align-items:center;gap:5px;border-radius:14px;padding:5px 12px;font-size:10.5px;font-weight:700;letter-spacing:.3px}
+.pill.ok{background:var(--color-mpesa-green-tint);color:var(--color-mpesa-green-dark)}
+.pill.warn{background:#FEF7E8;color:#854F0B}
+.pill.lock{background:#EEF1F7;color:#4A5878}
+.pill.pend{background:#F0F0FF;color:#5B5FC7}
+.pocket{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--color-border-2);border-radius:14px;padding:14px;width:340px}
+.ring{width:52px;height:52px;flex-shrink:0}
+.pocket-info{flex:1;display:flex;flex-direction:column;gap:2px}
+.pocket-name{font-size:13.5px;font-weight:700}
+.pocket-saved{font-size:10.5px;color:var(--color-text-3);font-weight:600;letter-spacing:.3px}
+.pbar{width:340px;display:flex;flex-direction:column;gap:6px}
+.pbar .track{height:8px;border-radius:4px;background:var(--color-border-2);overflow:hidden}
+.pbar .pfill{height:100%;width:68%;border-radius:4px;background:linear-gradient(90deg,#00A650,#2FC56D)}
+.pbar .meta{display:flex;justify-content:space-between;font-size:11px;font-weight:600;color:var(--color-text-3)}
+.promo{border-radius:16px;padding:18px;background:linear-gradient(120deg,#063,#00A650 80%);color:#fff;width:340px;position:relative;overflow:hidden}
+.promo .tag{font-size:9px;font-weight:800;letter-spacing:1px;opacity:.8}
+.promo .t{font-size:16px;font-weight:800;margin:4px 0 2px}
+.promo .s{font-size:11.5px;opacity:.85;font-weight:500;margin-bottom:12px}
+.promo button{background:#fff;color:#008A42;border:none;border-radius:9px;padding:8px 14px;font-size:11px;font-weight:800;letter-spacing:.5px;font-family:var(--font-sans);cursor:pointer}
+.contact-row{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--color-border-2);border-radius:13px;padding:12px 14px;width:340px;cursor:pointer}
+.contact-row .ava{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#5B8DEF,#3F6FD8);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0}
+.contact-row .ci{flex:1}
+.contact-row .cn{font-size:13.5px;font-weight:700}
+.contact-row .cp{font-size:11.5px;color:var(--color-text-3);font-weight:500}
+.contact-row>i{color:var(--color-text-3)}
+.empty{display:flex;flex-direction:column;align-items:center;gap:8px;padding:26px 20px;width:340px;text-align:center}
+.empty .eico{width:72px;height:72px;border-radius:50%;background:var(--color-mpesa-green-alpha);display:flex;align-items:center;justify-content:center;font-size:30px;color:var(--color-mpesa-green)}
+.empty b{font-size:14.5px;font-weight:700}
+.empty p{font-size:12px;color:var(--color-text-3);font-weight:500;line-height:1.4}
+.skel{background:#fff;border:1px solid var(--color-border-2);border-radius:13px;padding:14px;width:340px;display:flex;gap:12px;align-items:center}
+.skel .b{background:linear-gradient(90deg,#eef1ef 25%,#f7f9f8 50%,#eef1ef 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:7px}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.notif{display:flex;gap:12px;background:#fff;border:1px solid var(--color-border-2);border-radius:13px;padding:13px 14px;width:340px;position:relative}
+.notif .nico{width:38px;height:38px;border-radius:11px;background:var(--color-mpesa-green-tint);color:var(--color-mpesa-green);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.notif .nt{font-size:13px;font-weight:700}
+.notif .nb{font-size:11.5px;color:var(--color-text-2);font-weight:500;line-height:1.4;margin-top:1px}
+.notif .ntime{font-size:10px;color:var(--color-text-3);font-weight:600;margin-top:4px}
+.notif .dot{position:absolute;top:14px;right:14px;width:8px;height:8px;border-radius:50%;background:var(--color-mpesa-green)}
+.chart{background:#fff;border:1px solid var(--color-border-2);border-radius:13px;padding:16px;width:340px}
+.chart .ct{font-size:12px;font-weight:700;margin-bottom:12px;display:flex;justify-content:space-between}
+.chart .ct small{color:var(--color-text-3);font-weight:600}
+.bars{display:flex;align-items:flex-end;gap:10px;height:90px}
+.barcol{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;height:100%;justify-content:flex-end}
+.bar{width:100%;border-radius:6px 6px 3px 3px;background:var(--color-mpesa-green-tint)}
+.bar.hi{background:linear-gradient(180deg,#2FC56D,#00A650)}
+.barcol small{font-size:9px;font-weight:700;color:var(--color-text-3)}
+
+/* ── 4. transaction ── */
+.keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:280px}
+.key-btn{height:54px;border-radius:13px;border:none;background:#fff;border:1px solid var(--color-border-2);font-size:19px;font-weight:700;font-family:var(--font-sans);color:var(--color-text);cursor:pointer}
+.key-btn:active{background:var(--color-mpesa-green-tint)}
+.pin-dots{display:flex;gap:16px;justify-content:center;padding:8px}
+.pin-dot{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--color-border);background:#fff}
+.pin-dot.fill{background:var(--color-mpesa-green);border-color:var(--color-mpesa-green)}
+.otp{display:flex;gap:8px;justify-content:center}
+.otp-box{width:44px;height:52px;border-radius:11px;border:1.5px solid var(--color-border);background:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800}
+.otp-box.focus{border-color:var(--color-mpesa-green);box-shadow:0 0 0 3px var(--color-mpesa-green-alpha)}
+.receipt{background:#fff;border:1px solid var(--color-border-2);border-radius:16px;width:340px;overflow:hidden}
+.receipt .rtop{display:flex;flex-direction:column;align-items:center;gap:6px;padding:22px 20px 16px;border-bottom:1.5px dashed var(--color-border)}
+.receipt .rcheck{width:52px;height:52px;border-radius:50%;background:var(--color-mpesa-green-tint);color:var(--color-mpesa-green);display:flex;align-items:center;justify-content:center;font-size:26px}
+.receipt .ramt{font-size:26px;font-weight:800}
+.receipt .rsub{font-size:11.5px;color:var(--color-text-3);font-weight:600}
+.receipt .rbody{padding:8px 20px 14px}
+.receipt .stripes{height:26px;margin:0 20px 18px;background:repeating-linear-gradient(90deg,var(--color-text) 0 2px,transparent 2px 5px);opacity:.75;border-radius:2px}
+.qr-card{background:#fff;border:1px solid var(--color-border-2);border-radius:16px;padding:20px;width:300px;display:flex;flex-direction:column;align-items:center;gap:10px}
+.qr-card .till{font-size:11px;color:var(--color-text-3);font-weight:700;letter-spacing:1px}
+.qr-card .tillno{font-size:22px;font-weight:800;letter-spacing:3px;color:var(--color-mpesa-green-dark)}
+.scanner{width:300px;height:230px;border-radius:16px;background:linear-gradient(160deg,#10241a,#0a1812);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.scan-frame{width:150px;height:150px;position:relative}
+.scan-frame::before,.scan-frame::after,.scan-frame .c3,.scan-frame .c4{content:'';position:absolute;width:30px;height:30px;border:3px solid #2FC56D}
+.scan-frame::before{top:0;left:0;border-right:none;border-bottom:none;border-radius:8px 0 0 0}
+.scan-frame::after{top:0;right:0;border-left:none;border-bottom:none;border-radius:0 8px 0 0}
+.scan-frame .c3{bottom:0;left:0;border-right:none;border-top:none;border-radius:0 0 0 8px}
+.scan-frame .c4{bottom:0;right:0;border-left:none;border-top:none;border-radius:0 0 8px 0}
+.scan-line{position:absolute;left:8px;right:8px;top:50%;height:2px;background:linear-gradient(90deg,transparent,#2FC56D,transparent)}
+.scanner .hint{position:absolute;bottom:12px;left:0;right:0;text-align:center;color:rgba(255,255,255,.7);font-size:11px;font-weight:600}
+.fx{background:#fff;border:1px solid var(--color-border-2);border-radius:13px;padding:16px;width:340px;display:flex;align-items:center;gap:14px}
+.fx .pairs{flex:1}
+.fx .rate{font-size:17px;font-weight:800}
+.fx .upd{font-size:10.5px;color:var(--color-text-3);font-weight:600;margin-top:2px}
+.fx .ficon{width:40px;height:40px;border-radius:12px;background:var(--color-mpesa-green-tint);color:var(--color-mpesa-green);display:flex;align-items:center;justify-content:center;font-size:18px}
+.limits{background:#fff;border:1px solid var(--color-border-2);border-radius:13px;padding:16px;width:340px;display:flex;flex-direction:column;gap:8px}
+.limits .lr{display:flex;justify-content:space-between;font-size:12px;font-weight:600}
+.limits .lr b{font-weight:800}
+.limits .track{height:8px;border-radius:4px;background:var(--color-border-2);overflow:hidden}
+.limits .used{height:100%;width:45%;border-radius:4px;background:linear-gradient(90deg,#00A650,#2FC56D)}
+.limits small{font-size:10.5px;color:var(--color-text-3);font-weight:500}
+.agent{background:#fff;border:1px solid var(--color-border-2);border-radius:16px;width:340px;overflow:hidden}
+.agent .map{height:110px;background:linear-gradient(135deg,#dcefe2,#c5e3d1);position:relative}
+.agent .map::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 24px,rgba(255,255,255,.5) 24px 25px),repeating-linear-gradient(90deg,transparent 0 24px,rgba(255,255,255,.5) 24px 25px)}
+.agent .pin{position:absolute;top:38%;left:48%;font-size:30px;color:#C0392B;text-shadow:0 2px 6px rgba(0,0,0,.25)}
+.agent .abody{padding:14px 16px;display:flex;align-items:center;gap:12px}
+.agent .an{flex:1}
+.agent .an b{font-size:13.5px;font-weight:700;display:block}
+.agent .an small{font-size:11px;color:var(--color-text-3);font-weight:600}
+.agent .dir{width:40px;height:40px;border-radius:12px;background:var(--color-mpesa-green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;cursor:pointer}
+.stmt{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--color-border-2);border-radius:13px;padding:13px 14px;width:340px}
+.stmt .sico{width:38px;height:38px;border-radius:11px;background:#FDECEC;color:#C0392B;display:flex;align-items:center;justify-content:center;font-size:17px}
+.stmt .si{flex:1}
+.stmt .si b{font-size:13px;font-weight:700;display:block}
+.stmt .si small{font-size:10.5px;color:var(--color-text-3);font-weight:600}
+.stmt .dl{width:36px;height:36px;border-radius:10px;background:var(--color-bg);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--color-text-2);cursor:pointer}
+
+/* ── 5. lending / savings / group ── */
+.loan{border-radius:16px;padding:18px;background:linear-gradient(135deg,#1b3a2a,#0e5b34);color:#fff;width:340px}
+.loan .tag{display:inline-flex;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:7px;padding:3px 9px;font-size:9.5px;font-weight:800;letter-spacing:.8px}
+.loan .amt{font-size:28px;font-weight:800;margin:10px 0 2px}
+.loan .meta{font-size:11.5px;opacity:.8;font-weight:500;margin-bottom:14px}
+.loan button{width:100%;background:#fff;color:#0e5b34;border:none;border-radius:11px;padding:11px;font-size:13px;font-weight:800;font-family:var(--font-sans);cursor:pointer}
+.sched{background:#fff;border:1px solid var(--color-border-2);border-radius:13px;width:340px;padding:4px 16px}
+.sched-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--color-border-2)}
+.sched-row:last-child{border-bottom:none}
+.sched-row .sn{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0}
+.sched-row.paid .sn{background:var(--color-mpesa-green-tint);color:var(--color-mpesa-green)}
+.sched-row.due .sn{background:#FEF7E8;color:#854F0B}
+.sched-row.next .sn{background:var(--color-bg);color:var(--color-text-3)}
+.sched-row .sd{flex:1}
+.sched-row .sd b{font-size:12.5px;font-weight:700;display:block}
+.sched-row .sd small{font-size:10.5px;color:var(--color-text-3);font-weight:600}
+.sched-row .sa{font-size:13px;font-weight:800}
+.rate-cards{display:flex;flex-direction:column;gap:8px;width:340px}
+.rate-card{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--color-border);border-radius:13px;padding:13px 14px;cursor:pointer}
+.rate-card.sel{border-color:var(--color-mpesa-green);background:var(--color-mpesa-green-alpha)}
+.rate-card .bico{width:38px;height:38px;border-radius:11px;background:var(--color-bg);display:flex;align-items:center;justify-content:center;font-size:17px;color:var(--color-text-2)}
+.rate-card .bi{flex:1}
+.rate-card .bi b{font-size:13px;font-weight:700;display:block}
+.rate-card .bi small{font-size:10.5px;color:var(--color-text-3);font-weight:600}
+.rate-card .apy{font-size:15px;font-weight:800;color:var(--color-mpesa-green-dark)}
+.maturity{background:#fff;border:1px solid var(--color-border-2);border-radius:16px;padding:18px;width:340px}
+.maturity .mt{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.maturity .mt i{width:36px;height:36px;border-radius:11px;background:var(--color-mpesa-green-tint);color:var(--color-mpesa-green);display:flex;align-items:center;justify-content:center;font-size:17px}
+.maturity .mt b{font-size:13.5px;font-weight:700}
+.member{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--color-border-2);border-radius:13px;padding:12px 14px;width:340px}
+.member .ava{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0}
+.member .mi{flex:1}
+.member .mi b{font-size:13px;font-weight:700;display:block}
+.member .mi small{font-size:10.5px;color:var(--color-text-3);font-weight:600}
+.member .role{font-size:9px;font-weight:800;letter-spacing:.6px;border-radius:6px;padding:3px 8px}
+.member .role.admin{background:var(--color-mpesa-green-tint);color:var(--color-mpesa-green-dark)}
+.member .role.mem{background:var(--color-bg);color:var(--color-text-2)}
+.contrib{background:#fff;border:1px solid var(--color-border-2);border-radius:16px;padding:18px;width:340px}
+.contrib .ch{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.contrib .ch b{font-size:13.5px;font-weight:700}
+.contrib .ch small{font-size:11px;color:var(--color-mpesa-green-dark);font-weight:700}
+.contrib .crow{display:flex;align-items:center;gap:10px;padding:7px 0;font-size:12px;font-weight:600}
+.contrib .crow .cava{width:26px;height:26px;border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;font-size:9.5px;font-weight:700;flex-shrink:0}
+.contrib .crow span{flex:1}
+.contrib .crow i{font-size:15px}
+.contrib .crow .ok{color:var(--color-mpesa-green)}
+.contrib .crow .no{color:var(--color-text-3)}
+.lead{background:#fff;border:1px solid var(--color-border-2);border-radius:13px;width:340px;padding:4px 16px}
+.lead-row{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--color-border-2)}
+.lead-row:last-child{border-bottom:none}
+.lead-row .rank{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0}
+.lead-row .rank.r1{background:#FCF3D7;color:#9a7400}
+.lead-row .rank.r2{background:#EEF1F7;color:#5b6880}
+.lead-row .rank.r3{background:#F8EBDD;color:#8a5a2a}
+.lead-row span{flex:1;font-size:13px;font-weight:700}
+.lead-row b{font-size:12.5px;font-weight:800;color:var(--color-mpesa-green-dark)}
+.gauge-wrap{display:flex;flex-direction:column;align-items:center;gap:2px}
+.gauge-num{font-size:26px;font-weight:800;margin-top:-46px}
+.gauge-lbl{font-size:11px;font-weight:700;color:var(--color-mpesa-green-dark)}
+
+/* ── 6. overlays / feedback / security ── */
+.sheet{background:#fff;border:1px solid var(--color-border-2);border-radius:22px 22px 14px 14px;width:340px;padding:10px 18px 16px;box-shadow:0 -8px 30px rgba(0,0,0,.1)}
+.sheet .handle{width:42px;height:4px;border-radius:2px;background:var(--color-border);margin:4px auto 12px}
+.sheet-item{display:flex;align-items:center;gap:12px;padding:12px 4px;border-bottom:1px solid var(--color-border-2);cursor:pointer}
+.sheet-item:last-child{border-bottom:none}
+.sheet-item .sico{width:38px;height:38px;border-radius:11px;background:var(--color-bg);display:flex;align-items:center;justify-content:center;font-size:17px;color:var(--color-text-2)}
+.sheet-item b{font-size:13px;font-weight:700;display:block}
+.sheet-item small{font-size:10.5px;color:var(--color-text-3);font-weight:500}
+.dialog{background:#fff;border:1px solid var(--color-border-2);border-radius:18px;width:300px;padding:22px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;box-shadow:0 16px 40px rgba(0,0,0,.12)}
+.dialog .dico{width:54px;height:54px;border-radius:50%;background:#FEF7E8;color:#B7791F;display:flex;align-items:center;justify-content:center;font-size:25px}
+.dialog b{font-size:15px;font-weight:800}
+.dialog p{font-size:12px;color:var(--color-text-2);font-weight:500;line-height:1.45}
+.dialog .dbtns{display:flex;gap:8px;width:100%;margin-top:8px}
+.dialog .dbtns button{flex:1;border-radius:10px;padding:11px;font-size:12.5px;font-weight:700;font-family:var(--font-sans);border:none;cursor:pointer}
+.dialog .dbtns .stay{background:var(--color-bg);color:var(--color-text)}
+.dialog .dbtns .go{background:#C0392B;color:#fff}
+.toast{display:inline-flex;align-items:center;gap:9px;background:#1d2a23;color:#fff;border-radius:12px;padding:11px 16px;font-size:12.5px;font-weight:600;box-shadow:0 8px 22px rgba(0,0,0,.25)}
+.toast i{color:#2FC56D;font-size:16px}
+.bio{background:#fff;border:1px solid var(--color-border-2);border-radius:20px;width:300px;padding:24px 20px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.bio .fpr{width:68px;height:68px;border-radius:50%;background:var(--color-mpesa-green-tint);color:var(--color-mpesa-green);display:flex;align-items:center;justify-content:center;font-size:33px}
+.bio b{font-size:14.5px;font-weight:800}
+.bio p{font-size:11.5px;color:var(--color-text-3);font-weight:500}
+.bio button{background:none;border:none;color:var(--color-text-2);font-size:12px;font-weight:700;font-family:var(--font-sans);margin-top:6px;cursor:pointer}
+.idcap{width:340px;height:200px;border-radius:16px;background:linear-gradient(160deg,#15241c,#0c1712);position:relative;display:flex;align-items:center;justify-content:center}
+.idcap .card-outline{width:240px;height:140px;border:2px dashed rgba(47,197,109,.8);border-radius:12px}
+.idcap .cap-hint{position:absolute;bottom:10px;left:0;right:0;text-align:center;color:rgba(255,255,255,.75);font-size:11px;font-weight:600}
+.selfie{width:240px;height:280px;border-radius:16px;background:linear-gradient(160deg,#15241c,#0c1712);position:relative;display:flex;align-items:center;justify-content:center}
+.selfie .oval{width:140px;height:180px;border:2.5px solid #2FC56D;border-radius:50%}
+.selfie .cap-hint{position:absolute;bottom:10px;left:0;right:0;text-align:center;color:rgba(255,255,255,.75);font-size:11px;font-weight:600}
+.kyc{background:#fff;border:1px solid var(--color-border-2);border-radius:16px;padding:18px;width:340px;display:flex;flex-direction:column;gap:0}
+.kyc-step{display:flex;gap:12px;position:relative;padding-bottom:18px}
+.kyc-step:last-child{padding-bottom:0}
+.kyc-step::before{content:'';position:absolute;left:13px;top:28px;bottom:0;width:2px;background:var(--color-border-2)}
+.kyc-step:last-child::before{display:none}
+.kyc-step .kdot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;z-index:1}
+.kyc-step.done .kdot{background:var(--color-mpesa-green);color:#fff}
+.kyc-step.cur .kdot{background:var(--color-mpesa-green-tint);color:var(--color-mpesa-green);border:1.5px solid var(--color-mpesa-green)}
+.kyc-step.todo .kdot{background:var(--color-bg);color:var(--color-text-3);border:1.5px solid var(--color-border)}
+.kyc-step .kt b{font-size:13px;font-weight:700;display:block}
+.kyc-step .kt small{font-size:10.5px;color:var(--color-text-3);font-weight:500}
+.lock{background:#fff;border:1px solid var(--color-border-2);border-radius:20px;width:300px;padding:26px 22px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.lock .lico{width:60px;height:60px;border-radius:50%;background:#EEF1F7;color:#4A5878;display:flex;align-items:center;justify-content:center;font-size:27px}
+.lock b{font-size:15px;font-weight:800}
+.lock p{font-size:11.5px;color:var(--color-text-3);font-weight:500;line-height:1.45}
+.faq{background:#fff;border:1px solid var(--color-border-2);border-radius:14px;width:340px;overflow:hidden}
+.faq-item{border-bottom:1px solid var(--color-border-2)}
+.faq-item:last-child{border-bottom:none}
+.faq-q{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;font-size:13px;font-weight:700;cursor:pointer}
+.faq-q i{color:var(--color-text-3);transition:transform .18s;font-size:15px}
+.faq-item.open .faq-q i{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .2s;font-size:12px;color:var(--color-text-2);font-weight:500;line-height:1.5;padding:0 16px}
+.faq-item.open .faq-a{max-height:120px;padding:0 16px 14px}
+</style>
+</head>
+<body>
+
+<div class="lib-head">
+  <h1><i class="ti ti-components" aria-hidden="true"></i> M-PESA Component Library</h1>
+  <p>Every UI building block for the full mobile-money app — Savings, Credit, Group Saving, PayPal &amp; core wallet features</p>
+  <div class="lib-counts"><span>6 categories</span><span>65 components</span><span>Barlow · Tabler Icons · #00A650</span></div>
+</div>
+
+<div class="lib-wrap">
+
+<!-- ════════ 1. FOUNDATION ════════ -->
+<section class="screen">
+<div class="phone lib-canvas">
+  <div class="pp-title"><i class="ti ti-square-toggle" aria-hidden="true"></i> Foundation &amp; Primitives</div>
+  <div class="canvas-sub">Buttons, inputs, selectors and basic controls</div>
+  <div class="comp-grid">
+
+    <div class="comp"><div class="comp-label">Buttons <code>.cta</code></div>
+      <div class="comp-body">
+        <button class="cta"><i class="ti ti-send" aria-hidden="true"></i> Send Money</button>
+        <button class="cta-sec">Save for Later</button>
+        <button class="cta-ghost">Cancel</button>
+        <button class="cta-danger"><i class="ti ti-unlink" aria-hidden="true"></i> Unlink Account</button>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Text Input <code>.field</code></div>
+      <div class="comp-body">
+        <div class="field"><label>Recipient name</label><div class="field-box"><i class="ti ti-user" aria-hidden="true"></i><span class="ph-text">Enter full name</span></div></div>
+        <div class="field"><label>Reference</label><div class="field-box focus"><i class="ti ti-note" aria-hidden="true"></i><span class="val">Rent — June</span></div></div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Amount Input <code>.amount-input</code></div>
+      <div class="comp-body">
+        <div class="amount-input"><span class="cur">ETB</span><span class="amt">1,500</span><span class="caret"></span></div>
+        <div class="amount-hint">Available balance: ETB 47,250.00</div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Phone Input <code>.phone-input</code></div>
+      <div class="comp-body">
+        <div class="phone-input"><div class="cc">🇪🇹 +251 <i class="ti ti-chevron-down" aria-hidden="true"></i></div><div class="num">911 234 567</div></div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Search Bar <code>.searchbar</code></div>
+      <div class="comp-body">
+        <div class="searchbar"><i class="ti ti-search" aria-hidden="true"></i><span>Search transactions…</span></div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Select / Dropdown <code>.select-box</code></div>
+      <div class="comp-body">
+        <div class="select-box"><span>Commercial Bank of Ethiopia</span><i class="ti ti-chevron-down" aria-hidden="true"></i></div>
+        <div class="select-box"><span style="color:var(--color-text-3)">Select a reason</span><i class="ti ti-chevron-down" aria-hidden="true"></i></div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Toggle Switch <code>.toggle</code></div>
+      <div class="comp-body">
+        <div class="tog-row"><span>Transaction alerts</span><div class="toggle on"></div></div>
+        <div class="tog-row"><span>Biometric login</span><div class="toggle"></div></div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Checkbox &amp; Radio <code>.check</code></div>
+      <div class="comp-body">
+        <div class="check checked"><div class="box"><i class="ti ti-check" aria-hidden="true"></i></div>I agree to the Terms &amp; Conditions</div>
+        <div class="check"><div class="box"></div>Subscribe to offers</div>
+        <div class="check checked"><div class="radio"></div>Weekly auto-save</div>
+        <div class="check"><div class="radio"></div>Monthly auto-save</div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Quick-Amount Chips <code>.chip</code></div>
+      <div class="comp-body">
+        <div class="chips"><button class="chip">100</button><button class="chip sel">500</button><button class="chip">1,000</button><button class="chip">5,000</button></div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Date Picker <code>.field-box</code></div>
+      <div class="comp-body">
+        <div class="field"><label>Target date</label><div class="field-box"><i class="ti ti-calendar" aria-hidden="true"></i><span class="val">15 Dec 2026</span></div></div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Slider <code>.slider</code></div>
+      <div class="comp-body">
+        <div class="slider"><div class="track"></div><div class="fill"></div><div class="thumb"></div></div>
+        <div class="slider-meta"><span>ETB 5,000</span><span style="color:var(--color-mpesa-green-dark)">ETB 31,000</span><span>ETB 50,000</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- ════════ 2. NAVIGATION ════════ -->
+<section class="screen">
+<div class="phone lib-canvas">
+  <div class="pp-title"><i class="ti ti-layout-navbar" aria-hidden="true"></i> Navigation</div>
+  <div class="canvas-sub">Bars, headers, steppers and wayfinding</div>
+  <div class="comp-grid">
+
+    <div class="comp"><div class="comp-label">Status Bar <code>.sbar</code></div>
+      <div class="comp-body center">
+        <div class="sbar"><span>9:41</span><div class="r"><i class="ti ti-antenna-bars-5" aria-hidden="true"></i><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-3" aria-hidden="true"></i></div></div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">App Header <code>.hd</code></div>
+      <div class="comp-body center">
+        <div class="apph"><div class="bk"><i class="ti ti-chevron-left" aria-hidden="true"></i></div><div class="tcol"><div class="hd-title">Send Money</div><div class="hd-sub">Step 2 of 4</div></div><div class="act"><i class="ti ti-help-circle" aria-hidden="true"></i></div></div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Bottom Tab Bar <code>.tabbar</code></div>
+      <div class="comp-body center">
+        <div class="tabbar">
+          <div class="tab-item active"><i class="ti ti-home" aria-hidden="true"></i>Home</div>
+          <div class="tab-item"><i class="ti ti-arrows-exchange" aria-hidden="true"></i>Transact</div>
+          <div class="tab-item"><i class="ti ti-plant" aria-hidden="true"></i>Grow</div>
+          <div class="tab-item"><i class="ti ti-user-circle" aria-hidden="true"></i>Account</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Segmented Control <code>.seg</code></div>
+      <div class="comp-body center">
+        <div class="seg"><button class="seg-btn active">All</button><button class="seg-btn">Money In</button><button class="seg-btn">Money Out</button></div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Wizard Stepper <code>.stepper</code></div>
+      <div class="comp-body center">
+        <div class="stepper">
+          <div class="step-dot done"><i class="ti ti-check" aria-hidden="true"></i></div><div class="step-line done"></div>
+          <div class="step-dot done"><i class="ti ti-check" aria-hidden="true"></i></div><div class="step-line done"></div>
+          <div class="step-dot cur">3</div><div class="step-line"></div>
+          <div class="step-dot">4</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Service Grid <code>.svc</code></div>
+      <div class="comp-body center">
+        <div class="svc-grid">
+          <div class="svc"><i class="ti ti-send" style="background:linear-gradient(135deg,#00A650,#008A42)" aria-hidden="true"></i><span>Send</span></div>
+          <div class="svc"><i class="ti ti-qrcode" style="background:linear-gradient(135deg,#5B8DEF,#3F6FD8)" aria-hidden="true"></i><span>Pay</span></div>
+          <div class="svc"><i class="ti ti-pig-money" style="background:linear-gradient(135deg,#F2A93B,#E08C0B)" aria-hidden="true"></i><span>Savings</span></div>
+          <div class="svc"><i class="ti ti-cash" style="background:linear-gradient(135deg,#9B59B6,#7D3C98)" aria-hidden="true"></i><span>Loans</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Favorites Row <code>.fav</code></div>
+      <div class="comp-body">
+        <div class="favs">
+          <div class="fav"><div class="ava" style="background:linear-gradient(135deg,#5B8DEF,#3F6FD8)">AB</div><span>Abel</span></div>
+          <div class="fav"><div class="ava" style="background:linear-gradient(135deg,#F2A93B,#E08C0B)">MK</div><span>Mekdes</span></div>
+          <div class="fav"><div class="ava" style="background:linear-gradient(135deg,#9B59B6,#7D3C98)">SR</div><span>Sara</span></div>
+          <div class="fav add"><div class="ava"><i class="ti ti-plus" aria-hidden="true"></i></div><span>Add</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Floating Action Button <code>.fab</code></div>
+      <div class="comp-body center">
+        <div class="fab"><i class="ti ti-qrcode" aria-hidden="true"></i></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- ════════ 3. DISPLAY & DATA ════════ -->
+<section class="screen">
+<div class="phone lib-canvas">
+  <div class="pp-title"><i class="ti ti-layout-cards" aria-hidden="true"></i> Display &amp; Data</div>
+  <div class="canvas-sub">Cards, lists, banners and data visualisation</div>
+  <div class="comp-grid">
+
+    <div class="comp"><div class="comp-label">Balance Card <code>.bal-card</code></div>
+      <div class="comp-body center">
+        <div class="bal-card">
+          <div class="lbl"><span>Total Savings Balance</span><i class="ti ti-eye" id="eye-toggle" aria-hidden="true"></i></div>
+          <div class="amt" id="bal-amt">ETB 47,250.00</div>
+          <div class="subs">
+            <div class="sub"><small>Goal savings</small><b>ETB 31,000</b></div>
+            <div class="sub"><small>Group savings</small><b>ETB 16,250</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Transaction Items <code>.tx-item</code></div>
+      <div class="comp-body center">
+        <div class="tx-item"><div class="tx-icon in"><i class="ti ti-arrow-down-left" aria-hidden="true"></i></div><div class="tx-info"><span class="tx-name">Received from Abel T.</span><span class="tx-date">Today, 09:14</span></div><span class="tx-amount in">+2,000.00</span></div>
+        <div class="tx-item"><div class="tx-icon out"><i class="ti ti-arrow-up-right" aria-hidden="true"></i></div><div class="tx-info"><span class="tx-name">Ethio Telecom Airtime</span><span class="tx-date">Yesterday, 18:40</span></div><span class="tx-amount out">−100.00</span></div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Review Rows <code>.rev-row</code></div>
+      <div class="comp-body center">
+        <div class="rev-card">
+          <div class="rev-row"><span class="rev-key">Recipient</span><span class="rev-val">Abel Tesfaye</span></div>
+          <div class="rev-row"><span class="rev-key">Amount</span><span class="rev-val">ETB 1,500.00</span></div>
+          <div class="rev-row"><span class="rev-key">Fee</span><span class="rev-val">ETB 15.00</span></div>
+          <div class="rev-row total"><span class="rev-key">Total</span><span class="rev-val">ETB 1,515.00</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Stat Boxes <code>.stat-box</code></div>
+      <div class="comp-body center">
+        <div class="stat-pair">
+          <div class="stat-box"><span class="stat-box-label">Saved this month</span><span class="stat-box-val">ETB 4,200</span></div>
+          <div class="stat-box"><span class="stat-box-label">Interest earned</span><span class="stat-box-val" style="color:var(--color-mpesa-green-dark)">ETB 312</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Info Banners <code>.info-box</code></div>
+      <div class="comp-body center">
+        <div class="info-box info"><i class="ti ti-info-circle" aria-hidden="true"></i><span>Transfers above ETB 5,000 may take up to 2 hours to process.</span></div>
+        <div class="info-box warn"><i class="ti ti-alert-triangle" aria-hidden="true"></i><span>Early withdrawal forfeits this month's interest.</span></div>
+        <div class="info-box error"><i class="ti ti-circle-x" aria-hidden="true"></i><span>Transaction failed. Your balance was not charged.</span></div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Status Pills <code>.pill</code></div>
+      <div class="comp-body row">
+        <span class="pill ok"><i class="ti ti-trending-up" aria-hidden="true"></i> On track</span>
+        <span class="pill warn"><i class="ti ti-trending-down" aria-hidden="true"></i> Behind</span>
+        <span class="pill lock"><i class="ti ti-lock" aria-hidden="true"></i> Locked</span>
+        <span class="pill pend"><i class="ti ti-clock" aria-hidden="true"></i> Pending</span>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Goal Pocket Card <code>.pocket</code></div>
+      <div class="comp-body center">
+        <div class="pocket">
+          <svg class="ring" viewBox="0 0 52 52"><circle cx="26" cy="26" r="22" fill="none" stroke="#eef1ef" stroke-width="5"/><circle cx="26" cy="26" r="22" fill="none" stroke="#00A650" stroke-width="5" stroke-dasharray="138" stroke-dashoffset="44" stroke-linecap="round" transform="rotate(-90 26 26)"/><text x="26" y="30" text-anchor="middle" font-size="11" font-weight="700" fill="#2a3530" font-family="Barlow">68%</text></svg>
+          <div class="pocket-info"><span class="pocket-name">New Apartment</span><span class="pocket-saved">SAVED 32,000.00 BIRR</span></div>
+          <span class="pill ok">On track</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Progress Bar <code>.pbar</code></div>
+      <div class="comp-body center">
+        <div class="pbar"><div class="track"><div class="pfill"></div></div><div class="meta"><span>ETB 32,000 saved</span><span>Target 47,000</span></div></div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Promo Banner <code>.promo</code></div>
+      <div class="comp-body center">
+        <div class="promo"><div class="tag">M-PESA CHALLENGE</div><div class="t">30-day Goal Sprint</div><div class="s">Hit your pocket target in 30 days. 2,341 joined</div><button>ACCEPT CHALLENGE</button></div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Contact Row <code>.contact-row</code></div>
+      <div class="comp-body center">
+        <div class="contact-row"><div class="ava">AT</div><div class="ci"><div class="cn">Abel Tesfaye</div><div class="cp">+251 911 234 567</div></div><i class="ti ti-chevron-right" aria-hidden="true"></i></div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Empty State <code>.empty</code></div>
+      <div class="comp-body center">
+        <div class="empty"><div class="eico"><i class="ti ti-receipt-off" aria-hidden="true"></i></div><b>No transactions yet</b><p>Your activity will appear here once you make your first transaction.</p><button class="cta-sec" style="width:auto;padding:10px 22px">Send Money</button></div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Skeleton Loader <code>.skel</code></div>
+      <div class="comp-body center">
+        <div class="skel"><div class="b" style="width:40px;height:40px;border-radius:12px"></div><div style="flex:1;display:flex;flex-direction:column;gap:7px"><div class="b" style="height:12px;width:70%"></div><div class="b" style="height:9px;width:45%"></div></div><div class="b" style="height:12px;width:54px"></div></div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Notification Item <code>.notif</code></div>
+      <div class="comp-body center">
+        <div class="notif"><div class="nico"><i class="ti ti-pig-money" aria-hidden="true"></i></div><div><div class="nt">Goal milestone reached 🎉</div><div class="nb">Your "New Apartment" pocket just passed 68% of its target.</div><div class="ntime">2 hours ago</div></div><div class="dot"></div></div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Spend Chart <code>.chart</code></div>
+      <div class="comp-body center">
+        <div class="chart">
+          <div class="ct"><span>Weekly spending</span><small>ETB 3,480</small></div>
+          <div class="bars">
+            <div class="barcol"><div class="bar" style="height:35%"></div><small>M</small></div>
+            <div class="barcol"><div class="bar" style="height:55%"></div><small>T</small></div>
+            <div class="barcol"><div class="bar hi" style="height:90%"></div><small>W</small></div>
+            <div class="barcol"><div class="bar" style="height:42%"></div><small>T</small></div>
+            <div class="barcol"><div class="bar" style="height:64%"></div><small>F</small></div>
+            <div class="barcol"><div class="bar" style="height:25%"></div><small>S</small></div>
+            <div class="barcol"><div class="bar" style="height:48%"></div><small>S</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- ════════ 4. TRANSACTION ════════ -->
+<section class="screen">
+<div class="phone lib-canvas">
+  <div class="pp-title"><i class="ti ti-credit-card" aria-hidden="true"></i> Transaction</div>
+  <div class="canvas-sub">Payment entry, verification and money movement</div>
+  <div class="comp-grid">
+
+    <div class="comp"><div class="comp-label">Numeric Keypad <code>.key-btn</code></div>
+      <div class="comp-body center">
+        <div class="keypad">
+          <button class="key-btn">1</button><button class="key-btn">2</button><button class="key-btn">3</button>
+          <button class="key-btn">4</button><button class="key-btn">5</button><button class="key-btn">6</button>
+          <button class="key-btn">7</button><button class="key-btn">8</button><button class="key-btn">9</button>
+          <button class="key-btn">.</button><button class="key-btn">0</button><button class="key-btn"><i class="ti ti-backspace" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">PIN Entry <code>.pin-dot</code></div>
+      <div class="comp-body center">
+        <div style="font-size:13px;font-weight:700;text-align:center">Enter your M-PESA PIN</div>
+        <div class="pin-dots"><div class="pin-dot fill"></div><div class="pin-dot fill"></div><div class="pin-dot"></div><div class="pin-dot"></div></div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">OTP Boxes <code>.otp-box</code></div>
+      <div class="comp-body center">
+        <div class="otp"><div class="otp-box">4</div><div class="otp-box">8</div><div class="otp-box">2</div><div class="otp-box focus"></div><div class="otp-box"></div><div class="otp-box"></div></div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Receipt Card <code>.receipt</code></div>
+      <div class="comp-body center">
+        <div class="receipt">
+          <div class="rtop"><div class="rcheck"><i class="ti ti-check" aria-hidden="true"></i></div><div class="ramt">ETB 1,500.00</div><div class="rsub">Sent to Abel Tesfaye · 13 Jun 2026, 11:02</div></div>
+          <div class="rbody">
+            <div class="rev-row"><span class="rev-key">Transaction ID</span><span class="rev-val">QFC8K2M71X</span></div>
+            <div class="rev-row"><span class="rev-key">Fee</span><span class="rev-val">ETB 15.00</span></div>
+            <div class="rev-row"><span class="rev-key">New balance</span><span class="rev-val">ETB 45,735.00</span></div>
+          </div>
+          <div class="stripes"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">QR Display <code>.qr-card</code></div>
+      <div class="comp-body center">
+        <div class="qr-card">
+          <svg width="130" height="130" viewBox="0 0 29 29" shape-rendering="crispEdges">
+            <rect width="29" height="29" fill="#fff"/>
+            <path fill="#1d2a23" d="M0 0h7v7H0zM22 0h7v7h-7zM0 22h7v7H0z"/>
+            <path fill="#fff" d="M1 1h5v5H1zM23 1h5v5h-5zM1 23h5v5H1z"/>
+            <path fill="#1d2a23" d="M2 2h3v3H2zM24 2h3v3h-3zM2 24h3v3H2zM9 0h2v2H9zM13 1h2v2h-2zM17 0h1v3h-1zM9 4h1v3H9zM12 4h3v1h-3zM16 4h2v2h-2zM19 5h2v2h-2zM0 9h2v2H0zM3 9h2v1H3zM6 9h3v2H6zM11 9h2v3h-2zM15 8h2v2h-2zM19 9h2v2h-2zM23 9h2v2h-2zM26 8h3v2h-3zM1 13h2v2H1zM5 12h2v3H5zM9 13h2v2H9zM13 13h3v2h-3zM18 12h2v2h-2zM22 13h2v2h-2zM26 13h2v2h-2zM0 17h2v2H0zM4 16h2v2H4zM8 17h3v2H8zM13 17h2v3h-2zM17 16h2v3h-2zM21 17h2v2h-2zM25 16h2v2h-2zM9 21h2v2H9zM13 22h2v2h-2zM17 21h3v2h-3zM22 22h2v2h-2zM26 21h2v3h-2zM9 25h3v2H9zM14 25h2v2h-2zM18 25h2v3h-2zM22 26h3v2h-3zM26 25h2v2h-2z"/>
+          </svg>
+          <div class="till">TILL NUMBER</div>
+          <div class="tillno">517 200</div>
+          <button class="cta-sec" style="padding:9px 18px;width:auto;font-size:12px"><i class="ti ti-share" aria-hidden="true"></i> Share</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">QR Scanner <code>.scanner</code></div>
+      <div class="comp-body center">
+        <div class="scanner"><div class="scan-frame"><div class="c3"></div><div class="c4"></div><div class="scan-line"></div></div><div class="hint">Point camera at merchant QR</div></div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Exchange Rate <code>.fx</code></div>
+      <div class="comp-body center">
+        <div class="fx"><div class="ficon"><i class="ti ti-currency-dollar" aria-hidden="true"></i></div><div class="pairs"><div class="rate">1 USD = 138.50 ETB</div><div class="upd">PayPal withdrawal rate · updated 2 min ago</div></div><i class="ti ti-refresh" style="color:var(--color-text-3)" aria-hidden="true"></i></div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Limits Meter <code>.limits</code></div>
+      <div class="comp-body center">
+        <div class="limits">
+          <div class="lr"><span>Daily send limit</span><b>ETB 45,000 / 100,000</b></div>
+          <div class="track"><div class="used"></div></div>
+          <small>Resets at midnight · Upgrade KYC to raise limits</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Agent Locator <code>.agent</code></div>
+      <div class="comp-body center">
+        <div class="agent">
+          <div class="map"><i class="ti ti-map-pin-filled pin" aria-hidden="true"></i></div>
+          <div class="abody"><div class="an"><b>M-PESA Agent · Bole Road</b><small>350 m away · Open until 9 PM</small></div><div class="dir"><i class="ti ti-navigation" aria-hidden="true"></i></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Statement Row <code>.stmt</code></div>
+      <div class="comp-body center">
+        <div class="stmt"><div class="sico"><i class="ti ti-file-type-pdf" aria-hidden="true"></i></div><div class="si"><b>May 2026 statement</b><small>PDF · 184 KB</small></div><div class="dl"><i class="ti ti-download" aria-hidden="true"></i></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- ════════ 5. LENDING / SAVINGS / GROUP ════════ -->
+<section class="screen">
+<div class="phone lib-canvas">
+  <div class="pp-title"><i class="ti ti-plant-2" aria-hidden="true"></i> Lending, Savings &amp; Group</div>
+  <div class="canvas-sub">Credit products, goals and chama features</div>
+  <div class="comp-grid">
+
+    <div class="comp"><div class="comp-label">Loan Offer Card <code>.loan</code></div>
+      <div class="comp-body center">
+        <div class="loan"><span class="tag">PRE-APPROVED</span><div class="amt">ETB 25,000</div><div class="meta">1.5% monthly · repay over 6 months</div><button>Get this loan</button></div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Repayment Schedule <code>.sched-row</code></div>
+      <div class="comp-body center">
+        <div class="sched">
+          <div class="sched-row paid"><div class="sn"><i class="ti ti-check" aria-hidden="true"></i></div><div class="sd"><b>Installment 1</b><small>Paid · 15 May 2026</small></div><span class="sa">4,375.00</span></div>
+          <div class="sched-row due"><div class="sn">2</div><div class="sd"><b>Installment 2</b><small>Due 15 Jun 2026</small></div><span class="sa">4,375.00</span></div>
+          <div class="sched-row next"><div class="sn">3</div><div class="sd"><b>Installment 3</b><small>Due 15 Jul 2026</small></div><span class="sa">4,375.00</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Rate Comparison <code>.rate-card</code></div>
+      <div class="comp-body center">
+        <div class="rate-cards">
+          <div class="rate-card sel"><div class="bico"><i class="ti ti-building-bank" aria-hidden="true"></i></div><div class="bi"><b>Commercial Bank of Ethiopia</b><small>Locked 12 months</small></div><span class="apy">9.5%</span></div>
+          <div class="rate-card"><div class="bico"><i class="ti ti-building-bank" aria-hidden="true"></i></div><div class="bi"><b>Awash Bank</b><small>Locked 12 months</small></div><span class="apy">8.8%</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Maturity Summary <code>.maturity</code></div>
+      <div class="comp-body center">
+        <div class="maturity">
+          <div class="mt"><i class="ti ti-calendar-check" aria-hidden="true"></i><b>At maturity — 15 Dec 2026</b></div>
+          <div class="rev-row"><span class="rev-key">Principal</span><span class="rev-val">ETB 47,000</span></div>
+          <div class="rev-row"><span class="rev-key">Interest (9.5%)</span><span class="rev-val">ETB 4,465</span></div>
+          <div class="rev-row total"><span class="rev-key">Total at maturity</span><span class="rev-val">ETB 51,465</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Group Member Row <code>.member</code></div>
+      <div class="comp-body center">
+        <div class="member"><div class="ava" style="background:linear-gradient(135deg,#5B8DEF,#3F6FD8)">MK</div><div class="mi"><b>Mekdes Alemu</b><small>Joined Mar 2026 · 12 contributions</small></div><span class="role admin">ADMIN</span></div>
+        <div class="member"><div class="ava" style="background:linear-gradient(135deg,#F2A93B,#E08C0B)">SR</div><div class="mi"><b>Sara Bekele</b><small>Joined Apr 2026 · 9 contributions</small></div><span class="role mem">MEMBER</span></div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Contribution Tracker <code>.contrib</code></div>
+      <div class="comp-body center">
+        <div class="contrib">
+          <div class="ch"><b>June round</b><small>4 of 6 contributed</small></div>
+          <div class="pbar" style="width:100%;margin-bottom:8px"><div class="track"><div class="pfill" style="width:66%"></div></div></div>
+          <div class="crow"><div class="cava" style="background:#3F6FD8">MK</div><span>Mekdes</span><i class="ti ti-circle-check-filled ok" aria-hidden="true"></i></div>
+          <div class="crow"><div class="cava" style="background:#E08C0B">SR</div><span>Sara</span><i class="ti ti-circle-check-filled ok" aria-hidden="true"></i></div>
+          <div class="crow"><div class="cava" style="background:#7D3C98">DA</div><span>Dawit</span><i class="ti ti-clock no" aria-hidden="true"></i></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Leaderboard <code>.lead-row</code></div>
+      <div class="comp-body center">
+        <div class="lead">
+          <div class="lead-row"><div class="rank r1">1</div><span>Mekdes A.</span><b>2,450 pts</b></div>
+          <div class="lead-row"><div class="rank r2">2</div><span>You</span><b>2,180 pts</b></div>
+          <div class="lead-row"><div class="rank r3">3</div><span>Sara B.</span><b>1,930 pts</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Credit Score Gauge <code>.gauge</code></div>
+      <div class="comp-body center">
+        <div class="gauge-wrap">
+          <svg width="170" height="100" viewBox="0 0 170 100">
+            <path d="M 15 95 A 70 70 0 0 1 155 95" fill="none" stroke="#eef1ef" stroke-width="13" stroke-linecap="round"/>
+            <path d="M 15 95 A 70 70 0 0 1 122 33" fill="none" stroke="url(#gg)" stroke-width="13" stroke-linecap="round"/>
+            <defs><linearGradient id="gg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#F2A93B"/><stop offset="1" stop-color="#00A650"/></linearGradient></defs>
+          </svg>
+          <div class="gauge-num">720</div>
+          <div class="gauge-lbl">GOOD · Eligible up to ETB 40,000</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- ════════ 6. OVERLAYS / FEEDBACK / SECURITY ════════ -->
+<section class="screen">
+<div class="phone lib-canvas">
+  <div class="pp-title"><i class="ti ti-shield-lock" aria-hidden="true"></i> Overlays, Feedback &amp; Security</div>
+  <div class="canvas-sub">Modals, alerts, KYC capture and authentication</div>
+  <div class="comp-grid">
+
+    <div class="comp"><div class="comp-label">Bottom Sheet <code>.sheet</code></div>
+      <div class="comp-body center">
+        <div class="sheet">
+          <div class="handle"></div>
+          <div class="sheet-item"><div class="sico"><i class="ti ti-unlink" aria-hidden="true"></i></div><div><b>Un-link account</b><small>Disconnect PayPal from M-PESA</small></div></div>
+          <div class="sheet-item"><div class="sico"><i class="ti ti-history" aria-hidden="true"></i></div><div><b>Transaction history</b><small>View all PayPal withdrawals</small></div></div>
+          <div class="sheet-item"><div class="sico"><i class="ti ti-help-circle" aria-hidden="true"></i></div><div><b>Get help</b><small>FAQ and support</small></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Confirmation Dialog <code>.dialog</code></div>
+      <div class="comp-body center">
+        <div class="dialog">
+          <div class="dico"><i class="ti ti-alert-triangle" aria-hidden="true"></i></div>
+          <b>Withdraw early?</b>
+          <p>Withdrawing before maturity forfeits ETB 312 of earned interest. This cannot be undone.</p>
+          <div class="dbtns"><button class="stay">Keep saving</button><button class="go">Withdraw</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Toast / Snackbar <code>.toast</code></div>
+      <div class="comp-body center">
+        <div class="toast"><i class="ti ti-circle-check-filled" aria-hidden="true"></i> Till number copied to clipboard</div>
+        <div class="toast" style="background:#7c2d24"><i class="ti ti-wifi-off" style="color:#ffb4a8" aria-hidden="true"></i> You're offline — showing cached balance</div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Biometric Prompt <code>.bio</code></div>
+      <div class="comp-body center">
+        <div class="bio"><div class="fpr"><i class="ti ti-fingerprint" aria-hidden="true"></i></div><b>Confirm payment</b><p>Touch the fingerprint sensor to authorize ETB 1,515.00</p><button>Use PIN instead</button></div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">ID Capture <code>.idcap</code></div>
+      <div class="comp-body center">
+        <div class="idcap"><div class="card-outline"></div><div class="cap-hint">Align your Fayda ID inside the frame</div></div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Selfie Capture <code>.selfie</code></div>
+      <div class="comp-body center">
+        <div class="selfie"><div class="oval"></div><div class="cap-hint">Center your face in the oval</div></div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">KYC Tracker <code>.kyc</code></div>
+      <div class="comp-body center">
+        <div class="kyc">
+          <div class="kyc-step done"><div class="kdot"><i class="ti ti-check" aria-hidden="true"></i></div><div class="kt"><b>Phone verified</b><small>+251 911 ··· 567</small></div></div>
+          <div class="kyc-step done"><div class="kdot"><i class="ti ti-check" aria-hidden="true"></i></div><div class="kt"><b>Fayda ID uploaded</b><small>Approved 12 Jun 2026</small></div></div>
+          <div class="kyc-step cur"><div class="kdot"><i class="ti ti-camera" aria-hidden="true"></i></div><div class="kt"><b>Selfie check</b><small>In review · usually under 5 minutes</small></div></div>
+          <div class="kyc-step todo"><div class="kdot">4</div><div class="kt"><b>Full limits unlocked</b><small>Send up to ETB 300,000 / day</small></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">Lock Screen <code>.lock</code></div>
+      <div class="comp-body center">
+        <div class="lock"><div class="lico"><i class="ti ti-lock" aria-hidden="true"></i></div><b>Session expired</b><p>For your security you were signed out after 5 minutes of inactivity.</p><button class="cta" style="margin-top:8px">Unlock with PIN</button></div>
+      </div>
+    </div>
+
+    <div class="comp"><div class="comp-label">FAQ Accordion <code>.faq</code></div>
+      <div class="comp-body center">
+        <div class="faq">
+          <div class="faq-item open"><div class="faq-q">What does it cost to send money?<i class="ti ti-chevron-down" aria-hidden="true"></i></div><div class="faq-a">Sending to another M-PESA user costs 1% of the amount, capped at ETB 50. Receiving money is always free.</div></div>
+          <div class="faq-item"><div class="faq-q">Can I withdraw savings early?<i class="ti ti-chevron-down" aria-hidden="true"></i></div><div class="faq-a">Yes, but early withdrawal forfeits the current month's interest.</div></div>
+          <div class="faq-item"><div class="faq-q">How do group payouts work?<i class="ti ti-chevron-down" aria-hidden="true"></i></div><div class="faq-a">Each round, the pooled contribution is paid to one member in the agreed rotation order.</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+</div>
+
+<script>
+// light interactivity for the gallery
+document.addEventListener('click', function (e) {
+  var t = e.target;
+  var toggle = t.closest('.toggle');
+  if (toggle) toggle.classList.toggle('on');
+
+  var seg = t.closest('.seg-btn');
+  if (seg) {
+    seg.parentNode.querySelectorAll('.seg-btn').forEach(function (b) { b.classList.remove('active'); });
+    seg.classList.add('active');
+  }
+
+  var tab = t.closest('.tab-item');
+  if (tab) {
+    tab.parentNode.querySelectorAll('.tab-item').forEach(function (b) { b.classList.remove('active'); });
+    tab.classList.add('active');
+  }
+
+  var chip = t.closest('.chip');
+  if (chip) {
+    chip.parentNode.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('sel'); });
+    chip.classList.add('sel');
+  }
+
+  var faqQ = t.closest('.faq-q');
+  if (faqQ) faqQ.parentNode.classList.toggle('open');
+
+  var check = t.closest('.check');
+  if (check) check.classList.toggle('checked');
+
+  if (t.id === 'eye-toggle') {
+    var amt = document.getElementById('bal-amt');
+    var hidden = amt.textContent.indexOf('•') !== -1;
+    amt.textContent = hidden ? 'ETB 47,250.00' : 'ETB ••••••';
+    t.className = hidden ? 'ti ti-eye' : 'ti ti-eye-off';
+  }
+});
+</script>
+<script src="figma-export.js"></script>
+</body>
+</html>

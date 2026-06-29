@@ -28,8 +28,7 @@
             width: 360px;
             height: 760px;
             background-color: #ffffff;
-            overflow-y: auto;
-            overflow-x: hidden;
+            overflow: hidden;
             position: relative;
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
             display: flex;
@@ -42,9 +41,11 @@
 
         .content-area {
             flex: 1;
+            min-height: 0;
             display: flex;
             flex-direction: column;
             padding: 0 16px;
+            overflow-y: auto;
         }
     </style>
 </head>
@@ -72,7 +73,7 @@
         </header>
 
         <div class="content-area">
-            <!-- Main Card -->
+            <!-- TOP BOX: Summary -->
             <div style="background-color: #ffffff; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); padding: 24px 20px; margin-bottom: 20px; border: 1px solid #f0f0f0;">
 
                 <!-- Withdraw Money Badge -->
@@ -81,7 +82,7 @@
                 </div>
 
                 <!-- PayPal Icon -->
-                <div style="display: flex; justify-content: center; margin-bottom: 28px;">
+                <div style="display: flex; justify-content: center; margin-bottom: 24px;">
                     <div style="width: 72px; height: 72px; background-color: #F0F0F0; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
                         <img src="/assets/paypal-icon.png" alt="PayPal" style="width: 40px; height: 40px; object-fit: contain;">
                     </div>
@@ -107,13 +108,30 @@
                     </button>
                 </div>
 
-                <!-- Divider -->
-                <div style="height: 1px; background-color: #E8E8E8; margin: 4px 0 20px 0;"></div>
-
                 <!-- Add Description Row -->
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <p style="font-size: 14px; font-weight: 500; color: #BBBBBB; letter-spacing: 0.5px;">ADD DESCRIPTION</p>
                     <button style="background: none; border: 1.5px solid #DDDDDD; color: #666666; font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 700; padding: 8px 20px; border-radius: 20px; cursor: pointer; letter-spacing: 0.5px;">ADD</button>
+                </div>
+            </div>
+
+            <!-- BOTTOM BOX: Breakdown Details -->
+            <div style="background-color: #ffffff; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); padding: 8px 20px; margin-bottom: 20px; border: 1px solid #f0f0f0;">
+                <div class="detail-row">
+                    <span style="font-size: 13px; font-weight: 500; color: #999999;">Exchange Rate</span>
+                    <span style="font-size: 13px; font-weight: 600; color: #333333;">1 USD = 130.00 ETB</span>
+                </div>
+                <div class="detail-row">
+                    <span style="font-size: 13px; font-weight: 500; color: #999999;">Service Fee</span>
+                    <span style="font-size: 13px; font-weight: 600; color: #333333;">120.00 Birr</span>
+                </div>
+                <div class="detail-row">
+                    <span style="font-size: 13px; font-weight: 500; color: #999999;">Effective Rate</span>
+                    <span style="font-size: 13px; font-weight: 600; color: #333333;">1 USD = 129.00 ETB</span>
+                </div>
+                <div class="detail-row">
+                    <span style="font-size: 13px; font-weight: 500; color: #999999;">You Receive (Total)</span>
+                    <span style="font-size: 13px; font-weight: 700; color: #333333;">15,480.00 Birr</span>
                 </div>
             </div>
         </div>

@@ -488,7 +488,7 @@
     </div>
     <div class="snav-group" onclick="toggleGroup(this)"><i class="ti ti-chevron-down snav-arrow" aria-hidden="true"></i> New Goal Setup</div>
     <div class="snav-items">
-      <button class="snb" data-screen="4" onclick="showScreen(4)" role="tab"><span class="ic"><i class="ti ti-user-plus" aria-hidden="true"></i></span>Saving type</button>
+      <button class="snb" data-screen="4" onclick="showScreen(4)" role="tab"><span class="ic"><i class="ti ti-user-plus" aria-hidden="true"></i></span>PayPal type</button>
       <button class="snb" data-screen="5" onclick="showScreen(5)" role="tab"><span class="ic"><i class="ti ti-percentage" aria-hidden="true"></i></span>Bank & rate</button>
       <button class="snb" data-screen="6" onclick="showScreen(6)" role="tab"><span class="ic"><i class="ti ti-target" aria-hidden="true"></i></span>Goal setup</button>
       <button class="snb" data-screen="7" onclick="showScreen(7)" role="tab"><span class="ic"><i class="ti ti-calendar-time" aria-hidden="true"></i></span>Set timeline</button>
@@ -606,7 +606,7 @@
               <div style="position:absolute;inset:-3px;border-radius:50%;border:3px solid #2FC56D;border-top-color:transparent;border-right-color:transparent"></div>
               <div style="width:100%;height:100%;border-radius:50%;background:linear-gradient(135deg,#f472b6,#ec4899);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.1)"><i class="ti ti-cake" style="font-size:20px;color:#fff" aria-hidden="true"></i></div>
             </div>
-            <div style="flex:1"><div style="font-size:14px;font-weight:700;color:#0f172a">Invoices</div><div style="font-size:10px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:.5px">SAVED 3,200.00 BIRR</div></div>
+            <div style="flex:1"><div style="font-size:14px;font-weight:700;color:#0f172a">Invoices</div><div style="font-size:10px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:.5px">SENT 3,200.00 BIRR</div></div>
             <span style="padding:4px 10px;border-radius:20px;font-size:10px;font-weight:700;background:#d1fae5;color:#059669">On track</span>
           </div>
 
@@ -627,7 +627,7 @@
         <div class="sbar"><span>9:41</span><div class="sbar-icons"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
         <div class="apphead">
           <div class="apphead-top">
-            <button class="back-btn" onclick="showScreen(0)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Savings</button>
+            <button class="back-btn" onclick="showScreen(0)"><i class="ti ti-arrow-left" aria-hidden="true"></i> PayPal</button>
             <button onclick="showMenu(this)" style="background:none;border:none;cursor:pointer;padding:4px;color:#64748b"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg></button>
           </div>
           <div style="display:flex;align-items:center;gap:10px;margin-top:6px"><div style="width:36px;height:36px;border-radius:10px;background:#E6F1FB;color:#185FA5;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600">CB</div><div><div class="apphead-title">Commercial Bank of Ethiopia</div><div class="apphead-sub">Account •••• 4821</div></div></div>
@@ -756,7 +756,7 @@
       </div>
     </div>
 
-    <!-- ═══ s4 – New Saving Type (Step 1) ═══ -->
+    <!-- ═══ s4 – New PayPal Type (Step 1) ═══ -->
     <div class="screen" id="s4">
       <div class="phone" style="background:#ffffff">
         <div class="sbar" style="background:#ffffff"><span>9:41</span><div class="sbar-r"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
@@ -764,7 +764,7 @@
           <div onclick="showScreen(0)" style="min-height:36px;border-radius:10px;color:#1e293b;display:flex;align-items:center;justify-content:center;padding:0 8px 0 0;cursor:pointer;margin-right:12px;gap:4px;background:none;border:none;font-family:'Barlow',sans-serif;font-size:12px;font-weight:700">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
           </div>
-          <span style="font-size:15px;font-weight:700;color:#1e293b;letter-spacing:0.5px">SAVING TYPE</span>
+          <span style="font-size:15px;font-weight:700;color:#1e293b;letter-spacing:0.5px">PAYPAL TYPE</span>
           <span style="margin-left:auto;font-size:10px;color:#94a3b8;font-weight:700">Step 1 of 7</span>
         </div>
         <div style="padding:0 28px 16px;background:#ffffff;flex-shrink:0">
@@ -877,8 +877,8 @@
         <div class="bd" style="flex:1;overflow-y:auto;padding:24px 28px 120px;background:#ffffff;gap:20px">
           <h1 style="font-size:26px;font-weight:800;color:#0f172a;margin:0 0 28px;letter-spacing:-0.5px">What's your goal & plan?</h1>
 
-          <!-- Saving Goal Name -->
-          <div style="font-size:15px;font-weight:700;color:#1e293b;margin-bottom:12px;letter-spacing:0.3px">Saving Goal Name</div>
+          <!-- PayPal Goal Name -->
+          <div style="font-size:15px;font-weight:700;color:#1e293b;margin-bottom:12px;letter-spacing:0.3px">PayPal Goal Name</div>
           <input type="text" placeholder="e.g., Summer Trip 2024" value="University tuition" style="width:100%;padding:16px 18px;border:1.5px solid #e2e8f0;border-radius:14px;font-size:15px;font-weight:500;font-family:'Barlow',sans-serif;color:#1e293b;background:#f8fafc;outline:none;transition:all 0.3s ease;margin-bottom:24px">
 
           <!-- Goal Category -->
@@ -969,7 +969,7 @@
           <div onclick="goN(2)" style="min-height:36px;border-radius:10px;color:#1e293b;display:flex;align-items:center;justify-content:center;padding:0 8px 0 0;cursor:pointer;margin-right:12px;gap:4px;background:none;border:none;font-family:'Barlow',sans-serif;font-size:12px;font-weight:700">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
           </div>
-          <span style="font-size:15px;font-weight:700;color:#1e293b;letter-spacing:0.5px">SAVING DETAILS</span>
+          <span style="font-size:15px;font-weight:700;color:#1e293b;letter-spacing:0.5px">PAYPAL DETAILS</span>
           <span style="margin-left:auto;font-size:10px;color:#94a3b8;font-weight:700">Step 4 of 7</span>
         </div>
         <div style="padding:0 28px 16px;background:#ffffff;flex-shrink:0">
@@ -978,7 +978,7 @@
           </div>
         </div>
         <div class="bd" style="flex:1;overflow-y:auto;padding:24px 28px 120px;background:#ffffff;gap:20px">
-          <h1 style="font-size:26px;font-weight:800;color:#0f172a;margin:0;letter-spacing:-0.5px">Saving Details</h1>
+          <h1 style="font-size:26px;font-weight:800;color:#0f172a;margin:0;letter-spacing:-0.5px">PayPal Details</h1>
 
           <!-- Total Amount -->
           <div style="font-size:15px;font-weight:700;color:#1e293b;margin-bottom:4px;letter-spacing:0.3px">Total amount</div>
@@ -1014,7 +1014,7 @@
               <div><div style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px">Start Date</div><div style="display:flex;align-items:center;gap:10px;padding:14px 16px;border:1.5px solid #e2e8f0;border-radius:12px;background:#f8fafc;cursor:pointer"><i class="ti ti-calendar" style="font-size:18px;color:#64748b" aria-hidden="true"></i><span style="font-size:14px;font-weight:600;color:#1e293b">Apr 12, 2024</span></div></div>
               <div><div style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px">Target Date</div><div style="display:flex;align-items:center;gap:10px;padding:14px 16px;border:1.5px solid #e2e8f0;border-radius:12px;background:#f8fafc;cursor:pointer"><i class="ti ti-calendar" style="font-size:18px;color:#64748b" aria-hidden="true"></i><span style="font-size:14px;font-weight:600;color:#94a3b8">Select date</span></div></div>
             </div>
-            <div style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px">Saving Duration</div>
+            <div style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px">PayPal Duration</div>
             <div style="padding:14px 16px;background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:12px;font-size:15px;font-weight:700;color:#1e293b;margin-bottom:16px">134 DAYS ~ 4.5 MONTHS</div>
             <div style="display:flex;gap:8px;flex-wrap:wrap">
               <button class="dur-chip" onclick="selectDurChip(this)" style="padding:8px 14px;border:1.5px solid #e2e8f0;border-radius:10px;background:#fff;font-size:12px;font-weight:700;color:#2FC56D;cursor:pointer;font-family:'Barlow',sans-serif;letter-spacing:0.3px">3 MONTHS</button>
@@ -1078,7 +1078,7 @@
             <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #e2e8f0">
               <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:#475569">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2FC56D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                Saving Type
+                PayPal Type
               </div>
               <div style="font-size:15px;font-weight:700;color:#0f172a;text-align:right">Individual</div>
             </div>
@@ -1289,7 +1289,7 @@
       <div class="phone">
         <div class="sbar"><span>9:41</span><div class="sbar-icons"><i class="ti ti-wifi" aria-hidden="true"></i><i class="ti ti-battery-2" aria-hidden="true"></i></div></div>
         <div class="hd">
-          <div class="hd-top"><button class="back-btn" onclick="showScreen(0)"><i class="ti ti-arrow-left" aria-hidden="true"></i> Savings</button></div>
+          <div class="hd-top"><button class="back-btn" onclick="showScreen(0)"><i class="ti ti-arrow-left" aria-hidden="true"></i> PayPal</button></div>
           <div class="hd-title">Terms & Conditions</div>
           <div class="hd-sub">Version 2.4 — please read these carefully</div>
         </div>

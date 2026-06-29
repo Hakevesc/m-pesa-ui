@@ -336,19 +336,17 @@
                 <button class="snb" data-screen="s9" onclick="goToScreen('s9')"><span class="ic"><i class="ti ti-shield-check"></i></span> Verify Email</button>
                 <button class="snb" data-screen="s10" onclick="goToScreen('s10')"><span class="ic"><i class="ti ti-file-text"></i></span> Terms & Cond.</button>
                 <button class="snb" data-screen="s11" onclick="goToScreen('s11')"><span class="ic"><i class="ti ti-circle-check"></i></span> Account Created</button>
+                <button class="snb active" data-screen="s0" onclick="goToScreen('s0')"><span class="ic"><i class="ti ti-home"></i></span> Home Screen</button>
+                <button class="snb" data-screen="s2" onclick="goToScreen('s2')"><span class="ic"><i class="ti ti-currency-dollar"></i></span> Enter Amount</button>
+                <button class="snb" data-screen="s5" onclick="goToScreen('s5')"><span class="ic"><i class="ti ti-file-text"></i></span> Withdraw Review</button>
+                <button class="snb" data-screen="s3" onclick="goToScreen('s3')"><span class="ic"><i class="ti ti-lock"></i></span> Enter PIN</button>
+                <button class="snb" data-screen="s4" onclick="goToScreen('s4')"><span class="ic"><i class="ti ti-circle-check"></i></span> Confirmed</button>
+                <button class="snb" data-screen="s12" onclick="goToScreen('s12')"><span class="ic"><i class="ti ti-info-circle"></i></span> Transaction Detail</button>
                 <button class="snb" data-screen="s14" onclick="goToScreen('s14')"><span class="ic"><i class="ti ti-login"></i></span> PayPal Login</button>
                 <button class="snb" data-screen="s15" onclick="goToScreen('s15')"><span class="ic"><i class="ti ti-user-plus"></i></span> PayPal Sign Up</button>
                 <button class="snb" data-screen="s16" onclick="goToScreen('s16')"><span class="ic"><i class="ti ti-shield-check"></i></span> PayPal Consent</button>
-                <button class="snb" data-screen="s17" onclick="goToScreen('s17')"><span class="ic"><i class="ti ti-link-off"></i></span> Account Unlinked</button>
-                <button class="snb active" data-screen="s0" onclick="goToScreen('s0')"><span class="ic"><i class="ti ti-home"></i></span> Home Screen</button>
-                <button class="snb" data-screen="s2" onclick="goToScreen('s2')"><span class="ic"><i class="ti ti-currency-dollar"></i></span> Enter Amount</button>
-                <button class="snb" data-screen="s3" onclick="goToScreen('s3')"><span class="ic"><i class="ti ti-lock"></i></span> Enter PIN</button>
-                <button class="snb" data-screen="s4" onclick="goToScreen('s4')"><span class="ic"><i class="ti ti-circle-check"></i></span> Confirmed</button>
-                <button class="snb" data-screen="s5" onclick="goToScreen('s5')"><span class="ic"><i class="ti ti-file-text"></i></span> Withdraw Review</button>
                 <button class="snb" data-screen="s6" onclick="goToScreen('s6')"><span class="ic"><i class="ti ti-question-mark"></i></span> FAQ</button>
                 <button class="snb" data-screen="s7" onclick="goToScreen('s7')"><span class="ic"><i class="ti ti-headphones"></i></span> Help</button>
-                <button class="snb" data-screen="s12" onclick="goToScreen('s12')"><span class="ic"><i class="ti ti-info-circle"></i></span> Transaction Detail</button>
-                <button class="snb" data-screen="s18" onclick="goToScreen('s18')"><span class="ic"><i class="ti ti-bell"></i></span> Notifications</button>
             </div>
             <div class="snav-group" onclick="toggleGroup(this)">
                 <i class="ti ti-chevron-down snav-arrow"></i><span>MODALS</span>
@@ -370,10 +368,6 @@
                             <img src="Assets/M-PESA-Logo-Green.svg" alt="M-PESA" style="height:28px;width:auto;">
                         </div>
                         <div style="display:flex;align-items:center;gap:4px;">
-                            <button onclick="goToScreen('s18')" style="background:none;border:none;cursor:pointer;padding:8px;position:relative;" aria-label="Notifications">
-                                <i data-lucide="bell" style="color:#979797;width:20px;height:20px;"></i>
-                                <span style="position:absolute;top:4px;right:4px;width:8px;height:8px;background:#FF4444;border-radius:50%;border:2px solid #fff;"></span>
-                            </button>
                             <button onclick="openPhoneModal('main')" style="background:none;border:none;cursor:pointer;padding:8px;" aria-label="Menu"><i data-lucide="more-vertical" style="color:#979797;width:22px;height:22px;"></i></button>
                         </div>
                     </header>
@@ -440,7 +434,8 @@
                             <span id="amtDisplay" style="font-size:48px;font-weight:700;color:#CCC;transition:color .3s;font-family:var(--font-sans);">0</span>
                             <span style="font-size:48px;font-weight:400;color:#CCC;margin-left:8px;font-family:var(--font-sans);">USD</span>
                         </div>
-                        <p style="font-size:14px;font-weight:500;color:#999;margin-bottom:30px;font-family:var(--font-sans);">PAYPAL BALANCE: 280.00 USD</p>
+                        <p style="font-size:14px;font-weight:500;color:#999;font-family:var(--font-sans);">PAYPAL BALANCE: 280.00 USD</p>
+                        <p style="font-size:13px;font-weight:500;color:#2FC56D;margin-bottom:30px;font-family:var(--font-sans);">EQUIVALENT: 36,400.00 BIRR</p>
                         <div id="amtArrow" style="width:40px;height:40px;background:#fff;border:2px solid #E8E8E8;border-radius:50%;display:none;align-items:center;justify-content:center;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,.06);"><i data-lucide="arrow-down" style="width:18px;height:18px;color:#999;"></i></div>
                         <div id="amtBirrRow" style="width:100%;background:#F5F5F5;border-radius:12px;padding:16px 20px;display:none;align-items:center;justify-content:space-between;margin-bottom:20px;">
                             <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:28px;">🇪🇹</span><span id="amtBirr" style="font-size:20px;font-weight:600;color:#999;font-family:var(--font-sans);">0.00</span></div>
@@ -478,8 +473,7 @@
                         <div style="width:72px;height:72px;background:#F0F0F0;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:10px;margin-bottom:16px;"><img src="Assets/paypal-icon.svg" alt="PayPal" style="width:40px;height:40px;"></div>
                         <div style="text-align:center;margin-bottom:30px;">
                             <h1 style="font-size:16px;font-weight:700;color:#333;letter-spacing:.5px;margin-bottom:8px;font-family:var(--font-sans);">MONEY WITHDRAWAL</h1>
-                            <p style="font-size:13px;font-weight:600;color:#333;margin-bottom:4px;font-family:var(--font-sans);">PHONE NUMBER <span style="font-weight:500;">711492682</span></p>
-                            <div style="display:flex;align-items:center;justify-content:center;gap:8px;"><p style="font-size:15px;font-weight:700;color:#333;font-family:var(--font-sans);">17,450.57 Birr</p><p style="font-size:13px;font-weight:500;color:#999;font-family:var(--font-sans);">120.00 USD</p></div>
+                            <div style="display:flex;align-items:center;justify-content:center;gap:8px;"><p style="font-size:15px;font-weight:700;color:#333;font-family:var(--font-sans);">15,600.00 Birr</p><p style="font-size:13px;font-weight:500;color:#999;font-family:var(--font-sans);">120.00 USD</p></div>
                         </div>
                         <p style="font-size:12px;font-weight:600;color:#666;letter-spacing:1px;margin-bottom:16px;font-family:var(--font-sans);">ENTER M-PESA PIN:</p>
                         <div style="display:flex;gap:16px;"><div class="pin-dot" id="pinDot1"></div><div class="pin-dot" id="pinDot2"></div><div class="pin-dot" id="pinDot3"></div><div class="pin-dot" id="pinDot4"></div></div>
@@ -514,8 +508,7 @@
                         <div style="width:72px;height:72px;background:#F0F0F0;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:16px;"><img src="Assets/paypal-icon.svg" alt="PayPal" style="width:40px;height:40px;"></div>
                         <div style="text-align:center;margin-bottom:40px;">
                             <h1 style="font-size:16px;font-weight:700;color:#333;letter-spacing:.5px;margin-bottom:8px;font-family:var(--font-sans);">MONEY WITHDRAWAL</h1>
-                            <p style="font-size:13px;font-weight:600;color:#333;margin-bottom:4px;font-family:var(--font-sans);">PHONE NUMBER <span style="font-weight:500;">711492682</span></p>
-                            <div style="display:flex;align-items:center;justify-content:center;gap:8px;"><p style="font-size:15px;font-weight:700;color:#333;font-family:var(--font-sans);">17,450.57 Birr</p><p style="font-size:13px;font-weight:500;color:#999;font-family:var(--font-sans);">120.00 USD</p></div>
+                            <div style="display:flex;align-items:center;justify-content:center;gap:8px;"><p style="font-size:15px;font-weight:700;color:#333;font-family:var(--font-sans);">15,600.00 Birr</p><p style="font-size:13px;font-weight:500;color:#999;font-family:var(--font-sans);">120.00 USD</p></div>
                         </div>
                         <div style="width:80px;height:80px;border-radius:50%;border:3px solid #2FC56D;display:flex;align-items:center;justify-content:center;margin-bottom:24px;animation:successScale .5s cubic-bezier(.175,.885,.32,1.275);">
                             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2FC56D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="animation:successCheck .4s ease-out .3s both;"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -536,22 +529,31 @@
                         <h1 style="font-size:18px;font-weight:700;color:#333;letter-spacing:1px;font-family:var(--font-sans);">CONFIRM</h1>
                         <button onclick="openPhoneModal('main')" style="background:none;border:none;cursor:pointer;padding:4px;" aria-label="Menu"><i data-lucide="more-vertical" style="width:22px;height:22px;color:#979797;"></i></button>
                     </header>
-                    <div style="flex:1;display:flex;flex-direction:column;padding:0 16px;overflow-y:auto;">
+                    <div style="flex:1;min-height:0;display:flex;flex-direction:column;padding:0 16px;overflow-y:auto;">
+                        <!-- TOP BOX: Summary -->
                         <div style="background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.08);padding:24px 20px;margin-bottom:20px;border:1px solid #f0f0f0;">
                             <div style="display:flex;justify-content:center;margin-bottom:20px;"><span style="background:#F0F0F0;color:#666;font-size:12px;font-weight:700;letter-spacing:1px;padding:8px 20px;border-radius:20px;font-family:var(--font-sans);">WITHDRAW MONEY</span></div>
-                            <div style="display:flex;justify-content:center;margin-bottom:28px;"><div style="width:72px;height:72px;background:#F0F0F0;border-radius:50%;display:flex;align-items:center;justify-content:center;"><img src="Assets/paypal-icon.svg" alt="PayPal" style="width:40px;height:40px;"></div></div>
-                            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
-                                <div><p style="font-size:12px;font-weight:600;color:#999;letter-spacing:1px;margin-bottom:4px;font-family:var(--font-sans);">PHONE NUMBER</p><p style="font-size:22px;font-weight:600;color:#333;font-family:var(--font-sans);">711492682</p></div>
+                            <div style="display:flex;justify-content:center;margin-bottom:24px;"><div style="width:72px;height:72px;background:#F0F0F0;border-radius:50%;display:flex;align-items:center;justify-content:center;"><img src="Assets/paypal-icon.svg" alt="PayPal" style="width:40px;height:40px;"></div></div>
+                            <div style="margin-bottom:24px;">
+                                <p style="font-size:12px;font-weight:600;color:#999;letter-spacing:1px;margin-bottom:4px;font-family:var(--font-sans);">PHONE NUMBER</p>
+                                <p style="font-size:22px;font-weight:600;color:#333;font-family:var(--font-sans);">711492682</p>
                             </div>
                             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
                                 <div><p style="font-size:12px;font-weight:600;color:#999;letter-spacing:1px;margin-bottom:4px;font-family:var(--font-sans);">AMOUNT</p><p style="font-size:22px;font-weight:700;color:#333;margin-bottom:2px;font-family:var(--font-sans);">15,600.00 Birr</p><p style="font-size:12px;font-weight:600;color:#666;letter-spacing:.5px;font-family:var(--font-sans);">AMOUNT IN USD: 120.00 USD</p></div>
                                 <button style="width:48px;height:48px;background:#F5F5F5;border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;" aria-label="Edit"><i data-lucide="pencil" style="width:20px;height:20px;color:#666;"></i></button>
                             </div>
-                            <div style="height:1px;background:#E8E8E8;margin:4px 0 20px;"></div>
                             <div style="display:flex;justify-content:space-between;align-items:center;">
                                 <p style="font-size:14px;font-weight:500;color:#BBB;letter-spacing:.5px;font-family:var(--font-sans);">ADD DESCRIPTION</p>
                                 <button style="background:none;border:1.5px solid #DDD;color:#666;font-family:var(--font-sans);font-size:13px;font-weight:700;padding:8px 20px;border-radius:20px;cursor:pointer;letter-spacing:.5px;">ADD</button>
                             </div>
+                        </div>
+
+                        <!-- BOTTOM BOX: Breakdown Details -->
+                        <div style="background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.08);padding:4px 20px;margin-bottom:20px;border:1px solid #f0f0f0;">
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid #F5F5F5;"><span style="font-size:13px;font-weight:500;color:#999;font-family:var(--font-sans);">Exchange Rate</span><span style="font-size:13px;font-weight:600;color:#333;font-family:var(--font-sans);">1 USD = 130.00 ETB</span></div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid #F5F5F5;"><span style="font-size:13px;font-weight:500;color:#999;font-family:var(--font-sans);">Service Fee</span><span style="font-size:13px;font-weight:600;color:#333;font-family:var(--font-sans);">120.00 Birr</span></div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid #F5F5F5;"><span style="font-size:13px;font-weight:500;color:#999;font-family:var(--font-sans);">Effective Rate</span><span style="font-size:13px;font-weight:600;color:#333;font-family:var(--font-sans);">1 USD = 129.00 ETB</span></div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;"><span style="font-size:13px;font-weight:500;color:#999;font-family:var(--font-sans);">You Receive (Total)</span><span style="font-size:13px;font-weight:700;color:#333;font-family:var(--font-sans);">15,480.00 Birr</span></div>
                         </div>
                     </div>
                     <div style="padding:0 16px 20px;">
@@ -974,25 +976,6 @@
                     </div>
                 </div>
             </div>
-            <!-- ===== SCREEN 17: Account Unlinked ===== -->
-            <div class="screen" id="s17">
-                <div class="phone" id="phone17" style="background:#fff;">
-                    <div class="sbar" style="background:#fff;"><span>9:41</span><div class="sbar-icons"><i class="ti ti-wifi"></i><i class="ti ti-battery-filled"></i></div></div>
-                    <div style="flex:1;display:flex;flex-direction:column;align-items:center;padding:0 24px;justify-content:center;">
-                        <div style="width:80px;height:80px;border-radius:50%;background:#FFF3E0;display:flex;align-items:center;justify-content:center;margin-bottom:24px;animation:successScale .5s cubic-bezier(.175,.885,.32,1.275);">
-                            <i data-lucide="link-2" style="width:36px;height:36px;color:#FF9800;transform:rotate(45deg);"></i>
-                        </div>
-                        <h1 style="font-size:22px;font-weight:700;color:#333;margin-bottom:12px;text-align:center;font-family:var(--font-sans);">Account Unlinked</h1>
-                        <p style="font-size:14px;font-weight:500;color:#666;text-align:center;line-height:1.6;max-width:280px;margin-bottom:8px;font-family:var(--font-sans);">Your PayPal account has been successfully unlinked from your M-PESA account.</p>
-                        <div style="background:#F5F5F5;border-radius:12px;padding:16px 20px;margin-top:32px;width:100%;">
-                            <p style="font-size:13px;color:#666;line-height:1.6;text-align:center;font-family:var(--font-sans);">PayPal top-up and withdrawal features are now disabled. <br><br><span onclick="goToScreen('s9')" style="color:#2FC56D;font-weight:600;cursor:pointer;text-decoration:underline;">Link account again</span> to re-enable these features.</p>
-                        </div>
-                    </div>
-                    <div style="padding:0 20px 32px;">
-                        <button onclick="goToScreen('s0')" style="width:100%;background:#2FC56D;color:#fff;border:none;padding:18px;border-radius:30px;font-family:var(--font-sans);font-size:16px;font-weight:700;cursor:pointer;letter-spacing:1px;box-shadow:0 4px 16px rgba(47,197,109,.3);">DONE</button>
-                    </div>
-                </div>
-            </div>
             <!-- ===== SCREEN 11: Account Created ===== -->
             <div class="screen" id="s11">
                 <div class="phone" id="phone11" style="background:#fff;">
@@ -1013,89 +996,6 @@
                     </div>
                     <div style="padding:0 20px 32px;">
                         <button onclick="goToScreen('s0')" style="width:100%;background:#2FC56D;color:#fff;border:none;padding:18px;border-radius:30px;font-family:var(--font-sans);font-size:16px;font-weight:700;cursor:pointer;letter-spacing:1px;box-shadow:0 4px 16px rgba(47,197,109,.3);">DONE</button>
-                    </div>
-                </div>
-            </div>
-            <!-- ===== SCREEN 18: Notification Center ===== -->
-            <div class="screen" id="s18">
-                <div class="phone" id="phone18" style="background:#fff;">
-                    <div class="sbar" style="background:#fff;"><span>9:41</span><div class="sbar-icons"><i class="ti ti-wifi"></i><i class="ti ti-battery-filled"></i></div></div>
-                    <header style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:#fff;flex-shrink:0;font-family:var(--font-sans);">
-                        <button onclick="goToScreen('s0')" style="background:none;border:none;cursor:pointer;padding:8px;" aria-label="Back"><i data-lucide="arrow-left" style="color:#333;width:24px;height:24px;"></i></button>
-                        <h1 style="font-size:18px;font-weight:700;color:#333;letter-spacing:1px;font-family:var(--font-sans);">NOTIFICATIONS</h1>
-                        <button onclick="openPhoneModal('main')" style="background:none;border:none;cursor:pointer;padding:8px;" aria-label="Menu"><i data-lucide="more-vertical" style="color:#979797;width:22px;height:22px;"></i></button>
-                    </header>
-                    <div style="flex:1;padding:20px 16px 20px;overflow-y:auto;background:#f4f6f9;">
-                        <!-- Today section -->
-                        <p style="font-size:12px;font-weight:600;color:#999;letter-spacing:1px;margin-bottom:12px;padding:0 4px;font-family:var(--font-sans);">TODAY</p>
-                        <div style="background:#fff;border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,.04);border:1px solid #f0f0f0;margin-bottom:16px;overflow:hidden;">
-                            <div style="display:flex;align-items:center;padding:16px;gap:14px;">
-                                <div style="width:44px;height:44px;background:#E6F4EA;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                                    <i data-lucide="check-circle" style="width:22px;height:22px;color:#2FC56D;"></i>
-                                </div>
-                                <div style="flex:1;min-width:0;">
-                                    <p style="font-size:14px;font-weight:600;color:#333;margin-bottom:2px;font-family:var(--font-sans);">Withdrawal Successful</p>
-                                    <p style="font-size:12px;color:#666;line-height:1.4;font-family:var(--font-sans);">Your PayPal withdrawal of 500.00 Birr has been completed successfully.</p>
-                                    <p style="font-size:11px;color:#AAA;margin-top:6px;font-family:var(--font-sans);">Today, 01:23 PM</p>
-                                </div>
-                                <div style="width:10px;height:10px;background:#2FC56D;border-radius:50%;flex-shrink:0;"></div>
-                            </div>
-                        </div>
-                        <div style="background:#fff;border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,.04);border:1px solid #f0f0f0;margin-bottom:16px;overflow:hidden;">
-                            <div style="display:flex;align-items:center;padding:16px;gap:14px;">
-                                <div style="width:44px;height:44px;background:#FFF3E0;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                                    <i data-lucide="refresh-cw" style="width:22px;height:22px;color:#FF9800;"></i>
-                                </div>
-                                <div style="flex:1;min-width:0;">
-                                    <p style="font-size:14px;font-weight:600;color:#333;margin-bottom:2px;font-family:var(--font-sans);">Exchange Rate Updated</p>
-                                    <p style="font-size:12px;color:#666;line-height:1.4;font-family:var(--font-sans);">USD to ETB rate has changed to 1 USD = 130 ETB.</p>
-                                    <p style="font-size:11px;color:#AAA;margin-top:6px;font-family:var(--font-sans);">Today, 10:00 AM</p>
-                                </div>
-                                <div style="width:10px;height:10px;background:#FF9800;border-radius:50%;flex-shrink:0;"></div>
-                            </div>
-                        </div>
-                        <!-- Yesterday section -->
-                        <p style="font-size:12px;font-weight:600;color:#999;letter-spacing:1px;margin-bottom:12px;padding:0 4px;margin-top:4px;font-family:var(--font-sans);">YESTERDAY</p>
-                        <div style="background:#fff;border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,.04);border:1px solid #f0f0f0;margin-bottom:16px;overflow:hidden;">
-                            <div style="display:flex;align-items:center;padding:16px;gap:14px;">
-                                <div style="width:44px;height:44px;background:#E6F4EA;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                                    <i data-lucide="arrow-up-right" style="width:22px;height:22px;color:#2FC56D;"></i>
-                                </div>
-                                <div style="flex:1;min-width:0;">
-                                    <p style="font-size:14px;font-weight:600;color:#333;margin-bottom:2px;font-family:var(--font-sans);">Top-up Successful</p>
-                                    <p style="font-size:12px;color:#666;line-height:1.4;font-family:var(--font-sans);">Your M-PESA top-up of 1,000.00 Birr has been processed.</p>
-                                    <p style="font-size:11px;color:#AAA;margin-top:6px;font-family:var(--font-sans);">Yesterday, 4:15 PM</p>
-                                </div>
-                                <div style="width:10px;height:10px;background:#2FC56D;border-radius:50%;flex-shrink:0;"></div>
-                            </div>
-                        </div>
-                        <div style="background:#fff;border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,.04);border:1px solid #f0f0f0;margin-bottom:16px;overflow:hidden;">
-                            <div style="display:flex;align-items:center;padding:16px;gap:14px;">
-                                <div style="width:44px;height:44px;background:#FFF0F0;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                                    <i data-lucide="alert-circle" style="width:22px;height:22px;color:#E24B4A;"></i>
-                                </div>
-                                <div style="flex:1;min-width:0;">
-                                    <p style="font-size:14px;font-weight:600;color:#333;margin-bottom:2px;font-family:var(--font-sans);">Failed Transaction</p>
-                                    <p style="font-size:12px;color:#666;line-height:1.4;font-family:var(--font-sans);">A withdrawal attempt of 2,500.00 Birr could not be completed. Please try again.</p>
-                                    <p style="font-size:11px;color:#AAA;margin-top:6px;font-family:var(--font-sans);">Yesterday, 2:30 PM</p>
-                                </div>
-                                <div style="width:10px;height:10px;background:#E24B4A;border-radius:50%;flex-shrink:0;"></div>
-                            </div>
-                        </div>
-                        <!-- Older section -->
-                        <p style="font-size:12px;font-weight:600;color:#999;letter-spacing:1px;margin-bottom:12px;padding:0 4px;margin-top:4px;font-family:var(--font-sans);">OLDER</p>
-                        <div style="background:#fff;border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,.04);border:1px solid #f0f0f0;overflow:hidden;">
-                            <div style="display:flex;align-items:center;padding:16px;gap:14px;">
-                                <div style="width:44px;height:44px;background:#E6F4EA;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                                    <i data-lucide="link" style="width:22px;height:22px;color:#2FC56D;"></i>
-                                </div>
-                                <div style="flex:1;min-width:0;">
-                                    <p style="font-size:14px;font-weight:600;color:#333;margin-bottom:2px;font-family:var(--font-sans);">Account Linked</p>
-                                    <p style="font-size:12px;color:#666;line-height:1.4;font-family:var(--font-sans);">Your PayPal account has been successfully linked to M-PESA.</p>
-                                    <p style="font-size:11px;color:#AAA;margin-top:6px;font-family:var(--font-sans);">Jun 12, 2026</p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -1129,7 +1029,7 @@
                     <div style="width:72px;height:72px;background:#FFF0F0;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;"><i data-lucide="link-2" style="width:32px;height:32px;color:#E24B4A;transform:rotate(45deg);"></i></div>
                     <p style="font-size:20px;font-weight:700;color:#1e293b;margin-bottom:8px;font-family:var(--font-sans);">Unlink PayPal?</p>
                     <p style="font-size:14px;color:#64748b;line-height:1.6;max-width:280px;margin:0 auto 24px;font-family:var(--font-sans);">This will disconnect your PayPal account from M-PESA. You can reconnect anytime.</p>
-                    <button onclick="openPhoneModalInject('close'); goToScreen('s17')" style="width:100%;background:#E24B4A;color:#fff;border:none;padding:16px;border-radius:14px;font-family:var(--font-sans);font-size:15px;font-weight:700;cursor:pointer;margin-bottom:10px;letter-spacing:.5px;">YES, UNLINK</button>
+                    <button onclick="openPhoneModalInject('close'); goToScreen('s8')" style="width:100%;background:#E24B4A;color:#fff;border:none;padding:16px;border-radius:14px;font-family:var(--font-sans);font-size:15px;font-weight:700;cursor:pointer;margin-bottom:10px;letter-spacing:.5px;">YES, UNLINK</button>
                     <button onclick="openPhoneModalInject('close')" style="width:100%;background:#fff;color:#64748b;border:1.5px solid #e2e8f0;padding:16px;border-radius:14px;font-family:var(--font-sans);font-size:15px;font-weight:600;cursor:pointer;letter-spacing:.5px;">CANCEL</button>
                 </div>
             </div>
